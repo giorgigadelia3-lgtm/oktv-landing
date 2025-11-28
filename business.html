@@ -35,8 +35,13 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg-page);
+      background:
+        radial-gradient(circle at 0 0, rgba(59,130,246,0.07), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(56,189,248,0.08), transparent 55%),
+        var(--bg-page);
       color: var(--text-main);
+      position: relative;
+      overflow-x: hidden;
     }
 
     img { max-width: 100%; display: block; }
@@ -53,15 +58,34 @@
       margin: 0 auto;
     }
 
-    /* ================== HEADER ================== */
+    @media (max-width: 768px) {
+      section {
+        padding: 56px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      section {
+        padding: 48px 14px;
+      }
+    }
+
+    /* ================== HEADER (იგივე, რაც about/index) ================== */
     .main-header {
       position: sticky;
       top: 0;
       left: 0;
       right: 0;
       z-index: 50;
-      background: #ffffff;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
       box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+      transition: box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .main-header.scrolled {
+      box-shadow: 0 8px 30px rgba(15,23,42,0.18);
+      background: rgba(255,255,255,0.98);
     }
 
     .header-inner {
@@ -77,29 +101,30 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       flex-shrink: 0;
     }
 
     .brand-logo {
-      height: 52px;
+      height: 64px;
       width: auto;
       object-fit: contain;
+      filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
     }
 
     .brand-text-block { line-height: 1.1; }
 
     .brand-name {
-      font-size: 1.1rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--primary-dark);
       white-space: nowrap;
     }
 
     .brand-subtitle {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -126,6 +151,10 @@
       font-weight: 600;
       color: var(--text-muted);
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
     }
 
     .nav-link::after {
@@ -136,17 +165,21 @@
       bottom: 6px;
       height: 2px;
       border-radius: 999px;
-      background: var(--primary);
+      background: linear-gradient(90deg, var(--primary), var(--accent));
       transform: scaleX(0);
       transform-origin: center;
-      transition: transform 0.15s ease-out;
+      transition: transform 0.18s ease-out;
     }
 
-    .nav-link:hover { color: var(--primary-dark); }
+    .nav-link:hover {
+      color: var(--primary-dark);
+      background: rgba(0,159,227,0.06);
+      box-shadow: 0 3px 8px rgba(148,163,184,0.35);
+    }
 
     .nav-link.active {
       color: var(--primary-dark);
-      background: rgba(0, 159, 227, 0.06);
+      background: rgba(0, 159, 227, 0.09);
     }
 
     .nav-link.active::after { transform: scaleX(1); }
@@ -154,12 +187,13 @@
     .header-cta {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       margin-left: 6px;
       flex-shrink: 0;
     }
 
     .header-btn {
+      position: relative;
       border-radius: var(--radius-pill);
       padding: 8px 16px;
       border: 1px solid var(--primary);
@@ -172,6 +206,24 @@
       align-items: center;
       gap: 6px;
       box-shadow: 0 4px 16px rgba(0, 159, 227, 0.4);
+      white-space: nowrap;
+      transform: translateY(0);
+      transition: box-shadow 0.18s ease, transform 0.18s ease, background 0.18s ease;
+      overflow: hidden;
+    }
+
+    .header-btn::before {
+      content: "❄";
+      position: absolute;
+      top: -8px;
+      right: 16px;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    .header-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(0, 159, 227, 0.6);
     }
 
     .header-btn span {
@@ -180,16 +232,16 @@
       letter-spacing: 0.12em;
     }
 
-    .header-btn-secondary {
+    .header-btn-ghost {
       background: #ffffff;
       color: var(--primary-dark);
-      border-color: rgba(148, 163, 184, 0.6);
-      box-shadow: 0 4px 12px rgba(148, 163, 184, 0.4);
+      border-color: var(--primary-dark);
+      box-shadow: none;
     }
 
-    .header-btn-secondary:hover {
-      background: #f1f5f9;
-    }
+    .header-btn-ghost::before { content: "❄"; color: #93c5fd; }
+
+    .header-btn-ghost:hover { background: rgba(0, 159, 227, 0.06); }
 
     @media (max-width: 980px) {
       .header-inner {
@@ -214,14 +266,15 @@
     }
 
     @media (max-width: 640px) {
-      .brand-name { font-size: 0.9rem; }
-      .brand-subtitle { font-size: 0.62rem; }
+      .brand-logo { height: 56px; }
+      .brand-name { font-size: 1.05rem; }
+      .brand-subtitle { font-size: 0.64rem; }
       .nav-link {
         font-size: 0.75rem;
         padding-inline: 8px;
       }
       .header-cta {
-        flex-wrap: wrap;
+        width: 100%;
         justify-content: flex-end;
       }
     }
@@ -261,13 +314,12 @@
       mix-blend-mode: screen;
     }
 
-    /* სტანდარტული, შედარებით დაბალი ბანერი */
     .map-image-wrap {
       position: relative;
       border-radius: 20px;
       overflow: hidden;
       background: radial-gradient(circle at 50% 0%, #e5f4ff, #ffffff);
-      height: clamp(260px, 50vh, 400px); /* აქედან მოდის „გაპატარავება“ */
+      height: clamp(260px, 50vh, 400px);
     }
 
     .map-image {
@@ -465,6 +517,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
+      margin-top: 18px;
     }
 
     .tech-card {
@@ -802,59 +855,329 @@
       }
     }
 
+    /* ================== FOOTER ================== */
+    .footer {
+      padding: 20px 16px 26px;
+      text-align: center;
+      font-size: 0.8rem;
+      background: #020617;
+      color: #e5e7eb;
+      border-top: 1px solid rgba(15,23,42,0.8);
+      margin-top: 16px;
+    }
+
+    .footer-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-contact-line {
+      font-size: 0.86rem;
+    }
+
+    .footer-phone-link {
+      color: #bbf7d0;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+
+    .footer-phone-link:hover {
+      color: #86efac;
+    }
+
+    .footer-social-list {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-social-list a {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(15,23,42,0.9);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.8);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .footer-social-list a:hover {
+      transform: translateY(-1px) scale(1.05);
+      box-shadow: 0 14px 30px rgba(15,23,42,0.95);
+    }
+
+    .footer-social-list img {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-copy {
+      font-size: 0.77rem;
+      color: #9ca3af;
+    }
+
+    /* ================== FLOATING SOCIAL ICONS ================== */
+    .floating-socials {
+      position: fixed;
+      right: 26px;
+      bottom: 94px;
+      z-index: 81;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: 0 10px 24px rgba(15,23,42,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      background: #f3f4ff;
+      border-color: var(--primary);
+      box-shadow: 0 16px 32px rgba(15,23,42,0.45);
+    }
+
+    .social-btn img {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .floating-socials {
+        right: 16px;
+        bottom: 90px;
+      }
+    }
+
     /* ================== FLOATING CALL BUTTON ================== */
     .floating-call-btn {
       position: fixed;
       right: 24px;
       bottom: 24px;
-      z-index: 60;
+      z-index: 80;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 18px;
+      gap: 8px;
+      padding: 10px 16px;
       border-radius: 999px;
-      background: #16a34a;
+      background: linear-gradient(135deg, #10b981, #059669);
       color: #ffffff;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 600;
-      box-shadow: 0 16px 40px rgba(22, 163, 74, 0.6);
+      box-shadow: 0 18px 40px rgba(5,150,105,0.6);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .floating-call-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 50px rgba(5,150,105,0.75);
     }
 
     .floating-call-icon {
       width: 26px;
       height: 26px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.15);
+      background: rgba(15,23,42,0.18);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.9rem;
+      font-size: 1.15rem;
+      box-shadow: 0 0 0 0 rgba(16,185,129,0.55);
+      animation: phonePulse 2.1s ease-out infinite;
     }
 
-    .floating-call-text {
-      white-space: nowrap;
+    .floating-call-text { white-space: nowrap; }
+
+    @keyframes phonePulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(16,185,129,0.55);
+      }
+      50% {
+        transform: scale(1.06);
+        box-shadow: 0 0 0 10px rgba(16,185,129,0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(16,185,129,0);
+      }
     }
 
     @media (max-width: 640px) {
       .floating-call-btn {
         right: 16px;
         bottom: 16px;
-        padding-inline: 14px;
-      }
-      .floating-call-text {
+        padding: 9px 14px;
         font-size: 0.8rem;
       }
     }
 
-    /* FOOTER */
-    .footer {
-      padding: 20px 16px 26px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    /* ================== DOWNLOAD MODAL ================== */
+    .download-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;
     }
 
-    /* REVEAL */
+    .download-modal-backdrop.active {
+      display: flex;
+    }
+
+    .download-modal {
+      background: #f9fafb;
+      border-radius: 20px;
+      padding: 22px 22px 18px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 30px 80px rgba(15,23,42,0.75);
+      border: 1px solid rgba(148,163,184,0.5);
+      position: relative;
+    }
+
+    .download-modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .download-modal-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .download-modal-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .download-option {
+      flex: 1 1 180px;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid rgba(209,213,219,0.9);
+      padding: 10px 10px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease, background 0.16s ease;
+    }
+
+    .download-option img {
+      width: 140px;
+      height: auto;
+    }
+
+    .download-option-label {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .download-option:hover {
+      transform: translateY(-2px);
+      background: #f0f9ff;
+      border-color: var(--primary);
+      box-shadow: 0 12px 26px rgba(15,23,42,0.24);
+    }
+
+    .download-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      border: none;
+      background: transparent;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: #6b7280;
+    }
+
+    .download-modal-close:hover {
+      color: #111827;
+    }
+
+    /* ================== SNOW ANIMATION ================== */
+    .snowflakes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 4;
+      overflow: hidden;
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -10%;
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      text-shadow:
+        0 0 6px rgba(148,163,184,0.9),
+        0 0 12px rgba(191,219,254,0.9);
+      animation-name: snowFall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes snowFall {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      100% {
+        transform: translateY(120vh) translateX(25px);
+        opacity: 0;
+      }
+    }
+
+    .snowflake:nth-child(1)  { left: 5%;  animation-duration: 12s; animation-delay: 0s; }
+    .snowflake:nth-child(2)  { left: 15%; animation-duration: 16s; animation-delay: 2s; }
+    .snowflake:nth-child(3)  { left: 25%; animation-duration: 14s; animation-delay: 4s; }
+    .snowflake:nth-child(4)  { left: 35%; animation-duration: 18s; animation-delay: 1s; }
+    .snowflake:nth-child(5)  { left: 45%; animation-duration: 17s; animation-delay: 3s; }
+    .snowflake:nth-child(6)  { left: 55%; animation-duration: 15s; animation-delay: 5s; }
+    .snowflake:nth-child(7)  { left: 65%; animation-duration: 19s; animation-delay: 0.5s; }
+    .snowflake:nth-child(8)  { left: 75%; animation-duration: 13s; animation-delay: 2.5s; }
+    .snowflake:nth-child(9)  { left: 85%; animation-duration: 16s; animation-delay: 4.5s; }
+    .snowflake:nth-child(10) { left: 95%; animation-duration: 20s; animation-delay: 1.5s; }
+
+    /* ================== REVEAL ================== */
     .reveal {
       opacity: 0;
       transform: translateY(16px);
@@ -868,8 +1191,22 @@
   </style>
 </head>
 <body>
-  <!-- ================== HEADER ================== -->
-  <header class="main-header">
+  <!-- თოვლის ფენა -->
+  <div class="snowflakes" aria-hidden="true">
+    <div class="snowflake">❄</div>
+    <div class="snowflake">✻</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">✼</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">✻</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❄</div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="main-header" id="mainHeader">
     <div class="header-inner">
       <div class="brand">
         <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
@@ -881,8 +1218,8 @@
 
       <div class="header-spacer"></div>
 
-      <nav class="nav">
-        <a class="nav-link" <a href="/" class="nav-link">მთავარი</a>
+      <nav class="nav" aria-label="მთავარი ნავიგაცია">
+        <a href="index.html" class="nav-link">მთავარი</a>
         <a class="nav-link" href="packages.html">პაკეტები</a>
         <a class="nav-link active" href="business.html">კომპანიებისთვის</a>
         <a class="nav-link" href="about.html">ჩვენს შესახებ</a>
@@ -890,10 +1227,10 @@
       </nav>
 
       <div class="header-cta">
-        <a href="live.html" class="header-btn header-btn-secondary">
+        <a href="https://app.oktv.ge/" target="_blank" class="header-btn header-btn-ghost" rel="noopener">
           <span>LIVE OKTV</span>
         </a>
-        <a href="contact.html" class="header-btn">
+        <a href="#" class="header-btn" id="downloadCtaBtn" role="button">
           <span>ჩამოტვირთე აპი</span>
         </a>
       </div>
@@ -901,12 +1238,12 @@
   </header>
 
   <main>
-    <!-- ================== HERO – MAP BANNER ================== -->
+    <!-- HERO – MAP BANNER -->
     <section id="companies-hero">
       <div class="hero-inner">
         <div class="map-hero reveal">
           <div class="map-image-wrap">
-            <!-- შენი უკვე „პინიანი“ ბანერი -->
+            <!-- შენი „პინიანი“ ბანერი -->
             <img src="business-map-banner.jpg" alt="OK TV პარტნიორი ობიექტების რუკა" class="map-image" />
           </div>
 
@@ -927,7 +1264,7 @@
       </div>
     </section>
 
-    <!-- ================== COMPANIES SEGMENTS ================== -->
+    <!-- COMPANIES SEGMENTS -->
     <section class="companies-section">
       <div class="section-inner reveal">
         <h2 class="companies-title">კომპანიის მიმართულებები, რომლებსაც ჩვენ ვემსახურებით</h2>
@@ -976,7 +1313,7 @@
       </div>
     </section>
 
-    <!-- ================== TECHNOLOGIES SECTION ================== -->
+    <!-- TECHNOLOGIES SECTION -->
     <section class="tech-section">
       <div class="section-inner tech-layout reveal">
         <div>
@@ -1050,7 +1387,7 @@
       </div>
     </section>
 
-    <!-- ================== CONTACT CTA ================== -->
+    <!-- CONTACT CTA -->
     <section class="contact-cta-section">
       <div class="section-inner reveal">
         <div class="contact-cta-card">
@@ -1078,31 +1415,103 @@
     </section>
   </main>
 
-  <!-- FLOATING CALL BUTTON – ამ გვერდზე მობილურის ნომრით -->
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-contact-line">
+        საკონტაქტო ნომერი:
+        <a href="tel:+995322901011" class="footer-phone-link">(+995 032) 2 90 10 11</a>
+      </div>
+
+      <div class="footer-social-list">
+        <a href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
+          <img src="icon-facebook.png" alt="Facebook" />
+        </a>
+        <a href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
+          <img src="icon-instagram.png" alt="Instagram" />
+        </a>
+        <a href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
+          <img src="icon-tiktok.png" alt="TikTok" />
+        </a>
+      </div>
+
+      <div class="footer-copy">
+        © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating socials -->
+  <div class="floating-socials">
+    <a class="social-btn" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
+      <img src="icon-facebook.png" alt="Facebook" />
+    </a>
+    <a class="social-btn" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
+      <img src="icon-instagram.png" alt="Instagram" />
+    </a>
+    <a class="social-btn" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
+      <img src="icon-tiktok.png" alt="TikTok" />
+    </a>
+  </div>
+
+  <!-- Floating call – ამ გვერდზე მობილურის ნომრით -->
   <a href="tel:+995597956396" class="floating-call-btn">
     <span class="floating-call-icon">📞</span>
     <span class="floating-call-text">+995 597 95 63 96</span>
   </a>
 
-  <footer class="footer">
-    © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
-  </footer>
+  <!-- Download modal -->
+  <div class="download-modal-backdrop" id="downloadModal">
+    <div class="download-modal">
+      <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
+      <h3 class="download-modal-title">აირჩიე, საიდან ჩამოტვირთო აპლიკაცია</h3>
+      <p class="download-modal-subtitle">
+        დააჭირე შენთვის სასურველ პლატფორმას – გადავიყვანთ პირდაპირ OK TV-ს ოფიციალურ გვერდზე.
+      </p>
+      <div class="download-modal-grid">
+        <a class="download-option" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
+           target="_blank" rel="noopener">
+          <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
+          <span class="download-option-label">Google Play • Mobile</span>
+        </a>
+        <a class="download-option" href="https://apps.apple.com/ge/app/oktv/id6478280344"
+           target="_blank" rel="noopener">
+          <img src="badge-app-store.png" alt="Apple App Store" />
+          <span class="download-option-label">Apple App Store</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <script>
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Header shadow on scroll
+    const mainHeader = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 16) {
+        mainHeader.classList.add('scrolled');
+      } else {
+        mainHeader.classList.remove('scrolled');
+      }
+    });
+
     // Reveal on scroll
     const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    reveals.forEach(el => io.observe(el));
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      reveals.forEach(el => io.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('visible'));
+    }
 
     // Technologies – click to show description
     const techInfo = {
@@ -1159,6 +1568,46 @@
         techDetailsTitle.textContent = info.title;
         techDetailsText.textContent = info.text;
       });
+    });
+
+    // Download modal logic
+    const downloadBtn = document.getElementById('downloadCtaBtn');
+    const downloadModal = document.getElementById('downloadModal');
+    const downloadModalClose = document.getElementById('downloadModalClose');
+
+    function openDownloadModal(event) {
+      if (event) event.preventDefault();
+      if (downloadModal) {
+        downloadModal.classList.add('active');
+      }
+    }
+
+    function closeDownloadModal() {
+      if (downloadModal) {
+        downloadModal.classList.remove('active');
+      }
+    }
+
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', openDownloadModal);
+    }
+
+    if (downloadModalClose) {
+      downloadModalClose.addEventListener('click', closeDownloadModal);
+    }
+
+    if (downloadModal) {
+      downloadModal.addEventListener('click', (e) => {
+        if (e.target === downloadModal) {
+          closeDownloadModal();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDownloadModal();
+      }
     });
   </script>
 </body>

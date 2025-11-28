@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OK TV • კონტაქტი</title>
+  <title>OK TV • მთავარი</title>
 
   <style>
     /* ================== ROOT & RESET ================== */
@@ -269,263 +269,122 @@
       }
     }
 
-    /* ================== CONTACT HERO ================== */
-    #contactMain {
-      padding-top: 56px;
-      padding-bottom: 80px;
-      background: linear-gradient(180deg, #e5f4ff 0%, #f5f7fb 55%, #f5f7fb 100%);
+    /* ================== HERO ================== */
+    #home {
+      padding-top: 44px;
+      padding-bottom: 72px;
+      background: linear-gradient(180deg, #e5f4ff 0%, #f5f7fb 50%, #f5f7fb 100%);
       box-shadow: inset 0 -1px 0 rgba(209, 213, 219, 0.7);
     }
 
-    .contact-shell {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
+    .hero-inner { max-width: 1360px; margin: 0 auto; }
 
-    .contact-header-row {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 28px;
-      max-width: 760px;
-    }
-
-    .contact-kicker {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-    }
-
-    .contact-title {
-      font-size: 2.1rem;
-      line-height: 1.25;
-      font-weight: 900;
-      background: linear-gradient(120deg, #2563eb, #a855f7);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .contact-subtitle {
-      font-size: 0.98rem;
-      color: var(--text-muted);
-      max-width: 640px;
-      line-height: 1.8;
-    }
-
-    /* დიდი მწვანე ღილაკი */
-    .contact-main-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 18px;
-      padding: 12px 28px;
-      border-radius: 999px;
-      border: 1px solid rgba(16,185,129,0.8);
-      background: linear-gradient(135deg, #22c55e, #059669);
-      color: #ecfdf5;
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-      box-shadow: 0 18px 40px rgba(5,150,105,0.8);
-      cursor: pointer;
-      transform: translateY(0);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .contact-main-btn-icon {
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.15rem;
-    }
-
-    .contact-main-btn span {
-      white-space: nowrap;
-    }
-
-    .contact-main-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 24px 50px rgba(5,150,105,0.95);
-    }
-
-    /* საკონტაქტო ჩიპები */
-    .contact-links-row {
-      margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .contact-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      font-size: 0.82rem;
-      color: var(--text-main);
-      box-shadow: 0 6px 16px rgba(15,23,42,0.08);
-      cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-    }
-
-    .contact-chip:hover {
-      transform: translateY(-1px);
-      background: #eef6ff;
-      border-color: var(--primary);
-      box-shadow: 0 12px 26px rgba(15,23,42,0.16);
-    }
-
-    .contact-chip-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 0 0, #e0f2fe, #bfdbfe);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.95rem;
-    }
-
-    .contact-chip-label {
-      font-weight: 600;
-    }
-
-    .contact-chip-sub {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    /* ================== CONTACT CONTENT GRID ================== */
-    .contact-grid {
-      margin-top: 36px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.3fr);
-      gap: 20px;
-      align-items: stretch;
-    }
-
-    .contact-panel {
-      background: #ffffff;
-      border-radius: 24px;
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-soft);
-      padding: 20px 22px 18px;
+    .hero-slider {
       position: relative;
+      border-radius: 30px;
+      background: radial-gradient(circle at 0 0, #e0f2fe, #ffffff);
+      box-shadow: 0 26px 60px rgba(15,23,42,0.25);
       overflow: hidden;
+      border: 1px solid rgba(148,163,184,0.5);
     }
 
-    .contact-panel::after {
+    .hero-slider::after {
       content: "";
       position: absolute;
       inset: 0;
-      border-radius: inherit;
+      pointer-events: none;
+      border-radius: 30px;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.9),
-        inset 0 -1px 0 rgba(15,23,42,0.03);
-      pointer-events: none;
+        inset 0 -1px 0 rgba(15,23,42,0.07);
+      mix-blend-mode: screen;
     }
 
-    .contact-panel-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-      color: var(--primary-dark);
-    }
-
-    .contact-panel-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-      line-height: 1.7;
-    }
-
-    .contact-detail-list {
+    .hero-slide-track {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 10px;
+      transition: transform 0.6s ease;
+      will-change: transform;
     }
 
-    .contact-detail-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 10px;
-      border-radius: 16px;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
+    .hero-slide {
+      min-width: 100%;
+      padding: 0;
     }
 
-    .contact-detail-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 0 0, #e0f2fe, #bfdbfe);
+    .hero-image-wrap {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      height: 560px;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.6s ease;
+    }
+
+    .hero-slide.active .hero-image {
+      transform: scale(1.0);
+    }
+
+    @media (max-width: 1200px) {
+      .hero-image-wrap { height: 480px; }
+    }
+
+    @media (max-width: 980px) {
+      .hero-image-wrap { height: 380px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-image-wrap { height: 260px; }
+    }
+
+    .hero-slider-bottom {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
-      color: #0f172a;
+      padding-top: 16px;
+      padding-bottom: 6px;
+      background: transparent;
+      border-top: none;
+      gap: 8px;
     }
 
-    .contact-detail-text {
+    .hero-dots {
       display: flex;
-      flex-direction: column;
-      gap: 2px;
-      font-size: 0.86rem;
+      align-items: center;
+      gap: 6px;
     }
 
-    .contact-detail-label {
-      color: var(--text-muted);
-      font-size: 0.76rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .hero-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      border: 1px solid var(--primary);
+      background: #ffffff;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
     }
 
-    .contact-detail-value {
-      font-weight: 600;
-      color: var(--text-main);
-      word-break: break-all;
+    .hero-dot.active {
+      background: var(--primary);
+      border-color: var(--primary-dark);
+      transform: scale(1.1);
     }
 
-    .contact-detail-value:hover {
-      text-decoration: underline;
-    }
-
-    .contact-panel-note {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
-
-    .contact-panel-note strong {
-      color: var(--text-main);
-    }
-
-    .contact-panel-light {
-      background: linear-gradient(135deg, #f9fafb 0%, #ffffff 40%, #eef2ff 100%);
-    }
-
-    .contact-panel-light .contact-panel-subtitle {
-      color: #4b5563;
-    }
-
-    /* Store badges – იგივე სტილი რაც მთავარზე */
-    .apps-row {
-      margin-top: 12px;
+    /* ================== STORE BADGES ================== */
+    .store-badges {
+      max-width: 1120px;
+      margin: 12px auto 0;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 14px;
+      justify-content: center;
+      align-items: flex-start;
     }
 
     .store-badge {
@@ -562,6 +421,7 @@
     .store-badge img {
       width: 150px;
       height: auto;
+      display: block;
     }
 
     .store-badge-label {
@@ -572,74 +432,363 @@
       letter-spacing: 0.04em;
     }
 
-    .contact-social-inline {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      align-items: center;
+    @media (max-width: 640px) {
+      .store-badge img { width: 140px; }
+      .store-badge-label { font-size: 0.76rem; }
     }
 
-    .social-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 13px;
-      border-radius: 999px;
+    /* ================== ქვედა კატეგორიის ბლოკები ================== */
+
+    .hero-categories {
+      max-width: 1120px;
+      margin: 32px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-category-card {
+      border-radius: 20px;
+      padding: 16px;
       background: #ffffff;
-      border: 1px solid #e5e7eb;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-main);
-      box-shadow: 0 6px 16px rgba(15,23,42,0.12);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-    }
-
-    .social-pill:hover {
-      transform: translateY(-1px);
-      background: #eef6ff;
-      border-color: var(--primary);
-      box-shadow: 0 12px 26px rgba(15,23,42,0.2);
-    }
-
-    .social-pill-icon {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #0f172a;
-      color: #ffffff;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+      font-size: 0.86rem;
+      cursor: pointer;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
+      gap: 10px;
+      align-items: flex-start;
+      transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .hero-category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.22);
+      border-color: var(--primary);
+    }
+
+    .hero-category-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      position: relative;
+      background: radial-gradient(circle at 0 0, #e0f2fe, #bfdbfe);
+      box-shadow: 0 4px 10px rgba(148, 163, 184, 0.5);
+    }
+
+    .hero-category-title {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .hero-category-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .hero-icon-packages::before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 13px;
+      border: 2px solid #0f172a;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #eef2ff, #dbeafe);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hero-icon-packages::after {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 2px;
+      background: #0f172a;
+      bottom: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 999px;
+    }
+
+    .hero-icon-business::before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #0f172a;
+      border-radius: 4px;
+      background: #eef2ff;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-icon-about {
+      background: radial-gradient(circle at 0 0, #e0f2fe, #93c5fd);
+    }
+    .hero-icon-about::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid #0f172a;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hero-icon-about::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 14px;
+      background: #0f172a;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+    }
+
+    .hero-icon-contact {
+      background: radial-gradient(circle at 0 0, #e0f2fe, #60a5fa);
+    }
+    .hero-icon-contact::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 24px;
+      border: 2px solid #0f172a;
+      border-radius: 8px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-18deg);
     }
 
     @media (max-width: 980px) {
-      .contact-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      #contactMain {
-        padding-top: 48px;
+      .hero-categories {
+        max-width: 100%;
+        margin-top: 24px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
     @media (max-width: 640px) {
-      .contact-title {
-        font-size: 1.8rem;
+      .hero-categories {
+        grid-template-columns: minmax(0, 1fr);
       }
-      .contact-main-btn {
-        width: 100%;
-        justify-content: center;
-      }
-      .contact-links-row {
-        gap: 8px;
-      }
-      .contact-chip {
-        font-size: 0.8rem;
+      #home {
+        padding-bottom: 56px;
       }
     }
 
-    /* ================== FOOTER ================== */
+    /* ================== DOWNLOAD SECTION ================== */
+
+    .download-section {
+      background: var(--bg-page);
+      padding: 64px 16px 80px;
+    }
+
+    .download-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .download-text {
+      flex: 1 1 320px;
+    }
+
+    .download-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .download-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    .download-video-wrap {
+      flex: 1 1 360px;
+      max-width: 520px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      background: #000000;
+      transform: translateY(0);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .download-video-wrap:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(15,23,42,0.45);
+    }
+
+    .download-video {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .download-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .download-video-wrap {
+        align-self: stretch;
+      }
+    }
+
+    /* ================== FAQ + LINKS SECTION ================== */
+
+    .faq-links-section {
+      background: #ffffff;
+      padding: 56px 16px 72px;
+      border-top: 1px solid rgba(209, 213, 219, 0.6);
+      border-bottom: 1px solid rgba(209, 213, 219, 0.6);
+    }
+
+    .faq-links-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 40px;
+    }
+
+    .faq-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      border-radius: 16px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(15,23,42,0.06);
+      transition: box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .faq-item.open {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(15,23,42,0.18);
+    }
+
+    .faq-question {
+      width: 100%;
+      border: none;
+      background: transparent;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .faq-icon {
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-left: 8px;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 16px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      transition: max-height 0.25s ease, padding-bottom 0.25s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding-bottom: 14px;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(90deg);
+    }
+
+    .links-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+
+    .links-subtitle {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .links-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .link-pill:hover {
+      background: #eef6ff;
+      border-color: var(--primary);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(15,23,42,0.16);
+    }
+
+    .link-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    @media (max-width: 900px) {
+      .faq-links-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* FOOTER */
     .footer {
       padding: 20px 16px 26px;
       text-align: center;
@@ -650,57 +799,8 @@
       margin-top: 8px;
     }
 
-    .footer-contact-line {
-      font-size: 0.86rem;
-      margin-bottom: 6px;
-    }
-
-    .footer-phone-link {
-      color: var(--primary-dark);
-      font-weight: 600;
-      margin-left: 6px;
-    }
-
-    .footer-phone-link:hover {
-      color: #0ea5e9;
-    }
-
-    .footer-social-list {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 6px;
-    }
-
-    .footer-social-list a {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(148,163,184,0.7);
-      box-shadow: 0 6px 16px rgba(15,23,42,0.16);
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .footer-social-list a:hover {
-      transform: translateY(-1px) scale(1.05);
-      box-shadow: 0 12px 26px rgba(15,23,42,0.26);
-    }
-
-    .footer-social-list img {
-      width: 18px;
-      height: 18px;
-    }
-
-    .footer-copy {
-      font-size: 0.77rem;
-    }
-
     /* ================== FLOATING SOCIAL ICONS ================== */
+
     .floating-socials {
       position: fixed;
       right: 26px;
@@ -735,6 +835,7 @@
     .social-btn img {
       width: 20px;
       height: 20px;
+      display: block;
     }
 
     @media (max-width: 640px) {
@@ -745,6 +846,7 @@
     }
 
     /* ================== FLOATING CALL BUTTON ================== */
+
     .floating-call-btn {
       position: fixed;
       right: 24px;
@@ -812,6 +914,7 @@
     }
 
     /* ================== DOWNLOAD MODAL ================== */
+
     .download-modal-backdrop {
       position: fixed;
       inset: 0;
@@ -906,6 +1009,7 @@
     }
 
     /* ================== SNOW ANIMATION ================== */
+
     .snowflakes {
       position: fixed;
       top: 0;
@@ -953,7 +1057,7 @@
     .snowflake:nth-child(9)  { left: 85%; animation-duration: 16s; animation-delay: 4.5s; }
     .snowflake:nth-child(10) { left: 95%; animation-duration: 20s; animation-delay: 1.5s; }
 
-    /* ================== REVEAL ================== */
+    /* REVEAL */
     .reveal {
       opacity: 0;
       transform: translateY(16px);
@@ -995,11 +1099,11 @@
       <div class="header-spacer"></div>
 
       <nav class="nav">
-        <a class="nav-link" href="index.html">მთავარი</a>
-        <a class="nav-link" href="packages.html">პაკეტები</a>
-        <a class="nav-link" href="business.html">ბიზნესისთვის</a>
-        <a class="nav-link" href="about.html">ჩვენს შესახებ</a>
-        <a class="nav-link active" href="contact.html">კონტაქტი</a>
+        <a href="index.html" class="nav-link active" aria-current="page">მთავარი</a>
+        <a href="packages.html" class="nav-link">პაკეტები</a>
+        <a href="business.html" class="nav-link">ბიზნესისთვის</a>
+        <a href="about.html" class="nav-link">ჩვენს შესახებ</a>
+        <a href="contact.html" class="nav-link">კონტაქტი</a>
       </nav>
 
       <div class="header-cta">
@@ -1014,205 +1118,231 @@
   </header>
 
   <main>
-    <!-- CONTACT HERO -->
-    <section id="contactMain">
-      <div class="contact-shell reveal">
-        <div class="contact-header-row">
-          <div class="contact-kicker">საკონტაქტო ცენტრი • მხარდაჭერა</div>
-          <h1 class="contact-title">
-            კონტაქტი • OK TV-ის მხარდაჭერა შენთვის ხელმისაწვდომია
-          </h1>
-          <p class="contact-subtitle">
-            დაგვირეკე, მოგვწერე ან დაგვიკავშირდი სოციალურ ქსელებში – ჩვენთან ყოველთვის იპოვი ციფრულ მხარდაჭერას.
-            OK TV-ის გუნდი მზად არის დაგეხმაროს პაკეტის შერჩევაში, აპლიკაციის დაყენებაში და ნებისმიერი
-            ტექნიკური საკითხის გადაწყვეტაში.
-          </p>
-
-          <!-- დიდი ღილაკი "კონტაქტი" -->
-          <a href="tel:+995322901011" class="contact-main-btn">
-            <div class="contact-main-btn-icon">📞</div>
-            <span>კონტაქტი</span>
-          </a>
-
-          <!-- ძირითადი საკონტაქტო ჩიპები -->
-          <div class="contact-links-row">
-            <a href="tel:+995322901011" class="contact-chip">
-              <div class="contact-chip-icon">📞</div>
-              <div>
-                <div class="contact-chip-label">ქოლცენტრი</div>
-                <div class="contact-chip-sub">(+995 032) 2 90 10 11</div>
+    <!-- HERO + SLIDER -->
+    <section id="home">
+      <div class="hero-inner">
+        <div class="hero-slider reveal" id="heroSlider">
+          <div class="hero-slide-track" id="heroTrack">
+            <article class="hero-slide">
+              <div class="hero-image-wrap">
+                <img src="hero-slide1.jpg" alt="ბანერი 1" class="hero-image" />
               </div>
-            </a>
+            </article>
 
-            <a href="mailto:info@oktv.ge" class="contact-chip">
-              <div class="contact-chip-icon">✉️</div>
-              <div>
-                <div class="contact-chip-label">ელ.ფოსტა</div>
-                <div class="contact-chip-sub">info@oktv.ge</div>
+            <article class="hero-slide">
+              <div class="hero-image-wrap">
+                <img src="hero-slide2.jpg" alt="ბანერი 2" class="hero-image" />
               </div>
-            </a>
+            </article>
 
-            <a href="https://app.oktv.ge/" target="_blank" class="contact-chip" rel="noopener">
-              <div class="contact-chip-icon">🌐</div>
-              <div>
-                <div class="contact-chip-label">ვებსაიტი</div>
-                <div class="contact-chip-sub">www.oktv.ge</div>
+            <article class="hero-slide">
+              <div class="hero-image-wrap">
+                <img src="hero-slide3.jpg" alt="ბანერი 3" class="hero-image" />
               </div>
-            </a>
+            </article>
 
-            <a href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" class="contact-chip" rel="noopener">
-              <div class="contact-chip-icon">f</div>
-              <div>
-                <div class="contact-chip-label">Facebook</div>
-                <div class="contact-chip-sub">@oktv.ge</div>
+            <article class="hero-slide">
+              <div class="hero-image-wrap">
+                <img src="hero-slide4.jpg" alt="ბანერი 4" class="hero-image" />
               </div>
-            </a>
+            </article>
 
-            <a href="https://www.instagram.com/oktv.ge/" target="_blank" class="contact-chip" rel="noopener">
-              <div class="contact-chip-icon">◎</div>
-              <div>
-                <div class="contact-chip-label">Instagram</div>
-                <div class="contact-chip-sub">@oktv.ge</div>
+            <article class="hero-slide">
+              <div class="hero-image-wrap">
+                <img src="hero-slide5.jpg" alt="ბანერი 5" class="hero-image" />
               </div>
-            </a>
-
-            <a href="https://www.tiktok.com/@oktv.ge" target="_blank" class="contact-chip" rel="noopener">
-              <div class="contact-chip-icon">◎</div>
-              <div>
-                <div class="contact-chip-label">TikTok</div>
-                <div class="contact-chip-sub">@oktv.ge</div>
-              </div>
-            </a>
+            </article>
           </div>
         </div>
 
-        <!-- SUPPORT / APPS პანელები -->
-        <div class="contact-grid">
-          <!-- LEFT PANEL -->
-          <article class="contact-panel">
-            <h2 class="contact-panel-title">ტელეფონი და ელ-ფოსტა</h2>
-            <p class="contact-panel-subtitle">
-              თუ გჭირდება ოპერატიული დახმარება ან სერვისთან დაკავშირებული ინფორმაცია, დაგვიკავშირდი
-              პირდაპირ ჩვენი საკონტაქტო ცენტრით.
-            </p>
+        <div class="hero-slider-bottom">
+          <div class="hero-dots" id="heroDots">
+            <button class="hero-dot active" data-index="0"></button>
+            <button class="hero-dot" data-index="1"></button>
+            <button class="hero-dot" data-index="2"></button>
+            <button class="hero-dot" data-index="3"></button>
+            <button class="hero-dot" data-index="4"></button>
+          </div>
+        </div>
 
-            <div class="contact-detail-list">
-              <div class="contact-detail-item">
-                <div class="contact-detail-icon">📞</div>
-                <div class="contact-detail-text">
-                  <span class="contact-detail-label">ქოლცენტრი</span>
-                  <a href="tel:+995322901011" class="contact-detail-value">(+995 032) 2 90 10 11</a>
-                </div>
+        <div class="store-badges reveal">
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
+             target="_blank" rel="noopener">
+            <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
+            <span class="store-badge-label">Google Play • Mobile</span>
+          </a>
+
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
+             target="_blank" rel="noopener">
+            <img src="badge-google-play-tv.png" alt="Google Play TV" />
+            <span class="store-badge-label">Google Play • TV</span>
+          </a>
+
+          <a class="store-badge" href="https://apps.apple.com/ge/app/oktv/id6478280344"
+             target="_blank" rel="noopener">
+            <img src="badge-app-store.png" alt="App Store" />
+            <span class="store-badge-label">Apple • App Store</span>
+          </a>
+
+          <a class="store-badge" href="oktv_3.2.7_606.wgt">
+            <img src="badge-wgt.png" alt="Smart TV WGT" />
+            <span class="store-badge-label">Smart TV • WGT</span>
+          </a>
+        </div>
+
+        <div class="hero-categories reveal">
+          <a class="hero-category-card" href="packages.html">
+            <div class="hero-category-icon hero-icon-packages"></div>
+            <div>
+              <div class="hero-category-title">პაკეტები</div>
+              <div class="hero-category-desc">
+                საოჯახო, სპორტული და კინოპაკეტები ერთი გვერდიდან.
               </div>
+            </div>
+          </a>
 
-              <div class="contact-detail-item">
-                <div class="contact-detail-icon">✉️</div>
-                <div class="contact-detail-text">
-                  <span class="contact-detail-label">ელ.ფოსტა</span>
-                  <a href="mailto:info@oktv.ge" class="contact-detail-value">info@oktv.ge</a>
-                </div>
-              </div>
-
-              <div class="contact-detail-item">
-                <div class="contact-detail-icon">🌐</div>
-                <div class="contact-detail-text">
-                  <span class="contact-detail-label">live oktv</span>
-                  <a href="https://app.oktv.ge/" target="_blank" class="contact-detail-value" rel="noopener">
-                    www.oktv.ge
-                  </a>
-                </div>
+          <a class="hero-category-card" href="business.html">
+            <div class="hero-category-icon hero-icon-business"></div>
+            <div>
+              <div class="hero-category-title">ბიზნესისთვის</div>
+              <div class="hero-category-desc">
+                გადაწყვეტილებები სასტუმროებისთვის, კომპანიებისთვის და ობიექტებისთვის.
               </div>
             </div>
+          </a>
 
-            <p class="contact-panel-note">
-              <strong>გთხოვთ მიმართოთ</strong> სამუშაო საათებში, ან მოგვწერეთ ელ.ფოსტაზე და აუცილებლად
-              დაგიბრუნებთ პასუხს მოკლე დროში.
-            </p>
-          </article>
+          <a class="hero-category-card" href="about.html">
+            <div class="hero-category-icon hero-icon-about"></div>
+            <div>
+              <div class="hero-category-title">ჩვენს შესახებ</div>
+              <div class="hero-category-desc">
+                მეტი ინფორმაცია OK TV-ს ისტორიაზე, გამოცდილებასა და მისიის შესახებ.
+              </div>
+            </div>
+          </a>
 
-          <!-- RIGHT PANEL -->
-          <article class="contact-panel contact-panel-light">
-            <h2 class="contact-panel-title">აპლიკაციები და სოციალური მხარდაჭერა</h2>
-            <p class="contact-panel-subtitle">
-              ჩამოტვირთე OK TV აპლიკაცია ნებისმიერი მოწყობილობიდან და დაგვიმეგობრდი სოციალურ ქსელებში,
-              სადაც შეგიძლიათ მოგვწეროთ მხარდაჭერისთვის ან მონაწილეობა მიიღოთ ჩვენს აქციებში.
-            </p>
+          <a class="hero-category-card" href="contact.html">
+            <div class="hero-category-icon hero-icon-contact"></div>
+            <div>
+              <div class="hero-category-title">კონტაქტი</div>
+              <div class="hero-category-desc">
+                ტელეფონი, მესენჯერები და სოციალური ქსელები – დაგვიკავშირდი მარტივად.
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
 
-            <div class="apps-row">
-              <a class="store-badge" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
-                 target="_blank" rel="noopener">
-                <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
-                <span class="store-badge-label">Google Play • Mobile</span>
-              </a>
+    <section class="download-section">
+      <div class="download-inner reveal">
+        <div class="download-text">
+          <h2 class="download-title">როგორ ჩამოვტვირთოთ აპლიკცია?</h2>
+          <p class="download-subtitle">
+            OK TV-ს ჩამოტვირთვა შესაძლებელია ნებისმიერ მოწყობილობაზე: Android, iOS, Windows, Smart TV და სხვა პლატფორმებზე.
+            უყურე ციფრულ ტელევიზიას სადაც არ უნდა იყო – ერთი მარტივი ინსტალაციით.
+          </p>
+        </div>
+        <div class="download-video-wrap">
+          <video class="download-video" controls poster="oktv-app-download-poster.jpg">
+            <source src="oktv-app-download.mp4" type="video/mp4" />
+            თქვენი ბრაუზერი არ უჭერს მხარს ვიდეოს ტეგს.
+          </video>
+        </div>
+      </div>
+    </section>
 
-              <a class="store-badge" href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
-                 target="_blank" rel="noopener">
-                <img src="badge-google-play-tv.png" alt="Google Play TV" />
-                <span class="store-badge-label">Google Play • TV</span>
-              </a>
-
-              <a class="store-badge" href="https://apps.apple.com/ge/app/oktv/id6478280344"
-                 target="_blank" rel="noopener">
-                <img src="badge-app-store.png" alt="App Store" />
-                <span class="store-badge-label">Apple • App Store</span>
-              </a>
-
-              <a class="store-badge" href="oktv_3.2.7_606.wgt">
-                <img src="badge-wgt.png" alt="Smart TV WGT" />
-                <span class="store-badge-label">Smart TV • WGT</span>
-              </a>
+    <section class="faq-links-section">
+      <div class="faq-links-inner reveal">
+        <div>
+          <h2 class="faq-title">ხშირად დასმული კითხვები</h2>
+          <div class="faq-list" id="faqList">
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                რა მოწყობილობებზე მუშაობს OK TV?
+                <span class="faq-icon">›</span>
+              </button>
+              <div class="faq-answer">
+                OK TV შეგიძლიათ გამოიყენოთ Android და iOS ტელეფონებზე, ტაბლეტებზე, Smart TV-ს აპარატებზე,
+                კომპიუტერზე (Windows) და იმ მოწყობილობებზე, სადაც Android TV ან Apple TV აპები მუშაობს.
+              </div>
             </div>
 
-            <div class="contact-panel-note" style="margin-top:14px;">
-              OK TV-ს აპლიკაციით მიიღებ სრულ ციფრულ ტელევიზიას სადაც არ უნდა იყო – ტელეფონზე, ტელევიზორზე
-              თუ სხვა მოწყობილობაზე.
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                რამდენ მოწყობილობაზე შევძლებ ყურებას ერთიდაიგივე პროფილით?
+                <span class="faq-icon">›</span>
+              </button>
+              <div class="faq-answer">
+                ერთი ანგარიში აძლევს შესაძლებლობას ერთზე მეტ ეკრანზე გაიაქტიუროთ სერვისი. ზუსტი რაოდენობა
+                დამოკიდებულია არჩეულ პაკეტზე და შეთანხმებაზე OK TV-სთან.
+              </div>
             </div>
 
-            <div class="contact-social-inline">
-              <a href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" class="social-pill" rel="noopener">
-                <span class="social-pill-icon">f</span>
-                <span>Facebook</span>
-              </a>
-              <a href="https://www.instagram.com/oktv.ge/" target="_blank" class="social-pill" rel="noopener">
-                <span class="social-pill-icon">◎</span>
-                <span>Instagram</span>
-              </a>
-              <a href="https://www.tiktok.com/@oktv.ge" target="_blank" class="social-pill" rel="noopener">
-                <span class="social-pill-icon">◎</span>
-                <span>TikTok</span>
-              </a>
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                საჭიროა თუ არა გრძელვადიანი კონტრაქტი?
+                <span class="faq-icon">›</span>
+              </button>
+              <div class="faq-answer">
+                ფიზიკური პირებისთვის პაკეტები, როგორც წესი, თვიურად განახლებადია. ბიზნეს და სასტუმრო პაკეტებზე
+                შედგება ინდივიდუალური კონტრაქტი – პირობები ფიქსირდება წინასწარ, მაქსიმალურად გამჭვირვალედ.
+              </div>
             </div>
-          </article>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                პრობლემის შემთხვევაში როგორ დაგეკონტაქტოთ?
+                <span class="faq-icon">›</span>
+              </button>
+              <div class="faq-answer">
+                მხარდაჭერისთვის შეგიძლიათ მოგვწეროთ Facebook-ზე, დაგვირეკოთ ცხელ ხაზზე
+                ან გამოიყენოთ კონტაქტის ფორმა ჩვენს ვებგვერდზე — ყველა არხი მუდმივად მონიტორინგზეა.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="links-title">ჩვენი ლინკები</h3>
+          <p class="links-subtitle">
+            მიჰყევით OK TV-ს სოციალურ ქსელებში და ჩამოტვირთეთ აპლიკაცია თქვენი მოწყობილობისთვის.
+          </p>
+          <div class="links-grid">
+            <a class="link-pill" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
+              <span class="link-dot"></span>
+              <span>Facebook გვერდი</span>
+            </a>
+            <a class="link-pill" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
+              <span class="link-dot"></span>
+              <span>Instagram</span>
+            </a>
+            <a class="link-pill" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
+              <span class="link-dot"></span>
+              <span>TikTok</span>
+            </a>
+            <a class="link-pill" href="https://play.google.com/store/apps/details?id=ag.sarpi" target="_blank" rel="noopener">
+              <span class="link-dot"></span>
+              <span>Google Play Store</span>
+            </a>
+            <a class="link-pill" href="https://apps.apple.com/us/app/oktv/id6478764138" target="_blank" rel="noopener">
+              <span class="link-dot"></span>
+              <span>App Store</span>
+            </a>
+            <a class="link-pill" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
+              <span class="link-dot"></span>
+              <span>Support / მხარდაჭერა</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-contact-line">
-      საკონტაქტო ნომერი:
-      <a href="tel:+995322901011" class="footer-phone-link">(+995 032) 2 90 10 11</a>
-    </div>
-
-    <div class="footer-social-list">
-      <a href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
-        <img src="icon-facebook.png" alt="Facebook" />
-      </a>
-      <a href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
-        <img src="icon-instagram.png" alt="Instagram" />
-      </a>
-      <a href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
-        <img src="icon-tiktok.png" alt="TikTok" />
-      </a>
-    </div>
-
-    <div class="footer-copy">
-      © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
-    </div>
+    © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
   </footer>
 
-  <!-- FLOATING SOCIALS -->
   <div class="floating-socials">
     <a class="social-btn" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
       <img src="icon-facebook.png" alt="Facebook" />
@@ -1225,13 +1355,11 @@
     </a>
   </div>
 
-  <!-- FLOATING CALL BUTTON -->
   <a href="tel:+995322901011" class="floating-call-btn">
     <span class="floating-call-icon">📞</span>
     <span class="floating-call-text">(+995 032) 2 90 10 11</span>
   </a>
 
-  <!-- DOWNLOAD MODAL -->
   <div class="download-modal-backdrop" id="downloadModal">
     <div class="download-modal">
       <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
@@ -1280,6 +1408,65 @@
     }, { threshold: 0.2 });
     reveals.forEach(el => io.observe(el));
 
+    // HERO slider
+    const track = document.getElementById('heroTrack');
+    const dots  = document.querySelectorAll('.hero-dot');
+    const slides = document.querySelectorAll('.hero-slide');
+
+    if (track && dots.length && slides.length) {
+      let currentSlide = 0;
+      const totalSlides = dots.length;
+      let sliderTimer;
+
+      function goToSlide(index) {
+        currentSlide = (index + totalSlides) % totalSlides;
+        const offset = -currentSlide * 100;
+        track.style.transform = `translateX(${offset}%)`;
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSlide);
+        });
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === currentSlide);
+        });
+      }
+
+      function startSlider() {
+        sliderTimer = setInterval(() => {
+          goToSlide(currentSlide + 1);
+        }, 7000);
+      }
+
+      function resetSlider() {
+        clearInterval(sliderTimer);
+        startSlider();
+      }
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = Number(dot.dataset.index);
+          goToSlide(index);
+          resetSlider();
+        });
+      });
+
+      const heroSlider = document.getElementById('heroSlider');
+      heroSlider.addEventListener('mouseenter', () => clearInterval(sliderTimer));
+      heroSlider.addEventListener('mouseleave', () => startSlider());
+
+      goToSlide(0);
+      startSlider();
+    }
+
+    // FAQ accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.faq-question');
+      btn.addEventListener('click', () => {
+        item.classList.toggle('open');
+      });
+    });
+
     // Download modal logic
     const downloadBtn = document.getElementById('downloadCtaBtn');
     const downloadModal = document.getElementById('downloadModal');
@@ -1287,10 +1474,12 @@
 
     function openDownloadModal(event) {
       if (event) event.preventDefault();
+      if (!downloadModal) return;
       downloadModal.classList.add('active');
     }
 
     function closeDownloadModal() {
+      if (!downloadModal) return;
       downloadModal.classList.remove('active');
     }
 
@@ -1298,15 +1487,15 @@
       downloadBtn.addEventListener('click', openDownloadModal);
     }
 
-    if (downloadModalClose) {
+    if (downloadModal && downloadModalClose) {
       downloadModalClose.addEventListener('click', closeDownloadModal);
-    }
 
-    downloadModal.addEventListener('click', (e) => {
-      if (e.target === downloadModal) {
-        closeDownloadModal();
-      }
-    });
+      downloadModal.addEventListener('click', (e) => {
+        if (e.target === downloadModal) {
+          closeDownloadModal();
+        }
+      });
+    }
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {

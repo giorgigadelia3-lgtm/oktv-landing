@@ -93,7 +93,6 @@
       flex-shrink: 0;
     }
 
-    /* 6) ლოგოს გაზრდა */
     .brand-logo {
       height: 64px;
       width: auto;
@@ -199,7 +198,6 @@
     }
 
     .header-btn::before {
-      /* წვრილი ფიფქი თავზე */
       content: "❄";
       position: absolute;
       top: -8px;
@@ -219,7 +217,6 @@
       letter-spacing: 0.12em;
     }
 
-    /* LIVE OKTV – ღია ღილაკი */
     .header-btn-ghost {
       background: #ffffff;
       color: var(--primary-dark);
@@ -318,7 +315,7 @@
       position: relative;
       border-radius: 30px;
       overflow: hidden;
-      height: 560px;          /* Desktop ბანერი */
+      height: 560px;
     }
 
     .hero-image {
@@ -346,7 +343,6 @@
       .hero-image-wrap { height: 260px; }
     }
 
-    /* --- dots ბანერის ქვეშ --- */
     .hero-slider-bottom {
       display: flex;
       align-items: center;
@@ -433,7 +429,6 @@
       font-size: 0.78rem;
       font-weight: 600;
       color: var(--text-muted);
-      text-transform: none;
       letter-spacing: 0.04em;
     }
 
@@ -495,7 +490,6 @@
       margin-top: 2px;
     }
 
-    /* --- Icons --- */
     .hero-icon-packages::before {
       content: "";
       position: absolute;
@@ -654,7 +648,7 @@
         align-items: flex-start;
       }
       .download-video-wrap {
-        align_SELF: stretch;
+        align-self: stretch;
       }
     }
 
@@ -800,6 +794,9 @@
       text-align: center;
       font-size: 0.8rem;
       color: var(--text-muted);
+      background: #ffffff;
+      border-top: 1px solid rgba(209, 213, 219, 0.7);
+      margin-top: 8px;
     }
 
     /* ================== FLOATING SOCIAL ICONS ================== */
@@ -807,7 +804,7 @@
     .floating-socials {
       position: fixed;
       right: 26px;
-      bottom: 94px; /* ტელეფონის ღილაკის ზემოთ */
+      bottom: 94px;
       z-index: 81;
       display: flex;
       flex-direction: column;
@@ -883,7 +880,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.15rem; /* 📞 ემოჯი */
+      font-size: 1.15rem;
       box-shadow: 0 0 0 0 rgba(16,185,129,0.55);
       animation: phonePulse 2.1s ease-out infinite;
     }
@@ -916,7 +913,7 @@
       }
     }
 
-    /* ================== DOWNLOAD MODAL (ჩამოტვირთე აპი) ================== */
+    /* ================== DOWNLOAD MODAL ================== */
 
     .download-modal-backdrop {
       position: fixed;
@@ -1074,7 +1071,7 @@
   </style>
 </head>
 <body>
-  <!-- SNOW overlay (4) -->
+  <!-- SNOW overlay -->
   <div class="snowflakes" aria-hidden="true">
     <div class="snowflake">❄</div>
     <div class="snowflake">✻</div>
@@ -1088,7 +1085,7 @@
     <div class="snowflake">❄</div>
   </div>
 
-  <!-- ================== HEADER ================== -->
+  <!-- HEADER -->
   <header class="main-header" id="mainHeader">
     <div class="header-inner">
       <div class="brand">
@@ -1102,18 +1099,17 @@
       <div class="header-spacer"></div>
 
       <nav class="nav">
-        <a class="nav-link active" href="index.html">მთავარი</a>
-        <a class="nav-link" href="packages.html">პაკეტები</a>
-        <a class="nav-link" href="business.html">ბიზნესისთვის</a>
-        <a class="nav-link" href="about.html">ჩვენს შესახებ</a>
-        <a class="nav-link" href="contact.html">კონტაქტი</a>
+        <a href="index.html" class="nav-link active" aria-current="page">მთავარი</a>
+        <a href="packages.html" class="nav-link">პაკეტები</a>
+        <a href="business.html" class="nav-link">ბიზნესისთვის</a>
+        <a href="about.html" class="nav-link">ჩვენს შესახებ</a>
+        <a href="contact.html" class="nav-link">კონტაქტი</a>
       </nav>
 
       <div class="header-cta">
         <a href="https://app.oktv.ge/" target="_blank" class="header-btn header-btn-ghost" rel="noopener">
           <span>LIVE OKTV</span>
         </a>
-        <!-- 3) ჩამოტვირთე აპი – მოდალური ფანჯარა -->
         <a href="#" class="header-btn header-btn-download" id="downloadCtaBtn" role="button">
           <span>ჩამოტვირთე აპი</span>
         </a>
@@ -1122,40 +1118,35 @@
   </header>
 
   <main>
-    <!-- ================== HERO + SLIDER ================== -->
+    <!-- HERO + SLIDER -->
     <section id="home">
       <div class="hero-inner">
         <div class="hero-slider reveal" id="heroSlider">
           <div class="hero-slide-track" id="heroTrack">
-            <!-- Slide 1 – hero-slide1.jpg -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
                 <img src="hero-slide1.jpg" alt="ბანერი 1" class="hero-image" />
               </div>
             </article>
 
-            <!-- Slide 2 – hero-slide2.jpg -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
                 <img src="hero-slide2.jpg" alt="ბანერი 2" class="hero-image" />
               </div>
             </article>
 
-            <!-- Slide 3 – hero-slide3.jpg -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
                 <img src="hero-slide3.jpg" alt="ბანერი 3" class="hero-image" />
               </div>
             </article>
 
-            <!-- Slide 4 – hero-slide4.jpg -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
                 <img src="hero-slide4.jpg" alt="ბანერი 4" class="hero-image" />
               </div>
             </article>
 
-            <!-- Slide 5 – hero-slide5.jpg -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
                 <img src="hero-slide5.jpg" alt="ბანერი 5" class="hero-image" />
@@ -1164,7 +1155,6 @@
           </div>
         </div>
 
-        <!-- dots -->
         <div class="hero-slider-bottom">
           <div class="hero-dots" id="heroDots">
             <button class="hero-dot active" data-index="0"></button>
@@ -1175,37 +1165,31 @@
           </div>
         </div>
 
-        <!-- 1) Store badges – + ლათინური ტექსტი ქვემოთ -->
         <div class="store-badges reveal">
-          <!-- Google Play Mobile – badge-google-play-mobile.png -->
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
              target="_blank" rel="noopener">
             <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
             <span class="store-badge-label">Google Play • Mobile</span>
           </a>
 
-          <!-- Google Play TV – badge-google-play-tv.png -->
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
              target="_blank" rel="noopener">
             <img src="badge-google-play-tv.png" alt="Google Play TV" />
             <span class="store-badge-label">Google Play • TV</span>
           </a>
 
-          <!-- App Store – badge-app-store.png -->
           <a class="store-badge" href="https://apps.apple.com/ge/app/oktv/id6478280344"
              target="_blank" rel="noopener">
             <img src="badge-app-store.png" alt="App Store" />
             <span class="store-badge-label">Apple • App Store</span>
           </a>
 
-          <!-- WGT / Smart TV – badge-wgt.png  |  ფაილი: oktv_3.2.7_606.wgt -->
           <a class="store-badge" href="oktv_3.2.7_606.wgt">
             <img src="badge-wgt.png" alt="Smart TV WGT" />
             <span class="store-badge-label">Smart TV • WGT</span>
           </a>
         </div>
 
-        <!-- ⭐ კატეგორიის ბარათები -->
         <div class="hero-categories reveal">
           <a class="hero-category-card" href="packages.html">
             <div class="hero-category-icon hero-icon-packages"></div>
@@ -1222,9 +1206,7 @@
             <div>
               <div class="hero-category-title">ბიზნესისთვის</div>
               <div class="hero-category-desc">
-                გადაწ
-
-წყვეტები სასტუმროებისთვის, კომპანიებისთვის და ობიექტებისთვის.
+                გადაწყვეტილებები სასტუმროებისთვის, კომპანიებისთვის და ობიექტებისთვის.
               </div>
             </div>
           </a>
@@ -1252,7 +1234,6 @@
       </div>
     </section>
 
-    <!-- ================== DOWNLOAD SECTION ================== -->
     <section class="download-section">
       <div class="download-inner reveal">
         <div class="download-text">
@@ -1263,7 +1244,6 @@
           </p>
         </div>
         <div class="download-video-wrap">
-          <!-- ვიდეო ფაილი: 1920x1080 MP4, სახელით oktv-app-download.mp4 -->
           <video class="download-video" controls poster="oktv-app-download-poster.jpg">
             <source src="oktv-app-download.mp4" type="video/mp4" />
             თქვენი ბრაუზერი არ უჭერს მხარს ვიდეოს ტეგს.
@@ -1272,260 +1252,11 @@
       </div>
     </section>
 
-    <!-- ================== FAQ + LINKS SECTION ================== -->
     <section class="faq-links-section">
       <div class="faq-links-inner reveal">
-        <!-- FAQ -->
         <div>
           <h2 class="faq-title">ხშირად დასმული კითხვები</h2>
           <div class="faq-list" id="faqList">
             <div class="faq-item">
               <button class="faq-question" type="button">
-                რა მოწყობილობებზე მუშაობს OK TV?
-                <span class="faq-icon">›</span>
-              </button>
-              <div class="faq-answer">
-                OK TV შეგიძლიათ გამოიყენოთ Android და iOS ტელეფონებზე, ტაბლეტებზე, Smart TV-ს აპარატებზე,
-                კომპიუტერზე (Windows) და იმ მოწყობილობებზე, სადაც Android TV ან Apple TV აპები მუშაობს.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <button class="faq-question" type="button">
-                რამდენ მოწყობილობაზე შევძლებ ყურებას ერთივე პროფილით?
-                <span class="faq-icon">›</span>
-              </button>
-              <div class="faq-answer">
-                ერთი ანგარიში აძლევს შესაძლებლობას ერთზე მეტ ეკრანზე გაიაქტიუროთ სერვისი. ზუსტი რაოდენობა
-                დამოკიდებულია არჩეულ პაკეტზე და შეთანხმებაზე OK TV-სთან.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <button class="faq-question" type="button">
-                საჭიროა თუ არა გრძელვადიანი კონტრაქტი?
-                <span class="faq-icon">›</span>
-              </button>
-              <div class="faq-answer">
-                ფიზიკური პირებისთვის პაკეტები, როგორც წესი, თვიურად განახლებადია. ბიზნეს და სასტუმრო პაკეტებზე
-                შედგება ინდივიდუალური კონტრაქტი – პირობები ფიქსირდება წინასწარ, მაქსიმალურად გამჭვირვალედ.
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <button class="faq-question" type="button">
-                პრობლემის შემთხვევაში როგორ დაგეკონტაქტოთ?
-                <span class="faq-icon">›</span>
-              </button>
-              <div class="faq-answer">
-                მხარდაჭერისთვის შეგიძლიათ მოგვწეროთ Facebook-ზე, დაგვირეკოთ ცხელ ხაზზე
-                ან გამოიყენოთ კონტაქტის ფორმა ჩვენს ვებგვერდზე — ყველა არხი მუდმივად მონიტორინგზეა.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LINKS -->
-        <div>
-          <h3 class="links-title">ჩვენი ლინკები</h3>
-          <p class="links-subtitle">
-            მიჰყევით OK TV-ს სოციალურ ქსელებში და ჩამოტვირთეთ აპლიკაცია თქვენი მოწყობილობისთვის.
-          </p>
-          <div class="links-grid">
-            <a class="link-pill" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
-              <span class="link-dot"></span>
-              <span>Facebook გვერდი</span>
-            </a>
-            <a class="link-pill" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
-              <span class="link-dot"></span>
-              <span>Instagram</span>
-            </a>
-            <a class="link-pill" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
-              <span class="link-dot"></span>
-              <span>TikTok</span>
-            </a>
-            <a class="link-pill" href="https://play.google.com/store/apps/details?id=ag.sarpi" target="_blank" rel="noopener">
-              <span class="link-dot"></span>
-              <span>Google Play Store</span>
-            </a>
-            <a class="link-pill" href="https://apps.apple.com/us/app/oktv/id6478764138" target="_blank" rel="noopener">
-              <span class="link-dot"></span>
-              <span>App Store</span>
-            </a>
-            <a class="link-pill" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
-              <span class="link-dot"></span>
-              <span>Support / მხარდაჭერა</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
-  </footer>
-
-  <!-- 2) Floating social icons (ლოგოების ფაილები): icon-facebook.png, icon-instagram.png, icon-tiktok.png -->
-  <div class="floating-socials">
-    <a class="social-btn" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
-      <img src="icon-facebook.png" alt="Facebook" />
-    </a>
-    <a class="social-btn" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
-      <img src="icon-instagram.png" alt="Instagram" />
-    </a>
-    <a class="social-btn" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
-      <img src="icon-tiktok.png" alt="TikTok" />
-    </a>
-  </div>
-
-  <!-- Floating phone button -->
-  <a href="tel:+995322901011" class="floating-call-btn">
-    <span class="floating-call-icon">📞</span>
-    <span class="floating-call-text">(+995 032) 2 90 10 11</span>
-  </a>
-
-  <!-- 3) Download modal -->
-  <div class="download-modal-backdrop" id="downloadModal">
-    <div class="download-modal">
-      <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
-      <h3 class="download-modal-title">აირჩიე, საიდან ჩამოტვირთო აპლიკაცია</h3>
-      <p class="download-modal-subtitle">
-        დააჭირე შენთვის სასურველ პლატფორმას – გადავიყვანთ პირდაპირ OK TV-ს ოფიციალურ გვერდზე.
-      </p>
-      <div class="download-modal-grid">
-        <a class="download-option" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
-           target="_blank" rel="noopener">
-          <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
-          <span class="download-option-label">Google Play • Mobile</span>
-        </a>
-        <a class="download-option" href="https://apps.apple.com/ge/app/oktv/id6478280344"
-           target="_blank" rel="noopener">
-          <img src="badge-app-store.png" alt="Apple App Store" />
-          <span class="download-option-label">Apple • App Store</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Header shadow on scroll
-    const mainHeader = document.getElementById('mainHeader');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 16) {
-        mainHeader.classList.add('scrolled');
-      } else {
-        mainHeader.classList.remove('scrolled');
-      }
-    });
-
-    // Reveal on scroll
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    reveals.forEach(el => io.observe(el));
-
-    // HERO slider
-    const track = document.getElementById('heroTrack');
-    const dots  = document.querySelectorAll('.hero-dot');
-    const slides = document.querySelectorAll('.hero-slide');
-
-    if (track && dots.length && slides.length) {
-      let currentSlide = 0;
-      const totalSlides = dots.length;
-      let sliderTimer;
-
-      function goToSlide(index) {
-        currentSlide = (index + totalSlides) % totalSlides;
-        const offset = -currentSlide * 100;
-        track.style.transform = `translateX(${offset}%)`;
-
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === currentSlide);
-        });
-        slides.forEach((slide, i) => {
-          slide.classList.toggle('active', i === currentSlide);
-        });
-      }
-
-      function startSlider() {
-        sliderTimer = setInterval(() => {
-          goToSlide(currentSlide + 1);
-        }, 7000);
-      }
-
-      function resetSlider() {
-        clearInterval(sliderTimer);
-        startSlider();
-      }
-
-      dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const index = Number(dot.dataset.index);
-          goToSlide(index);
-          resetSlider();
-        });
-      });
-
-      const heroSlider = document.getElementById('heroSlider');
-      heroSlider.addEventListener('mouseenter', () => clearInterval(sliderTimer));
-      heroSlider.addEventListener('mouseleave', () => startSlider());
-
-      goToSlide(0);
-      startSlider();
-    }
-
-    // FAQ accordion
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-      const btn = item.querySelector('.faq-question');
-      btn.addEventListener('click', () => {
-        item.classList.toggle('open');
-      });
-    });
-
-    // 3) Download modal logic
-    const downloadBtn = document.getElementById('downloadCtaBtn');
-    const downloadModal = document.getElementById('downloadModal');
-    const downloadModalClose = document.getElementById('downloadModalClose');
-
-    function openDownloadModal(event) {
-      if (event) event.preventDefault();
-      downloadModal.classList.add('active');
-    }
-
-    function closeDownloadModal() {
-      downloadModal.classList.remove('active');
-    }
-
-    if (downloadBtn) {
-      downloadBtn.addEventListener('click', openDownloadModal);
-    }
-
-    if (downloadModalClose) {
-      downloadModalClose.addEventListener('click', closeDownloadModal);
-    }
-
-    downloadModal.addEventListener('click', (e) => {
-      if (e.target === downloadModal) {
-        closeDownloadModal();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeDownloadModal();
-      }
-    });
-  </script>
-</body>
-</html>
+                რა მოწყობილ

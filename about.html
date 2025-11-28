@@ -6,7 +6,7 @@
   <title>OK TV • ჩვენს შესახებ</title>
 
   <style>
-    /* ================== ROOT & RESET (იგივე, რაც index.html-ში) ================== */
+    /* ================== ROOT & RESET ================== */
     :root {
       --primary: #009fe3;
       --primary-dark: #0077b6;
@@ -58,7 +58,19 @@
       margin: 0 auto;
     }
 
-    /* ================== HEADER (იგივე, რაც index.html-ში) ================== */
+    @media (max-width: 768px) {
+      section {
+        padding: 56px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      section {
+        padding: 48px 14px;
+      }
+    }
+
+    /* ================== HEADER ================== */
     .main-header {
       position: sticky;
       top: 0;
@@ -139,6 +151,9 @@
       font-weight: 600;
       color: var(--text-muted);
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       transition: color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
     }
 
@@ -223,7 +238,9 @@
       border-color: var(--primary-dark);
       box-shadow: none;
     }
+
     .header-btn-ghost::before { content: "❄"; color: #93c5fd; }
+
     .header-btn-ghost:hover { background: rgba(0, 159, 227, 0.06); }
 
     @media (max-width: 980px) {
@@ -262,7 +279,7 @@
       }
     }
 
-    /* ================== HERO SLIDER (გამოყენებულია აქაც) ================== */
+    /* ================== HERO SLIDER ================== */
     .hero-slider {
       position: relative;
       border-radius: 30px;
@@ -357,7 +374,7 @@
       transform: scale(1.1);
     }
 
-    /* ================== STORE BADGES (იგივე, რაც index.html-ში) ================== */
+    /* ================== STORE BADGES ================== */
     .store-badges {
       max-width: 1120px;
       margin: 18px auto 0;
@@ -527,7 +544,10 @@
     }
 
     @media (max-width: 640px) {
-      #aboutStory { padding-top: 32px; padding-bottom: 32px; }
+      #aboutStory {
+        padding-top: 32px;
+        padding-bottom: 32px;
+      }
       .about-title { font-size: 1.7rem; }
     }
 
@@ -676,12 +696,11 @@
       }
     }
 
-    /* ================== FOOTER (გაუმჯობესებული, ნომრით + ლოგოებით) ================== */
+    /* ================== FOOTER ================== */
     .footer {
       padding: 20px 16px 26px;
       text-align: center;
       font-size: 0.8rem;
-      color: var(--text-muted);
       background: #020617;
       color: #e5e7eb;
       border-top: 1px solid rgba(15,23,42,0.8);
@@ -1027,7 +1046,7 @@
     <div class="snowflake">❄</div>
   </div>
 
-  <!-- HEADER – ზუსტად როგორც index.html-ში -->
+  <!-- HEADER -->
   <header class="main-header" id="mainHeader">
     <div class="header-inner">
       <div class="brand">
@@ -1040,8 +1059,8 @@
 
       <div class="header-spacer"></div>
 
-      <nav class="nav">
-        <a class="nav-link" <a href="/" class="nav-link">მთავარი</a>
+      <nav class="nav" aria-label="მთავარი ნავიგაცია">
+        <a href="index.html" class="nav-link">მთავარი</a>
         <a class="nav-link" href="packages.html">პაკეტები</a>
         <a class="nav-link" href="business.html">ბიზნესისთვის</a>
         <a class="nav-link active" href="about.html">ჩვენს შესახებ</a>
@@ -1060,19 +1079,19 @@
   </header>
 
   <main>
-    <!-- 1) ბანერების სლაიდერი + 2) ჩამოსატვირთი ღილაკები -->
+    <!-- ბანერების სლაიდერი + ჩამოსატვირთი ბეჯები -->
     <section id="aboutTop">
       <div class="about-hero-inner">
         <div class="hero-slider reveal" id="heroSlider">
           <div class="hero-slide-track" id="heroTrack">
-            <!-- Slide 1 – about-banner-1.png -->
+            <!-- Slide 1 -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
                 <img src="about-banner-1.png" alt="OK TV Banner 1" class="hero-image" />
               </div>
             </article>
 
-            <!-- Slide 2 – about-banner-2.png -->
+            <!-- Slide 2 -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
                 <img src="about-banner-2.png" alt="OK TV Banner 2" class="hero-image" />
@@ -1084,12 +1103,12 @@
         <!-- dots -->
         <div class="hero-slider-bottom">
           <div class="hero-dots" id="heroDots">
-            <button class="hero-dot active" data-index="0"></button>
-            <button class="hero-dot" data-index="1"></button>
+            <button class="hero-dot active" data-index="0" type="button"></button>
+            <button class="hero-dot" data-index="1" type="button"></button>
           </div>
         </div>
 
-        <!-- იგივე ჩამოსატვირთი ბეჯები, რაც მთავარ გვერდზე -->
+        <!-- ჩამოსატვირთი ბეჯები -->
         <div class="store-badges reveal">
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
              target="_blank" rel="noopener">
@@ -1117,7 +1136,7 @@
       </div>
     </section>
 
-    <!-- 3) 1993 წლიდან თქვენს სამსახურში + ისტორიული ფოტო -->
+    <!-- ისტორია + ფოტო -->
     <section id="aboutStory">
       <div class="section-inner reveal">
         <div class="about-story-card">
@@ -1158,7 +1177,7 @@
       </div>
     </section>
 
-    <!-- 4) ხშირად დასმული კითხვები -->
+    <!-- ხშირად დასმული კითხვები -->
     <section id="faq">
       <div class="section-inner reveal">
         <h2 class="about-section-title">ხშირად დასმული კითხვები</h2>
@@ -1220,7 +1239,7 @@
       </div>
     </section>
 
-    <!-- 5) наша команда -->
+    <!-- ჩვენი გუნდი -->
     <section id="team">
       <div class="section-inner reveal">
         <h2 class="about-section-title">ჩვენი გუნდი</h2>
@@ -1254,7 +1273,7 @@
     </section>
   </main>
 
-  <!-- FOOTER – ნომერი + სოციალური ლოგოები + ქოპირაიტი -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-contact-line">
@@ -1280,7 +1299,7 @@
     </div>
   </footer>
 
-  <!-- 6) ჩაშენებული ღილაკები – ზუსტად index.html-ის სტილში -->
+  <!-- Floating socials -->
   <div class="floating-socials">
     <a class="social-btn" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
       <img src="icon-facebook.png" alt="Facebook" />
@@ -1293,12 +1312,13 @@
     </a>
   </div>
 
+  <!-- Floating call -->
   <a href="tel:+995322901011" class="floating-call-btn">
     <span class="floating-call-icon">📞</span>
     <span class="floating-call-text">(+995 032) 2 90 10 11</span>
   </a>
 
-  <!-- ჩამოტვირთე აპი – იგივე მოდალი, რაც მთავარში -->
+  <!-- Download modal -->
   <div class="download-modal-backdrop" id="downloadModal">
     <div class="download-modal">
       <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
@@ -1315,7 +1335,7 @@
         <a class="download-option" href="https://apps.apple.com/ge/app/oktv/id6478280344"
            target="_blank" rel="noopener">
           <img src="badge-app-store.png" alt="Apple App Store" />
-          <span class="download-option-label">Apple • App Store</span>
+          <span class="download-option-label">Apple App Store</span>
         </a>
       </div>
     </div>
@@ -1337,17 +1357,21 @@
 
     // Reveal on scroll
     const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    reveals.forEach(el => io.observe(el));
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      reveals.forEach(el => io.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('visible'));
+    }
 
-    // HERO slider (ზუსტად როგორც მთავარში, ოღონდ 2 სლაიდი)
+    // HERO slider (2 სლაიდი)
     const track = document.getElementById('heroTrack');
     const dots  = document.querySelectorAll('.hero-dot');
     const slides = document.querySelectorAll('.hero-slide');
@@ -1390,8 +1414,10 @@
       });
 
       const heroSlider = document.getElementById('heroSlider');
-      heroSlider.addEventListener('mouseenter', () => clearInterval(sliderTimer));
-      heroSlider.addEventListener('mouseleave', () => startSlider());
+      if (heroSlider) {
+        heroSlider.addEventListener('mouseenter', () => clearInterval(sliderTimer));
+        heroSlider.addEventListener('mouseleave', () => startSlider());
+      }
 
       goToSlide(0);
       startSlider();
@@ -1404,11 +1430,15 @@
 
     function openDownloadModal(event) {
       if (event) event.preventDefault();
-      downloadModal.classList.add('active');
+      if (downloadModal) {
+        downloadModal.classList.add('active');
+      }
     }
 
     function closeDownloadModal() {
-      downloadModal.classList.remove('active');
+      if (downloadModal) {
+        downloadModal.classList.remove('active');
+      }
     }
 
     if (downloadBtn) {
@@ -1419,11 +1449,13 @@
       downloadModalClose.addEventListener('click', closeDownloadModal);
     }
 
-    downloadModal.addEventListener('click', (e) => {
-      if (e.target === downloadModal) {
-        closeDownloadModal();
-      }
-    });
+    if (downloadModal) {
+      downloadModal.addEventListener('click', (e) => {
+        if (e.target === downloadModal) {
+          closeDownloadModal();
+        }
+      });
+    }
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
