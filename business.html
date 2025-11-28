@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OK TV • კომპანიებისთვის</title>
+
+  <style>
+    /* ================== ROOT & RESET ================== */
+    :root {
+      --primary: #009fe3;
+      --primary-dark: #0077b6;
+      --primary-soft: #e1f5ff;
+      --accent: #00b6bd;
+      --bg-page: #f5f7fb;
+      --bg-section: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-soft: #d1d5db;
+      --nav-height: 80px;
+      --radius-lg: 24px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 14px 40px rgba(15, 23, 42, 0.16);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    main { min-height: 100vh; }
+
+    section {
+      padding: 72px 16px;
+    }
+
+    .section-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    /* ================== HEADER ================== */
+    .main-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+
+    .header-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-text-block { line-height: 1.1; }
+
+    .brand-name {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .header-spacer { flex: 1; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      position: relative;
+      border: none;
+      background: transparent;
+      padding: 8px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 20%;
+      right: 20%;
+      bottom: 6px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.15s ease-out;
+    }
+
+    .nav-link:hover { color: var(--primary-dark); }
+
+    .nav-link.active {
+      color: var(--primary-dark);
+      background: rgba(0, 159, 227, 0.06);
+    }
+
+    .nav-link.active::after { transform: scaleX(1); }
+
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 6px;
+      flex-shrink: 0;
+    }
+
+    .header-btn {
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      border: 1px solid var(--primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 16px rgba(0, 159, 227, 0.4);
+    }
+
+    .header-btn span {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .header-btn-secondary {
+      background: #ffffff;
+      color: var(--primary-dark);
+      border-color: rgba(148, 163, 184, 0.6);
+      box-shadow: 0 4px 12px rgba(148, 163, 184, 0.4);
+    }
+
+    .header-btn-secondary:hover {
+      background: #f1f5f9;
+    }
+
+    @media (max-width: 980px) {
+      .header-inner {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 8px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        height: auto;
+      }
+      .brand { order: 0; }
+      .header-spacer { display: none; }
+      .nav {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+      }
+      .header-cta {
+        order: 1;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .brand-name { font-size: 0.9rem; }
+      .brand-subtitle { font-size: 0.62rem; }
+      .nav-link {
+        font-size: 0.75rem;
+        padding-inline: 8px;
+      }
+      .header-cta {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+    }
+
+    /* ================== HERO – MAP BANNER ================== */
+    #companies-hero {
+      padding-top: 44px;
+      padding-bottom: 64px;
+      background: linear-gradient(180deg, #e5f4ff 0%, #f5f7fb 50%, #f5f7fb 100%);
+      box-shadow: inset 0 -1px 0 rgba(209, 213, 219, 0.7);
+    }
+
+    .hero-inner { max-width: 1360px; margin: 0 auto; }
+
+    .map-hero {
+      position: relative;
+      border-radius: 34px;
+      padding: 14px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.25), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(6, 182, 212, 0.22), transparent 55%),
+        #f9fafb;
+      box-shadow: 0 26px 60px rgba(15, 23, 42, 0.30);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      overflow: hidden;
+    }
+
+    .map-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 34px;
+      pointer-events: none;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(15, 23, 42, 0.08);
+      mix-blend-mode: screen;
+    }
+
+    /* სტანდარტული, შედარებით დაბალი ბანერი */
+    .map-image-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 0%, #e5f4ff, #ffffff);
+      height: clamp(260px, 50vh, 400px); /* აქედან მოდის „გაპატარავება“ */
+    }
+
+    .map-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .map-caption {
+      margin-top: 12px;
+      padding: 18px 24px 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(90deg, rgba(0,159,227,0.06), rgba(0,182,189,0.04));
+    }
+
+    .map-caption-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .map-caption-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .map-caption-badge {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--primary-dark);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 980px) {
+      .map-caption {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* ================== COMPANIES SEGMENTS ================== */
+    .companies-section {
+      background: var(--bg-page);
+    }
+
+    .companies-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .companies-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 820px;
+      line-height: 1.6;
+      margin-bottom: 26px;
+    }
+
+    .company-banners {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .company-banner-card {
+      border-radius: 22px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.18);
+      cursor: pointer;
+      transform-origin: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .company-banner-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+    }
+
+    .company-banner-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 0.4s ease;
+    }
+
+    .company-banner-label {
+      padding: 10px 12px 12px;
+      border-top: 1px solid rgba(209, 213, 219, 0.8);
+      background: radial-gradient(circle at 0 0, #f9fafb, #ffffff);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-align: center;
+      color: var(--primary-dark);
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .company-banner-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.26);
+    }
+
+    .company-banner-card:hover .company-banner-image img {
+      transform: scale(1.06);
+    }
+
+    @media (max-width: 1100px) {
+      .company-banners {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .company-banners {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .company-banners {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ================== TECHNOLOGIES SECTION ================== */
+    .tech-section {
+      background: #ffffff;
+      border-top: 1px solid rgba(209, 213, 219, 0.7);
+      border-bottom: 1px solid rgba(209, 213, 219, 0.7);
+    }
+
+    .tech-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .tech-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+
+    .tech-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .tech-visual-card {
+      margin-top: 22px;
+      border-radius: 22px;
+      padding: 10px;
+      background: linear-gradient(135deg, rgba(0,159,227,0.08), rgba(0,182,189,0.04));
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+      border: 1px solid rgba(191, 219, 254, 0.9);
+    }
+
+    .tech-visual-inner {
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0b1120;
+    }
+
+    .tech-visual-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .tech-card {
+      border-radius: 20px;
+      padding: 14px 14px 16px;
+      background: #f9fafb;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, transform 0.18s ease;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.18);
+      border-color: var(--primary);
+      background: #ffffff;
+    }
+
+    .tech-card.active {
+      border-color: var(--primary-dark);
+      box-shadow: 0 14px 32px rgba(37, 99, 235, 0.28);
+      background: linear-gradient(135deg, #eff6ff, #ffffff);
+    }
+
+    .tech-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 0 0, #e0f2fe, #bfdbfe);
+      position: relative;
+      box-shadow: 0 6px 16px rgba(148, 163, 184, 0.65);
+    }
+
+    /* OTT */
+    .tech-icon-ott::before,
+    .tech-icon-ott::after {
+      content: "";
+      position: absolute;
+      left: 22%;
+      right: 22%;
+      border-radius: 999px;
+    }
+    .tech-icon-ott::before {
+      top: 30%;
+      height: 6px;
+      background: #0f172a;
+    }
+    .tech-icon-ott::after {
+      bottom: 30%;
+      height: 6px;
+      background: linear-gradient(90deg, #0f172a, #1e3a8a);
+    }
+
+    /* DVBT */
+    .tech-icon-dvbt::before,
+    .tech-icon-dvbt::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 2px solid #0f172a;
+    }
+    .tech-icon-dvbt::before {
+      width: 18px;
+      height: 18px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .tech-icon-dvbt::after {
+      width: 6px;
+      height: 16px;
+      left: 50%;
+      top: 10%;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      border-width: 0 0 2px 0;
+    }
+
+    /* DVBC */
+    .tech-icon-dvbc::before,
+    .tech-icon-dvbc::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+    }
+    .tech-icon-dvbc::before {
+      width: 22px;
+      height: 14px;
+      border: 2px solid #0f172a;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .tech-icon-dvbc::after {
+      width: 2px;
+      height: 16px;
+      background: #0f172a;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* IPTV */
+    .tech-icon-iptv::before,
+    .tech-icon-iptv::after {
+      content: "";
+      position: absolute;
+    }
+    .tech-icon-iptv::before {
+      width: 20px;
+      height: 14px;
+      border-radius: 4px;
+      border: 2px solid #0f172a;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .tech-icon-iptv::after {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: #0f172a;
+      left: 50%;
+      bottom: 7px;
+      transform: translateX(-50%);
+    }
+
+    /* DVBS2 */
+    .tech-icon-dvbs2::before,
+    .tech-icon-dvbs2::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+    .tech-icon-dvbs2::before {
+      width: 16px;
+      height: 16px;
+      border: 2px solid #0f172a;
+      left: 35%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .tech-icon-dvbs2::after {
+      width: 26px;
+      height: 26px;
+      border: 2px dashed #0f172a;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Smart TV App */
+    .tech-icon-smart::before,
+    .tech-icon-smart::after {
+      content: "";
+      position: absolute;
+      border-radius: 10px;
+    }
+    .tech-icon-smart::before {
+      width: 24px;
+      height: 18px;
+      border: 2px solid #0f172a;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .tech-icon-smart::after {
+      width: 10px;
+      height: 4px;
+      background: #0f172a;
+      left: 50%;
+      bottom: 7px;
+      transform: translateX(-50%);
+    }
+
+    /* Web TV */
+    .tech-icon-web::before,
+    .tech-icon-web::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+    }
+    .tech-icon-web::before {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #0f172a;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .tech-icon-web::after {
+      width: 18px;
+      height: 2px;
+      background: #0f172a;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(20deg);
+    }
+
+    .tech-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .tech-tagline {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .tech-details-box {
+      margin-top: 18px;
+      padding: 18px 18px 20px;
+      border-radius: 20px;
+      background: #f9fafb;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    .tech-details-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .tech-details-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 980px) {
+      .tech-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+      }
+      .tech-visual-card {
+        max-width: 520px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .tech-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .tech-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ================== CONTACT CTA SECTION ================== */
+    .contact-cta-section {
+      background: var(--bg-page);
+    }
+
+    .contact-cta-card {
+      max-width: 960px;
+      margin: 0 auto;
+      border-radius: 26px;
+      padding: 22px 24px;
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: #e5f0ff;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.7);
+    }
+
+    .contact-cta-main {
+      max-width: 520px;
+    }
+
+    .contact-cta-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .contact-cta-text {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+
+    .contact-cta-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .contact-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.35);
+      border: 1px solid rgba(191, 219, 254, 0.7);
+      color: #e5f0ff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .contact-cta-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 720px) {
+      .contact-cta-card {
+        padding: 18px 16px;
+      }
+      .contact-cta-links {
+        width: 100%;
+      }
+      .contact-cta-link {
+        justify-content: center;
+      }
+    }
+
+    /* ================== FLOATING CALL BUTTON ================== */
+    .floating-call-btn {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 60;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #16a34a;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 16px 40px rgba(22, 163, 74, 0.6);
+    }
+
+    .floating-call-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .floating-call-text {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 640px) {
+      .floating-call-btn {
+        right: 16px;
+        bottom: 16px;
+        padding-inline: 14px;
+      }
+      .floating-call-text {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 20px 16px 26px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- ================== HEADER ================== -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="brand">
+        <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
+        <div class="brand-text-block">
+          <div class="brand-name">OK TV</div>
+          <div class="brand-subtitle">ნამდვილი ციფრული ტელევიზია</div>
+        </div>
+      </div>
+
+      <div class="header-spacer"></div>
+
+      <nav class="nav">
+        <a class="nav-link" href="index.html">მთავარი</a>
+        <a class="nav-link" href="packages.html">პაკეტები</a>
+        <a class="nav-link active" href="business.html">კომპანიებისთვის</a>
+        <a class="nav-link" href="about.html">ჩვენს შესახებ</a>
+        <a class="nav-link" href="contact.html">კონტაქტი</a>
+      </nav>
+
+      <div class="header-cta">
+        <a href="live.html" class="header-btn header-btn-secondary">
+          <span>LIVE OKTV</span>
+        </a>
+        <a href="contact.html" class="header-btn">
+          <span>ჩამოტვირთე აპი</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================== HERO – MAP BANNER ================== -->
+    <section id="companies-hero">
+      <div class="hero-inner">
+        <div class="map-hero reveal">
+          <div class="map-image-wrap">
+            <!-- შენი უკვე „პინიანი“ ბანერი -->
+            <img src="business-map-banner.jpg" alt="OK TV პარტნიორი ობიექტების რუკა" class="map-image" />
+          </div>
+
+          <div class="map-caption">
+            <div>
+              <div class="map-caption-title">საქართველოს მასშტაბით პარტნიორი სასტუმროები და ობიექტები</div>
+              <div class="map-caption-text">
+                OK TV-ს სიგნალი დღეს უკვე მუშაობს საქართველოში მრავალ ტურისტულ და ბიზნეს ლოკაციაში. ბანერზე
+                ნაჩვენებია ჩვენი პარტნიორი ობიექტების განაწილება ქვეყნის მასშტაბით – თქვენს მიერ შექმნილი
+                პინიანი რუკის ვიზუალით.
+              </div>
+            </div>
+            <div class="map-caption-badge">
+              პარტნიორი ობიექტების რუკა
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================== COMPANIES SEGMENTS ================== -->
+    <section class="companies-section">
+      <div class="section-inner reveal">
+        <h2 class="companies-title">კომპანიის მიმართულებები, რომლებსაც ჩვენ ვემსახურებით</h2>
+        <p class="companies-subtitle">
+          OK TV ემსახურება სხვადასხვა ტიპის ობიექტებს – საერთაშორისო და ლოკალურ სასტუმროებს, სპორტ ბარებს,
+          ჰოსტელებს, კოტეჯებსა და სამშენებლო კომპანიებს. თითოეულ მიმართულებას ვთავაზობთ მის საჭიროებაზე მორგებულ
+          სატელევიზიო პაკეტებს, ტექნოლოგიურ გადაწყვეტას და ტექნიკურ მხარდაჭერას.
+        </p>
+
+        <div class="company-banners">
+          <article class="company-banner-card">
+            <div class="company-banner-image">
+              <img src="company-banner-1.jpg" alt="სასტუმროები" />
+            </div>
+            <div class="company-banner-label">სასტუმროები</div>
+          </article>
+
+          <article class="company-banner-card">
+            <div class="company-banner-image">
+              <img src="company-banner-2.jpg" alt="სპორტ ბარები" />
+            </div>
+            <div class="company-banner-label">სპორტ ბარები</div>
+          </article>
+
+          <article class="company-banner-card">
+            <div class="company-banner-image">
+              <img src="company-banner-3.jpg" alt="ჰოსტელები" />
+            </div>
+            <div class="company-banner-label">ჰოსტელები</div>
+          </article>
+
+          <article class="company-banner-card">
+            <div class="company-banner-image">
+              <img src="company-banner-4.jpg" alt="კოტეჯები" />
+            </div>
+            <div class="company-banner-label">კოტეჯები</div>
+          </article>
+
+          <article class="company-banner-card">
+            <div class="company-banner-image">
+              <img src="company-banner-5.jpg" alt="სამშენებლო კომპანიები" />
+            </div>
+            <div class="company-banner-label">სამშენებლო კომპანიები</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================== TECHNOLOGIES SECTION ================== -->
+    <section class="tech-section">
+      <div class="section-inner tech-layout reveal">
+        <div>
+          <h2 class="tech-title">რომელი ტექნოლოგიებით შეგვიძლია მოგაწოდოთ ჩვენი მომსახურეობა?</h2>
+          <p class="tech-subtitle">
+            ჩვენ შეგვიძლია საქართველოს მაშტაბით, პრაქტიკულად ნებისმიერ ლოკაციაზე და სხვადასხვა ტექნოლოგიით
+            მოვაწოდოთ ციფრული ტელევიზიის სერვისი – როგორც უკვე არსებულ, ისე ახალი ინჟინერიული ინფრასტრუქტურის ზედა.
+          </p>
+
+          <div class="tech-visual-card">
+            <div class="tech-visual-inner">
+              <img src="tech-solutions-banner.jpg" alt="OK TV ტექნოლოგიური გადაწყვეტები ბიზნესებისთვის" />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="tech-grid" id="techGrid">
+            <button class="tech-card" data-tech="ott" type="button">
+              <div class="tech-icon tech-icon-ott"></div>
+              <div class="tech-name">OTT</div>
+              <div class="tech-tagline">ტელევიზია ინტერნეტით, ნებისმიერ მოწყობილობაზე.</div>
+            </button>
+
+            <button class="tech-card" data-tech="dvbt" type="button">
+              <div class="tech-icon tech-icon-dvbt"></div>
+              <div class="tech-name">DVBT</div>
+              <div class="tech-tagline">დიგიტალური მიწისზედა მაუწყებლობა, ანტენით.</div>
+            </button>
+
+            <button class="tech-card" data-tech="dvbc" type="button">
+              <div class="tech-icon tech-icon-dvbc"></div>
+              <div class="tech-name">DVBC</div>
+              <div class="tech-tagline">ციფრული კაბელი, სტაბილური სიგნალისთვის.</div>
+            </button>
+
+            <button class="tech-card" data-tech="iptv" type="button">
+              <div class="tech-icon tech-icon-iptv"></div>
+              <div class="tech-name">IPTV</div>
+              <div class="tech-tagline">ტელევიზიის მიწოდება IP ქსელზე, დახვეწილი კონტროლით.</div>
+            </button>
+
+            <button class="tech-card" data-tech="dvbs2" type="button">
+              <div class="tech-icon tech-icon-dvbs2"></div>
+              <div class="tech-name">DVBS2</div>
+              <div class="tech-tagline">სატელიტური სიგნალი რთული ლოკაციებისთვის.</div>
+            </button>
+
+            <button class="tech-card" data-tech="smart" type="button">
+              <div class="tech-icon tech-icon-smart"></div>
+              <div class="tech-name">Smart TV App</div>
+              <div class="tech-tagline">აპლიკაცია პოპულარულ Smart TV პლატფორმებზე.</div>
+            </button>
+
+            <button class="tech-card" data-tech="web" type="button">
+              <div class="tech-icon tech-icon-web"></div>
+              <div class="tech-name">Web TV</div>
+              <div class="tech-tagline">წვდომა პირდაპირ ბრაუზერიდან, დამატებითი აპის გარეშე.</div>
+            </button>
+          </div>
+
+          <div class="tech-details-box" id="techDetails">
+            <div class="tech-details-title" id="techDetailsTitle">აირჩიე ტექნოლოგია მარჯვნივ</div>
+            <p class="tech-details-text" id="techDetailsText">
+              დააჭირე ნებისმიერ ბლოკს, რომ მოკლედ ნახო, როგორ მუშაობს კონკრეტული ტექნოლოგია და რისთვის
+              არის იდეალური. ასე შეგიძლია შეარჩიო შენს ობიექტზე ყველაზე სწორი გადაწყვეტა – არსებული კაბელების,
+              ინტერნეტ ინფრასტრუქტურისა და ბიუჯეტის გათვალისწინებით.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================== CONTACT CTA ================== -->
+    <section class="contact-cta-section">
+      <div class="section-inner reveal">
+        <div class="contact-cta-card">
+          <div class="contact-cta-main">
+            <div class="contact-cta-title">დაინტერესების შემთხვევაში დაგვიკავშირდით</div>
+            <div class="contact-cta-text">
+              თუ გსურთ, რომ თქვენი სასტუმრო, კომპანია ან ნებისმიერი ობიექტი OK TV-ს ქსელში ჩაერთოს,
+              მოგვწერეთ ელ-ფოსტაზე ან დაგვირეკეთ – შეგვიძლია მოგიმზადოთ ინდივიდუალური კომერციული შეთავაზება,
+              ტექნოლოგიის შერჩევით და დეტალური კონსულტაციით.
+            </div>
+          </div>
+
+          <div class="contact-cta-links">
+            <a href="mailto:ggadelia@tvsarpi.ge" class="contact-cta-link">
+              <span class="contact-cta-icon">@</span>
+              <span>ggadelia@tvsarpi.ge</span>
+            </a>
+            <a href="tel:+995597956396" class="contact-cta-link">
+              <span class="contact-cta-icon">📞</span>
+              <span>+995 597 95 63 96</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING CALL BUTTON – ამ გვერდზე მობილურის ნომრით -->
+  <a href="tel:+995597956396" class="floating-call-btn">
+    <span class="floating-call-icon">📞</span>
+    <span class="floating-call-text">+995 597 95 63 96</span>
+  </a>
+
+  <footer class="footer">
+    © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    reveals.forEach(el => io.observe(el));
+
+    // Technologies – click to show description
+    const techInfo = {
+      ott: {
+        title: "OTT (Over-the-Top)",
+        text:
+          "OTT არის სერვისი, როდესაც ციფრული ტელევიზია გადის ინტერნეტით, თქვენი არსებული ქსელის გამოყენებით. არ არის საჭირო დამატებითი კაბელი – საკმარისია სტაბილური ინტერნეტი და OK TV აპლიკაცია ტელევიზორს, პლანშეტს ან ტელეფონზე."
+      },
+      dvbt: {
+        title: "DVBT – მიწისზედა დიგიტალური მაუწყებლობა",
+        text:
+          "DVBT იყენებს მიწისზედა გადამცემებსა და ანტენებს. იდეალურია ობიექტებისთვის, სადაც შესაძლებელია საერთო ანტენური სისტემის განთავსება და საჭიროა ბევრი ნომრის მომარაგება ერთდროულად, მაღალი სიხშირის ხარისხით."
+      },
+      dvbc: {
+        title: "DVBC – ციფრული კაბელური ტელევიზია",
+        text:
+          "DVBC მუშაობს coaxial კაბელზე (RG-6 და მსგავსი). სიგნალი სტაბილურია, ჰეჯავს ჩარევებს და განსაკუთრებით ეფექტურია სასტუმროებისთვის, სადაც უკვე არსებობს კაბელური ინფრასტრუქტურა – მხოლოდ ჩვენს ჰედენდს ვაერთებთ."
+      },
+      iptv: {
+        title: "IPTV – ტელევიზია IP ქსელზე",
+        text:
+          "IPTV ტექნოლოგია საშუალებას გაძლევს, ტელევიზია იმავე LAN/ვაი-ფაი ქსელით მიაწოდო, რასაც ინტერნეტისთვის იყენებ. არხები მუშაობს IP multicast/unicast ფორმატში, შესაძლებელია არხების მართვა, ჯგუფებად დაყოფა და ლოკალური არხების დამატება."
+      },
+      dvbs2: {
+        title: "DVBS2 – სატელიტური სიგნალი",
+        text:
+          "DVBS2 გამოიყენება მაშინ, როდესაც ობიექტი მდებარეობს ისეთ ლოკაციაში, სადაც კაბელის ან ინტერნეტის რესურსი შეზღუდულია. სიგნალი მოდის სატელიტიდან, შემდეგ კი ჩვენ ვანაწილებთ მას ადგილობრივ ქსელზე, როგორც DVBT/DVBC/IPTV."
+      },
+      smart: {
+        title: "Smart TV App",
+        text:
+          "Smart TV აპი საშუალებას გაძლევს, OK TV-ს უყურო უშუალოდ ტელევიზორის მენიუდან – დამატებითი მოწყობილობის გარეშე. მომხმარებელი უბრალოდ შედის აპში, ავტორიზდება და იღებს თავის პაკეტებს, არხების ჩამონათვალითა და არხის ლოგოებით."
+      },
+      web: {
+        title: "Web TV – ტელევიზია ბრაუზერიდან",
+        text:
+          "Web TV გახსნის საშუალებას იძლევა ნებისმიერი თანამედროვე ბრაუზერიდან, როგორც კომპიუტერზე, ისე პლანშეტზე. ობიექტს შეუძლია მისცეს კლიენტს ტელევიზიის წვდომა გარეშე აპის დაყენებისა – მხოლოდ ლინკით და ავტორიზაციით."
+      }
+    };
+
+    const techCards = document.querySelectorAll(".tech-card");
+    const techDetailsTitle = document.getElementById("techDetailsTitle");
+    const techDetailsText = document.getElementById("techDetailsText");
+
+    techCards.forEach(card => {
+      card.addEventListener("click", () => {
+        const key = card.dataset.tech;
+        const info = techInfo[key];
+        if (!info) return;
+
+        techCards.forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+
+        techDetailsTitle.textContent = info.title;
+        techDetailsText.textContent = info.text;
+      });
+    });
+  </script>
+</body>
+</html>

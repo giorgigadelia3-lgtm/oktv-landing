@@ -1,0 +1,1426 @@
+
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OK TV • პაკეტები</title>
+
+  <style>
+    /* ================== ROOT & RESET ================== */
+    :root {
+      --primary: #009fe3;
+      --primary-dark: #0077b6;
+      --primary-soft: #e1f5ff;
+      --accent: #00b6bd;
+      --bg-page: #f5f7fb;
+      --bg-section: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-soft: #d1d5db;
+      --nav-height: 80px;
+      --radius-lg: 24px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 14px 40px rgba(15, 23, 42, 0.16);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 0 0, rgba(59,130,246,0.07), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(56,189,248,0.08), transparent 55%),
+        var(--bg-page);
+      color: var(--text-main);
+      position: relative;
+      min-height: 100vh;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    main { min-height: 100vh; }
+
+    section {
+      padding: 72px 16px;
+    }
+
+    .section-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    /* ================== HEADER ================== */
+    .main-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+      transition: box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .main-header.scrolled {
+      box-shadow: 0 10px 40px rgba(15,23,42,0.25);
+      background: rgba(255,255,255,0.98);
+    }
+
+    .header-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      height: 60px; /* ოდნავ დიდი ლოგო */
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 18px rgba(59,130,246,0.6));
+    }
+
+    .brand-text-block { line-height: 1.1; }
+
+    .brand-name {
+      font-size: 1.2rem; /* OK TV გაზრდილი */
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .header-spacer { flex: 1; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      position: relative;
+      border: none;
+      background: transparent;
+      padding: 8px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 20%;
+      right: 20%;
+      bottom: 6px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.18s ease-out;
+    }
+
+    .nav-link:hover { color: var(--primary-dark); }
+
+    .nav-link.active {
+      color: var(--primary-dark);
+      background: rgba(0, 159, 227, 0.06);
+    }
+
+    .nav-link.active::after { transform: scaleX(1); }
+
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 6px;
+      flex-shrink: 0;
+    }
+
+    .header-btn {
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      border: 1px solid var(--primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 16px rgba(0, 159, 227, 0.4);
+      white-space: nowrap;
+      transform: translateY(0);
+      transition: box-shadow 0.18s ease, transform 0.18s ease, background 0.18s ease;
+    }
+
+    .header-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0, 159, 227, 0.6);
+    }
+
+    .header-btn span {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .header-btn-ghost {
+      background: #ffffff;
+      color: var(--primary-dark);
+      border-color: var(--primary-dark);
+      box-shadow: none;
+    }
+
+    .header-btn-ghost:hover {
+      background: rgba(0, 159, 227, 0.06);
+    }
+
+    @media (max-width: 980px) {
+      .header-inner {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 8px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        height: auto;
+      }
+      .brand { order: 0; }
+      .header-spacer { display: none; }
+      .nav {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+      }
+      .header-cta {
+        order: 1;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .brand-name { font-size: 1.05rem; }
+      .brand-subtitle { font-size: 0.62rem; }
+      .nav-link {
+        font-size: 0.75rem;
+        padding-inline: 8px;
+      }
+      .header-cta {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+    }
+
+    /* ================== HERO – დიდი პაკეტების სლაიდერი ================== */
+    #packages-hero {
+      padding-top: 44px;
+      padding-bottom: 72px;
+      background: linear-gradient(180deg, #e5f4ff 0%, #f5f7fb 50%, #f5f7fb 100%);
+      box-shadow: inset 0 -1px 0 rgba(209, 213, 219, 0.7);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .hero-slider {
+      position: relative;
+      border-radius: 30px;
+      background: radial-gradient(circle at 0 0, #e0f2fe, #ffffff);
+      box-shadow: 0 26px 60px rgba(15,23,42,0.25);
+      overflow: hidden;
+      padding: 34px 0;
+      border: 1px solid rgba(148,163,184,0.45);
+    }
+
+    .hero-slider::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: 30px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -1px 0 rgba(15,23,42,0.07);
+      mix-blend-mode: screen;
+    }
+
+    .hero-packages-track {
+      display: flex;
+      gap: 32px;
+      padding-inline: 32px;
+      animation: packages-scroll-hero 32s linear infinite;
+      will-change: transform;
+    }
+
+    .hero-package-slide {
+      flex: 0 0 520px;
+      border-radius: 26px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.24);
+      transform-origin: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .hero-package-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-package-slide:hover {
+      transform: scale(1.04);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.38);
+    }
+
+    /* 9-ვე ბანერის სრული გატარება – მთელი ტრეკის სიგრძე */
+    @keyframes packages-scroll-hero {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    @media (max-width: 1100px) {
+      .hero-package-slide {
+        flex: 0 0 420px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-slider {
+        padding-block: 26px;
+      }
+      .hero-packages-track {
+        gap: 24px;
+        padding-inline: 24px;
+      }
+      .hero-package-slide {
+        flex: 0 0 320px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-packages-track {
+        gap: 18px;
+        padding-inline: 18px;
+      }
+      .hero-package-slide {
+        flex: 0 0 260px;
+      }
+    }
+
+    /* ================== STORE BADGES (ბანერის ქვემოთ) ================== */
+    .store-badges {
+      max-width: 1120px;
+      margin: 18px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .store-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      padding: 6px 14px 8px;
+      background: #ffffff;
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: 0 8px 20px rgba(15,23,42,0.16);
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .store-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(15,23,42,0.26);
+      border-color: var(--primary);
+    }
+
+    .store-badge img {
+      width: 150px;
+      height: auto;
+      display: block;
+    }
+
+    .store-badge-label {
+      margin-top: 4px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 640px) {
+      .store-badge img {
+        width: 140px;
+      }
+    }
+
+    /* ================== ქვედა კატეგორიის ბლოკები ================== */
+    .hero-categories {
+      max-width: 1120px;
+      margin: 32px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-category-card {
+      border-radius: 20px;
+      padding: 16px;
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+      font-size: 0.86rem;
+      cursor: pointer;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .hero-category-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.2);
+      border-color: var(--primary);
+    }
+
+    .hero-category-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      position: relative;
+      background: radial-gradient(circle at 0 0, #e0f2fe, #bfdbfe);
+      box-shadow: 0 4px 10px rgba(148, 163, 184, 0.5);
+    }
+
+    .hero-category-title {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .hero-category-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .hero-icon-main::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 2px solid #0f172a;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    }
+
+    .hero-icon-business::before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #0f172a;
+      border-radius: 4px;
+      background: #eef2ff;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-icon-about {
+      background: radial-gradient(circle at 0 0, #e0f2fe, #93c5fd);
+    }
+    .hero-icon-about::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid #0f172a;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hero-icon-about::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 14px;
+      background: #0f172a;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+    }
+
+    .hero-icon-contact {
+      background: radial-gradient(circle at 0 0, #e0f2fe, #60a5fa);
+    }
+    .hero-icon-contact::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 24px;
+      border: 2px solid #0f172a;
+      border-radius: 8px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-18deg);
+    }
+
+    @media (max-width: 980px) {
+      .hero-categories {
+        max-width: 100%;
+        margin-top: 24px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-categories {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      #packages-hero {
+        padding-bottom: 56px;
+      }
+    }
+
+    /* ================== PACKAGES – ჩამონათვალი ================== */
+
+    .packages-list-section {
+      background: var(--bg-page);
+      padding: 64px 16px 96px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .packages-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .packages-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .packages-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      line-height: 1.6;
+      margin: 0 auto 32px;
+      text-align: center;
+    }
+
+    .packages-list-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .packages-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .package-list-item {
+      border-radius: 22px;
+      padding: 10px 14px;
+      background: #ffffff;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease,
+                  background 0.18s ease;
+    }
+
+    .package-list-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.16);
+      border-color: var(--primary);
+      background: #f9fafb;
+    }
+
+    .package-list-item.active {
+      border-color: var(--primary-dark);
+      box-shadow: 0 16px 38px rgba(37, 99, 235, 0.25);
+      background: linear-gradient(135deg, #eff6ff, #ffffff);
+    }
+
+    .package-list-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .package-list-name {
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .package-list-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .package-thumb-wrap {
+      width: 180px;      /* ორჯერ გაზრდილი ზომა */
+      height: 96px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.25);
+      flex-shrink: 0;
+    }
+
+    .package-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .package-info-card {
+      border-radius: 26px;
+      padding: 22px 22px 24px;
+      background: #ffffff;
+      box-shadow: 0 18px 46px rgba(15, 23, 42, 0.18);
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .package-info-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 10% 0, rgba(59,130,246,0.12), transparent 55%),
+        radial-gradient(circle at 100% 120%, rgba(56,189,248,0.18), transparent 55%);
+      opacity: 0.9;
+      z-index: -1;
+    }
+
+    .package-info-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+
+    .package-info-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .package-info-body {
+      font-size: 0.92rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 980px) {
+      .packages-list-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .package-list-item {
+        grid-template-columns: auto 1fr;
+      }
+      .package-thumb-wrap {
+        width: 150px;
+        height: 80px;
+      }
+    }
+
+    /* ================== PROMO IMAGE UNDER INFO CARD ================== */
+    .packages-promo-image-wrapper {
+      margin-top: 18px;
+      border-radius: 28px;
+      padding: 10px;
+      background:
+        radial-gradient(circle at 0 0, rgba(59,130,246,0.14), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(56,189,248,0.18), transparent 55%),
+        #ffffff;
+      box-shadow: 0 20px 52px rgba(15,23,42,0.24);
+      border: 1px solid rgba(148,163,184,0.6);
+      position: relative;
+      overflow: visible;
+      animation: promoFloat 9s ease-in-out infinite;
+    }
+
+    .packages-promo-image-inner {
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      background: #000;
+    }
+
+    .packages-promo-image-inner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 0.8s ease, filter 0.8s ease;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .packages-promo-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 10% 0, rgba(255,255,255,0.35), transparent 60%),
+        radial-gradient(circle at 90% 100%, rgba(147,197,253,0.4), transparent 60%);
+      mix-blend-mode: screen;
+      opacity: 0.75;
+      transition: opacity 0.5s ease;
+    }
+
+    .packages-promo-border-light {
+      position: absolute;
+      inset: 0;
+      border-radius: 22px;
+      border: 2px solid rgba(255,255,255,0.3);
+      box-shadow:
+        0 0 0 1px rgba(148,163,184,0.35),
+        inset 0 0 14px rgba(59,130,246,0.4);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .packages-promo-image-wrapper::before {
+      content: "OK TV პაკეტები";
+      position: absolute;
+      top: -10px;
+      left: 24px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.88);
+      color: #e5f4ff;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 24px rgba(15,23,42,0.65);
+    }
+
+    .packages-promo-image-wrapper:hover .packages-promo-image-inner img {
+      transform: scale(1.06);
+      filter: saturate(1.08) contrast(1.05);
+    }
+
+    .packages-promo-image-wrapper:hover .packages-promo-glow {
+      opacity: 1;
+    }
+
+    @keyframes promoFloat {
+      0%   { transform: translateY(0) scale(1); }
+      50%  { transform: translateY(-6px) scale(1.01); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 980px) {
+      .packages-promo-image-wrapper {
+        margin-top: 22px;
+      }
+    }
+
+    /* ================== FLOATING CALL BUTTON ================== */
+
+    .floating-call-btn {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 70;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 18px 40px rgba(5,150,105,0.7);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .floating-call-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 56px rgba(5,150,105,0.85);
+    }
+
+    .floating-call-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      box-shadow: 0 0 0 0 rgba(16,185,129,0.55);
+      animation: phonePulse 2.1s ease-out infinite;
+    }
+
+    .floating-call-text {
+      white-space: nowrap;
+    }
+
+    @keyframes phonePulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(16,185,129,0.55);
+      }
+      50% {
+        transform: scale(1.06);
+        box-shadow: 0 0 0 10px rgba(16,185,129,0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(16,185,129,0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .floating-call-btn {
+        right: 16px;
+        bottom: 16px;
+        padding-inline: 14px;
+      }
+      .floating-call-text {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* ================== FLOATING SOCIAL ICONS ================== */
+    .floating-socials {
+      position: fixed;
+      right: 26px;
+      bottom: 96px;
+      z-index: 68;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .floating-socials a {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 10px 26px rgba(15,23,42,0.32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      color: #111827;
+    }
+
+    .floating-socials a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(15,23,42,0.4);
+    }
+
+    .social-fb { color: #1877f2; }
+    .social-ig {
+      background: radial-gradient(circle at 30% 30%, #fdf497, #fd5949 40%, #d6249f 65%, #285AEB 100%);
+      color: #ffffff;
+    }
+    .social-tt { color: #000000; }
+
+    .social-ig:hover {
+      background: radial-gradient(circle at 30% 30%, #fdf497, #fd5949 30%, #d6249f 55%, #285AEB 100%);
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 20px 16px 26px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================== SNOW ANIMATION ================== */
+    .snow-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 40;
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      color: #ffffff;
+      font-size: 0.8rem;
+      opacity: 0.7;
+      filter: drop-shadow(0 0 4px rgba(148,163,184,0.8));
+      user-select: none;
+      animation-name: snowfall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes snowfall {
+      0% {
+        transform: translate3d(var(--start-x), -10px, 0);
+      }
+      100% {
+        transform: translate3d(var(--end-x), 110vh, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- SNOW LAYER -->
+  <div class="snow-layer" id="snowLayer"></div>
+
+  <!-- ================== HEADER ================== -->
+  <header class="main-header" id="mainHeader">
+    <div class="header-inner">
+      <div class="brand">
+        <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
+        <div class="brand-text-block">
+          <div class="brand-name">OK TV</div>
+          <div class="brand-subtitle">ნამდვილი ციფრული ტელევიზია</div>
+        </div>
+      </div>
+
+      <div class="header-spacer"></div>
+
+      <nav class="nav">
+        <a class="nav-link" href="index.html">მთავარი</a>
+        <a class="nav-link active" href="packages.html">პაკეტები</a>
+        <a class="nav-link" href="business.html">კომპანიებისთვის</a>
+        <a class="nav-link" href="about.html">ჩვენს შესახებ</a>
+        <a class="nav-link" href="contact.html">კონტაქტი</a>
+      </nav>
+
+      <div class="header-cta">
+        <a href="https://app.oktv.ge/" target="_blank" rel="noopener" class="header-btn header-btn-ghost">
+          <span>LIVE OKTV</span>
+        </a>
+        <a href="contact.html" class="header-btn">
+          <span>ჩამოტვირთე აპი</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================== HERO – 9 ბანერის სლაიდერი ================== -->
+    <section id="packages-hero">
+      <div class="hero-inner">
+        <div class="hero-slider reveal">
+          <div class="hero-packages-track">
+            <!-- 9 ბანერი – პირველი წრე -->
+            <div class="hero-package-slide">
+              <img src="package-1.jpg" alt="ეკონომი – 68 არხი, 9 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-2.jpg" alt="გასართობი – 14 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-3.jpg" alt="დოკუმენტური და შემეცნებითი – 11 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-4.jpg" alt="სპორტი – 8 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-5.jpg" alt="სპორტ ექსკლუზივი – 3 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-6.jpg" alt="კინო – 19 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-7.jpg" alt="პრემიუმ კინო – 12 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-8.jpg" alt="ზოგადი საინფორმაციო – 16 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-9.jpg" alt="+18 – 3 არხი, 4 ლარი თვეში" />
+            </div>
+
+            <!-- იგივე 9 ბანერი – მეორე წრე უწყვეტი ანიმაციისთვის -->
+            <div class="hero-package-slide">
+              <img src="package-1.jpg" alt="ეკონომი – 68 არხი, 9 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-2.jpg" alt="გასართობი – 14 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-3.jpg" alt="დოკუმენტური და შემეცნებითი – 11 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-4.jpg" alt="სპორტი – 8 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-5.jpg" alt="სპორტ ექსკლუზივი – 3 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-6.jpg" alt="კინო – 19 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-7.jpg" alt="პრემიუმ კინო – 12 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-8.jpg" alt="ზოგადი საინფორმაციო – 16 არხი, 4 ლარი თვეში" />
+            </div>
+            <div class="hero-package-slide">
+              <img src="package-9.jpg" alt="+18 – 3 არხი, 4 ლარი თვეში" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ჩამოტვირთვის ბადჯები -->
+        <div class="store-badges reveal">
+          <a class="store-badge"
+             href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
+             target="_blank" rel="noopener">
+            <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
+            <span class="store-badge-label">Google Play Mobile</span>
+          </a>
+
+          <a class="store-badge"
+             href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
+             target="_blank" rel="noopener">
+            <img src="badge-google-play-tv.png" alt="Google Play TV" />
+            <span class="store-badge-label">Google Play TV</span>
+          </a>
+
+          <a class="store-badge"
+             href="https://apps.apple.com/ge/app/oktv/id6478280344"
+             target="_blank" rel="noopener">
+            <img src="badge-app-store.png" alt="App Store" />
+            <span class="store-badge-label">App Store</span>
+          </a>
+
+          <a class="store-badge" href="oktv_3.2.7_606.wgt">
+            <img src="badge-wgt.png" alt="WGT Smart TV" />
+            <span class="store-badge-label">Smart TV WGT</span>
+          </a>
+        </div>
+
+        <!-- ქვედა 4 ნავიგაციური ბლოკი -->
+        <div class="hero-categories reveal">
+          <a class="hero-category-card" href="index.html">
+            <div class="hero-category-icon hero-icon-main"></div>
+            <div>
+              <div class="hero-category-title">მთავარი</div>
+              <div class="hero-category-desc">
+                დაბრუნდი საწყის გვერდზე და ნახე OK TV-ს ყველა შესაძლებლობა.
+              </div>
+            </div>
+          </a>
+
+          <a class="hero-category-card" href="business.html">
+            <div class="hero-category-icon hero-icon-business"></div>
+            <div>
+              <div class="hero-category-title">კომპანიებისთვის</div>
+              <div class="hero-category-desc">
+                გადაწყვეტები სასტუმროებისთვის, კომპანიებისთვის და ობიექტებისთვის.
+              </div>
+            </div>
+          </a>
+
+          <a class="hero-category-card" href="about.html">
+            <div class="hero-category-icon hero-icon-about"></div>
+            <div>
+              <div class="hero-category-title">ჩვენს შესახებ</div>
+              <div class="hero-category-desc">
+                მეტი ინფორმაცია OK TV-ს ისტორიასა და მისიის შესახებ.
+              </div>
+            </div>
+          </a>
+
+          <a class="hero-category-card" href="contact.html">
+            <div class="hero-category-icon hero-icon-contact"></div>
+            <div>
+              <div class="hero-category-title">კონტაქტი</div>
+              <div class="hero-category-desc">
+                ტელეფონი, მესენჯერები და სოციალური ქსელები – დაგვიკავშირდი მარტივად.
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================== PACKAGES LIST ================== -->
+    <section class="packages-list-section">
+      <div class="packages-inner reveal">
+        <h2 class="packages-title">OK TV პაკეტები</h2>
+        <p class="packages-subtitle">
+          ყველა ძირითადი პაკეტი ერთ ადგილას. ქვემოთ ნახავ იგივე პაკეტების ჩამონათვალს,
+          რომლებიც ზემოთ ბანერების ანიმაციაზე ბრუნავს. აირჩიე ნებისმიერი, რომ მოკლედ გაიგო რას მოიცავს.
+        </p>
+
+        <div class="packages-list-layout">
+          <!-- მარცხენა სია -->
+          <div class="packages-list" id="packageList">
+            <button class="package-list-item active" data-key="economy" type="button">
+              <div class="package-thumb-wrap">
+                <img src="package-1.jpg" alt="ეკონომი პაკეტი" />
+              </div>
+              <div class="package-list-text">
+                <div class="package-list-name">ეკონომი</div>
+                <div class="package-list-meta">68 არხი • 9 ლარი თვეში</div>
+              </div>
+            </button>
+
+            <button class="package-list-item" data-key="entertainment" type="button">
+              <div class="package-thumb-wrap">
+                <img src="package-2.jpg" alt="გასართობი პაკეტი" />
+              </div>
+              <div class="package-list-text">
+                <div class="package-list-name">გასართობი</div>
+                <div class="package-list-meta">14 არხი • 4 ლარი თვეში</div>
+              </div>
+            </button>
+
+            <button class="package-list-item" data-key="documentary" type="button">
+              <div class="package-thumb-wrap">
+                <img src="package-3.jpg" alt="დოკუმენტური და შემეცნებითი პაკეტი" />
+              </div>
+              <div class="package-list-text">
+                <div class="package-list-name">დოკუმენტური და შემეცნებითი</div>
+                <div class="package-list-meta">11 არხი • 4 ლარი თვეში</div>
+              </div>
+            </button>
+
+            <button class="package-list-item" data-key="sport" type="button">
+              <div class="package-thumb-wrap">
+                <img src="package-4.jpg" alt="სპორტ პაკეტი" />
+              </div>
+              <div class="package-list-text">
+                <div class="package-list-name">სპორტი</div>
+                <div class="package-list-meta">8 არხი • 4 ლარი თვეში</div>
+              </div>
+            </button>
+
+            <button class="package-list-item" data-key="sportExclusive" type="button">
+              <div class="package-thumb-wrap">
+                <img src="package-5.jpg" alt="სპორტ ექსკლუზივი პაკეტი" />
+              </div>
+              <div class="package-list-text">
+                <div class="package-list-name">სპორტ ექსკლუზივი</div>
+                <div class="package-list-meta">3 არხი • 4 ლარი თვეში</div>
+              </div>
+            </button>
+
+            <button class="package-list-item" data-key="cinema" type="button">
+              <div class="package-thumb-wrap">
+                <img src="package-6.jpg" alt="კინო პაკეტი" />
+              </div>
+              <div class="package-list-text">
+                <div class="package-list-name">კინო</div>
+                <div class="package-list-meta">19 არხი • 4 ლარი თვეში</div>
+              </div>
+            </button>
+
+            <button class="package-list-item" data-key="premiumCinema" type="button">
+              <div class="package-thumb-wrap">
+                <img src="package-7.jpg" alt="პრემიუმ კინო პაკეტი" />
+              </div>
+              <div class="package-list-text">
+                <div class="package-list-name">პრემიუმ კინო</div>
+                <div class="package-list-meta">12 არხი • 4 ლარი თვეში</div>
+              </div>
+            </button>
+
+            <button class="package-list-item" data-key="news" type="button">
+              <div class="package-thumb-wrap">
+                <img src="package-8.jpg" alt="საინფორმაციო პაკეტი" />
+              </div>
+              <div class="package-list-text">
+                <div class="package-list-name">ზოგადი საინფორმაციო</div>
+                <div class="package-list-meta">16 არხი • 4 ლარი თვეში</div>
+              </div>
+            </button>
+
+            <button class="package-list-item" data-key="adult" type="button">
+              <div class="package-thumb-wrap">
+                <img src="package-9.jpg" alt="+18 პაკეტი" />
+              </div>
+              <div class="package-list-text">
+                <div class="package-list-name">+18</div>
+                <div class="package-list-meta">3 არხი • 4 ლარი თვეში</div>
+              </div>
+            </button>
+          </div>
+
+          <!-- მარჯვენა მხარე – დეტალები + ქვემოთ ფოტო -->
+          <div>
+            <aside class="package-info-card" id="packageInfo">
+              <div class="package-info-title" id="packageInfoTitle">
+                1) ეკონომი – 68 არხი, 9 ლარი თვეში
+              </div>
+              <div class="package-info-subtitle" id="packageInfoSubtitle">
+                საბაზისო, მაგრამ ძალიან მდიდარი პაკეტი ყოველდღიური ყურებისთვის.
+              </div>
+              <div class="package-info-body" id="packageInfoBody">
+                „ეკონომი“ პაკეტი აერთიანებს 68 სხვადასხვა არხს – ქართულ, საერთაშორისო, მუსიკალურ,
+                საბავშვო და საინფორმაციო კონტენტს. იდეალურია იმ მომხმარებლებისთვის, ვისაც სურს
+                მაქსიმალურად დაბალ ფასად მიიღოს მრავალფეროვანი პროგრამები. 9 ლარი თვეში ორ მისამართზე,
+                დამატებითი დამალული გადასახადების გარეშე.
+              </div>
+            </aside>
+
+            <!-- ახალი ფოტო ცარიელ სივრცეში -->
+            <div class="packages-promo-image-wrapper reveal">
+              <div class="packages-promo-image-inner">
+                <img src="packages-promo-banner.png" alt="OK TV სპეციალური პაკეტები" />
+                <div class="packages-promo-glow"></div>
+                <div class="packages-promo-border-light"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING SOCIAL ICONS -->
+  <div class="floating-socials">
+    <a href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener" class="social-fb">f</a>
+    <a href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener" class="social-ig">IG</a>
+    <a href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener" class="social-tt">𝕋</a>
+  </div>
+
+  <!-- FLOATING CALL BUTTON -->
+  <a href="tel:+9950322901011" class="floating-call-btn">
+    <span class="floating-call-icon">📞</span>
+    <span class="floating-call-text">( +995 032 ) 2 90 10 11</span>
+  </a>
+
+  <footer class="footer">
+    © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Header shadow on scroll
+    const mainHeader = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 16) {
+        mainHeader.classList.add('scrolled');
+      } else {
+        mainHeader.classList.remove('scrolled');
+      }
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    reveals.forEach(el => io.observe(el));
+
+    // პაკეტების ინფორმაციის მონაცემები
+    const packageInfoMap = {
+      economy: {
+        title: "1) ეკონომი – 68 არხი, 9 ლარი თვეში",
+        subtitle: "საბაზისო, მაგრამ ძალიან სიმდიდრით დატვირთული პაკეტი.",
+        body:
+          "ეკონომი პაკეტი გაძლევს 68 არხს – ქართულს, საერთაშორისო, მუსიკალურ, საბავშვო და საინფორმაციო კონტენტს. " +
+          "გამოიცვლება როგორც ძირითადი ოჯახური ყურებისთვის, ისე კორპორატიული მომხმარებლებისთვის, ვისაც სურს ოპტიმალური ფასი/კონტენტის ბალანსი. " +
+          "ფასი – 9 ლარი თვეში ორ მისამართზე."
+      },
+      entertainment: {
+        title: "2) გასართობი – 14 არხი, 4 ლარი თვეში",
+        subtitle: "შოუები, სერიალები და ლაით-კონტენტი ყოველდღიური განტვირთვისთვის.",
+        body:
+          "გასართობი პაკეტი მოიცავს 14 არხს, რომელთაგან უმეტესობა გადის შოუებს, სერიალებსა და გასართობ პროგრამებს. " +
+          "პერიოდულად განახლებული ბადე, მუსიკალური და ახალგაზრდული არხების კომბინაციით. ფასი – 4 ლარი თვეში."
+      },
+      documentary: {
+        title: "3) დოკუმენტური და შემეცნებითი – 11 არხი, 4 ლარი თვეში",
+        subtitle: "სამეცნიერო, ბუნება, ისტორიასა და აღმოჩენებზე ორიენტირებული არხები.",
+        body:
+          "ეს პაკეტი აერთიანებს 11 არხს დოკუმენტურ და შემეცნებით ჟანრებში – ბუნება, სამყარო, historia, ტექნოლოგიები და ექსპედიციები. " +
+          "იდეალურია სასტუმროებისთვის, სადაც სტუმრებს სურთ განათლებასთან ერთად ხარისხიანი ვიზუალური შთაბეჭდილება მიიღონ. ფასი – 4 ლარი თვეში."
+      },
+      sport: {
+        title: "4) სპორტი – 8 არხი, 4 ლარი თვეში",
+        subtitle: "ფეხბურთი, ბასკეტბოლი, ტურნირები და სპორტული ანალიტიკა.",
+        body:
+          "სპორტის პაკეტი მოიცავს 8 არხს, რომლებიც აშუქებენ საერთაშორისო ლიგებს, ტურნირებსა და სპორტულ სიახლეებს. " +
+          "ფეხბურთი, კალათბურთი, მულტისპორტული არხები და ანალიტიკური გადაცემები – ყველაფერი ერთ პაკეტში, 4 ლარად თვეში."
+      },
+      sportExclusive: {
+        title: "5) სპორტ ექსკლუზივი – 3 არხი, 4 ლარი თვეში",
+        subtitle: "სპეციალურად შერჩეული პრემიუმ სპორტული არხები.",
+        body:
+          "სპორტ ექსკლუზივი არის დამატებითი ბლოკი 3 არხით, სადაც გადის განსაკუთრებული ლიგები, ექსკლუზიური ტრანსლაციები და მაღალი ხარისხის სიგნალი. " +
+          "რეკომენდებულია სპორტულ ბარებსა და სასტუმროებისთვის, სადაც მატჩების ხარისხი და სტაბილურობა კრიტიკულია."
+      },
+      cinema: {
+        title: "6) კინო – 19 არხი, 4 ლარი თვეში",
+        subtitle: "ფილმები ყველა ჟანრში – კლასიკიდან თანამედროვე ჰიტებამდე.",
+        body:
+          "კინო პაკეტი აერთიანებს 19 არხს, სადაც იძენს ყველა ჟანრის ფილმებს: ექშენი, დრამა, კომედია, საოჯახო და სხვა მიმართულებები. " +
+          "სასტუმროსთვის ეს ნიშნავს მუდმივად „ცოცხალ“ კინომახარებას ნებისმიერი გემოვნებისთვის. ფასი – 4 ლარი თვეში."
+      },
+      premiumCinema: {
+        title: "7) პრემიუმ კინო – 12 არხი, 4 ლარი თვეში",
+        subtitle: "პრემიერები, HD/Full HD ხარისხი და განახლებული ბადე.",
+        body:
+          "პრემიუმ კინო პაკეტი მოიცავს 12 არხს პრემიუმ კონტენტით – ახალი პრემიერები, პოპულარული სერიალები და მაღალი ხარისხის სიგნალი. " +
+          "რეკომენდებულია ნომრებისათვის, სადაც საჭიროა განსაკუთრებული გამოცდილება კინომოყვარულებისთვის."
+      },
+      news: {
+        title: "8) ზოგადი საინფორმაციო – 16 არხი, 4 ლარი თვეში",
+        subtitle: "ქართული და საერთაშორისო საინფორმაციო არხები ერთ პაკეტში.",
+        body:
+          "ზოგადი საინფორმაციო პაკეტი აერთიანებს 16 არხს – ადგილობრივი, რეგიონული და საერთაშორისო მაუწყებლები. " +
+          "შეიცავს პოლიტიკას, ეკონომიკას, თემატურ ანალიტიკას და ყოველდღიურ სიახლეებს. იდეალურია ბიზნეს-ობიექტებისთვის, სადაც სტუმრებს სურთ მუდმივად იყვნენ ინფორმირებულნი."
+      },
+      adult: {
+        title: "9) +18 – 3 არხი, 4 ლარი თვეში",
+        subtitle: "შეზღუდული ასაკობრივი კატეგორიის არხები, აუცილებელი ფილტრებით.",
+        body:
+          "+18 პაკეტი მოიცავს 3 არხს მოზრდილი აუდიტორიისთვის. პაკეტი მიეწოდება მხოლოდ იმ ობიექტებს, სადაც ეს მომსახურება მოთხოვნადია " +
+          "და ტექნიკურად გამიჯნულია სხვა პაკეტებისგან (PIN-კოდები, პროფილების კონტროლი და ა.შ.). ფასი – 4 ლარი თვეში."
+      }
+    };
+
+    const packageListButtons = document.querySelectorAll(".package-list-item");
+    const packageInfoTitle = document.getElementById("packageInfoTitle");
+    const packageInfoSubtitle = document.getElementById("packageInfoSubtitle");
+    const packageInfoBody = document.getElementById("packageInfoBody");
+
+    packageListButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.key;
+        const info = packageInfoMap[key];
+        if (!info) return;
+
+        packageListButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        packageInfoTitle.textContent = info.title;
+        packageInfoSubtitle.textContent = info.subtitle;
+        packageInfoBody.textContent = info.body;
+      });
+    });
+
+    // SNOW – თოვლის ფიფქები
+    const snowLayer = document.getElementById('snowLayer');
+    const SNOWFLAKE_COUNT = 80;
+
+    for (let i = 0; i < SNOWFLAKE_COUNT; i++) {
+      const span = document.createElement('span');
+      span.className = 'snowflake';
+      span.textContent = '✦';
+
+      const startX = Math.random() * 100;   // vw
+      const endX = startX + (Math.random() * 20 - 10);
+      const duration = 12 + Math.random() * 10; // 12–22s
+      const delay = Math.random() * -20;   // რომ ყველა ერთად არ დაიწყოს
+      const size = 0.7 + Math.random() * 0.9;
+
+      span.style.left = `${startX}vw`;
+      span.style.setProperty('--start-x', '0vw');
+      span.style.setProperty('--end-x', `${endX - startX}vw`);
+      span.style.animationDuration = `${duration}s`;
+      span.style.animationDelay = `${delay}s`;
+      span.style.fontSize = `${size}rem`;
+
+      snowLayer.appendChild(span);
+    }
+  </script>
+</body>
+</html>
+```

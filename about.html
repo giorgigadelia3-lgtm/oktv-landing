@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OK TV • ჩვენს შესახებ</title>
+
+  <style>
+    /* ================== ROOT & RESET (იგივე, რაც index.html-ში) ================== */
+    :root {
+      --primary: #009fe3;
+      --primary-dark: #0077b6;
+      --primary-soft: #e1f5ff;
+      --accent: #00b6bd;
+      --bg-page: #f5f7fb;
+      --bg-section: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-soft: #d1d5db;
+      --nav-height: 80px;
+      --radius-lg: 24px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 14px 40px rgba(15, 23, 42, 0.16);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 0 0, rgba(59,130,246,0.07), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(56,189,248,0.08), transparent 55%),
+        var(--bg-page);
+      color: var(--text-main);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    main { min-height: 100vh; }
+
+    section {
+      padding: 72px 16px;
+    }
+
+    .section-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    /* ================== HEADER (იგივე, რაც index.html-ში) ================== */
+    .main-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+      transition: box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .main-header.scrolled {
+      box-shadow: 0 8px 30px rgba(15,23,42,0.18);
+      background: rgba(255,255,255,0.98);
+    }
+
+    .header-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
+    }
+
+    .brand-text-block { line-height: 1.1; }
+
+    .brand-name {
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .header-spacer { flex: 1; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      position: relative;
+      border: none;
+      background: transparent;
+      padding: 8px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 20%;
+      right: 20%;
+      bottom: 6px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.18s ease-out;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-dark);
+      background: rgba(0,159,227,0.06);
+      box-shadow: 0 3px 8px rgba(148,163,184,0.35);
+    }
+
+    .nav-link.active {
+      color: var(--primary-dark);
+      background: rgba(0, 159, 227, 0.09);
+    }
+
+    .nav-link.active::after { transform: scaleX(1); }
+
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 6px;
+      flex-shrink: 0;
+    }
+
+    .header-btn {
+      position: relative;
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      border: 1px solid var(--primary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 16px rgba(0, 159, 227, 0.4);
+      white-space: nowrap;
+      transform: translateY(0);
+      transition: box-shadow 0.18s ease, transform 0.18s ease, background 0.18s ease;
+      overflow: hidden;
+    }
+
+    .header-btn::before {
+      content: "❄";
+      position: absolute;
+      top: -8px;
+      right: 16px;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    .header-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(0, 159, 227, 0.6);
+    }
+
+    .header-btn span {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .header-btn-ghost {
+      background: #ffffff;
+      color: var(--primary-dark);
+      border-color: var(--primary-dark);
+      box-shadow: none;
+    }
+    .header-btn-ghost::before { content: "❄"; color: #93c5fd; }
+    .header-btn-ghost:hover { background: rgba(0, 159, 227, 0.06); }
+
+    @media (max-width: 980px) {
+      .header-inner {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 8px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        height: auto;
+      }
+      .brand { order: 0; }
+      .header-spacer { display: none; }
+      .nav {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+      }
+      .header-cta {
+        order: 1;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .brand-logo { height: 56px; }
+      .brand-name { font-size: 1.05rem; }
+      .brand-subtitle { font-size: 0.64rem; }
+      .nav-link {
+        font-size: 0.75rem;
+        padding-inline: 8px;
+      }
+      .header-cta {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+
+    /* ================== HERO SLIDER (გამოყენებულია აქაც) ================== */
+    .hero-slider {
+      position: relative;
+      border-radius: 30px;
+      background: radial-gradient(circle at 0 0, #e0f2fe, #ffffff);
+      box-shadow: 0 26px 60px rgba(15,23,42,0.25);
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,0.5);
+    }
+
+    .hero-slider::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: 30px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -1px 0 rgba(15,23,42,0.07);
+      mix-blend-mode: screen;
+    }
+
+    .hero-slide-track {
+      display: flex;
+      transition: transform 0.6s ease;
+      will-change: transform;
+    }
+
+    .hero-slide { min-width: 100%; padding: 0; }
+
+    .hero-image-wrap {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      height: 520px;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.6s ease;
+    }
+
+    .hero-slide.active .hero-image {
+      transform: scale(1.0);
+    }
+
+    @media (max-width: 1200px) {
+      .hero-image-wrap { height: 460px; }
+    }
+
+    @media (max-width: 980px) {
+      .hero-image-wrap { height: 360px; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-image-wrap { height: 240px; }
+    }
+
+    .hero-slider-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 16px;
+      padding-bottom: 6px;
+      background: transparent;
+      border-top: none;
+      gap: 8px;
+    }
+
+    .hero-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      border: 1px solid var(--primary);
+      background: #ffffff;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .hero-dot.active {
+      background: var(--primary);
+      border-color: var(--primary-dark);
+      transform: scale(1.1);
+    }
+
+    /* ================== STORE BADGES (იგივე, რაც index.html-ში) ================== */
+    .store-badges {
+      max-width: 1120px;
+      margin: 18px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .store-badge {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 6px 14px 8px;
+      background: #ffffff;
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: 0 6px 16px rgba(15,23,42,0.16);
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      min-width: 170px;
+    }
+
+    .store-badge::before {
+      content: "❄";
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      font-size: 0.9rem;
+      opacity: 0.75;
+    }
+
+    .store-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(15,23,42,0.26);
+      border-color: var(--primary);
+    }
+
+    .store-badge img {
+      width: 150px;
+      height: auto;
+      display: block;
+    }
+
+    .store-badge-label {
+      margin-top: 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: none;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 640px) {
+      .store-badge img { width: 140px; }
+      .store-badge-label { font-size: 0.76rem; }
+    }
+
+    /* ================== ABOUT PAGE – HERO SECTION ================== */
+    #aboutTop {
+      padding-top: 56px;
+      padding-bottom: 56px;
+      background: linear-gradient(180deg, #e5f4ff 0%, #f5f7fb 50%, #f5f7fb 100%);
+      box-shadow: inset 0 -1px 0 rgba(209, 213, 219, 0.7);
+    }
+
+    .about-hero-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    /* ================== ABOUT STORY BLOCK ================== */
+    #aboutStory {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .about-story-card {
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 22px 50px rgba(15,23,42,0.18);
+      border: 1px solid rgba(209,213,219,0.9);
+      padding: 30px 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.7fr);
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .about-story-text {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .about-kicker {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .about-title {
+      font-size: 2.1rem;
+      line-height: 1.25;
+      font-weight: 900;
+      background: linear-gradient(120deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .about-body {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .about-body strong {
+      color: var(--text-main);
+    }
+
+    .about-story-photo {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .about-photo-inner {
+      border-radius: 22px;
+      overflow: hidden;
+      background: #020617;
+      box-shadow: 0 20px 50px rgba(15,23,42,0.45);
+      border: 1px solid rgba(15,23,42,0.5);
+    }
+
+    .about-photo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.5s ease;
+    }
+
+    .about-photo-inner:hover img {
+      transform: scale(1.06);
+    }
+
+    .about-photo-caption {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 980px) {
+      .about-story-card {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 24px 20px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      #aboutStory { padding-top: 32px; padding-bottom: 32px; }
+      .about-title { font-size: 1.7rem; }
+    }
+
+    /* ================== ABOUT FAQ SECTION ================== */
+    #faq {
+      padding-top: 40px;
+      padding-bottom: 48px;
+    }
+
+    .about-section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .about-section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      line-height: 1.7;
+    }
+
+    .about-faq-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .about-faq-item {
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid rgba(209,213,219,0.9);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.14);
+      padding: 18px 20px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-faq-item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0, rgba(59,130,246,0.08), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .about-faq-item:hover::before {
+      opacity: 1;
+    }
+
+    .about-faq-q {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .about-faq-a {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 980px) {
+      .about-faq-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ================== TEAM SECTION ================== */
+    #team {
+      padding-top: 32px;
+      padding-bottom: 64px;
+    }
+
+    .team-grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .team-card {
+      position: relative;
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid rgba(209,213,219,0.9);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.14);
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .team-card::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      left: -40%;
+      width: 180%;
+      height: 80%;
+      background: radial-gradient(circle at 0 0, rgba(56,189,248,0.25), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .team-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 50px rgba(15,23,42,0.28);
+      border-color: rgba(59,130,246,0.9);
+    }
+
+    .team-card:hover::before {
+      opacity: 1;
+    }
+
+    .team-role {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .team-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    @media (max-width: 980px) {
+      .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .team-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ================== FOOTER (გაუმჯობესებული, ნომრით + ლოგოებით) ================== */
+    .footer {
+      padding: 20px 16px 26px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: #020617;
+      color: #e5e7eb;
+      border-top: 1px solid rgba(15,23,42,0.8);
+      margin-top: 16px;
+    }
+
+    .footer-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-contact-line {
+      font-size: 0.86rem;
+    }
+
+    .footer-phone-link {
+      color: #bbf7d0;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+
+    .footer-phone-link:hover {
+      color: #86efac;
+    }
+
+    .footer-social-list {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-social-list a {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(15,23,42,0.9);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.8);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .footer-social-list a:hover {
+      transform: translateY(-1px) scale(1.05);
+      box-shadow: 0 14px 30px rgba(15,23,42,0.95);
+    }
+
+    .footer-social-list img {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-copy {
+      font-size: 0.77rem;
+      color: #9ca3af;
+    }
+
+    /* ================== FLOATING SOCIAL ICONS ================== */
+    .floating-socials {
+      position: fixed;
+      right: 26px;
+      bottom: 94px;
+      z-index: 81;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: 0 10px 24px rgba(15,23,42,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      background: #f3f4ff;
+      border-color: var(--primary);
+      box-shadow: 0 16px 32px rgba(15,23,42,0.45);
+    }
+
+    .social-btn img {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .floating-socials {
+        right: 16px;
+        bottom: 90px;
+      }
+    }
+
+    /* ================== FLOATING CALL BUTTON ================== */
+    .floating-call-btn {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 80;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 18px 40px rgba(5,150,105,0.6);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .floating-call-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 50px rgba(5,150,105,0.75);
+    }
+
+    .floating-call-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      box-shadow: 0 0 0 0 rgba(16,185,129,0.55);
+      animation: phonePulse 2.1s ease-out infinite;
+    }
+
+    .floating-call-text { white-space: nowrap; }
+
+    @keyframes phonePulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(16,185,129,0.55);
+      }
+      50% {
+        transform: scale(1.06);
+        box-shadow: 0 0 0 10px rgba(16,185,129,0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(16,185,129,0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .floating-call-btn {
+        right: 16px;
+        bottom: 16px;
+        padding: 9px 14px;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* ================== DOWNLOAD MODAL ================== */
+    .download-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 90;
+    }
+
+    .download-modal-backdrop.active {
+      display: flex;
+    }
+
+    .download-modal {
+      background: #f9fafb;
+      border-radius: 20px;
+      padding: 22px 22px 18px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 30px 80px rgba(15,23,42,0.75);
+      border: 1px solid rgba(148,163,184,0.5);
+      position: relative;
+    }
+
+    .download-modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .download-modal-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .download-modal-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .download-option {
+      flex: 1 1 180px;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid rgba(209,213,219,0.9);
+      padding: 10px 10px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease, background 0.16s ease;
+    }
+
+    .download-option img {
+      width: 140px;
+      height: auto;
+    }
+
+    .download-option-label {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .download-option:hover {
+      transform: translateY(-2px);
+      background: #f0f9ff;
+      border-color: var(--primary);
+      box-shadow: 0 12px 26px rgba(15,23,42,0.24);
+    }
+
+    .download-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      border: none;
+      background: transparent;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: #6b7280;
+    }
+
+    .download-modal-close:hover {
+      color: #111827;
+    }
+
+    /* ================== SNOW ANIMATION ================== */
+    .snowflakes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 4;
+      overflow: hidden;
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -10%;
+      color: rgba(255,255,255,0.9);
+      font-size: 1.1rem;
+      text-shadow:
+        0 0 6px rgba(148,163,184,0.9),
+        0 0 12px rgba(191,219,254,0.9);
+      animation-name: snowFall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes snowFall {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      100% {
+        transform: translateY(120vh) translateX(25px);
+        opacity: 0;
+      }
+    }
+
+    .snowflake:nth-child(1)  { left: 5%;  animation-duration: 12s; animation-delay: 0s; }
+    .snowflake:nth-child(2)  { left: 15%; animation-duration: 16s; animation-delay: 2s; }
+    .snowflake:nth-child(3)  { left: 25%; animation-duration: 14s; animation-delay: 4s; }
+    .snowflake:nth-child(4)  { left: 35%; animation-duration: 18s; animation-delay: 1s; }
+    .snowflake:nth-child(5)  { left: 45%; animation-duration: 17s; animation-delay: 3s; }
+    .snowflake:nth-child(6)  { left: 55%; animation-duration: 15s; animation-delay: 5s; }
+    .snowflake:nth-child(7)  { left: 65%; animation-duration: 19s; animation-delay: 0.5s; }
+    .snowflake:nth-child(8)  { left: 75%; animation-duration: 13s; animation-delay: 2.5s; }
+    .snowflake:nth-child(9)  { left: 85%; animation-duration: 16s; animation-delay: 4.5s; }
+    .snowflake:nth-child(10) { left: 95%; animation-duration: 20s; animation-delay: 1.5s; }
+
+    /* ================== REVEAL ================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- თოვლის ფენა -->
+  <div class="snowflakes" aria-hidden="true">
+    <div class="snowflake">❄</div>
+    <div class="snowflake">✻</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">✼</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">✻</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❄</div>
+  </div>
+
+  <!-- HEADER – ზუსტად როგორც index.html-ში -->
+  <header class="main-header" id="mainHeader">
+    <div class="header-inner">
+      <div class="brand">
+        <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
+        <div class="brand-text-block">
+          <div class="brand-name">OK TV</div>
+          <div class="brand-subtitle">ნამდვილი ციფრული ტელევიზია</div>
+        </div>
+      </div>
+
+      <div class="header-spacer"></div>
+
+      <nav class="nav">
+        <a class="nav-link" href="index.html">მთავარი</a>
+        <a class="nav-link" href="packages.html">პაკეტები</a>
+        <a class="nav-link" href="business.html">ბიზნესისთვის</a>
+        <a class="nav-link active" href="about.html">ჩვენს შესახებ</a>
+        <a class="nav-link" href="contact.html">კონტაქტი</a>
+      </nav>
+
+      <div class="header-cta">
+        <a href="https://app.oktv.ge/" target="_blank" class="header-btn header-btn-ghost" rel="noopener">
+          <span>LIVE OKTV</span>
+        </a>
+        <a href="#" class="header-btn header-btn-download" id="downloadCtaBtn" role="button">
+          <span>ჩამოტვირთე აპი</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1) ბანერების სლაიდერი + 2) ჩამოსატვირთი ღილაკები -->
+    <section id="aboutTop">
+      <div class="about-hero-inner">
+        <div class="hero-slider reveal" id="heroSlider">
+          <div class="hero-slide-track" id="heroTrack">
+            <!-- Slide 1 – about-banner-1.png -->
+            <article class="hero-slide">
+              <div class="hero-image-wrap">
+                <img src="about-banner-1.png" alt="OK TV Banner 1" class="hero-image" />
+              </div>
+            </article>
+
+            <!-- Slide 2 – about-banner-2.png -->
+            <article class="hero-slide">
+              <div class="hero-image-wrap">
+                <img src="about-banner-2.png" alt="OK TV Banner 2" class="hero-image" />
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- dots -->
+        <div class="hero-slider-bottom">
+          <div class="hero-dots" id="heroDots">
+            <button class="hero-dot active" data-index="0"></button>
+            <button class="hero-dot" data-index="1"></button>
+          </div>
+        </div>
+
+        <!-- იგივე ჩამოსატვირთი ბეჯები, რაც მთავარ გვერდზე -->
+        <div class="store-badges reveal">
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
+             target="_blank" rel="noopener">
+            <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
+            <span class="store-badge-label">Google Play • Mobile</span>
+          </a>
+
+          <a class="store-badge" href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
+             target="_blank" rel="noopener">
+            <img src="badge-google-play-tv.png" alt="Google Play TV" />
+            <span class="store-badge-label">Google Play • TV</span>
+          </a>
+
+          <a class="store-badge" href="https://apps.apple.com/ge/app/oktv/id6478280344"
+             target="_blank" rel="noopener">
+            <img src="badge-app-store.png" alt="App Store" />
+            <span class="store-badge-label">Apple • App Store</span>
+          </a>
+
+          <a class="store-badge" href="oktv_3.2.7_606.wgt">
+            <img src="badge-wgt.png" alt="Smart TV WGT" />
+            <span class="store-badge-label">Smart TV • WGT</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) 1993 წლიდან თქვენს სამსახურში + ისტორიული ფოტო -->
+    <section id="aboutStory">
+      <div class="section-inner reveal">
+        <div class="about-story-card">
+          <div class="about-story-text">
+            <div class="about-kicker">OK TV / აიეტი</div>
+            <h1 class="about-title">1993 წლიდან თქვენს სამსახურში</h1>
+            <div class="about-body">
+              <p>
+                კომპანია <strong>OK TV (აიეტი)</strong> 1993 წლიდან ფუნქციონირებს სატელეკომუნიკაციო სფეროში
+                და წარმოადგენს ერთ-ერთ წამყვან სისტემურ ინტეგრატორს საქართველოში. მრავალწლიანი გამოცდილებისა
+                და საკუთარი ოპტიკურ-ბოჭკოვანი ქსელის წყალობით, ვაწვდით უმაღლესი ხარისხის ციფრულ სატელევიზიო
+                სერვისს – როგორც ოჯახებისთვის, ასევე სასტუმროებისა და ბიზნესებისთვის.
+              </p>
+              <p>
+                ჩვენი მიზანია, <strong>ციფრული ტელევიზია</strong> ხელმისაწვდომი გავხადოთ საქართველოს ნებისმიერი
+                მცხოვრებისთვის. OK TV მუშაობს ყველგან,
+                სადაც არსებობს ინტერნეტი. – სტაბილური სიგნალი, თანამედროვე ფუნქციები და მაღალი სანდოობა ეს ჩვენი დევიზია!
+              </p>
+              <p>
+                წლების განმავლობაში გავზარდეთ ინფრასტრუქტურა, გავაუმჯობესეთ ტექნოლოგიური პლატფორმა და
+                შევქმენით სერვისი, რომელიც მორგებულია როგორც საოჯახო მომხმარებლის, ასევე სასტუმროებისა და
+                კორპორატიული ობიექტების მოთხოვნებისთვის. OK TV არის ის პარტნიორი, რომელიც დგას თქვენს გვერდით –
+                გთავაზობთ კონსულტაციას, ტექნიკურ მხარდაჭერას და მუდმივ განვითარებას.
+              </p>
+            </div>
+          </div>
+
+          <aside class="about-story-photo">
+            <div class="about-photo-inner">
+              <!-- ძველი კომპანიის ფოტო – 2048x1194 -->
+              <img src="about-history-photo.png" alt="OK TV ისტორიული ფოტო" />
+            </div>
+            <div class="about-photo-caption">
+              OK TV / აიეტი – გზა, რომელიც იწყება 1993 წლიდან
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) ხშირად დასმული კითხვები -->
+    <section id="faq">
+      <div class="section-inner reveal">
+        <h2 class="about-section-title">ხშირად დასმული კითხვები</h2>
+        <p class="about-section-subtitle">
+          ტიპური კითხვები, რომლებიც მომხმარებლებს ყველაზე ხშირად უჩნდებათ OK TV-ის შესახებ.
+          ტექსტები მუდმივად განახლდება თქვენი შეფასებებისა და მოთხოვნების მიხედვით.
+        </p>
+
+        <div class="about-faq-grid">
+          <div class="about-faq-item">
+            <div class="about-faq-q">რა არის OK TV?</div>
+            <div class="about-faq-a">
+              OK TV არის ციფრული სატელევიზიო პლატფორმა, რომელიც გაძლევს უმაღლესი
+              ხარისხის არხებს და ფილმების ვიდეოთეკას ერთ აპლიკაციაში, სადაც არ უნდა იყო.
+            </div>
+          </div>
+
+          <div class="about-faq-item">
+            <div class="about-faq-q">რამდენი მოწყობილობის დაკავშირება შეიძლება?</div>
+            <div class="about-faq-a">
+              ერთ ანგარიშზე შესაძლებელია ორი მოწყობილობის დაკავშირება, რაც
+              დამატებით კომფორტს ქმნის ოჯახებისთვის და მცირე ბიზნესებისთვის.
+            </div>
+          </div>
+
+          <div class="about-faq-item">
+            <div class="about-faq-q">ვის შეუძლია სარგებლობა?</div>
+            <div class="about-faq-a">
+              საქართველოს ნებისმიერ მოქალაქეს, რომელსაც აქვს ინტერნეტთან წვდომა – არ აქვს
+              მნიშვნელობა, რომელი პროვაიდერის აბონენტი ხარ. OK TV მუშაობს ყველგან, სადაც ინტერნეტია.
+            </div>
+          </div>
+
+          <div class="about-faq-item">
+            <div class="about-faq-q">უსაფრთხოა თუ არა პლატფორმა?</div>
+            <div class="about-faq-a">
+              დიახ. არხები და ფილმები ლეგალურია, ჩვენი სერვერები დაცულია თანამედროვე
+              შიფრირებით და სერვისის გათიშვის რისკი მინიმალურია.
+            </div>
+          </div>
+
+          <div class="about-faq-item">
+            <div class="about-faq-q">რა მოწყობილობებზე მუშაობს?</div>
+            <div class="about-faq-a">
+              Android, Android TV, iOS / iPadOS, LG WebOS, Samsung TV (Tizen) და სხვა
+              თანამედროვე სმარტ სისტემები. შეგიძლია უყურო როგორც ტელეფონზე, ასევე ტელევიზორზე.
+            </div>
+          </div>
+
+          <div class="about-faq-item">
+            <div class="about-faq-q">როგორ ხდება რეგისტრაცია და გადახდა?</div>
+            <div class="about-faq-a">
+              გადმოწერე OK TV აპლიკაცია, დარეგისტრირდი ტელეფონის ნომრით, შეიყვანე
+              მიღებული SMS კოდი და შეარჩიე სასურველი პაკეტი. გადახდა შესაძლებელია მობაილ ბანკით
+              ან სწრაფი გადახდის ტერმინალებიდან.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) наша команда -->
+    <section id="team">
+      <div class="section-inner reveal">
+        <h2 class="about-section-title">ჩვენი გუნდი</h2>
+        <p class="about-section-subtitle">
+          ადამიანები, რომლებიც ყოველდღიურად ზრუნავენ იმაზე, რომ OK TV იყოს სტაბილური,
+          ტექნოლოგიურად განვითარებული და თქვენს საჭიროებებზე მორგებული სერვისი.
+        </p>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-role">დირექტორი</div>
+            <div class="team-name">ლაშა სილაგაძე</div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-role">პროექტისა და ტექნიკური ჯგუფის ხელმძღვანელი</div>
+            <div class="team-name">გოჩა ვაშაძე</div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-role">გაყიდვებისა და მარკეტინგის ხელმძღვანელი</div>
+            <div class="team-name">გიორგი გადელია</div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-role">ქოლცენტრის ხელმძღვანელი</div>
+            <div class="team-name">სოფო მახარობლიძე</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER – ნომერი + სოციალური ლოგოები + ქოპირაიტი -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-contact-line">
+        საკონტაქტო ნომერი:
+        <a href="tel:+995322901011" class="footer-phone-link">(+995 032) 2 90 10 11</a>
+      </div>
+
+      <div class="footer-social-list">
+        <a href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
+          <img src="icon-facebook.png" alt="Facebook" />
+        </a>
+        <a href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
+          <img src="icon-instagram.png" alt="Instagram" />
+        </a>
+        <a href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
+          <img src="icon-tiktok.png" alt="TikTok" />
+        </a>
+      </div>
+
+      <div class="footer-copy">
+        © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
+      </div>
+    </div>
+  </footer>
+
+  <!-- 6) ჩაშენებული ღილაკები – ზუსტად index.html-ის სტილში -->
+  <div class="floating-socials">
+    <a class="social-btn" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
+      <img src="icon-facebook.png" alt="Facebook" />
+    </a>
+    <a class="social-btn" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
+      <img src="icon-instagram.png" alt="Instagram" />
+    </a>
+    <a class="social-btn" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
+      <img src="icon-tiktok.png" alt="TikTok" />
+    </a>
+  </div>
+
+  <a href="tel:+995322901011" class="floating-call-btn">
+    <span class="floating-call-icon">📞</span>
+    <span class="floating-call-text">(+995 032) 2 90 10 11</span>
+  </a>
+
+  <!-- ჩამოტვირთე აპი – იგივე მოდალი, რაც მთავარში -->
+  <div class="download-modal-backdrop" id="downloadModal">
+    <div class="download-modal">
+      <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
+      <h3 class="download-modal-title">აირჩიე, საიდან ჩამოტვირთო აპლიკაცია</h3>
+      <p class="download-modal-subtitle">
+        დააჭირე შენთვის სასურველ პლატფორმას – გადავიყვანთ პირდაპირ OK TV-ს ოფიციალურ გვერდზე.
+      </p>
+      <div class="download-modal-grid">
+        <a class="download-option" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
+           target="_blank" rel="noopener">
+          <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
+          <span class="download-option-label">Google Play • Mobile</span>
+        </a>
+        <a class="download-option" href="https://apps.apple.com/ge/app/oktv/id6478280344"
+           target="_blank" rel="noopener">
+          <img src="badge-app-store.png" alt="Apple App Store" />
+          <span class="download-option-label">Apple • App Store</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // წელი
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Header shadow on scroll
+    const mainHeader = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 16) {
+        mainHeader.classList.add('scrolled');
+      } else {
+        mainHeader.classList.remove('scrolled');
+      }
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    reveals.forEach(el => io.observe(el));
+
+    // HERO slider (ზუსტად როგორც მთავარში, ოღონდ 2 სლაიდი)
+    const track = document.getElementById('heroTrack');
+    const dots  = document.querySelectorAll('.hero-dot');
+    const slides = document.querySelectorAll('.hero-slide');
+
+    if (track && dots.length && slides.length) {
+      let currentSlide = 0;
+      const totalSlides = dots.length;
+      let sliderTimer;
+
+      function goToSlide(index) {
+        currentSlide = (index + totalSlides) % totalSlides;
+        const offset = -currentSlide * 100;
+        track.style.transform = `translateX(${offset}%)`;
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentSlide);
+        });
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === currentSlide);
+        });
+      }
+
+      function startSlider() {
+        sliderTimer = setInterval(() => {
+          goToSlide(currentSlide + 1);
+        }, 7000);
+      }
+
+      function resetSlider() {
+        clearInterval(sliderTimer);
+        startSlider();
+      }
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = Number(dot.dataset.index);
+          goToSlide(index);
+          resetSlider();
+        });
+      });
+
+      const heroSlider = document.getElementById('heroSlider');
+      heroSlider.addEventListener('mouseenter', () => clearInterval(sliderTimer));
+      heroSlider.addEventListener('mouseleave', () => startSlider());
+
+      goToSlide(0);
+      startSlider();
+    }
+
+    // Download modal logic
+    const downloadBtn = document.getElementById('downloadCtaBtn');
+    const downloadModal = document.getElementById('downloadModal');
+    const downloadModalClose = document.getElementById('downloadModalClose');
+
+    function openDownloadModal(event) {
+      if (event) event.preventDefault();
+      downloadModal.classList.add('active');
+    }
+
+    function closeDownloadModal() {
+      downloadModal.classList.remove('active');
+    }
+
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', openDownloadModal);
+    }
+
+    if (downloadModalClose) {
+      downloadModalClose.addEventListener('click', closeDownloadModal);
+    }
+
+    downloadModal.addEventListener('click', (e) => {
+      if (e.target === downloadModal) {
+        closeDownloadModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDownloadModal();
+      }
+    });
+  </script>
+</body>
+</html>
