@@ -244,14 +244,14 @@
       }
       .brand { order: 0; }
       .header-spacer { display: none; }
+      .header-cta {
+        order: 1;
+        margin-left: 0;
+      }
       .nav {
         order: 2;
         width: 100%;
         justify-content: center;
-      }
-      .header-cta {
-        order: 1;
-        margin-left: 0;
       }
     }
 
@@ -315,7 +315,8 @@
       position: relative;
       border-radius: 30px;
       overflow: hidden;
-      height: 560px;
+      /* responsive სიმაღლე */
+      height: clamp(230px, 55vw, 560px);
     }
 
     .hero-image {
@@ -329,18 +330,6 @@
 
     .hero-slide.active .hero-image {
       transform: scale(1.0);
-    }
-
-    @media (max-width: 1200px) {
-      .hero-image-wrap { height: 480px; }
-    }
-
-    @media (max-width: 980px) {
-      .hero-image-wrap { height: 380px; }
-    }
-
-    @media (max-width: 640px) {
-      .hero-image-wrap { height: 260px; }
     }
 
     .hero-slider-bottom {
@@ -432,13 +421,7 @@
       letter-spacing: 0.04em;
     }
 
-    @media (max-width: 640px) {
-      .store-badge img { width: 140px; }
-      .store-badge-label { font-size: 0.76rem; }
-    }
-
     /* ================== ქვედა კატეგორიის ბლოკები ================== */
-
     .hero-categories {
       max-width: 1120px;
       margin: 32px auto 0;
@@ -838,13 +821,6 @@
       display: block;
     }
 
-    @media (max-width: 640px) {
-      .floating-socials {
-        right: 16px;
-        bottom: 90px;
-      }
-    }
-
     /* ================== FLOATING CALL BUTTON ================== */
 
     .floating-call-btn {
@@ -901,15 +877,6 @@
       100% {
         transform: scale(1);
         box-shadow: 0 0 0 0 rgba(16,185,129,0);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .floating-call-btn {
-        right: 16px;
-        bottom: 16px;
-        padding: 9px 14px;
-        font-size: 0.8rem;
       }
     }
 
@@ -1068,6 +1035,175 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* ============= MOBILE OPTIMIZATION – INDEX PAGE ============= */
+
+    @media (max-width: 768px) {
+      body {
+        font-size: 15px;
+      }
+
+      /* header – პატარა, სკროლირებადი მენით */
+      .header-inner {
+        gap: 6px;
+        padding-inline: 12px;
+      }
+
+      .header-cta {
+        order: 1;
+        margin-left: 0;
+        gap: 6px;
+      }
+
+      .nav {
+        order: 2;
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-top: 4px;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .nav-link {
+        flex-shrink: 0;
+      }
+
+      #home {
+        padding-top: 32px;
+        padding-bottom: 40px;
+      }
+
+      .hero-slider {
+        margin-inline: 10px;
+        border-radius: 24px;
+      }
+
+      .hero-image-wrap {
+        border-radius: 24px;
+        height: clamp(210px, 60vw, 320px);
+      }
+
+      .hero-slider-bottom {
+        padding-top: 12px;
+      }
+
+      /* ჩამოსატვირთი ბადჯები – ჰორიზონტალური scroll */
+      .store-badges {
+        margin-top: 14px;
+        gap: 10px;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-inline: 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+      }
+
+      .store-badge {
+        min-width: 75%;
+        max-width: 360px;
+        border-radius: 999px;
+        padding: 6px 16px 8px;
+        scroll-snap-align: center;
+      }
+
+      /* ქვედა ბლოკები – ჰორიზონტალური scroll */
+      .hero-categories {
+        max-width: 100%;
+        margin-top: 24px;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 12px;
+        padding-inline: 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+      }
+
+      .hero-category-card {
+        min-width: 260px;
+        border-radius: 18px;
+        padding: 12px;
+        scroll-snap-align: center;
+      }
+
+      .download-section {
+        padding: 40px 12px 56px;
+      }
+
+      .download-inner {
+        gap: 20px;
+      }
+
+      .download-video-wrap {
+        max-width: 100%;
+        border-radius: 20px;
+      }
+
+      .faq-links-section {
+        padding: 40px 12px 60px;
+      }
+
+      .floating-socials {
+        right: 16px;
+        bottom: 90px;
+      }
+
+      .floating-call-btn {
+        right: 16px;
+        bottom: 16px;
+        padding: 9px 14px;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* უფრო პატარა ტელეფონები (iPhone SE და მსგავსი) */
+    @media (max-width: 480px) {
+      .header-inner {
+        padding-inline: 10px;
+      }
+
+      .brand-logo {
+        height: 52px;
+      }
+
+      .brand-name {
+        font-size: 1rem;
+      }
+
+      .brand-subtitle {
+        font-size: 0.6rem;
+      }
+
+      .header-btn {
+        padding: 7px 12px;
+        box-shadow: 0 3px 10px rgba(0,159,227,0.4);
+      }
+
+      .store-badge img {
+        width: 130px;
+      }
+
+      .hero-categories {
+        padding-inline: 8px;
+      }
+
+      .floating-socials {
+        right: 10px;
+        bottom: 84px;
+      }
+
+      .floating-call-btn {
+        right: 10px;
+        left: 10px;
+        bottom: 14px;
+        justify-content: center;
+        padding-inline: 14px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1125,31 +1261,46 @@
           <div class="hero-slide-track" id="heroTrack">
             <article class="hero-slide">
               <div class="hero-image-wrap">
-                <img src="hero-slide1.jpg" alt="ბანერი 1" class="hero-image" />
+                <picture>
+                  <source srcset="hero-slide1-mobile.jpg" media="(max-width: 768px)" />
+                  <img src="hero-slide1.jpg" alt="ბანერი 1" class="hero-image" />
+                </picture>
               </div>
             </article>
 
             <article class="hero-slide">
               <div class="hero-image-wrap">
-                <img src="hero-slide2.jpg" alt="ბანერი 2" class="hero-image" />
+                <picture>
+                  <source srcset="hero-slide2-mobile.jpg" media="(max-width: 768px)" />
+                  <img src="hero-slide2.jpg" alt="ბანერი 2" class="hero-image" />
+                </picture>
               </div>
             </article>
 
             <article class="hero-slide">
               <div class="hero-image-wrap">
-                <img src="hero-slide3.jpg" alt="ბანერი 3" class="hero-image" />
+                <picture>
+                  <source srcset="hero-slide3-mobile.jpg" media="(max-width: 768px)" />
+                  <img src="hero-slide3.jpg" alt="ბანერი 3" class="hero-image" />
+                </picture>
               </div>
             </article>
 
             <article class="hero-slide">
               <div class="hero-image-wrap">
-                <img src="hero-slide4.jpg" alt="ბანერი 4" class="hero-image" />
+                <picture>
+                  <source srcset="hero-slide4-mobile.jpg" media="(max-width: 768px)" />
+                  <img src="hero-slide4.jpg" alt="ბანერი 4" class="hero-image" />
+                </picture>
               </div>
             </article>
 
             <article class="hero-slide">
               <div class="hero-image-wrap">
-                <img src="hero-slide5.jpg" alt="ბანერი 5" class="hero-image" />
+                <picture>
+                  <source srcset="hero-slide5-mobile.jpg" media="(max-width: 768px)" />
+                  <img src="hero-slide5.jpg" alt="ბანერი 5" class="hero-image" />
+                </picture>
               </div>
             </article>
           </div>
@@ -1165,6 +1316,7 @@
           </div>
         </div>
 
+        <!-- STORE BADGES -->
         <div class="store-badges reveal">
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
              target="_blank" rel="noopener">
@@ -1190,6 +1342,7 @@
           </a>
         </div>
 
+        <!-- HERO CATEGORIES -->
         <div class="hero-categories reveal">
           <a class="hero-category-card" href="packages.html">
             <div class="hero-category-icon hero-icon-packages"></div>
@@ -1234,6 +1387,7 @@
       </div>
     </section>
 
+    <!-- DOWNLOAD SECTION -->
     <section class="download-section">
       <div class="download-inner reveal">
         <div class="download-text">
@@ -1252,6 +1406,7 @@
       </div>
     </section>
 
+    <!-- FAQ + LINKS -->
     <section class="faq-links-section">
       <div class="faq-links-inner reveal">
         <div>
@@ -1343,6 +1498,7 @@
     © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
   </footer>
 
+  <!-- FLOATING BUTTONS -->
   <div class="floating-socials">
     <a class="social-btn" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
       <img src="icon-facebook.png" alt="Facebook" />
@@ -1360,6 +1516,7 @@
     <span class="floating-call-text">(+995 032) 2 90 10 11</span>
   </a>
 
+  <!-- DOWNLOAD MODAL -->
   <div class="download-modal-backdrop" id="downloadModal">
     <div class="download-modal">
       <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
