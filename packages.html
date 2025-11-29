@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OK TV • პაკეტები</title>
-<link rel="stylesheet" href="responsive.css" />
+  <link rel="stylesheet" href="responsive.css" />
   <style>
     /* ================== ROOT & RESET ================== */
     :root {
@@ -139,7 +139,7 @@
       font-weight: 600;
       color: var(--text-muted);
       cursor: pointer;
-      transition: color 0.15s ease, background 0.15s ease;
+      transition: color 0.15s.ease, background 0.15s ease;
     }
 
     .nav-link::after {
@@ -300,7 +300,7 @@
       background: #000;
       box-shadow: 0 16px 40px rgba(15, 23, 42, 0.24);
       transform-origin: center;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s.ease;
     }
 
     .hero-package-slide img {
@@ -349,7 +349,7 @@
       }
     }
 
-    /* ================== STORE BADGES (ბანერის ქვემოთ) ================== */
+    /* ================== STORE BADGES ================== */
     .store-badges {
       max-width: 1120px;
       margin: 18px auto 0;
@@ -371,7 +371,7 @@
       border: 1px solid rgba(148,163,184,0.6);
       box-shadow: 0 8px 20px rgba(15,23,42,0.16);
       cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s.ease;
     }
 
     .store-badge:hover {
@@ -392,6 +392,63 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--text-muted);
+    }
+
+    /* ქვედა ღილაკების ჩამონათვალი – მობილური ანიმაციური ვერსია */
+    .store-links-inline {
+      max-width: 1120px;
+      margin: 12px auto 0;
+      display: none; /* desktop-ზე არა */
+      gap: 8px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 6px;
+    }
+
+    .store-link-pill {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: radial-gradient(circle at 0 0, #e0f2fe, #ffffff);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .store-link-pill span {
+      position: relative;
+      z-index: 2;
+      color: #0f172a;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .store-link-pill::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(56,189,248,0), rgba(56,189,248,0.4), rgba(56,189,248,0));
+      transform: translateX(-100%);
+      animation: pillShine 3.2s linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes pillShine {
+      0%   { transform: translateX(-120%); }
+      40%  { transform: translateX(120%); }
+      100% { transform: translateX(120%); }
+    }
+
+    /* ბადჯების პულსაციის ანიმაცია – მობილურზე აქტიური ხდება */
+    @keyframes badgePulse {
+      0%   { transform: translateY(0) scale(1); box-shadow: 0 8px 20px rgba(15,23,42,0.16);}
+      50%  { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 32px rgba(37,99,235,0.35);}
+      100% { transform: translateY(0) scale(1); box-shadow: 0 8px 20px rgba(15,23,42,0.16);}
     }
 
     @media (max-width: 640px) {
@@ -572,6 +629,7 @@
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
       gap: 32px;
       align-items: flex-start;
+      transition: grid-template-columns 0.25s ease;
     }
 
     .packages-list {
@@ -680,6 +738,23 @@
       line-height: 1.6;
     }
 
+    /* mobile close button */
+    .package-info-close {
+      display: none;
+      position: absolute;
+      right: 14px;
+      top: 10px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(15,23,42,0.9);
+      color: #e5f4ff;
+      cursor: pointer;
+    }
+
     @media (max-width: 980px) {
       .packages-list-layout {
         grid-template-columns: minmax(0, 1fr);
@@ -724,7 +799,7 @@
       height: auto;
       display: block;
       transform: scale(1.02);
-      transition: transform 0.8s ease, filter 0.8s ease;
+      transition: transform 0.8s ease, filter 0.8s.ease;
       filter: saturate(1.05) contrast(1.02);
     }
 
@@ -881,7 +956,7 @@
       font-size: 1.1rem;
       font-weight: 700;
       text-decoration: none;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s.ease;
       color: #111827;
     }
 
@@ -954,7 +1029,6 @@
 
     /* ============= MOBILE OPTIMIZATION – PACKAGES PAGE ============= */
 
-    /* tablet / პატარა ეკრანები */
     @media (max-width: 768px) {
       body {
         background:
@@ -993,9 +1067,14 @@
         gap: 10px;
       }
 
+      /* index-ის ანიმაციის მსგავსად – პულსაცია */
       .store-badge {
-        border-radius: 20px;
-        padding: 6px 14px 8px;
+        border-radius: 999px;
+        animation: badgePulse 3s ease-in-out infinite;
+      }
+
+      .store-links-inline {
+        display: flex;
       }
 
       .hero-categories {
@@ -1011,11 +1090,6 @@
         padding: 44px 12px 80px;
       }
 
-      .packages-list-layout {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 24px;
-      }
-
       .packages-title {
         font-size: 1.6rem;
       }
@@ -1024,9 +1098,27 @@
         padding: 18px 16px 20px;
       }
 
+      /* მობილურზე საინფორმაციო ბარათი სტარტზე იმალება */
+      .package-info-card {
+        display: none;
+      }
+
+      .packages-list-layout.mobile-detail-open {
+        grid-template-columns: 0.95fr 1.1fr;
+      }
+
+      .packages-list-layout.mobile-detail-open .package-info-card {
+        display: block;
+      }
+
+      .package-info-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
       .packages-promo-image-wrapper {
-        margin-top: 18px;
-        border-radius: 24px;
+        display: none; /* ბანერი მობილურზე არ ჩანს */
       }
     }
 
@@ -1227,6 +1319,25 @@
           </a>
         </div>
 
+        <!-- ღილაკების ჩამონათვალი – მობილური ანიმაციით -->
+        <div class="store-links-inline reveal">
+          <a href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
+             target="_blank" rel="noopener" class="store-link-pill">
+            <span>Google Play Mobile</span>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
+             target="_blank" rel="noopener" class="store-link-pill">
+            <span>Google Play TV</span>
+          </a>
+          <a href="https://apps.apple.com/ge/app/oktv/id6478280344"
+             target="_blank" rel="noopener" class="store-link-pill">
+            <span>App Store</span>
+          </a>
+          <a href="oktv_3.2.7_606.wgt" class="store-link-pill">
+            <span>Smart TV WGT</span>
+          </a>
+        </div>
+
         <!-- ქვედა 4 ნავიგაციური ბლოკი -->
         <div class="hero-categories reveal">
           <a class="hero-category-card" href="index.html">
@@ -1281,7 +1392,7 @@
           რომლებიც ზემოთ ბანერების ანიმაციაზე ბრუნავს. აირჩიე ნებისმიერი, რომ მოკლედ გაიგო რას მოიცავს.
         </p>
 
-        <div class="packages-list-layout">
+        <div class="packages-list-layout" id="packagesLayout">
           <!-- მარცხენა სია -->
           <div class="packages-list" id="packageList">
             <button class="package-list-item active" data-key="economy" type="button">
@@ -1378,6 +1489,9 @@
           <!-- მარჯვენა მხარე – დეტალები + ქვემოთ ფოტო -->
           <div>
             <aside class="package-info-card" id="packageInfo">
+              <button class="package-info-close" type="button" id="packageInfoClose">
+                დახურვა
+              </button>
               <div class="package-info-title" id="packageInfoTitle">
                 1) ეკონომი – 68 არხი, 9 ლარი თვეში
               </div>
@@ -1392,7 +1506,7 @@
               </div>
             </aside>
 
-            <!-- ახალი ფოტო ცარიელ სივრცეში -->
+            <!-- ბანერი – მობილურზე არ გამოჩნდება -->
             <div class="packages-promo-image-wrapper reveal">
               <div class="packages-promo-image-inner">
                 <img src="packages-promo-banner.png" alt="OK TV სპეციალური პაკეტები" />
@@ -1521,6 +1635,13 @@
     const packageInfoTitle = document.getElementById("packageInfoTitle");
     const packageInfoSubtitle = document.getElementById("packageInfoSubtitle");
     const packageInfoBody = document.getElementById("packageInfoBody");
+    const packagesLayout = document.getElementById("packagesLayout");
+    const packageInfoCard = document.getElementById("packageInfo");
+    const packageInfoClose = document.getElementById("packageInfoClose");
+
+    function isMobile() {
+      return window.matchMedia("(max-width: 768px)").matches;
+    }
 
     packageListButtons.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -1534,7 +1655,26 @@
         packageInfoTitle.textContent = info.title;
         packageInfoSubtitle.textContent = info.subtitle;
         packageInfoBody.textContent = info.body;
+
+        // მობილურზე – გახსნას გვერდით ბლოკი
+        if (isMobile()) {
+          packagesLayout.classList.add("mobile-detail-open");
+        }
       });
+    });
+
+    // მობილური დახურვის ღილაკი
+    packageInfoClose.addEventListener("click", () => {
+      packagesLayout.classList.remove("mobile-detail-open");
+    });
+
+    // როცა ეკრანის ზომა შეიცვლება, desktop-ზე ყოველთვის გვქონდეს გახსნილი ბლოკი
+    window.addEventListener("resize", () => {
+      if (!isMobile()) {
+        packagesLayout.classList.remove("mobile-detail-open");
+        // desktop-ზე info card ყოველთვის ჩანს (display CSS-ით)
+        packageInfoCard.style.display = "";
+      }
     });
   </script>
 </body>
