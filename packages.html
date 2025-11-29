@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OK TV • პაკეტები</title>
-
+<link rel="stylesheet" href="responsive.css" />
   <style>
     /* ================== ROOT & RESET ================== */
     :root {
@@ -951,6 +951,149 @@
         transform: translate3d(var(--end-x), 110vh, 0);
       }
     }
+
+    /* ============= MOBILE OPTIMIZATION – PACKAGES PAGE ============= */
+
+    /* tablet / პატარა ეკრანები */
+    @media (max-width: 768px) {
+      body {
+        background:
+          radial-gradient(circle at 0 0, rgba(59,130,246,0.07), transparent 55%),
+          radial-gradient(circle at 100% 100%, rgba(56,189,248,0.08), transparent 55%),
+          #f5f7fb;
+      }
+
+      .header-inner {
+        padding-inline: 12px;
+        gap: 12px;
+      }
+
+      #packages-hero {
+        padding-top: 32px;
+        padding-bottom: 44px;
+      }
+
+      .hero-slider {
+        margin-inline: 10px;
+        border-radius: 24px;
+        padding-block: 22px;
+      }
+
+      .hero-packages-track {
+        gap: 18px;
+        padding-inline: 18px;
+      }
+
+      .hero-package-slide {
+        flex: 0 0 260px;
+      }
+
+      .store-badges {
+        margin-top: 14px;
+        gap: 10px;
+      }
+
+      .store-badge {
+        border-radius: 20px;
+        padding: 6px 14px 8px;
+      }
+
+      .hero-categories {
+        margin-top: 24px;
+      }
+
+      .hero-category-card {
+        padding: 12px;
+        border-radius: 18px;
+      }
+
+      .packages-list-section {
+        padding: 44px 12px 80px;
+      }
+
+      .packages-list-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+      }
+
+      .packages-title {
+        font-size: 1.6rem;
+      }
+
+      .package-info-card {
+        padding: 18px 16px 20px;
+      }
+
+      .packages-promo-image-wrapper {
+        margin-top: 18px;
+        border-radius: 24px;
+      }
+    }
+
+    /* ძალიან პატარა ეკრანები (ტელეფონი) */
+    @media (max-width: 480px) {
+      .header-inner {
+        padding-inline: 10px;
+      }
+
+      .brand-logo {
+        height: 52px;
+      }
+
+      .brand-name {
+        font-size: 1rem;
+      }
+
+      .brand-subtitle {
+        font-size: 0.6rem;
+      }
+
+      .nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .nav-link {
+        white-space: nowrap;
+      }
+
+      .header-btn {
+        padding: 7px 12px;
+      }
+
+      .packages-title {
+        font-size: 1.5rem;
+      }
+
+      .packages-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 24px;
+      }
+
+      .package-list-item {
+        padding: 9px 10px;
+        border-radius: 18px;
+      }
+
+      .package-thumb-wrap {
+        width: 140px;
+        height: 72px;
+        border-radius: 14px;
+      }
+
+      .floating-socials {
+        right: 10px;
+        bottom: 84px;
+      }
+
+      .floating-call-btn {
+        right: 10px;
+        left: 10px;
+        bottom: 14px;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1393,31 +1536,6 @@
         packageInfoBody.textContent = info.body;
       });
     });
-
-    // SNOW – თოვლის ფიფქები
-    const snowLayer = document.getElementById('snowLayer');
-    const SNOWFLAKE_COUNT = 80;
-
-    for (let i = 0; i < SNOWFLAKE_COUNT; i++) {
-      const span = document.createElement('span');
-      span.className = 'snowflake';
-      span.textContent = '✦';
-
-      const startX = Math.random() * 100;   // vw
-      const endX = startX + (Math.random() * 20 - 10);
-      const duration = 12 + Math.random() * 10; // 12–22s
-      const delay = Math.random() * -20;   // რომ ყველა ერთად არ დაიწყოს
-      const size = 0.7 + Math.random() * 0.9;
-
-      span.style.left = `${startX}vw`;
-      span.style.setProperty('--start-x', '0vw');
-      span.style.setProperty('--end-x', `${endX - startX}vw`);
-      span.style.animationDuration = `${duration}s`;
-      span.style.animationDelay = `${delay}s`;
-      span.style.fontSize = `${size}rem`;
-
-      snowLayer.appendChild(span);
-    }
   </script>
 </body>
 </html>
