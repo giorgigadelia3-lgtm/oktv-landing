@@ -1,0 +1,386 @@
+/* ================== GLOBAL MOBILE / TABLET TUNING ================== */
+
+/* ✔ ტაბლეტები და ქვემოთ */
+@media (max-width: 1024px) {
+  body {
+    font-size: 15px;
+  }
+
+  section {
+    padding: 56px 16px;
+  }
+
+  /* სექციების ზედა/ქვედა სივრცე ცოტა მცირდება */
+  #home,
+  #packages-hero,
+  #business-hero,
+  #about-hero,
+  #contact-hero {
+    padding-top: 32px;
+    padding-bottom: 48px;
+  }
+
+  /* ჰედერი – პატარა გამაშლელი */
+  .header-inner {
+    padding-inline: 16px;
+  }
+
+  .brand-logo {
+    height: 56px;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.64rem;
+  }
+
+  .nav-link {
+    font-size: 0.78rem;
+    padding: 6px 10px;
+  }
+
+  /* სლაიდერები / ბანერები */
+  .hero-slider {
+    margin-inline: 10px;
+    border-radius: 24px;
+  }
+
+  .hero-image-wrap,
+  .company-banner-wrap,
+  .about-banner-wrap {
+    height: 280px;
+    border-radius: 24px;
+  }
+
+  .hero-image,
+  .company-banner,
+  .about-banner {
+    object-fit: cover;
+  }
+
+  /* ქვედა კატეგორიის ბლოკები – 2 სვეტი ტაბლეტზე */
+  .hero-categories {
+    max-width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .hero-category-card {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  /* ჩამოტვირთვის ბადჯები */
+  .store-badges {
+    margin-top: 16px;
+    gap: 10px;
+  }
+
+  .store-badge {
+    border-radius: 20px;
+    padding: 6px 14px 8px;
+  }
+
+  /* შიდა კონტენტის ორ სვეტიანი ბლოკები – ერთ სვეტზე ტაბლეტზე */
+  .download-inner,
+  .faq-links-inner,
+  .packages-list-layout,
+  .business-layout,
+  .about-content-grid,
+  .contact-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .download-video-wrap,
+  .business-media,
+  .about-photo-wrap,
+  .contact-map-wrap {
+    max-width: 100%;
+  }
+}
+
+/* ✔ ტელეფონები / პატარა ტაბები */
+@media (max-width: 768px) {
+  /* ზოგადი */
+  body {
+    font-size: 14px;
+  }
+
+  section {
+    padding: 44px 14px;
+  }
+
+  /* ჰედერი – 3 რიგად: ლოგო, ღილაკები, მენიუ */
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    height: auto;
+  }
+
+  .header-spacer {
+    display: none;
+  }
+
+  .brand {
+    order: 0;
+  }
+
+  .header-cta {
+    order: 1;
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .nav {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .header-btn {
+    padding: 7px 12px;
+    box-shadow: 0 3px 10px rgba(0,159,227,0.4);
+  }
+
+  /* მთავარ გვერდზე ბანერი */
+  #home {
+    padding-top: 32px;
+    padding-bottom: 44px;
+  }
+
+  .hero-image-wrap {
+    height: 240px;
+  }
+
+  .hero-slider-bottom {
+    padding-top: 10px;
+  }
+
+  .hero-dots {
+    gap: 4px;
+  }
+
+  .hero-dot {
+    width: 9px;
+    height: 9px;
+  }
+
+  /* პაკეტების გვერდზე – ჰირო სლაიდერი */
+  #packages-hero {
+    padding-top: 32px;
+    padding-bottom: 44px;
+  }
+
+  .hero-slider.packages-slider,
+  .hero-slider.reveal {
+    padding-block: 20px;
+  }
+
+  .hero-packages-track {
+    gap: 18px;
+    padding-inline: 18px;
+  }
+
+  .hero-package-slide {
+    flex: 0 0 260px;
+    border-radius: 20px;
+  }
+
+  /* ბადჯები – სვეტებით, თითქმის მთელ სიგანეზე */
+  .store-badges {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 14px;
+    gap: 10px;
+  }
+
+  .store-badge {
+    width: 100%;
+    max-width: 360px;
+    min-width: 0;
+    border-radius: 999px;
+    padding: 6px 16px 8px;
+  }
+
+  .store-badge img {
+    width: 140px;
+  }
+
+  .store-badge-label {
+    font-size: 0.76rem;
+  }
+
+  /* ქვედა კატეგორიის ბლოკები – ერთი სვეტი ტელეფონზე */
+  .hero-categories {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 20px;
+  }
+
+  .hero-category-card {
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  /* „როგორ ჩამოვტვირთოთ აპლიკაცია“ – ვიდეო ქვევით გადავა */
+  .download-section {
+    padding: 40px 12px 56px;
+  }
+
+  .download-title {
+    font-size: 1.4rem;
+  }
+
+  .download-subtitle {
+    font-size: 0.92rem;
+  }
+
+  .download-video-wrap {
+    border-radius: 18px;
+  }
+
+  /* FAQ + ბმულები */
+  .faq-links-section {
+    padding: 40px 12px 60px;
+  }
+
+  .faq-item {
+    border-radius: 16px;
+  }
+
+  /* პაკეტების ჩამონათვალი */
+  .packages-list-section {
+    padding: 44px 12px 80px;
+  }
+
+  .packages-title {
+    font-size: 1.6rem;
+  }
+
+  .packages-subtitle {
+    font-size: 0.94rem;
+  }
+
+  .package-list-item {
+    padding: 9px 10px;
+    border-radius: 18px;
+  }
+
+  .package-thumb-wrap {
+    width: 150px;
+    height: 80px;
+    border-radius: 16px;
+  }
+
+  .package-info-card {
+    padding: 18px 16px 20px;
+    border-radius: 22px;
+  }
+
+  .packages-promo-image-wrapper {
+    margin-top: 18px;
+    border-radius: 24px;
+  }
+
+  /* ბიზნეს / შესახებ / კონტაქტის შიდა ბლოკები */
+  .business-benefit-card,
+  .about-card,
+  .contact-card {
+    padding: 14px 12px;
+    border-radius: 18px;
+  }
+
+  /* მცურავი ღილაკები */
+  .floating-socials {
+    right: 10px;
+    bottom: 86px;
+  }
+
+  .floating-call-btn {
+    right: 10px;
+    left: 10px;
+    bottom: 14px;
+    justify-content: center;
+    padding-inline: 14px;
+    font-size: 0.86rem;
+  }
+
+  .floating-call-text {
+    white-space: nowrap;
+  }
+}
+
+/* ✔ ძალიან პატარა ტელეფონები (iPhone SE და მისთანები) */
+@media (max-width: 480px) {
+  .brand-logo {
+    height: 50px;
+  }
+
+  .brand-name {
+    font-size: 0.96rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.58rem;
+  }
+
+  .nav-link {
+    font-size: 0.72rem;
+    padding-inline: 6px;
+  }
+
+  .hero-image-wrap {
+    height: 210px;
+  }
+
+  .store-badge img {
+    width: 130px;
+  }
+
+  .packages-title,
+  .business-title,
+  .about-title,
+  .contact-title {
+    font-size: 1.4rem;
+  }
+
+  .packages-subtitle,
+  .business-subtitle,
+  .about-subtitle,
+  .contact-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .package-thumb-wrap {
+    width: 140px;
+    height: 72px;
+  }
+
+  .footer {
+    font-size: 0.76rem;
+    padding-bottom: 28px;
+  }
+
+  .floating-socials {
+    right: 8px;
+    bottom: 82px;
+  }
+
+  .floating-call-btn {
+    right: 8px;
+    left: 8px;
+    bottom: 12px;
+  }
+}
