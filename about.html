@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OK TV • ჩვენს შესახებ</title>
-<link rel="stylesheet" href="responsive.css" />
+  <link rel="stylesheet" href="responsive.css" />
   <style>
     /* ================== ROOT & RESET ================== */
     :root {
@@ -101,7 +101,7 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-shrink: 0;
     }
 
@@ -112,15 +112,11 @@
       filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
     }
 
-    .brand-text-block { line-height: 1.1; }
+    .brand-text-block { line-height: 1.1; display: flex; flex-direction: column; }
 
+    /* 1) OK TV წარწერის მოცილება – მხოლოდ ლოგო და სლოგანი რჩება */
     .brand-name {
-      font-size: 1.3rem;
-      font-weight: 900;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--primary-dark);
-      white-space: nowrap;
+      display: none;
     }
 
     .brand-subtitle {
@@ -128,6 +124,7 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
+      white-space: nowrap;
     }
 
     .header-spacer { flex: 1; }
@@ -267,7 +264,6 @@
 
     @media (max-width: 640px) {
       .brand-logo { height: 56px; }
-      .brand-name { font-size: 1.05rem; }
       .brand-subtitle { font-size: 0.64rem; }
       .nav-link {
         font-size: 0.75rem;
@@ -338,7 +334,7 @@
     }
 
     @media (max-width: 640px) {
-      .hero-image-wrap { height: 240px; }
+      .hero-image-wrap { height: 320px; } /* ცოტა უფრო მაღალი, რომ ახალი ბანერები უკეთ გამოჩნდეს */
     }
 
     .hero-slider-bottom {
@@ -431,8 +427,24 @@
       letter-spacing: 0.04em;
     }
 
+    /* 4) მობაილზე ბეჯები ჰორიზონტალურ სქროლზე გადაგყავს */
     @media (max-width: 640px) {
-      .store-badge img { width: 140px; }
+      .store-badges {
+        max-width: none;
+        margin-top: 20px;
+        padding-inline: 6px;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+      }
+      .store-badge {
+        min-width: 240px;
+        scroll-snap-align: start;
+      }
+      .store-badge img { width: 150px; }
       .store-badge-label { font-size: 0.76rem; }
     }
 
@@ -684,6 +696,27 @@
       color: var(--text-main);
     }
 
+    /* 3) სამივე ხელმძღვანელის ბარათის გაძლიერებული დიზაინი */
+    .team-card-primary {
+      background: radial-gradient(circle at 0 0, #e0f2ff, #ffffff);
+      border: 1px solid rgba(59,130,246,0.8);
+      box-shadow: 0 26px 60px rgba(37,99,235,0.45);
+      transform: translateY(-2px);
+    }
+
+    .team-card-primary .team-role {
+      color: #1d4ed8;
+    }
+
+    .team-card-primary .team-name {
+      font-size: 1.08rem;
+      background: linear-gradient(120deg, #2563eb, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 14px rgba(129,140,248,0.85);
+    }
+
     @media (max-width: 980px) {
       .team-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -693,6 +726,38 @@
     @media (max-width: 640px) {
       .team-grid {
         grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ტექნიკური ჯგუფის სქროლი – იგივე ვიზუალი, მაგრამ ჰორიზონტალური */
+    .team-tech-subtitle {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .tech-team-scroller {
+      margin-top: 14px;
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+
+    .tech-team-card {
+      min-width: 230px;
+      scroll-snap-align: start;
+    }
+
+    .tech-team-card .team-role {
+      font-size: 0.7rem;
+    }
+
+    @media (max-width: 640px) {
+      .tech-team-card {
+        min-width: 260px;
       }
     }
 
@@ -1052,7 +1117,7 @@
       <div class="brand">
         <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
         <div class="brand-text-block">
-          <div class="brand-name">OK TV</div>
+          <!-- OK TV წარწერა წავშალეთ, მხოლოდ სლოგანი დარჩა -->
           <div class="brand-subtitle">ნამდვილი ციფრული ტელევიზია</div>
         </div>
       </div>
@@ -1084,17 +1149,26 @@
       <div class="about-hero-inner">
         <div class="hero-slider reveal" id="heroSlider">
           <div class="hero-slide-track" id="heroTrack">
-            <!-- Slide 1 -->
+            <!-- Slide 1 – ডেস্কტოპზე about-banner-1.png, მობაილზე about-banner-1-mobile.png -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
-                <img src="about-banner-1.png" alt="OK TV Banner 1" class="hero-image" />
+                <picture>
+                  <!-- 2) მობაილ ბანერი – ახალი ვიზუალი 1080x1350 -->
+                  <!-- ფაილი დაარქვი: about-banner-1-mobile.png -->
+                  <source srcset="about-banner-1-mobile.png" media="(max-width: 640px)" />
+                  <img src="about-banner-1.png" alt="OK TV Banner 1" class="hero-image" />
+                </picture>
               </div>
             </article>
 
-            <!-- Slide 2 -->
+            <!-- Slide 2 – ডেস্কტოპზე about-banner-2.png, მობაილზე about-banner-2-mobile.png -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
-                <img src="about-banner-2.png" alt="OK TV Banner 2" class="hero-image" />
+                <picture>
+                  <!-- ფაილი დაარქვი: about-banner-2-mobile.png -->
+                  <source srcset="about-banner-2-mobile.png" media="(max-width: 640px)" />
+                  <img src="about-banner-2.png" alt="OK TV Banner 2" class="hero-image" />
+                </picture>
               </div>
             </article>
           </div>
@@ -1146,7 +1220,7 @@
             <div class="about-body">
               <p>
                 კომპანია <strong>OK TV (აიეტი)</strong> 1993 წლიდან ფუნქციონირებს სატელეკომუნიკაციო სფეროში
-                და წარმოადგენს ერთ-ერთ წამყვან სისტემურ ინტეგრატორს საქართველოში. მრავალწლიანი გამოცდილებისა
+                და წარმოადგენს ერთ-ერთ წამყვან სისტემურ ინტეგრატორს Suomessa. მრავალწლიანი გამოცდილებისა
                 და საკუთარი ოპტიკურ-ბოჭკოვანი ქსელის წყალობით, ვაწვდით უმაღლესი ხარისხის ციფრულ სატელევიზიო
                 სერვისს – როგორც ოჯახებისთვის, ასევე სასტუმროებისა და ბიზნესებისთვის.
               </p>
@@ -1248,25 +1322,94 @@
           ტექნოლოგიურად განვითარებული და თქვენს საჭიროებებზე მორგებული სერვისი.
         </p>
 
+        <!-- დირექტორი + სამი ძირითადი ხელმძღვანელი -->
         <div class="team-grid">
           <div class="team-card">
             <div class="team-role">დირექტორი</div>
-            <div class="team-name">ლაშა სილაგაძე</div>
+            <!-- 3) დირექტორის სახელი შეცვლილია -->
+            <div class="team-name">ნათია ელბაქიძე</div>
           </div>
 
-          <div class="team-card">
+          <div class="team-card team-card-primary">
             <div class="team-role">პროექტისა და ტექნიკური ჯგუფის ხელმძღვანელი</div>
             <div class="team-name">გოჩა ვაშაძე</div>
           </div>
 
-          <div class="team-card">
+          <div class="team-card team-card-primary">
             <div class="team-role">გაყიდვებისა და მარკეტინგის ხელმძღვანელი</div>
             <div class="team-name">გიორგი გადელია</div>
           </div>
 
-          <div class="team-card">
+          <div class="team-card team-card-primary">
             <div class="team-role">ქოლცენტრის ხელმძღვანელი</div>
             <div class="team-name">სოფო მახარობლიძე</div>
+          </div>
+        </div>
+
+        <!-- ტექნიკური ჯგუფი უბნების მიხედვით – ჰორიზონტალური სქროლი -->
+        <p class="team-tech-subtitle">
+          ტექნიკური ჯგუფის თანამშრომლები უბნების მიხედვით:
+        </p>
+
+        <div class="tech-team-scroller">
+          <div class="team-card tech-team-card">
+            <div class="team-role">ვარკეთილი</div>
+            <div class="team-name">კალისტრატე ტომარაძე</div>
+          </div>
+
+          <div class="team-card tech-team-card">
+            <div class="team-role">გლდანი</div>
+            <div class="team-name">ბადრი ადეიშვილი</div>
+          </div>
+
+          <div class="team-card tech-team-card">
+            <div class="team-role">მუხიანი</div>
+            <div class="team-name">აჩიკო გურგენიძე</div>
+          </div>
+
+          <div class="team-card tech-team-card">
+            <div class="team-role">დიდუბე</div>
+            <div class="team-name">ნიკოლოზ ბოკერია</div>
+          </div>
+
+          <div class="team-card tech-team-card">
+            <div class="team-role">ნაძალადევი</div>
+            <div class="team-name">შალვა ქოჩიაშვილი</div>
+          </div>
+
+          <div class="team-card tech-team-card">
+            <div class="team-role">თემქა</div>
+            <div class="team-name">იოსებ ტომარაძე</div>
+          </div>
+
+          <div class="team-card tech-team-card">
+            <div class="team-role">ვაზისუბანი</div>
+            <div class="team-name">არტომ ვისაბოვი</div>
+          </div>
+
+          <div class="team-card tech-team-card">
+            <div class="team-role">ვაკე</div>
+            <div class="team-name">ნიკოლოზ აყიტაშვილი, აკაკი დოლიძე</div>
+          </div>
+
+          <div class="team-card tech-team-card">
+            <div class="team-role">საბურთალო</div>
+            <div class="team-name">ედგარ გრიგორიანი, ვლადიმერ ფრანგიშვილი</div>
+          </div>
+
+          <div class="team-card tech-team-card">
+            <div class="team-role">დიღომი</div>
+            <div class="team-name">ალექსანდრე ჩოხაძე</div>
+          </div>
+
+          <div class="team-card tech-team-card">
+            <div class="team-role">დიდი დიღომი</div>
+            <div class="team-name">ამბროსი ახლოური</div>
+          </div>
+
+          <div class="team-card tech-team-card">
+            <div class="team-role">დანარჩენი უბნები</div>
+            <div class="team-name">თევდორე ლუაშვილი</div>
           </div>
         </div>
       </div>
