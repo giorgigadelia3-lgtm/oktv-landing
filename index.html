@@ -100,6 +100,10 @@
       filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
     }
 
+    /* brand-text-block, brand-name და brand-subtitle
+       შეგვრჩა სტილებში, მაგრამ HTML-ში აღარ გამოიყენება,
+       ამიტომ ეკრანზე ტექსტი აღარ გამოჩნდება. */
+
     .brand-text-block { line-height: 1.1; }
 
     .brand-name {
@@ -139,7 +143,7 @@
       font-weight: 600;
       color: var(--text-muted);
       cursor: pointer;
-      transition: color 0.15s.ease, background 0.15s.ease, box-shadow 0.15s.ease;
+      transition: color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
     }
 
     .nav-link::after {
@@ -443,7 +447,7 @@
       display: flex;
       gap: 10px;
       align-items: flex-start;
-      transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s.ease;
+      transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
     }
 
     .hero-category-card:hover {
@@ -937,7 +941,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease, background 0.16s.ease;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease, background 0.16s ease;
     }
 
     .download-option img {
@@ -1221,10 +1225,6 @@
     <div class="header-inner">
       <div class="brand">
         <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
-        <div class="brand-text-block">
-          <div class="brand-name">OK TV</div>
-          <div class="brand-subtitle">ნამდვილი ციფრული ტელევიზია</div>
-        </div>
       </div>
 
       <div class="header-spacer"></div>
