@@ -80,7 +80,8 @@
       background: rgba(255,255,255,0.96);
       backdrop-filter: blur(12px);
       box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
-      transition: box-shadow 0.2s.ease, background 0.2s ease;
+      /* FIX: .ease → 0.2s ease */
+      transition: box-shadow 0.2s ease, background 0.2s ease;
     }
 
     .main-header.scrolled {
@@ -542,7 +543,12 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      transition: border-color 0.18s ease, box-shadow 0.18s.ease, background 0.18s ease, transform 0.18s ease;
+      /* FIX: box-shadow 0.18s.ease → 0.18s ease */
+      transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease,
+        transform 0.18s ease;
     }
 
     .tech-card:hover {
@@ -960,7 +966,12 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s.ease;
+      /* FIX: background 0.18s.ease → 0.18s ease */
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
     }
 
     .social-btn:hover {
