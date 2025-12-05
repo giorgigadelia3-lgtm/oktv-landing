@@ -101,24 +101,6 @@
       filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
     }
 
-    .brand-text-block { line-height: 1.1; }
-
-    .brand-name {
-      font-size: 1.3rem;
-      font-weight: 900;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--primary-dark);
-      white-space: nowrap;
-    }
-
-    .brand-subtitle {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
     .header-spacer { flex: 1; }
 
     .nav {
@@ -260,8 +242,6 @@
       body { padding-top: 84px; }
 
       .brand-logo { height: 56px; }
-      .brand-name { font-size: 1.05rem; }
-      .brand-subtitle { font-size: 0.64rem; }
 
       .header-inner {
         gap: 4px;
@@ -588,16 +568,19 @@
     }
 
     .packages-list-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
-      gap: 28px;
-      align-items: flex-start;
+      display: block; /* დესკტოპზეც და მობილურზეც – ერთი სვეტი, როგორც მობილურზე */
     }
 
     .packages-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      transition: max-height 0.25s ease;
+    }
+
+    .packages-list.collapsed {
+      max-height: 260px;
+      overflow-y: auto;
     }
 
     .package-list-item {
@@ -665,6 +648,12 @@
       border: 1px solid rgba(209,213,219,0.9);
       padding: 18px 18px 20px;
       box-shadow: 0 16px 40px rgba(15,23,42,0.2);
+      margin-top: 18px;
+      display: none;
+    }
+
+    .package-info-card.open {
+      display: block;
     }
 
     .package-info-title {
@@ -686,45 +675,14 @@
       color: var(--text-main);
     }
 
-    .packages-promo-image-wrapper {
-      margin-top: 22px;
-    }
-
-    .packages-promo-image-inner {
-      position: relative;
-      border-radius: 26px;
-      overflow: hidden;
-      box-shadow: 0 26px 60px rgba(10,18,32,0.35);
-    }
-
-    .packages-promo-image-inner img {
-      width: 100%;
-      height: auto;
+    .package-bonus {
       display: block;
-      object-fit: cover;
-      transform: scale(1.02);
+      margin-top: 6px;
+      font-weight: 700;
+      color: var(--primary-dark);
     }
 
-    .packages-promo-glow {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 0 0, rgba(59,130,246,0.35), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(56,189,248,0.35), transparent 55%);
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .packages-promo-border-light {
-      position: absolute;
-      inset: 0;
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,0.9);
-      box-shadow:
-        inset 0 0 24px rgba(255,255,255,0.6),
-        0 0 40px rgba(59,130,246,0.4);
-      pointer-events: none;
-    }
+    /* ძველი დიდ ბანერს ვეღარ გამოვიყენებთ – საერთოდ ამოვიღეთ HTML-იდან */
 
     /* ================== FLOATING SOCIAL ICONS ================== */
 
@@ -828,6 +786,51 @@
       }
     }
 
+    /* ================== BONUS MOVIE LIBRARY SECTION ================== */
+
+    .bonus-library-section {
+      padding: 56px 16px 72px;
+      background: #ffffff;
+      border-top: 1px solid rgba(209,213,219,0.6);
+    }
+
+    .bonus-library-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .bonus-library-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+    }
+
+    .bonus-library-subtitle {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .bonus-library-banner {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 18px 44px rgba(15,23,42,0.3);
+      background: #020617;
+    }
+
+    .bonus-library-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
     /* ================== FOOTER ================== */
 
     .footer {
@@ -878,12 +881,13 @@
       }
 
       #packages-hero {
-        padding-top: 32px;
+        padding-top: 52px; /* ოდნავ ქვემოთ, რომ ჰედერს არ ეფარებოდეს */
         padding-bottom: 40px;
       }
 
       .hero-slider {
         margin-inline: 10px;
+        margin-top: 12px; /* ბანერები კიდევ უფრო ქვემოთ ჩამოწეული */
         border-radius: 24px;
       }
 
@@ -898,34 +902,6 @@
 
       .packages-list-section {
         padding: 48px 12px 64px;
-      }
-
-      .packages-list-layout {
-        display: block;
-      }
-
-      .packages-list {
-        max-height: none;
-        transition: max-height 0.25s ease;
-      }
-
-      .packages-list.collapsed {
-        max-height: 260px;
-        overflow-y: auto;
-      }
-
-      /* პაკეტის დეტალების ბარათი – მობილურზე თავდაპირველად დამალული */
-      #packageInfo {
-        display: none;
-        margin-top: 18px;
-      }
-
-      #packageInfo.mobile-open {
-        display: block;
-      }
-
-      .packages-promo-image-wrapper {
-        display: none; /* ბანერი მობილურზე არ ჩანს */
       }
 
       .social-fb,
@@ -958,6 +934,10 @@
       .floating-call-text {
         display: none;
       }
+
+      .bonus-library-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     @media (max-width: 480px) {
@@ -977,10 +957,6 @@
     <div class="header-inner">
       <div class="brand">
         <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
-        <div class="brand-text-block">
-          <div class="brand-name">OK TV</div>
-          <div class="brand-subtitle">ნამდვილი ციფრული ტელევიზია</div>
-        </div>
       </div>
 
       <div class="header-spacer"></div>
@@ -1154,7 +1130,7 @@
         </p>
 
         <div class="packages-list-layout">
-          <!-- მარცხენა სია -->
+          <!-- პაკეტების სია -->
           <div class="packages-list" id="packageList">
             <button class="package-list-item active" data-key="economy" type="button">
               <div class="package-thumb-wrap">
@@ -1247,32 +1223,36 @@
             </button>
           </div>
 
-          <!-- მარჯვენა მხარე – დეტალები + ქვემოთ ფოტო -->
-          <div>
-            <aside class="package-info-card" id="packageInfo">
-              <div class="package-info-title" id="packageInfoTitle">
-                1) ეკონომი – 68 არხი, 9 ლარი თვეში
-              </div>
-              <div class="package-info-subtitle" id="packageInfoSubtitle">
-                საბაზისო, მაგრამ ძალიან მდიდარი პაკეტი ყოველდღიური ყურებისთვის.
-              </div>
-              <div class="package-info-body" id="packageInfoBody">
-                „ეკონომი“ პაკეტი აერთიანებს 68 სხვადასხვა არხს – ქართულ, საერთაშორისო, მუსიკალურ,
-                საბავშვო და საინფორმაციო კონტენტს. იდეალურია იმ მომხმარებლებისთვის, ვისაც სურს
-                მაქსიმალურად დაბალ ფასად მიიღოს მრავალფეროვანი პროგრამები. 9 ლარი თვეში ორ მისამართზე,
-                დამატებითი დამალული გადასახადების გარეშე.
-              </div>
-            </aside>
-
-            <!-- ბანერი – მხოლოდ დესკტოპისთვის -->
-            <div class="packages-promo-image-wrapper reveal">
-              <div class="packages-promo-image-inner">
-                <img src="packages-promo-banner.png" alt="OK TV სპეციალური პაკეტები" />
-                <div class="packages-promo-glow"></div>
-                <div class="packages-promo-border-light"></div>
-              </div>
+          <!-- პაკეტის დეტალები – მობილურის მსგავსი ანიმაციით დესკტოპზეც -->
+          <aside class="package-info-card" id="packageInfo">
+            <div class="package-info-title" id="packageInfoTitle">
+              1) ეკონომი – 68 არხი, 9 ლარი თვეში
             </div>
-          </div>
+            <div class="package-info-subtitle" id="packageInfoSubtitle">
+              საბაზისო, მაგრამ ძალიან მდიდარი პაკეტი ყოველდღიური ყურებისთვის.
+            </div>
+            <div class="package-info-body" id="packageInfoBody">
+              <!-- body შინაარსს ჩავსვამთ JS–ით -->
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================== BONUS MOVIE LIBRARY BLOCK ================== -->
+    <section class="bonus-library-section">
+      <div class="bonus-library-inner">
+        <div>
+          <h2 class="bonus-library-title">400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად</h2>
+          <p class="bonus-library-subtitle">
+            შენ შეგიძლია მიიღო 400-ზე მეტი ვიდეო ბიბლიოთეკა საჩუქრად, სადაც შეგიძლია უყურო,
+            როგორც ქართულ, ასევე უცხოურ კინოებს და სერიალებს. ბიბლიოთეკა მუდმივად
+            ახლდება, რომ ყოველთვის გქონდეს ახალი ფილმები და სერიები ერთ სივრცეში.
+          </p>
+        </div>
+        <div class="bonus-library-banner">
+          <!-- აქ ჩააგდებ ბანერს სახელით movie-library-banner.jpg -->
+          <img src="movie-library-banner.jpg" alt="400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად" />
         </div>
       </div>
     </section>
@@ -1326,52 +1306,52 @@
     }, { threshold: 0.2 });
     reveals.forEach(el => io.observe(el));
 
-    // ================== PACKAGES DATA & MOBILE LOGIC ==================
+    // ================== PACKAGES DATA & LOGIC ==================
     const packageData = {
       economy: {
         title: '1) ეკონომი – 68 არხი, 9 ლარი თვეში',
         subtitle: 'საბაზისო, მაგრამ ძალიან მდიდარი პაკეტი ყოველდღიური ყურებისთვის.',
-        body: '„ეკონომი“ პაკეტი აერთიანებს 68 სხვადასხვა არხს – ქართულ, საერთაშორისო, მუსიკალურ, საბავშვო და საინფორმაციო კონტენტს. იდეალურია იმ მომხმარებლებისთვის, ვისაც სურს მაქსიმალურად დაბალ ფასად მიიღოს მრავალფეროვანი პროგრამები. 9 ლარი თვეში ორ მისამართზე, დამატებითი დამალული გადასახადების გარეშე.'
+        body: '„ეკონომი“ პაკეტი აერთიანებს 68 სხვადასხვა არხს – ქართულ, საერთაშორისო, მუსიკალურ, საბავშვო და საინფორმაციო კონტენტს. იდეალურია იმ მომხმარებლებისთვის, ვისაც სურს მაქსიმალურად დაბალ ფასად მიიღოს მრავალფეროვანი პროგრამები. 9 ლარი თვეში ორ მისამართზე, დამატებითი დამალული გადასახადების გარეშე.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       },
       entertainment: {
         title: '2) გასართობი – 14 არხი, 4 ლარი თვეში',
         subtitle: 'კომედიური, შოუები და მუსიკალური არხები ერთ პაკეტში.',
-        body: '„გასართობი“ პაკეტი გათვლილია მომხმარებლებზე, ვისაც უყვარს შოუები, რეალითი, გასართობი პროგრამები და მუსიკა. 14 არხი, სადაც ყოველთვის იპოვით რაღაც ახალსა და ენერგიულს. იდეალურია როგორც ოჯახის, ასევე მეგობრებთან ერთად დროის გასატარებლად.'
+        body: '„გასართობი“ პაკეტი გათვლილია მომხმარებლებზე, ვისაც უყვარს შოუები, რეალითი, გასართობი პროგრამები და მუსიკა. 14 არხი, სადაც ყოველთვის იპოვით რაღაც ახალსა და ენერგიულს. იდეალურია როგორც ოჯახის, ასევე მეგობრებთან ერთად დროის გასატარებლად.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       },
       documentary: {
         title: '3) დოკუმენტური და შემეცნებითი – 11 არხი, 4 ლარი თვეში',
         subtitle: 'დოკუმენტური ფილმები, ბუნება, ისტორია და მეცნიერება.',
-        body: '„დოკუმენტური და შემეცნებითი“ პაკეტი მოიცავს არხებს, სადაც მთავარია ცოდნა და აღმოჩენები – ბუნება, კოსმოსი, ისტორია, ტექნოლოგიები. შესაფერისია როგორც მოზარდებისთვის, ასევე უფროსებისთვის, ვინც ყოველდღე სიახლეებს ეძებს.'
+        body: '„დოკუმენტური და შემეცნებითი“ პაკეტი მოიცავს არხებს, სადაც მთავარია ცოდნა და აღმოჩენები – ბუნება, კოსმოსი, ისტორია, ტექნოლოგიები. შესაფერისია როგორც მოზარდებისთვის, ასევე უფროსებისთვის, ვინც ყოველდღე სიახლეებს ეძებს.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       },
       sport: {
         title: '4) სპორტი – 8 არხი, 4 ლარი თვეში',
         subtitle: 'ფეხბურთი, კალათბურთი, ავტო-სპორტი და სხვა ღონისძიებები.',
-        body: '„სპორტი“ პაკეტი აერთიანებს სპორტულ არხებს, სადაც მომხმარებელი ნახავს როგორც ადგილობრივ, ისე საერთაშორისო ტურნირებს. ფეხბურთი, კალათბურთი, ტენისი, ორთაბრძოლები და სხვა სახეობები – პირდაპირი ეთერით და რეპლაიებით.'
+        body: '„სპორტი“ პაკეტი აერთიანებს სპორტულ არხებს, სადაც მომხმარებელი ნახავს როგორც ადგილობრივ, ისე საერთაშორისო ტურნირებს. ფეხბურთი, კალათბურთი, ტენისი, ორთაბრძოლები და სხვა სახეობები – პირდაპირი ეთერით და რეპლაიებით.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       },
       sportExclusive: {
         title: '5) სპორტ ექსკლუზივი – 3 არხი, 4 ლარი თვეში',
         subtitle: 'ექსკლუზიური სპორტული მოვლენები და პრემიუმ ღონისძიებები.',
-        body: '„სპორტ ექსკლუზივი“ გამორჩეული პაკეტია სპორტის მოყვარულებისთვის, ვისაც სურს პრემიალური ჩემპიონატები და სპეციალური ტრანსლაციები. მინიმალური რაოდენობის არხი – მაქსიმალური ხარისხით და შინაარსით.'
+        body: '„სპორტ ექსკლუზივი“ გამორჩეული პაკეტია სპორტის მოყვარულებისთვის, ვისაც სურს პრემიალური ჩემპიონატები და სპეციალური ტრანსლაციები. მინიმალური რაოდენობის არხი – მაქსიმალური ხარისხით და შინაარსით.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       },
       cinema: {
         title: '6) კინო – 19 არხი, 4 ლარი თვეში',
         subtitle: 'ფილმები ყველა ჟანრში – დღე და ღამე.',
-        body: '„კინო“ პაკეტი მოიცავს 19 კინოჩანელებს: action, დრამა, კომედია, თრილერი, საოჯახო და სხვა. იდეალურია მათთვის, ვინც ყოველდღე ახალ ფილმებს ეძებს ქართულად და ორიგინალ ენაზე.'
+        body: '„კინო“ პაკეტი მოიცავს 19 კინოჩანელებს: action, დრამა, კომედია, თრილერი, საოჯახო და სხვა. იდეალურია მათთვის, ვინც ყოველდღე ახალ ფილმებს ეძებს ქართულად და ორიგინალ ენაზე.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       },
       premiumCinema: {
         title: '7) პრემიუმ კინო – 12 არხი, 4 ლარი თვეში',
         subtitle: 'ბოლო პრემიერები, HD და UHD ხარისხი.',
-        body: '„პრემიუმ კინო“ პაკეტი ფოკუსირებულია ახალ პრემიერებზე, მაღალი ხარისხის ვიდეოზე და შერჩეულ კონტენტზე. საუკეთესო ვარიანტია კინომოყვარულებისთვის, ვისაც სურს, რომ მისი ტელევიზორი პატარა კინოთეატრად იქცეს.'
+        body: '„პრემიუმ კინო“ პაკეტი ფოკუსირებულია ახალ პრემიერებზე, მაღალი ხარისხის ვიდეოზე და შერჩეულ კონტენტზე. საუკეთესო ვარიანტია კინომოყვარულებისთვის, ვისაც სურს, რომ მისი ტელევიზორი პატარა კინოთეატრად იქცეს.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       },
       news: {
         title: '8) ზოგადი საინფორმაციო – 16 არხი, 4 ლარი თვეში',
         subtitle: 'ქართული და საერთაშორისო საინფორმაციო არხები ერთ პაკეტში.',
-        body: '„ზოგადი საინფორმაციო“ პაკეტი აერთიანებს მსოფლიოს მთავარი საინფორმაციო არხებს. პოლიტიკა, ეკონომიკა, სპორტი, კულტურა – ყველაფერი რეალურ დროში. აქედან მარტივად იქნები ინფორმირებული მიმდინარე მოვლენებზე.'
+        body: '„ზოგადი საინფორმაციო“ პაკეტი აერთიანებს მსოფლიოს მთავარი საინფორმაციო არხებს. პოლიტიკა, ეკონომიკა, სპორტი, კულტურა – ყველაფერი რეალურ დროში. აქედან მარტივად იქნები ინფორმირებული მიმდინარე მოვლენებზე.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       },
       adult: {
         title: '9) +18 – 3 არხი, 4 ლარი თვეში',
         subtitle: 'მხოლოდ სრულწლოვანი მომხმარებლებისთვის.',
-        body: '„+18“ პაკეტი გათვლილია მხოლოდ სრულწლოვან მაყურებელზე და მოიცავს სპეციალურ კონტენტს. მისი აქტივაცია შესაძლებელია დამატებითი თანხმობით და შეზღუდვებით, რათა ბავშვებსა და არასრულწლოვნებს არ ჰქონდეთ წვდომა.'
+        body: '„+18“ პაკეტი გათვლილია მხოლოდ სრულწლოვან მაყურებელზე და მოიცავს სპეციალურ კონტენტს. მისი აქტივაცია შესაძლებელია დამატებითი თანხმობით და შეზღუდვებით, რათა ბავშვებსა და არასრულწლოვნებს არ ჰქონდეთ წვდომა.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       }
     };
 
@@ -1381,19 +1361,18 @@
     const subtitleEl = document.getElementById('packageInfoSubtitle');
     const bodyEl = document.getElementById('packageInfoBody');
 
-    function isMobile() {
-      return window.matchMedia('(max-width: 768px)').matches;
-    }
-
     function setPackage(key) {
       const data = packageData[key];
       if (!data) return;
       titleEl.textContent = data.title;
       subtitleEl.textContent = data.subtitle;
-      bodyEl.textContent = data.body;
+      bodyEl.innerHTML = data.body;
     }
 
     if (packageListEl && packageInfoEl) {
+      // საწყისი ტექსტი
+      setPackage('economy');
+
       packageListEl.addEventListener('click', (e) => {
         const btn = e.target.closest('.package-list-item');
         if (!btn) return;
@@ -1408,34 +1387,21 @@
           item.classList.remove('active');
         });
 
-        if (isMobile()) {
-          // მობილურზე: იგივე პაკეტზე მეორედ დაჭერით დავხუროთ
-          if (alreadyActive && packageInfoEl.classList.contains('mobile-open')) {
-            packageInfoEl.classList.remove('mobile-open');
-            packageListEl.classList.remove('collapsed');
-            return;
-          }
+        // თუ იგივე active–ს მეორედ ვაჭერთ და უკვე გახსნილია – დავხუროთ
+        if (alreadyActive && packageInfoEl.classList.contains('open')) {
+          packageInfoEl.classList.remove('open');
+          packageListEl.classList.remove('collapsed');
+          return;
         }
 
         // ახალი active
         btn.classList.add('active');
         setPackage(key);
 
-        if (isMobile()) {
-          packageInfoEl.classList.add('mobile-open');
-          packageListEl.classList.add('collapsed');
-        }
+        packageInfoEl.classList.add('open');
+        packageListEl.classList.add('collapsed');
       });
     }
-
-    // რეზოლუციის ცვლილებაზე – თუ დესკტოპზე გადავედით, მობილური კლასები მოვხსნათ
-    function handleResize() {
-      if (!isMobile()) {
-        packageInfoEl.classList.remove('mobile-open');
-        packageListEl.classList.remove('collapsed');
-      }
-    }
-    window.addEventListener('resize', handleResize);
   </script>
 </body>
 </html>
