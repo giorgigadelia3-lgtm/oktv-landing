@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OK TV • კომპანიებისთვის</title>
-<link rel="stylesheet" href="responsive.css" />
+  <link rel="stylesheet" href="responsive.css" />
   <style>
     /* ================== ROOT & RESET ================== */
     :root {
@@ -80,7 +80,7 @@
       background: rgba(255,255,255,0.96);
       backdrop-filter: blur(12px);
       box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
-      transition: box-shadow 0.2s ease, background 0.2s ease;
+      transition: box-shadow 0.2s.ease, background 0.2s ease;
     }
 
     .main-header.scrolled {
@@ -114,13 +114,10 @@
 
     .brand-text-block { line-height: 1.1; }
 
+    /* brand-name აღარ იხმარება, შეგვიძლია უბრალოდ დავტოვოთ კლასის აღწერა,
+       რომ სხვა არაფერს შეეხოს */
     .brand-name {
-      font-size: 1.3rem;
-      font-weight: 900;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--primary-dark);
-      white-space: nowrap;
+      display: none;
     }
 
     .brand-subtitle {
@@ -267,7 +264,6 @@
 
     @media (max-width: 640px) {
       .brand-logo { height: 56px; }
-      .brand-name { font-size: 1.05rem; }
       .brand-subtitle { font-size: 0.64rem; }
       .nav-link {
         font-size: 0.75rem;
@@ -464,6 +460,23 @@
       }
     }
 
+    /* მობაილზე – ჰორიზონტალური სლაიდი თითის გადასმით */
+    @media (max-width: 640px) {
+      .company-banners {
+        display: flex;
+        overflow-x: auto;
+        gap: 14px;
+        padding-bottom: 4px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .company-banner-card {
+        flex: 0 0 82%;
+        scroll-snap-align: start;
+      }
+    }
+
     /* ================== TECHNOLOGIES SECTION ================== */
     .tech-section {
       background: #ffffff;
@@ -529,7 +542,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, transform 0.18s ease;
+      transition: border-color 0.18s ease, box-shadow 0.18s.ease, background 0.18s ease, transform 0.18s ease;
     }
 
     .tech-card:hover {
@@ -947,7 +960,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s.ease;
     }
 
     .social-btn:hover {
@@ -1211,7 +1224,7 @@
       <div class="brand">
         <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
         <div class="brand-text-block">
-          <div class="brand-name">OK TV</div>
+          <!-- OK TV წარწერა ამოღებულია, დარჩა მხოლოდ სლოგანი -->
           <div class="brand-subtitle">ნამდვილი ციფრული ტელევიზია</div>
         </div>
       </div>
@@ -1249,7 +1262,7 @@
 
           <div class="map-caption">
             <div>
-              <div class="map-caption-title">საქართველოს მასშტაბით პარტნიორი სასტუმროები და ობიექტები</div>
+              <div class="map-caption-title">კორპორატიული კლიენტების გეოგრაფიული არეალი</div>
               <div class="map-caption-text">
                 OK TV-ს სიგნალი დღეს უკვე მუშაობს საქართველოში მრავალ ტურისტულ და ბიზნეს ლოკაციაში. ბანერზე
                 ნაჩვენებია ჩვენი პარტნიორი ობიექტების განაწილება ქვეყნის მასშტაბით – თქვენს მიერ შექმნილი
@@ -1275,6 +1288,7 @@
         </p>
 
         <div class="company-banners">
+          <!-- 1) სასტუმროები იგივე დარჩა -->
           <article class="company-banner-card">
             <div class="company-banner-image">
               <img src="company-banner-1.jpg" alt="სასტუმროები" />
@@ -1282,13 +1296,7 @@
             <div class="company-banner-label">სასტუმროები</div>
           </article>
 
-          <article class="company-banner-card">
-            <div class="company-banner-image">
-              <img src="company-banner-2.jpg" alt="სპორტ ბარები" />
-            </div>
-            <div class="company-banner-label">სპორტ ბარები</div>
-          </article>
-
+          <!-- 2) ჰოსტელები (ძველი მესამე ბანერი) -->
           <article class="company-banner-card">
             <div class="company-banner-image">
               <img src="company-banner-3.jpg" alt="ჰოსტელები" />
@@ -1296,6 +1304,7 @@
             <div class="company-banner-label">ჰოსტელები</div>
           </article>
 
+          <!-- 3) კოტეჯები (ძველი მეოთხე ბანერი) -->
           <article class="company-banner-card">
             <div class="company-banner-image">
               <img src="company-banner-4.jpg" alt="კოტეჯები" />
@@ -1303,6 +1312,15 @@
             <div class="company-banner-label">კოტეჯები</div>
           </article>
 
+          <!-- 4) სპორტ ბარები (ძველი მეორე ბანერი) -->
+          <article class="company-banner-card">
+            <div class="company-banner-image">
+              <img src="company-banner-2.jpg" alt="სპორტ ბარები" />
+            </div>
+            <div class="company-banner-label">სპორტ ბარები</div>
+          </article>
+
+          <!-- 5) სამშენებლო კომპანიები იგივე -->
           <article class="company-banner-card">
             <div class="company-banner-image">
               <img src="company-banner-5.jpg" alt="სამშენებლო კომპანიები" />
@@ -1317,7 +1335,7 @@
     <section class="tech-section">
       <div class="section-inner tech-layout reveal">
         <div>
-          <h2 class="tech-title">რომელი ტექნოლოგიებით შეგვიძლია მოგაწოდოთ ჩვენი მომსახურეობა?</h2>
+          <h2 class="tech-title">ჩვენი ტექნოლოგიები</h2>
           <p class="tech-subtitle">
             ჩვენ შეგვიძლია საქართველოს მაშტაბით, პრაქტიკულად ნებისმიერ ლოკაციაზე და სხვადასხვა ტექნოლოგიით
             მოვაწოდოთ ციფრული ტელევიზიის სერვისი – როგორც უკვე არსებულ, ისე ახალი ინჟინერიული ინფრასტრუქტურის ზედა.
@@ -1338,10 +1356,11 @@
               <div class="tech-tagline">ტელევიზია ინტერნეტით, ნებისმიერ მოწყობილობაზე.</div>
             </button>
 
-            <button class="tech-card" data-tech="dvbt" type="button">
-              <div class="tech-icon tech-icon-dvbt"></div>
-              <div class="tech-name">DVBT</div>
-              <div class="tech-tagline">დიგიტალური მიწისზედა მაუწყებლობა, ანტენით.</div>
+            <!-- IPTV და DVBT ადგილებით შეცვლილია -->
+            <button class="tech-card" data-tech="iptv" type="button">
+              <div class="tech-icon tech-icon-iptv"></div>
+              <div class="tech-name">IPTV</div>
+              <div class="tech-tagline">ტელევიზიის მიწოდება IP ქსელზე, დახვეწილი კონტროლით.</div>
             </button>
 
             <button class="tech-card" data-tech="dvbc" type="button">
@@ -1350,10 +1369,10 @@
               <div class="tech-tagline">ციფრული კაბელი, სტაბილური სიგნალისთვის.</div>
             </button>
 
-            <button class="tech-card" data-tech="iptv" type="button">
-              <div class="tech-icon tech-icon-iptv"></div>
-              <div class="tech-name">IPTV</div>
-              <div class="tech-tagline">ტელევიზიის მიწოდება IP ქსელზე, დახვეწილი კონტროლით.</div>
+            <button class="tech-card" data-tech="dvbt" type="button">
+              <div class="tech-icon tech-icon-dvbt"></div>
+              <div class="tech-name">DVBT</div>
+              <div class="tech-tagline">დიგიტალური მიწისზედა მაუწყებლობა, ანტენით.</div>
             </button>
 
             <button class="tech-card" data-tech="dvbs2" type="button">
@@ -1538,7 +1557,7 @@
       dvbs2: {
         title: "DVBS2 – სატელიტური სიგნალი",
         text:
-          "DVBS2 გამოიყენება მაშინ, როდესაც ობიექტი მდებარეობს ისეთ ლოკაციაში, სადაც კაბელის ან ინტერნეტის რესურსი შეზღუდულია. სიგნალი მოდის სატელიტიდან, შემდეგ კი ჩვენ ვანაწილებთ მას ადგილობრივ ქსელზე, როგორც DVBT/DVBC/IPTV."
+          "DVBS2 გამოიყენება მაშინ, როცა ობიექტი მდებარეობს ისეთ ლოკაციაში, სადაც კაბელის ან ინტერნეტის რესურსი შეზღუდულია. სიგნალი მოდის სატელიტიდან, შემდეგ კი ჩვენ ვანაწილებთ მას ადგილობრივ ქსელზე, როგორც DVBT/DVBC/IPTV."
       },
       smart: {
         title: "Smart TV App",
