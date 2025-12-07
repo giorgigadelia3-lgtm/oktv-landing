@@ -444,16 +444,16 @@
       .store-badges {
         max-width: none;
         margin-top: 20px;
-        padding-inline: 6px;
+        padding-inline: 8px;
         justify-content: flex-start;
         flex-wrap: nowrap;
-        overflow-x: auto;
+        overflow-x: auto;              /* მხოლოდ ხელით გადასაწევი */
         -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
         gap: 10px;
       }
       .store-badge {
-        min-width: 240px;
+        min-width: 260px;             /* ერთ ბეჯზე მთელი სლაიდი */
         scroll-snap-align: start;
       }
       .store-badge img { width: 150px; }
@@ -645,7 +645,7 @@
       }
     }
 
-    /* მობაილისთვის – „ხშირად დასმული კითხვები“ უფრო კომპაქტური და დახვეწილი */
+    /* მობაილისთვის – FAQ უფრო კომპაქტური, ლამაზი */
     @media (max-width: 640px) {
       #faq {
         padding-top: 34px;
@@ -653,34 +653,38 @@
       }
 
       .about-section-title {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
         text-align: center;
+        letter-spacing: 0.06em;
       }
 
       .about-section-subtitle {
-        font-size: 0.88rem;
+        font-size: 0.86rem;
         text-align: center;
         margin: 0 auto;
+        line-height: 1.6;
       }
 
       .about-faq-grid {
-        margin-top: 20px;
-        gap: 14px;
+        margin-top: 18px;
+        gap: 12px;
       }
 
       .about-faq-item {
-        padding: 14px 14px 16px;
-        border-radius: 20px;
+        padding: 12px 13px 14px;
+        border-radius: 18px;
+        box-shadow: 0 14px 30px rgba(15,23,42,0.18);
+        border-left: 3px solid rgba(59,130,246,0.8);
       }
 
       .about-faq-q {
-        font-size: 0.9rem;
-        letter-spacing: 0.03em;
+        font-size: 0.88rem;
+        letter-spacing: 0.04em;
       }
 
       .about-faq-a {
-        font-size: 0.82rem;
-        line-height: 1.6;
+        font-size: 0.8rem;
+        line-height: 1.55;
       }
     }
 
@@ -747,25 +751,66 @@
       color: var(--text-main);
     }
 
-    /* გიორგი გადელიას ბარათის გაძლიერებული, „მდიდრული“ დიზაინი */
+    /* გიორგი გადელიას ბარათის „ლუქს“ დიზაინი – შავ-ოქროსფერი */
     .team-card-primary {
-      background: radial-gradient(circle at 0 0, #e0f2ff, #ffffff);
-      border: 1px solid rgba(59,130,246,0.8);
-      box-shadow: 0 26px 60px rgba(37,99,235,0.45);
+      position: relative;
+      background: radial-gradient(circle at 0 0, #1f2937, #020617 55%, #111827 100%);
+      border-radius: 26px;
+      border: 1px solid rgba(250,204,21,0.9);
+      box-shadow:
+        0 0 0 1px rgba(17,24,39,0.9),
+        0 24px 60px rgba(15,23,42,0.9),
+        0 0 40px rgba(250,204,21,0.55);
       transform: translateY(-2px);
+      overflow: hidden;
+    }
+
+    .team-card-primary::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        conic-gradient(
+          from 0deg,
+          rgba(250,204,21,0.9),
+          rgba(251,191,36,0.1),
+          rgba(17,24,39,0.9),
+          rgba(250,204,21,0.9)
+        );
+      opacity: 0.35;
+      filter: blur(18px);
+      z-index: -1;
     }
 
     .team-card-primary .team-role {
-      color: #1d4ed8;
+      color: #facc15;
+      letter-spacing: 0.22em;
+      font-size: 0.7rem;
     }
 
     .team-card-primary .team-name {
-      font-size: 1.08rem;
-      background: linear-gradient(120deg, #2563eb, #a855f7);
+      font-size: 1.12rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, #fef3c7, #facc15, #f97316);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 0 14px rgba(129,140,248,0.85);
+      text-shadow:
+        0 0 12px rgba(250,204,21,0.9),
+        0 0 26px rgba(15,23,42,0.9);
+    }
+
+    .team-card-primary .team-lead-extra {
+      color: #e5e7eb;
+    }
+
+    .team-card-primary .team-lead-extra a {
+      color: #facc15;
+    }
+
+    .team-card-primary .team-lead-extra a:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     .team-card-lead {
@@ -777,12 +822,7 @@
       content: "";
       position: absolute;
       inset: -40%;
-      background: conic-gradient(
-        from 0deg,
-        rgba(59,130,246,0.18),
-        rgba(236,72,153,0.25),
-        rgba(59,130,246,0.18)
-      );
+      background: radial-gradient(circle at 0 0, rgba(250,204,21,0.16), transparent 65%);
       opacity: 0;
       transition: opacity 0.4s ease;
       z-index: -1;
@@ -802,13 +842,8 @@
     }
 
     .team-lead-extra a {
-      color: var(--primary-dark);
       font-weight: 600;
       text-decoration: none;
-    }
-
-    .team-lead-extra a:hover {
-      text-decoration: underline;
     }
 
     .team-card-lead.expanded .team-lead-extra {
@@ -933,7 +968,7 @@
     .floating-socials {
       position: fixed;
       right: 26px;
-      bottom: 94px;
+      bottom: 110px;
       z-index: 81;
       display: flex;
       flex-direction: column;
@@ -970,7 +1005,7 @@
     @media (max-width: 640px) {
       .floating-socials {
         right: 16px;
-        bottom: 120px; /* ზემოთ, რომ ქოლ ბარი ქვემოთ დადგეს */
+        bottom: 120px; /* სოციალური ღილაკები ზედა მხარეს */
       }
     }
 
@@ -1030,15 +1065,15 @@
       }
     }
 
-    /* მობაილზე – ნომერი უფრო პატარა და ქვემოთ, ცენტრში */
+    /* მობაილზე – ნომერი დაპატარავებული და სოციალური ღილაკების ქვემოთ */
     @media (max-width: 640px) {
       .floating-call-btn {
         right: 16px;
-        left: 16px;
-        bottom: 16px;
+        bottom: 66px;       /* ზუსტად სოციალურების ქვემოთ */
+        left: auto;
         justify-content: center;
-        padding: 8px 12px;
-        font-size: 0.8rem;
+        padding: 7px 12px;
+        font-size: 0.78rem;
       }
 
       .floating-call-icon {
@@ -1048,7 +1083,7 @@
       }
 
       .floating-call-text {
-        font-size: 0.8rem;
+        font-size: 0.78rem;
       }
     }
 
@@ -1256,22 +1291,20 @@
       <div class="about-hero-inner">
         <div class="hero-slider reveal" id="heroSlider">
           <div class="hero-slide-track" id="heroTrack">
-            <!-- Slide 1 – desktop: about-banner-1.png, mobile: about-banner-1-mobile.png -->
+            <!-- Slide 1 -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
                 <picture>
-                  <!-- მობაილ ბანერი: about-banner-1-mobile.png (1080x1350) -->
                   <source srcset="about-banner-1-mobile.png" media="(max-width: 640px)" />
                   <img src="about-banner-1.png" alt="OK TV Banner 1" class="hero-image" />
                 </picture>
               </div>
             </article>
 
-            <!-- Slide 2 – desktop: about-banner-2.png, mobile: about-banner-2-mobile.png -->
+            <!-- Slide 2 -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
                 <picture>
-                  <!-- მობაილ ბანერი: about-banner-2-mobile.png (1080x1350) -->
                   <source srcset="about-banner-2-mobile.png" media="(max-width: 640px)" />
                   <img src="about-banner-2.png" alt="OK TV Banner 2" class="hero-image" />
                 </picture>
@@ -1346,7 +1379,6 @@
 
           <aside class="about-story-photo">
             <div class="about-photo-inner">
-              <!-- კომპანიის ისტორიული ფოტო – 2048x1194 -->
               <img src="about-history-photo.png" alt="OK TV ისტორიული ფოტო" />
             </div>
             <div class="about-photo-caption">
@@ -1428,7 +1460,7 @@
           ტექნოლოგიურად განვითარებული და თქვენს საჭიროებებზე მორგებული სერვისი.
         </p>
 
-        <!-- მხოლოდ გაყიდვებისა და მარკეტინგის ხელმძღვანელი: გიორგი გადელია -->
+        <!-- გაყიდვებისა და მარკეტინგის ხელმძღვანელი: გიორგი გადელია -->
         <div class="team-grid">
           <div class="team-card team-card-primary team-card-lead" id="gadeliaCard">
             <div class="team-role">გაყიდვებისა და მარკეტინგის ხელმძღვანელი</div>
@@ -1610,7 +1642,7 @@
       reveals.forEach(el => el.classList.add('visible'));
     }
 
-    // HERO slider (2 სლაიდი)
+    // HERO slider
     const track = document.getElementById('heroTrack');
     const dots  = document.querySelectorAll('.hero-dot');
     const slides = document.querySelectorAll('.hero-slide');
