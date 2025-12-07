@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OK TV • კონტაქტი</title>
-<link rel="stylesheet" href="responsive.css" />
+  <link rel="stylesheet" href="responsive.css" />
   <style>
     /* ================== ROOT & RESET ================== */
     :root {
@@ -109,25 +109,7 @@
       filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
     }
 
-    .brand-text-block {
-      line-height: 1.1;
-    }
-
-    .brand-name {
-      font-size: 1.3rem;
-      font-weight: 900;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--primary-dark);
-      white-space: nowrap;
-    }
-
-    .brand-subtitle {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
+    /* წარწერა მოვაშალეთ – ტექსტური ბლოკი აღარ გამოიყენება */
 
     .header-spacer {
       flex: 1;
@@ -156,6 +138,7 @@
         color 0.15s ease,
         background 0.15s ease,
         box-shadow 0.15s ease;
+      white-space: nowrap;
     }
 
     .nav-link::after {
@@ -284,22 +267,37 @@
       }
     }
 
+    /* მობილური – მენიუ ჰორიზონტალურ სქროლად, ზოლი დაპატარავებული */
     @media (max-width: 640px) {
       .brand-logo {
         height: 56px;
       }
 
-      .brand-name {
-        font-size: 1.05rem;
+      .header-inner {
+        padding-top: 6px;
+        padding-bottom: 6px;
       }
 
-      .brand-subtitle {
-        font-size: 0.64rem;
+      .nav {
+        order: 2;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 4px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
+        margin-top: 2px;
+      }
+
+      .nav::-webkit-scrollbar {
+        display: none;
       }
 
       .nav-link {
         font-size: 0.75rem;
-        padding-inline: 8px;
+        padding-inline: 10px;
+        padding-block: 6px;
+        flex: 0 0 auto;
       }
 
       .header-cta {
@@ -756,15 +754,16 @@
       font-size: 0.77rem;
     }
 
-    /* ================== FLOATING SOCIAL ICONS ================== */
+    /* ================== FLOATING SOCIAL ICONS + CALL ================== */
     .floating-socials {
       position: fixed;
       right: 26px;
-      bottom: 94px;
+      bottom: 24px;
       z-index: 81;
       display: flex;
       flex-direction: column;
       gap: 8px;
+      align-items: center;
     }
 
     .social-btn {
@@ -797,39 +796,28 @@
       height: 20px;
     }
 
-    @media (max-width: 640px) {
-      .floating-socials {
-        right: 16px;
-        bottom: 90px;
-      }
-    }
-
-    /* ================== FLOATING CALL BUTTON ================== */
     .floating-call-btn {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-      z-index: 80;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
+      gap: 6px;
+      padding: 8px 12px;
       border-radius: 999px;
       background: linear-gradient(135deg, #10b981, #059669);
       color: #ffffff;
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       font-weight: 600;
-      box-shadow: 0 18px 40px rgba(5,150,105,0.6);
+      box-shadow: 0 16px 36px rgba(5,150,105,0.6);
       text-decoration: none;
       cursor: pointer;
       transition:
         transform 0.18s ease,
         box-shadow 0.18s ease;
+      margin-top: 6px;
     }
 
     .floating-call-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 24px 50px rgba(5,150,105,0.75);
+      box-shadow: 0 22px 48px rgba(5,150,105,0.75);
     }
 
     .floating-call-icon {
@@ -840,7 +828,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       box-shadow: 0 0 0 0 rgba(16,185,129,0.55);
       animation: phonePulse 2.1s ease-out infinite;
     }
@@ -865,11 +853,21 @@
     }
 
     @media (max-width: 640px) {
-      .floating-call-btn {
+      .floating-socials {
         right: 16px;
-        bottom: 16px;
-        padding: 9px 14px;
-        font-size: 0.8rem;
+        bottom: 20px;
+      }
+
+      .floating-call-btn {
+        padding: 6px 10px;
+        font-size: 0.74rem;
+        box-shadow: 0 12px 28px rgba(5,150,105,0.6);
+      }
+
+      .floating-call-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 1rem;
       }
     }
 
@@ -1055,10 +1053,6 @@
     <div class="header-inner">
       <div class="brand">
         <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
-        <div class="brand-text-block">
-          <div class="brand-name">OK TV</div>
-          <div class="brand-subtitle">ნამდვილი ციფრული ტელევიზია</div>
-        </div>
       </div>
 
       <div class="header-spacer"></div>
@@ -1285,7 +1279,7 @@
     </div>
   </footer>
 
-  <!-- FLOATING SOCIALS -->
+  <!-- FLOATING SOCIALS + CALL -->
   <div class="floating-socials">
     <a class="social-btn"
        href="https://www.facebook.com/profile.php?id=61582964341078"
@@ -1302,13 +1296,13 @@
        target="_blank" rel="noopener">
       <img src="icon-tiktok.png" alt="TikTok" />
     </a>
-  </div>
 
-  <!-- FLOATING CALL BUTTON -->
-  <a href="tel:+995322901011" class="floating-call-btn">
-    <span class="floating-call-icon">📞</span>
-    <span class="floating-call-text">(+995 032) 2 90 10 11</span>
-  </a>
+    <!-- პატარა ჩაშენებული ტელეფონის ღილაკი, socials-ის ქვეშ -->
+    <a href="tel:+995322901011" class="floating-call-btn">
+      <span class="floating-call-icon">📞</span>
+      <span class="floating-call-text">(+995 032) 2 90 10 11</span>
+    </a>
+  </div>
 
   <!-- DOWNLOAD MODAL -->
   <div class="download-modal-backdrop" id="downloadModal">
