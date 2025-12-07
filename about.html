@@ -112,20 +112,7 @@
       filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
     }
 
-    .brand-text-block { line-height: 1.1; display: flex; flex-direction: column; }
-
-    /* 1) OK TV წარწერის მოცილება – მხოლოდ ლოგო და სლოგანი რჩება */
-    .brand-name {
-      display: none;
-    }
-
-    .brand-subtitle {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
+    /* OK TV / სლოგანი მთლიანად ამოღებულია */
 
     .header-spacer { flex: 1; }
 
@@ -262,15 +249,40 @@
       }
     }
 
+    /* MOBILE HEADER – დაპატარავებული ზოლი და ჰორიზონტალური მენიუ */
     @media (max-width: 640px) {
-      .brand-logo { height: 56px; }
-      .brand-subtitle { font-size: 0.64rem; }
-      .nav-link {
-        font-size: 0.75rem;
-        padding-inline: 8px;
+      .header-inner {
+        padding: 6px 10px 4px;
+        gap: 6px;
       }
-      .header-cta {
+
+      .brand-logo {
+        height: 52px;
+      }
+
+      .nav {
+        order: 2;
         width: 100%;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        gap: 6px;
+        padding-bottom: 4px;
+      }
+
+      .nav-link {
+        flex: 0 0 auto;
+        font-size: 0.72rem;
+        padding: 6px 10px;
+        scroll-snap-align: start;
+      }
+
+      .header-cta {
+        order: 1;
+        width: auto;
+        margin-left: auto;
         justify-content: flex-end;
       }
     }
@@ -334,7 +346,7 @@
     }
 
     @media (max-width: 640px) {
-      .hero-image-wrap { height: 320px; } /* ცოტა უფრო მაღალი, რომ ახალი ბანერები უკეთ გამოჩნდეს */
+      .hero-image-wrap { height: 320px; }
     }
 
     .hero-slider-bottom {
@@ -427,7 +439,7 @@
       letter-spacing: 0.04em;
     }
 
-    /* 4) მობაილზე ბეჯები ჰორიზონტალურ სქროლზე გადაგყავს */
+    /* მობაილზე – ჩამოტვირთვის ღილაკები ჰორიზონტალურ სქროლში, თითის გადაადგილებით */
     @media (max-width: 640px) {
       .store-badges {
         max-width: none;
@@ -633,6 +645,45 @@
       }
     }
 
+    /* მობაილისთვის – „ხშირად დასმული კითხვები“ უფრო კომპაქტური და დახვეწილი */
+    @media (max-width: 640px) {
+      #faq {
+        padding-top: 34px;
+        padding-bottom: 42px;
+      }
+
+      .about-section-title {
+        font-size: 1.3rem;
+        text-align: center;
+      }
+
+      .about-section-subtitle {
+        font-size: 0.88rem;
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .about-faq-grid {
+        margin-top: 20px;
+        gap: 14px;
+      }
+
+      .about-faq-item {
+        padding: 14px 14px 16px;
+        border-radius: 20px;
+      }
+
+      .about-faq-q {
+        font-size: 0.9rem;
+        letter-spacing: 0.03em;
+      }
+
+      .about-faq-a {
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+    }
+
     /* ================== TEAM SECTION ================== */
     #team {
       padding-top: 32px;
@@ -696,7 +747,7 @@
       color: var(--text-main);
     }
 
-    /* 3) სამივე ხელმძღვანელის ბარათის გაძლიერებული დიზაინი */
+    /* გიორგი გადელიას ბარათის გაძლიერებული, „მდიდრული“ დიზაინი */
     .team-card-primary {
       background: radial-gradient(circle at 0 0, #e0f2ff, #ffffff);
       border: 1px solid rgba(59,130,246,0.8);
@@ -717,6 +768,53 @@
       text-shadow: 0 0 14px rgba(129,140,248,0.85);
     }
 
+    .team-card-lead {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .team-card-lead::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: conic-gradient(
+        from 0deg,
+        rgba(59,130,246,0.18),
+        rgba(236,72,153,0.25),
+        rgba(59,130,246,0.18)
+      );
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    .team-card-lead:hover::after,
+    .team-card-lead.expanded::after {
+      opacity: 1;
+    }
+
+    .team-lead-extra {
+      margin-top: 8px;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      display: none;
+    }
+
+    .team-lead-extra a {
+      color: var(--primary-dark);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .team-lead-extra a:hover {
+      text-decoration: underline;
+    }
+
+    .team-card-lead.expanded .team-lead-extra {
+      display: block;
+    }
+
     @media (max-width: 980px) {
       .team-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -729,7 +827,7 @@
       }
     }
 
-    /* ტექნიკური ჯგუფის სქროლი – იგივე ვიზუალი, მაგრამ ჰორიზონტალური */
+    /* ტექნიკური ჯგუფის სქროლი – ჰორიზონტალური, როგორც ახლა გაქვს */
     .team-tech-subtitle {
       margin-top: 30px;
       font-size: 0.9rem;
@@ -872,7 +970,7 @@
     @media (max-width: 640px) {
       .floating-socials {
         right: 16px;
-        bottom: 90px;
+        bottom: 120px; /* ზემოთ, რომ ქოლ ბარი ქვემოთ დადგეს */
       }
     }
 
@@ -932,11 +1030,24 @@
       }
     }
 
+    /* მობაილზე – ნომერი უფრო პატარა და ქვემოთ, ცენტრში */
     @media (max-width: 640px) {
       .floating-call-btn {
         right: 16px;
+        left: 16px;
         bottom: 16px;
-        padding: 9px 14px;
+        justify-content: center;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
+
+      .floating-call-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 1rem;
+      }
+
+      .floating-call-text {
         font-size: 0.8rem;
       }
     }
@@ -1116,10 +1227,6 @@
     <div class="header-inner">
       <div class="brand">
         <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
-        <div class="brand-text-block">
-          <!-- OK TV წარწერა წავშალეთ, მხოლოდ სლოგანი დარჩა -->
-          <div class="brand-subtitle">ნამდვილი ციფრული ტელევიზია</div>
-        </div>
       </div>
 
       <div class="header-spacer"></div>
@@ -1149,23 +1256,22 @@
       <div class="about-hero-inner">
         <div class="hero-slider reveal" id="heroSlider">
           <div class="hero-slide-track" id="heroTrack">
-            <!-- Slide 1 – ডেস্কტოპზე about-banner-1.png, მობაილზე about-banner-1-mobile.png -->
+            <!-- Slide 1 – desktop: about-banner-1.png, mobile: about-banner-1-mobile.png -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
                 <picture>
-                  <!-- 2) მობაილ ბანერი – ახალი ვიზუალი 1080x1350 -->
-                  <!-- ფაილი დაარქვი: about-banner-1-mobile.png -->
+                  <!-- მობაილ ბანერი: about-banner-1-mobile.png (1080x1350) -->
                   <source srcset="about-banner-1-mobile.png" media="(max-width: 640px)" />
                   <img src="about-banner-1.png" alt="OK TV Banner 1" class="hero-image" />
                 </picture>
               </div>
             </article>
 
-            <!-- Slide 2 – ডেস্কტოპზე about-banner-2.png, მობაილზე about-banner-2-mobile.png -->
+            <!-- Slide 2 – desktop: about-banner-2.png, mobile: about-banner-2-mobile.png -->
             <article class="hero-slide">
               <div class="hero-image-wrap">
                 <picture>
-                  <!-- ფაილი დაარქვი: about-banner-2-mobile.png -->
+                  <!-- მობაილ ბანერი: about-banner-2-mobile.png (1080x1350) -->
                   <source srcset="about-banner-2-mobile.png" media="(max-width: 640px)" />
                   <img src="about-banner-2.png" alt="OK TV Banner 2" class="hero-image" />
                 </picture>
@@ -1240,7 +1346,7 @@
 
           <aside class="about-story-photo">
             <div class="about-photo-inner">
-              <!-- ძველი კომპანიის ფოტო – 2048x1194 -->
+              <!-- კომპანიის ისტორიული ფოტო – 2048x1194 -->
               <img src="about-history-photo.png" alt="OK TV ისტორიული ფოტო" />
             </div>
             <div class="about-photo-caption">
@@ -1322,21 +1428,17 @@
           ტექნოლოგიურად განვითარებული და თქვენს საჭიროებებზე მორგებული სერვისი.
         </p>
 
-        <!-- დირექტორი + სამი ძირითადი ხელმძღვანელი -->
-      
-          <div class="team-card team-card-primary">
-            <div class="team-role">დირექტორი</div>
-            <div class="team-name">ნათია ელბაქიძე</div>
-          </div>
-
-          <div class="team-card team-card-primary">
+        <!-- მხოლოდ გაყიდვებისა და მარკეტინგის ხელმძღვანელი: გიორგი გადელია -->
+        <div class="team-grid">
+          <div class="team-card team-card-primary team-card-lead" id="gadeliaCard">
             <div class="team-role">გაყიდვებისა და მარკეტინგის ხელმძღვანელი</div>
             <div class="team-name">გიორგი გადელია</div>
-          </div>
-
-          <div class="team-card team-card-primary">
-            <div class="team-role">ქოლცენტრის ხელმძღვანელი</div>
-            <div class="team-name">სოფო მახარობლიძე</div>
+            <div class="team-lead-extra">
+              მობ: <a href="tel:+995577305485">+995 577 30 54 85</a><br />
+              WhatsApp / Viber / Telegram:
+              <a href="tel:+995597956396">+995 597 95 63 96</a><br />
+              mail: <a href="mailto:ggadelia@tvsarpi.ge">ggadelia@tvsarpi.ge</a>
+            </div>
           </div>
         </div>
 
@@ -1431,7 +1533,7 @@
       </div>
 
       <div class="footer-copy">
-        © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
+        © <span id="year"></span> OK TV / აიეტი. ყველა უფლება დაცულია.
       </div>
     </div>
   </footer>
@@ -1599,6 +1701,14 @@
         closeDownloadModal();
       }
     });
+
+    // გიორგი გადელიას ბარათზე დაჭერისას საკონტაქტო ინფორმაციის გამოჩენა
+    const gadeliaCard = document.getElementById('gadeliaCard');
+    if (gadeliaCard) {
+      gadeliaCard.addEventListener('click', () => {
+        gadeliaCard.classList.toggle('expanded');
+      });
+    }
   </script>
 </body>
 </html>
