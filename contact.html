@@ -109,7 +109,7 @@
       filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
     }
 
-    /* წარწერა მოვაშალეთ – ტექსტური ბლოკი აღარ გამოიყენება */
+    /* brand-ის ტექსტური წარწერა მთლიანად ამოღებულია */
 
     .header-spacer {
       flex: 1;
@@ -267,7 +267,7 @@
       }
     }
 
-    /* მობილური – მენიუ ჰორიზონტალურ სქროლად, ზოლი დაპატარავებული */
+    /* მობილური – ზოლი დაპატარავებული + ჰორიზონტალური scroll, როგორც index-ზე */
     @media (max-width: 640px) {
       .brand-logo {
         height: 56px;
@@ -297,7 +297,7 @@
         font-size: 0.75rem;
         padding-inline: 10px;
         padding-block: 6px;
-        flex: 0 0 auto;
+        flex: 0 0 auto; /* თითის გადასმით ჰორიზონტალურად მოძრაობს */
       }
 
       .header-cta {
@@ -754,7 +754,7 @@
       font-size: 0.77rem;
     }
 
-    /* ================== FLOATING SOCIAL ICONS + CALL ================== */
+    /* ================== FLOATING SOCIAL ICONS + პატარა CALL ================== */
     .floating-socials {
       position: fixed;
       right: 26px;
@@ -1012,12 +1012,12 @@
     .snowflake:nth-child(2)  { left: 15%; animation-duration: 16s; animation-delay: 2s;   }
     .snowflake:nth-child(3)  { left: 25%; animation-duration: 14s; animation-delay: 4s;   }
     .snowflake:nth-child(4)  { left: 35%; animation-duration: 18s; animation-delay: 1s;   }
-    .snowflake:nth-child(5)  { left: 45%; animation-duration: 17s; animation-delay: 3s;   }
-    .snowflake:nth-child(6)  { left: 55%; animation-duration: 15s; animation-delay: 5s;   }
-    .snowflake:nth-child(7)  { left: 65%; animation-duration: 19s; animation-delay: 0.5s; }
-    .snowflake:nth-child(8)  { left: 75%; animation-duration: 13s; animation-delay: 2.5s; }
-    .snowflake:nth-child(9)  { left: 85%; animation-duration: 16s; animation-delay: 4.5s; }
-    .snowflake:nth-child(10) { left: 95%; animation-duration: 20s; animation-delay: 1.5s; }
+    .snowflake:nth-child(5)  { left: 45%; animation-duration: 17s; animation-delay: 3ს;   }
+    .snowflake:nth-child(6)  { left: 55%; animation-duration: 15s; animation-delay: 5ს;   }
+    .snowflake:nth-child(7)  { left: 65%; animation-duration: 19s; animation-delay: 0.5ს; }
+    .snowflake:nth-child(8)  { left: 75%; animation-duration: 13s; animation-delay: 2.5ს; }
+    .snowflake:nth-child(9)  { left: 85%; animation-duration: 16s; animation-delay: 4.5ს; }
+    .snowflake:nth-child(10) { left: 95%; animation-duration: 20s; animation-delay: 1.5ს; }
 
     .reveal {
       opacity: 0;
@@ -1279,7 +1279,7 @@
     </div>
   </footer>
 
-  <!-- FLOATING SOCIALS + CALL -->
+  <!-- FLOATING SOCIALS + პატარა CALL -->
   <div class="floating-socials">
     <a class="social-btn"
        href="https://www.facebook.com/profile.php?id=61582964341078"
