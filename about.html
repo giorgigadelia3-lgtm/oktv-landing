@@ -439,25 +439,11 @@
       letter-spacing: 0.04em;
     }
 
-    /* მობაილზე – ჩამოტვირთვის ღილაკები ჰორიზონტალურ სქროლში, თითის გადაადგილებით */
+    /* მობაილზე – ჩამოტვირთვის ბეჯები საერთოდ არ ჩანდეს */
     @media (max-width: 640px) {
       .store-badges {
-        max-width: none;
-        margin-top: 20px;
-        padding-inline: 8px;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;              /* მხოლოდ ხელით გადასაწევი */
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
-        gap: 10px;
+        display: none;
       }
-      .store-badge {
-        min-width: 260px;             /* ერთ ბეჯზე მთელი სლაიდი */
-        scroll-snap-align: start;
-      }
-      .store-badge img { width: 150px; }
-      .store-badge-label { font-size: 0.76rem; }
     }
 
     /* ================== ABOUT PAGE – HERO SECTION ================== */
@@ -986,7 +972,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      transition: transform 0.18sease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
 
     .social-btn:hover {
@@ -1143,7 +1129,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease, background 0.16s ease;
+      transition: border-color 0.16sease, box-shadow 0.16s ease, transform 0.16s ease, background 0.16s ease;
     }
 
     .download-option img {
@@ -1360,7 +1346,7 @@
               <p>
                 კომპანია <strong>OK TV (აიეტი)</strong> 1993 წლიდან ფუნქციონირებს სატელეკომუნიკაციო სფეროში
                 და წარმოადგენს ერთ-ერთ წამყვან სისტემურ ინტეგრატორს Suomessa. მრავალწლიანი გამოცდილებისა
-                და საკუთარი ოპტიკურ-ბოჭკოვანი ქსელის წყალობით, ვაწვდით უმაღლესი ხარისხის ციფრულ სატელევიზიო
+                და საკუთარი ოპტიკურ-ბოჭკოვანი ქსელის წყალობით, ვაწვდით უმაღლესი ხარისხის ციფრულ სატელევիզიო
                 სერვისს – როგორც ოჯახებისთვის, ასევე სასტუმროებისა და ბიზნესებისთვის.
               </p>
               <p>
@@ -1371,7 +1357,7 @@
               <p>
                 წლების განმავლობაში გავზარდეთ ინფრასტრუქტურა, გავაუმჯობესეთ ტექნოლოგიური პლატფორმა და
                 შევქმენით სერვისი, რომელიც მორგებულია როგორც საოჯახო მომხმარებლის, ასევე სასტუმროებისა და
-                კორპორატიული ობიექტების მოთხოვნებისთვის. OK TV არის ის პარტნიორი, რომელიც დგას თქვენს გვერდით –
+                კორპორატიული ობიექტების მოთხოვნებისთვის. OK TV არის ის პარტნიორი, რომელიც დგას თქვენს გვერდით – 
                 გთავაზობთ კონსულტაციას, ტექნიკურ მხარდაჭერას და მუდმივ განვითარებას.
               </p>
             </div>
