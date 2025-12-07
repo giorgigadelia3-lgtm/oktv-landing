@@ -109,7 +109,7 @@
       filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
     }
 
-    /* brand-ის ტექსტური წარწერა მთლიანად ამოღებულია */
+    /* brand-ის ტექსტური წარწერა მთლიანად მორისებულია */
 
     .header-spacer {
       flex: 1;
@@ -287,6 +287,7 @@
         -webkit-overflow-scrolling: touch;
         padding-bottom: 4px;
         margin-top: 2px;
+        flex-wrap: nowrap; /* ახალი – ყოველთვის ერთ ხაზზე, swipe-ით გადადის */
       }
 
       .nav::-webkit-scrollbar {
@@ -1012,12 +1013,12 @@
     .snowflake:nth-child(2)  { left: 15%; animation-duration: 16s; animation-delay: 2s;   }
     .snowflake:nth-child(3)  { left: 25%; animation-duration: 14s; animation-delay: 4s;   }
     .snowflake:nth-child(4)  { left: 35%; animation-duration: 18s; animation-delay: 1s;   }
-    .snowflake:nth-child(5)  { left: 45%; animation-duration: 17s; animation-delay: 3ს;   }
-    .snowflake:nth-child(6)  { left: 55%; animation-duration: 15s; animation-delay: 5ს;   }
-    .snowflake:nth-child(7)  { left: 65%; animation-duration: 19s; animation-delay: 0.5ს; }
-    .snowflake:nth-child(8)  { left: 75%; animation-duration: 13s; animation-delay: 2.5ს; }
-    .snowflake:nth-child(9)  { left: 85%; animation-duration: 16s; animation-delay: 4.5ს; }
-    .snowflake:nth-child(10) { left: 95%; animation-duration: 20s; animation-delay: 1.5ს; }
+    .snowflake:nth-child(5)  { left: 45%; animation-duration: 17s; animation-delay: 3s;   }
+    .snowflake:nth-child(6)  { left: 55%; animation-duration: 15s; animation-delay: 5s;   }
+    .snowflake:nth-child(7)  { left: 65%; animation-duration: 19s; animation-delay: 0.5s; }
+    .snowflake:nth-child(8)  { left: 75%; animation-duration: 13s; animation-delay: 2.5s; }
+    .snowflake:nth-child(9)  { left: 85%; animation-duration: 16s; animation-delay: 4.5s; }
+    .snowflake:nth-child(10) { left: 95%; animation-duration: 20s; animation-delay: 1.5s; }
 
     .reveal {
       opacity: 0;
