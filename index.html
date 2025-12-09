@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OK TV • მთავარი</title>
 
+  <!-- Tailwind CDN (preflight გამორთული, რომ არსებული სტილები არ დაიფლოს) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          colors: {
+            primary: '#009fe3',
+            primaryDark: '#0077b6',
+            accent: '#00b6bd',
+          },
+          boxShadow: {
+            'ok-soft': '0 14px 40px rgba(15, 23, 42, 0.16)',
+          },
+        }
+      }
+    };
+  </script>
+
   <style>
     /* ================== ROOT & RESET ================== */
     :root {
@@ -1534,6 +1554,88 @@
     </div>
   </div>
 
+  <!-- OK AI CHATBOT (Tailwind-ით გაწყობილი ვიჯეტი) -->
+  <!--
+    მნიშვნელოვანი:
+    - ქვედა JS-ში ჩაწერე შენი backend URL:
+      n8n / Cloud Function / Node.js API და ა.შ.
+    - იმ ბექენდში აერთებ Google Gemini API-ს, Perplexity-ს,
+      Google Sheets-ს, Gmail / Calendar API-ს და Business WhatsApp-ს.
+    -Frontend-ში API key-ები არასდროს არ ჩაწერო.
+  -->
+  <button
+    id="okAiChatToggle"
+    class="fixed z-[85] bottom-24 left-4 flex items-center gap-2 rounded-full bg-primaryDark text-white text-[11px] md:text-xs font-semibold px-4 py-2 shadow-lg shadow-slate-800/40 border border-white/20 backdrop-blur-sm"
+  >
+    <span class="hidden sm:inline-block">OK AI • დახმარება</span>
+    <span class="sm:hidden">OK AI</span>
+    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/15 text-[13px]">💬</span>
+  </button>
+
+  <div
+    id="okAiChatPanel"
+    class="fixed z-[86] bottom-24 left-4 w-[min(360px,92vw)] max-h-[70vh] rounded-2xl bg-white shadow-2xl shadow-slate-900/50 border border-slate-200 flex flex-col overflow-hidden"
+    style="display: none;"
+  >
+    <!-- header -->
+    <div class="flex items-center justify-between px-3 py-2.5 bg-slate-900 text-white">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-lg">
+          🤖
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xs font-semibold leading-tight">OK AI ასისტენტი</span>
+          <span class="text-[10px] text-slate-300 leading-tight">
+            Gemini • n8n • Perplexity • Sheets
+          </span>
+        </div>
+      </div>
+      <button
+        type="button"
+        id="okAiChatClose"
+        class="text-slate-300 hover:text-white text-sm px-1"
+        aria-label="დახურვა"
+      >
+        ✕
+      </button>
+    </div>
+
+    <!-- messages -->
+    <div
+      id="okAiMessages"
+      class="flex-1 bg-slate-50/80 px-3 py-2.5 overflow-y-auto text-[11px] space-y-2"
+    >
+      <div class="flex gap-2">
+        <div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>
+        <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%]">
+          <p class="leading-snug">
+            გამარჯობა! მე ვარ <strong>OK AI</strong> – შეგიძლია მკითხო ყველაფერი OK TV-ს პაკეტებზე,
+            აპლიკაციის დაყენებაზე ან დაგეგმო სამუშაოები Google კალენდარში.<br />
+            დაწერე შენი კითხვა 👇
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- input -->
+    <form id="okAiForm" class="border-t border-slate-200 bg-white px-2.5 py-2 flex items-center gap-1.5">
+      <input
+        id="okAiInput"
+        type="text"
+        autocomplete="off"
+        placeholder="დაწერე კითხვა ან დავალება..."
+        class="flex-1 text-[11px] px-2.5 py-1.5 rounded-full border border-slate-200 focus:outline-none focus:border-primary focus:ring-[1.5px] focus:ring-primary/30"
+      />
+      <button
+        type="submit"
+        class="inline-flex items-center justify-center px-2.5 py-1.5 rounded-full bg-primary text-white text-[11px] font-semibold hover:bg-primaryDark transition shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
+        id="okAiSendBtn"
+      >
+        გაგზავნა
+      </button>
+    </form>
+  </div>
+
   <script>
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -1654,6 +1756,119 @@
         closeDownloadModal();
       }
     });
+
+    // ================= OK AI CHATBOT LOGIC =================
+
+    const okAiToggle = document.getElementById('okAiChatToggle');
+    const okAiPanel = document.getElementById('okAiChatPanel');
+    const okAiClose = document.getElementById('okAiChatClose');
+    const okAiForm = document.getElementById('okAiForm');
+    const okAiInput = document.getElementById('okAiInput');
+    const okAiMessages = document.getElementById('okAiMessages');
+    const okAiSendBtn = document.getElementById('okAiSendBtn');
+
+    function toggleOkAiPanel(forceOpen) {
+      if (!okAiPanel) return;
+      const isHidden = okAiPanel.style.display === 'none' || !okAiPanel.style.display;
+      if (forceOpen === true || (forceOpen === undefined && isHidden)) {
+        okAiPanel.style.display = 'flex';
+      } else if (forceOpen === false || !isHidden) {
+        okAiPanel.style.display = 'none';
+      }
+    }
+
+    if (okAiToggle) {
+      okAiToggle.addEventListener('click', () => toggleOkAiPanel());
+    }
+    if (okAiClose) {
+      okAiClose.addEventListener('click', () => toggleOkAiPanel(false));
+    }
+
+    function appendMessage({ from, text }) {
+      if (!okAiMessages) return;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex gap-2';
+
+      if (from === 'user') {
+        wrapper.classList.add('justify-end');
+        wrapper.innerHTML = `
+          <div class="rounded-2xl rounded-tr-sm bg-primary text-white px-3 py-2 max-w-[85%] shadow-sm text-[11px] leading-snug">
+            ${text}
+          </div>
+        `;
+      } else {
+        wrapper.innerHTML = `
+          <div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>
+          <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%] text-[11px] leading-snug">
+            ${text}
+          </div>
+        `;
+      }
+
+      okAiMessages.appendChild(wrapper);
+      okAiMessages.scrollTop = okAiMessages.scrollHeight;
+    }
+
+    async function sendOkAiMessage(message) {
+      if (!message) return;
+      // ერთი სესიის იდენტიფიკატორი – შეგიძლია გამოიყენო n8n-ში thread-ისთვის
+      const sessionId = window.okAiSessionId || (window.okAiSessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())));
+
+      // აქ ჩაწერე შენი ბექენდის URL:
+      // n8n webhook, Cloud Function, Render-ზე გაშვებული Node.js და ა.შ.
+      const BACKEND_URL = 'https://YOUR_BACKEND_CHAT_ENDPOINT';
+
+      try {
+        okAiSendBtn.disabled = true;
+
+        const response = await fetch(BACKEND_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message,
+            sessionId,
+            source: 'oktv-landing',
+            // ბექენდის მხარეს შეგიძლია გადაწყვიტო:
+            // - გამოიყენო Google Gemini / Perplexity
+            // - ჩაწერო დიალოგი Google Sheets-ში
+            // - გაგზავნო ელფოსტა Gmail API-ით
+            // - ჩასვა მოვლენა Google Calendar-ში
+            // - გაუგზავნო შეტყობინება Business WhatsApp-ს
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Backend response not OK');
+        }
+
+        const data = await response.json();
+        const reply = data.reply || data.answer || data.message || 'სერვერმა წარმატებით მიიღო მოთხოვნა, მაგრამ პასუხის ტექსტი ვერ წავიკითხე.';
+
+        appendMessage({ from: 'bot', text: reply });
+      } catch (error) {
+        console.error('OK AI error:', error);
+        appendMessage({
+          from: 'bot',
+          text: '⛅ ამ წუთას ვერ ვუკავშირდები OK AI სერვერს. გადაამოწმე n8n / Gemini ბექენდი ან სცადე ცოტა ხანში თავიდან.'
+        });
+      } finally {
+        okAiSendBtn.disabled = false;
+      }
+    }
+
+    if (okAiForm && okAiInput) {
+      okAiForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const value = okAiInput.value.trim();
+        if (!value) return;
+
+        appendMessage({ from: 'user', text: value });
+        okAiInput.value = '';
+        sendOkAiMessage(value);
+      });
+    }
   </script>
 </body>
 </html>
