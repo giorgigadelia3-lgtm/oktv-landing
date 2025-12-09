@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OK TV • ჩვენს შესახებ</title>
   <link rel="stylesheet" href="responsive.css" />
+
+  <!-- Tailwind CDN (preflight გამორთული, რომ შენი სტილები არ დაიფლოს) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          colors: {
+            primary: '#009fe3',
+            primaryDark: '#0077b6',
+            accent: '#00b6bd',
+          },
+          boxShadow: {
+            'ok-soft': '0 14px 40px rgba(15, 23, 42, 0.16)',
+          },
+        }
+      }
+    };
+  </script>
+
   <style>
     /* ================== ROOT & RESET ================== */
     :root {
@@ -111,8 +132,6 @@
       object-fit: contain;
       filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
     }
-
-    /* OK TV / სლოგანი მთლიანად ამოღებულია */
 
     .header-spacer { flex: 1; }
 
@@ -226,6 +245,79 @@
     .header-btn-ghost::before { content: "❄"; color: #93c5fd; }
 
     .header-btn-ghost:hover { background: rgba(0, 159, 227, 0.06); }
+
+    /* LANGUAGE DROPDOWN – მხოლოდ არჩეული ენა ჩანს, დაჭერაზე იშლება */
+    .lang-switch {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.9);
+      background: #ffffff;
+      cursor: pointer;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #4b5563;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .lang-toggle:hover {
+      border-color: var(--primary);
+      background: #eff6ff;
+      box-shadow: 0 3px 10px rgba(37,99,235,0.25);
+    }
+
+    .lang-toggle-icon {
+      font-size: 0.65rem;
+      margin-top: 1px;
+    }
+
+    .lang-dropdown {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 4px);
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,0.9);
+      box-shadow: 0 14px 30px rgba(15,23,42,0.35);
+      padding: 4px;
+      min-width: 130px;
+      display: none;
+      flex-direction: column;
+      z-index: 60;
+    }
+
+    .lang-switch.open .lang-dropdown {
+      display: flex;
+    }
+
+    .lang-option {
+      border: none;
+      background: transparent;
+      padding: 6px 8px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #4b5563;
+      transition: background 0.14s ease, color 0.14s ease;
+    }
+
+    .lang-option:hover {
+      background: #eff6ff;
+      color: #1f2937;
+    }
 
     @media (max-width: 980px) {
       .header-inner {
@@ -848,7 +940,7 @@
       }
     }
 
-    /* ტექნიკური ჯგუფის სქროლი – ჰორიზონტალური, როგორც ახლა გაქვს */
+    /* ტექნიკური ჯგუფის სქროლი – ჰორიზონტალური */
     .team-tech-subtitle {
       margin-top: 30px;
       font-size: 0.9rem;
@@ -972,7 +1064,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: transform 0.18sease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
 
     .social-btn:hover {
@@ -991,7 +1083,7 @@
     @media (max-width: 640px) {
       .floating-socials {
         right: 16px;
-        bottom: 120px; /* სოციალური ღილაკები ზედა მხარეს */
+        bottom: 120px;
       }
     }
 
@@ -1051,11 +1143,10 @@
       }
     }
 
-    /* მობაილზე – ნომერი დაპატარავებული და სოციალური ღილაკების ქვემოთ */
     @media (max-width: 640px) {
       .floating-call-btn {
         right: 16px;
-        bottom: 66px;       /* ზუსტად სოციალურების ქვემოთ */
+        bottom: 66px;
         left: auto;
         justify-content: center;
         padding: 7px 12px;
@@ -1129,7 +1220,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: border-color 0.16sease, box-shadow 0.16s ease, transform 0.16s ease, background 0.16s ease;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease, background 0.16s ease;
     }
 
     .download-option img {
@@ -1226,6 +1317,81 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* ================== COOKIE BANNER ================== */
+    .cookie-banner {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      background: rgba(15,23,42,0.98);
+      color: #e5e7eb;
+      display: none;
+    }
+
+    .cookie-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 10px 16px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.8rem;
+    }
+
+    .cookie-text {
+      line-height: 1.5;
+    }
+
+    .cookie-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .cookie-btn {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .cookie-btn-primary {
+      background: linear-gradient(135deg, #10b981, #34d399);
+      color: #0b1120;
+      border-color: #22c55e;
+    }
+
+    .cookie-btn-primary:hover {
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+    }
+
+    .cookie-btn-secondary {
+      background: transparent;
+      color: #e5e7eb;
+      border-color: rgba(148,163,184,0.8);
+    }
+
+    .cookie-btn-secondary:hover {
+      background: rgba(30,64,175,0.55);
+    }
+
+    @media (max-width: 640px) {
+      .cookie-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cookie-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1253,19 +1419,32 @@
       <div class="header-spacer"></div>
 
       <nav class="nav" aria-label="მთავარი ნავიგაცია">
-        <a href="index.html" class="nav-link">მთავარი</a>
-        <a class="nav-link" href="packages.html">პაკეტები</a>
-        <a class="nav-link" href="business.html">ბიზნესისთვის</a>
-        <a class="nav-link active" href="about.html">ჩვენს შესახებ</a>
-        <a class="nav-link" href="contact.html">კონტაქტი</a>
+        <a href="index.html" class="nav-link" data-i18n="nav.home">მთავარი</a>
+        <a class="nav-link" href="packages.html" data-i18n="nav.packages">პაკეტები</a>
+        <a class="nav-link" href="business.html" data-i18n="nav.business">ბიზნესისთვის</a>
+        <a class="nav-link active" href="about.html" data-i18n="nav.about">ჩვენს შესახებ</a>
+        <a class="nav-link" href="contact.html" data-i18n="nav.contact">კონტაქტი</a>
       </nav>
 
       <div class="header-cta">
+        <!-- ენის ჩასაშლელი -->
+        <div class="lang-switch" aria-label="Language selector">
+          <button type="button" class="lang-toggle" id="langToggle">
+            <span id="langToggleLabel">KA</span>
+            <span class="lang-toggle-icon">▾</span>
+          </button>
+          <div class="lang-dropdown" id="langDropdown" aria-hidden="true">
+            <button type="button" class="lang-option" data-lang="ka">ქართული</button>
+            <button type="button" class="lang-option" data-lang="en">English</button>
+            <button type="button" class="lang-option" data-lang="ru">Русский</button>
+          </div>
+        </div>
+
         <a href="https://app.oktv.ge/" target="_blank" class="header-btn header-btn-ghost" rel="noopener">
-          <span>LIVE OKTV</span>
+          <span data-i18n="header.live">LIVE OKTV</span>
         </a>
         <a href="#" class="header-btn header-btn-download" id="downloadCtaBtn" role="button">
-          <span>ჩამოტვირთე აპი</span>
+          <span data-i18n="header.download">ჩამოტვირთე აპი</span>
         </a>
       </div>
     </div>
@@ -1312,24 +1491,24 @@
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
              target="_blank" rel="noopener">
             <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
-            <span class="store-badge-label">Google Play • Mobile</span>
+            <span class="store-badge-label" data-i18n="store.mobile">Google Play • Mobile</span>
           </a>
 
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
              target="_blank" rel="noopener">
             <img src="badge-google-play-tv.png" alt="Google Play TV" />
-            <span class="store-badge-label">Google Play • TV</span>
+            <span class="store-badge-label" data-i18n="store.tv">Google Play • TV</span>
           </a>
 
           <a class="store-badge" href="https://apps.apple.com/ge/app/oktv/id6478280344"
              target="_blank" rel="noopener">
             <img src="badge-app-store.png" alt="App Store" />
-            <span class="store-badge-label">Apple • App Store</span>
+            <span class="store-badge-label" data-i18n="store.ios">Apple • App Store</span>
           </a>
 
           <a class="store-badge" href="oktv_3.2.7_606.wgt">
             <img src="badge-wgt.png" alt="Smart TV WGT" />
-            <span class="store-badge-label">Smart TV • WGT</span>
+            <span class="store-badge-label" data-i18n="store.wgt">Smart TV • WGT</span>
           </a>
         </div>
       </div>
@@ -1340,24 +1519,24 @@
       <div class="section-inner reveal">
         <div class="about-story-card">
           <div class="about-story-text">
-            <div class="about-kicker">OK TV / აიეტი</div>
-            <h1 class="about-title">1993 წლიდან თქვენს სამსახურში</h1>
+            <div class="about-kicker" data-i18n="about.hero.kicker">OK TV / აიეტი</div>
+            <h1 class="about-title" data-i18n="about.hero.title">1993 წლიდან თქვენს სამსახურში</h1>
             <div class="about-body">
-              <p>
+              <p data-i18n="about.hero.p1">
                 კომპანია <strong>OK TV (აიეტი)</strong> 1993 წლიდან ფუნქციონირებს სატელეკომუნიკაციო სფეროში
-                და წარმოადგენს ერთ-ერთ წამყვან სისტემურ ინტეგრატორს Suomessa. მრავალწლიანი გამოცდილებისა
-                და საკუთარი ოპტიკურ-ბოჭკოვანი ქსელის წყალობით, ვაწვდით უმაღლესი ხარისხის ციფრულ სატელევիզიო
+                და წარმოადგენს ერთ-ერთ წამყვან სისტემურ ინტეგრატორს საქართველოში. მრავალწლიანი გამოცდილებისა
+                და საკუთარი ოპტიკურ-ბოჭკოვანი ქსელის წყალობით, ვაწვდით უმაღლესი ხარისხის ციფრულ სატელევიზიო
                 სერვისს – როგორც ოჯახებისთვის, ასევე სასტუმროებისა და ბიზნესებისთვის.
               </p>
-              <p>
+              <p data-i18n="about.hero.p2">
                 ჩვენი მიზანია, <strong>ციფრული ტელევიზია</strong> ხელმისაწვდომი გავხადოთ საქართველოს ნებისმიერი
-                მცხოვრებისთვის. OK TV მუშაობს ყველგან,
-                სადაც არსებობს ინტერნეტი. – სტაბილური სიგნალი, თანამედროვე ფუნქციები და მაღალი სანდოობა ეს ჩვენი დევიზია!
+                მცხოვრებისთვის. OK TV მუშაობს ყველგან, სადაც არსებობს ინტერნეტი – სტაბილური სიგნალი, თანამედროვე
+                ფუნქციები და მაღალი სანდოობა ჩვენი ყოველდღიური პრიორიტეტია.
               </p>
-              <p>
+              <p data-i18n="about.hero.p3">
                 წლების განმავლობაში გავზარდეთ ინფრასტრუქტურა, გავაუმჯობესეთ ტექნოლოგიური პლატფორმა და
-                შევქმენით სერვისი, რომელიც მორგებულია როგორც საოჯახო მომხმარებლის, ასევე სასტუმროებისა და
-                კორპორატიული ობიექტების მოთხოვნებისთვის. OK TV არის ის პარტნიორი, რომელიც დგას თქვენს გვერდით – 
+                შევქმენით სერვისი, რომელიც მორგებულია როგორც საოჯახო მომხმარებელზე, ასევე სასტუმროებისა და
+                კორპორატიული ობიექტების მოთხოვნებზე. OK TV არის ის პარტნიორი, რომელიც დგას თქვენს გვერდით –
                 გთავაზობთ კონსულტაციას, ტექნიკურ მხარდაჭერას და მუდმივ განვითარებას.
               </p>
             </div>
@@ -1367,7 +1546,7 @@
             <div class="about-photo-inner">
               <img src="about-history-photo.png" alt="OK TV ისტორიული ფოტო" />
             </div>
-            <div class="about-photo-caption">
+            <div class="about-photo-caption" data-i18n="about.hero.caption">
               OK TV / აიეტი – გზა, რომელიც იწყება 1993 წლიდან
             </div>
           </aside>
@@ -1378,56 +1557,56 @@
     <!-- ხშირად დასმული კითხვები -->
     <section id="faq">
       <div class="section-inner reveal">
-        <h2 class="about-section-title">ხშირად დასმული კითხვები</h2>
-        <p class="about-section-subtitle">
+        <h2 class="about-section-title" data-i18n="about.faq.title">ხშირად დასმული კითხვები</h2>
+        <p class="about-section-subtitle" data-i18n="about.faq.subtitle">
           ტიპური კითხვები, რომლებიც მომხმარებლებს ყველაზე ხშირად უჩნდებათ OK TV-ის შესახებ.
           ტექსტები მუდმივად განახლდება თქვენი შეფასებებისა და მოთხოვნების მიხედვით.
         </p>
 
         <div class="about-faq-grid">
           <div class="about-faq-item">
-            <div class="about-faq-q">რა არის OK TV?</div>
-            <div class="about-faq-a">
+            <div class="about-faq-q" data-i18n="about.faq.q1">რა არის OK TV?</div>
+            <div class="about-faq-a" data-i18n="about.faq.a1">
               OK TV არის ციფრული სატელევიზიო პლატფორმა, რომელიც გაძლევს უმაღლესი
               ხარისხის არხებს და ფილმების ვიდეოთეკას ერთ აპლიკაციაში, სადაც არ უნდა იყო.
             </div>
           </div>
 
           <div class="about-faq-item">
-            <div class="about-faq-q">რამდენი მოწყობილობის დაკავშირება შეიძლება?</div>
-            <div class="about-faq-a">
+            <div class="about-faq-q" data-i18n="about.faq.q2">რამდენი მოწყობილობის დაკავშირება შეიძლება?</div>
+            <div class="about-faq-a" data-i18n="about.faq.a2">
               ერთ ანგარიშზე შესაძლებელია ორი მოწყობილობის დაკავშირება, რაც
               დამატებით კომფორტს ქმნის ოჯახებისთვის და მცირე ბიზნესებისთვის.
             </div>
           </div>
 
           <div class="about-faq-item">
-            <div class="about-faq-q">ვის შეუძლია სარგებლობა?</div>
-            <div class="about-faq-a">
+            <div class="about-faq-q" data-i18n="about.faq.q3">ვის შეუძლია სარგებლობა?</div>
+            <div class="about-faq-a" data-i18n="about.faq.a3">
               საქართველოს ნებისმიერ მოქალაქეს, რომელსაც აქვს ინტერნეტთან წვდომა – არ აქვს
               მნიშვნელობა, რომელი პროვაიდერის აბონენტი ხარ. OK TV მუშაობს ყველგან, სადაც ინტერნეტია.
             </div>
           </div>
 
           <div class="about-faq-item">
-            <div class="about-faq-q">უსაფრთხოა თუ არა პლატფორმა?</div>
-            <div class="about-faq-a">
+            <div class="about-faq-q" data-i18n="about.faq.q4">უსაფრთხოა თუ არა პლატფორმა?</div>
+            <div class="about-faq-a" data-i18n="about.faq.a4">
               დიახ. არხები და ფილმები ლეგალურია, ჩვენი სერვერები დაცულია თანამედროვე
               შიფრირებით და სერვისის გათიშვის რისკი მინიმალურია.
             </div>
           </div>
 
           <div class="about-faq-item">
-            <div class="about-faq-q">რა მოწყობილობებზე მუშაობს?</div>
-            <div class="about-faq-a">
+            <div class="about-faq-q" data-i18n="about.faq.q5">რა მოწყობილობებზე მუშაობს?</div>
+            <div class="about-faq-a" data-i18n="about.faq.a5">
               Android, Android TV, iOS / iPadOS, LG WebOS, Samsung TV (Tizen) და სხვა
               თანამედროვე სმარტ სისტემები. შეგიძლია უყურო როგორც ტელეფონზე, ასევე ტელევიზორზე.
             </div>
           </div>
 
           <div class="about-faq-item">
-            <div class="about-faq-q">როგორ ხდება რეგისტრაცია და გადახდა?</div>
-            <div class="about-faq-a">
+            <div class="about-faq-q" data-i18n="about.faq.q6">როგორ ხდება რეგისტრაცია და გადახდა?</div>
+            <div class="about-faq-a" data-i18n="about.faq.a6">
               გადმოწერე OK TV აპლიკაცია, დარეგისტრირდი ტელეფონის ნომრით, შეიყვანე
               მიღებული SMS კოდი და შეარჩიე სასურველი პაკეტი. გადახდა შესაძლებელია მობაილ ბანკით
               ან სწრაფი გადახდის ტერმინალებიდან.
@@ -1440,8 +1619,8 @@
     <!-- ჩვენი გუნდი -->
     <section id="team">
       <div class="section-inner reveal">
-        <h2 class="about-section-title">ჩვენი გუნდი</h2>
-        <p class="about-section-subtitle">
+        <h2 class="about-section-title" data-i18n="team.title">ჩვენი გუნდი</h2>
+        <p class="about-section-subtitle" data-i18n="team.subtitle">
           ადამიანები, რომლებიც ყოველდღიურად ზრუნავენ იმაზე, რომ OK TV იყოს სტაბილური,
           ტექნოლოგიურად განვითარებული და თქვენს საჭიროებებზე მორგებული სერვისი.
         </p>
@@ -1449,9 +1628,9 @@
         <!-- გაყიდვებისა და მარკეტინგის ხელმძღვანელი: გიორგი გადელია -->
         <div class="team-grid">
           <div class="team-card team-card-primary team-card-lead" id="gadeliaCard">
-            <div class="team-role">გაყიდვებისა და მარკეტინგის ხელმძღვანელი</div>
+            <div class="team-role" data-i18n="team.lead.role">გაყიდვებისა და მარკეტინგის ხელმძღვანელი</div>
             <div class="team-name">გიორგი გადელია</div>
-            <div class="team-lead-extra">
+            <div class="team-lead-extra" data-i18n="team.lead.extra">
               მობ: <a href="tel:+995577305485">+995 577 30 54 85</a><br />
               WhatsApp / Viber / Telegram:
               <a href="tel:+995597956396">+995 597 95 63 96</a><br />
@@ -1461,69 +1640,69 @@
         </div>
 
         <!-- ტექნიკური ჯგუფი უბნების მიხედვით – ჰორიზონტალური სქროლი -->
-        <p class="team-tech-subtitle">
+        <p class="team-tech-subtitle" data-i18n="team.tech.subtitle">
           ტექნიკური ჯგუფის თანამშრომლები უბნების მიხედვით:
         </p>
 
         <div class="tech-team-scroller">
           <div class="team-card tech-team-card">
-            <div class="team-role">ვარკეთილი</div>
-            <div class="team-name">კალისტრატე ტომარაძე</div>
+            <div class="team-role" data-i18n="team.tech.varketili.label">ვარკეთილი</div>
+            <div class="team-name" data-i18n="team.tech.varketili.name">კალისტრატე ტომარაძე</div>
           </div>
 
           <div class="team-card tech-team-card">
-            <div class="team-role">გლდანი</div>
-            <div class="team-name">ბადრი ადეიშვილი</div>
+            <div class="team-role" data-i18n="team.tech.gldani.label">გლდანი</div>
+            <div class="team-name" data-i18n="team.tech.gldani.name">ბადრი ადეიშვილი</div>
           </div>
 
           <div class="team-card tech-team-card">
-            <div class="team-role">მუხიანი</div>
-            <div class="team-name">აჩიკო გურგენიძე</div>
+            <div class="team-role" data-i18n="team.tech.mukhiani.label">მუხიანი</div>
+            <div class="team-name" data-i18n="team.tech.mukhiani.name">აჩიკო გურგენიძე</div>
           </div>
 
           <div class="team-card tech-team-card">
-            <div class="team-role">დიდუბე</div>
-            <div class="team-name">ნიკოლოზ ბოკერია</div>
+            <div class="team-role" data-i18n="team.tech.didube.label">დიდუბე</div>
+            <div class="team-name" data-i18n="team.tech.didube.name">ნიკოლოზ ბოკერია</div>
           </div>
 
           <div class="team-card tech-team-card">
-            <div class="team-role">ნაძალადევი</div>
-            <div class="team-name">შალვა ქოჩიაშვილი</div>
+            <div class="team-role" data-i18n="team.tech.nadzaladevi.label">ნაძალადევი</div>
+            <div class="team-name" data-i18n="team.tech.nadzaladevi.name">შალვა ქოჩიაშვილი</div>
           </div>
 
           <div class="team-card tech-team-card">
-            <div class="team-role">თემქა</div>
-            <div class="team-name">იოსებ ტომარაძე</div>
+            <div class="team-role" data-i18n="team.tech.temka.label">თემქა</div>
+            <div class="team-name" data-i18n="team.tech.temka.name">იოსებ ტომარაძე</div>
           </div>
 
           <div class="team-card tech-team-card">
-            <div class="team-role">ვაზისუბანი</div>
-            <div class="team-name">არტომ ვისაბოვი</div>
+            <div class="team-role" data-i18n="team.tech.vazisubani.label">ვაზისუბანი</div>
+            <div class="team-name" data-i18n="team.tech.vazisubani.name">არტომ ვისაბოვი</div>
           </div>
 
           <div class="team-card tech-team-card">
-            <div class="team-role">ვაკე</div>
-            <div class="team-name">ნიკოლოზ აყიტაშვილი, აკაკი დოლიძე</div>
+            <div class="team-role" data-i18n="team.tech.vake.label">ვაკე</div>
+            <div class="team-name" data-i18n="team.tech.vake.name">ნიკოლოზ აყიტაშვილი, აკაკი დოლიძე</div>
           </div>
 
           <div class="team-card tech-team-card">
-            <div class="team-role">საბურთალო</div>
-            <div class="team-name">ედგარ გრიგორიანი, ვლადიმერ ფრანგიშვილი</div>
+            <div class="team-role" data-i18n="team.tech.saburtalo.label">საბურთალო</div>
+            <div class="team-name" data-i18n="team.tech.saburtalo.name">ედგარ გრიგორიანი, ვლადიმერ ფრანგიშვილი</div>
           </div>
 
           <div class="team-card tech-team-card">
-            <div class="team-role">დიღომი</div>
-            <div class="team-name">ალექსანდრე ჩოხაძე</div>
+            <div class="team-role" data-i18n="team.tech.dighomi.label">დიღომი</div>
+            <div class="team-name" data-i18n="team.tech.dighomi.name">ალექსანდრე ჩოხაძე</div>
           </div>
 
           <div class="team-card tech-team-card">
-            <div class="team-role">დიდი დიღომი</div>
-            <div class="team-name">ამბროსი ახლოური</div>
+            <div class="team-role" data-i18n="team.tech.didiDighomi.label">დიდი დიღომი</div>
+            <div class="team-name" data-i18n="team.tech.didiDighomi.name">ამბროსი ახლოური</div>
           </div>
 
           <div class="team-card tech-team-card">
-            <div class="team-role">დანარჩენი უბნები</div>
-            <div class="team-name">თევდორე ლუაშვილი</div>
+            <div class="team-role" data-i18n="team.tech.other.label">დანარჩენი უბნები</div>
+            <div class="team-name" data-i18n="team.tech.other.name">თევდორე ლუაშვილი</div>
           </div>
         </div>
       </div>
@@ -1533,7 +1712,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-contact-line">
+      <div class="footer-contact-line" data-i18n="footer.contact">
         საკონტაქტო ნომერი:
         <a href="tel:+995322901011" class="footer-phone-link">(+995 032) 2 90 10 11</a>
       </div>
@@ -1551,7 +1730,8 @@
       </div>
 
       <div class="footer-copy">
-        © <span id="year"></span> OK TV / აიეტი. ყველა უფლება დაცულია.
+        <span data-i18n="footer.prefix">©</span> <span id="year"></span>
+        <span data-i18n="footer.text"> OK TV / აიეტი. ყველა უფლება დაცულია.</span>
       </div>
     </div>
   </footer>
@@ -1579,21 +1759,114 @@
   <div class="download-modal-backdrop" id="downloadModal">
     <div class="download-modal">
       <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
-      <h3 class="download-modal-title">აირჩიე, საიდან ჩამოტვირთო აპლიკაცია</h3>
-      <p class="download-modal-subtitle">
+      <h3 class="download-modal-title" data-i18n="modal.title">აირჩიე, საიდან ჩამოტვირთო აპლიკაცია</h3>
+      <p class="download-modal-subtitle" data-i18n="modal.subtitle">
         დააჭირე შენთვის სასურველ პლატფორმას – გადავიყვანთ პირდაპირ OK TV-ს ოფიციალურ გვერდზე.
       </p>
       <div class="download-modal-grid">
         <a class="download-option" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
            target="_blank" rel="noopener">
           <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
-          <span class="download-option-label">Google Play • Mobile</span>
+          <span class="download-option-label" data-i18n="store.mobile">Google Play • Mobile</span>
         </a>
         <a class="download-option" href="https://apps.apple.com/ge/app/oktv/id6478280344"
            target="_blank" rel="noopener">
           <img src="badge-app-store.png" alt="Apple App Store" />
-          <span class="download-option-label">Apple App Store</span>
+          <span class="download-option-label" data-i18n="store.ios">Apple App Store</span>
         </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- OK AI CHATBOT -->
+  <button
+    id="okAiChatToggle"
+    class="fixed z-[85] bottom-24 left-4 flex items-center gap-2 rounded-full bg-primaryDark text-white text-[11px] md:text-xs font-semibold px-4 py-2 shadow-lg shadow-slate-800/40 border border-white/20 backdrop-blur-sm"
+  >
+    <span class="hidden sm:inline-block" data-i18n="chat.toggleFull">OK AI • დახმარება</span>
+    <span class="sm:hidden" data-i18n="chat.toggleShort">OK AI</span>
+    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/15 text-[13px]">💬</span>
+  </button>
+
+  <div
+    id="okAiChatPanel"
+    class="fixed z-[86] bottom-24 left-4 w-[min(360px,92vw)] max-h-[70vh] rounded-2xl bg-white shadow-2xl shadow-slate-900/50 border border-slate-200 flex flex-col overflow-hidden"
+    style="display: none;"
+  >
+    <!-- header -->
+    <div class="flex items-center justify-between px-3 py-2.5 bg-slate-900 text-white">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-lg">
+          🤖
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xs font-semibold leading-tight" data-i18n="chat.headerTitle">OK AI ასისტენტი</span>
+          <span class="text-[10px] text-slate-300 leading-tight" data-i18n="chat.headerSubtitle">
+            Gemini • n8n • Perplexity • Sheets
+          </span>
+        </div>
+      </div>
+      <button
+        type="button"
+        id="okAiChatClose"
+        class="text-slate-300 hover:text-white text-sm px-1"
+        aria-label="დახურვა"
+      >
+        ✕
+      </button>
+    </div>
+
+    <!-- messages -->
+    <div
+      id="okAiMessages"
+      class="flex-1 bg-slate-50/80 px-3 py-2.5 overflow-y-auto text-[11px] space-y-2"
+    >
+      <div class="flex gap-2">
+        <div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>
+        <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%]">
+          <p class="leading-snug" data-i18n="chat.welcome">
+            გამარჯობა! მე ვარ <strong>OK AI</strong> – შეგიძლია მკითხო ყველაფერი OK TV-ს პაკეტებზე,
+            აპლიკაციის დაყენებაზე ან დაგეგმო სამუშაოები Google კალენდარში.<br />
+            დაწერე შენი კითხვა 👇
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- input -->
+    <form id="okAiForm" class="border-t border-slate-200 bg-white px-2.5 py-2 flex items-center gap-1.5">
+      <input
+        id="okAiInput"
+        type="text"
+        autocomplete="off"
+        data-i18n-placeholder="chat.placeholder"
+        placeholder="დაწერე კითხვა ან დავალება..."
+        class="flex-1 text-[11px] px-2.5 py-1.5 rounded-full border border-slate-200 focus:outline-none комфортfocus:border-primary focus:ring-[1.5px] focus:ring-primary/30"
+      />
+      <button
+        type="submit"
+        class="inline-flex items-center justify-center px-2.5 py-1.5 rounded-full bg-primary text-white text-[11px] font-semibold hover:bg-primaryDark transition shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
+        id="okAiSendBtn"
+        data-i18n="chat.send"
+      >
+        გაგზავნა
+      </button>
+    </form>
+  </div>
+
+  <!-- COOKIE BANNER -->
+  <div id="cookieBanner" class="cookie-banner">
+    <div class="cookie-inner">
+      <p class="cookie-text" data-i18n="cookie.message">
+        ჩვენ ვიყენებთ cookies-ს, რომ დავიმახსოვროთ შენი ენა და გავაუმჯობესოთ OK TV გამოცდილება. გაგრძელებით ეთანხმები ჩვენს პირობებს.
+      </p>
+      <div class="cookie-actions">
+        <button id="cookieMoreBtn" class="cookie-btn cookie-btn-secondary" type="button" data-i18n="cookie.more">
+          ვრცლად
+        </button>
+        <button id="cookieAcceptBtn" class="cookie-btn cookie-btn-primary" type="button" data-i18n="cookie.accept">
+          ვეთანხმები
+        </button>
       </div>
     </div>
   </div>
@@ -1601,6 +1874,339 @@
   <script>
     // წელი
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ================= LANGUAGE & I18N =================
+    const LANGUAGE_KEY = 'oktv_lang';
+    let currentLanguage = 'ka';
+
+    const translations = {
+      ka: {
+        'nav.home': 'მთავარი',
+        'nav.packages': 'პაკეტები',
+        'nav.business': 'ბიზნესისთვის',
+        'nav.about': 'ჩვენს შესახებ',
+        'nav.contact': 'კონტაქტი',
+
+        'header.live': 'LIVE OKTV',
+        'header.download': 'ჩამოტვირთე აპი',
+
+        'store.mobile': 'Google Play • Mobile',
+        'store.tv': 'Google Play • TV',
+        'store.ios': 'Apple • App Store',
+        'store.wgt': 'Smart TV • WGT',
+
+        'about.hero.kicker': 'OK TV / აიეტი',
+        'about.hero.title': '1993 წლიდან თქვენს სამსახურში',
+        'about.hero.p1': 'კომპანია <strong>OK TV (აიეტი)</strong> 1993 წლიდან ფუნქციონირებს სატელეკომუნიკაციო სფეროში და წარმოადგენს ერთ-ერთ წამყვან სისტემურ ინტეგრატორს საქართველოში. მრავალწლიანი გამოცდილებისა და საკუთარი ოპტიკურ-ბოჭკოვანი ქსელის წყალობით, ვაწვდით უმაღლესი ხარისხის ციფრულ სატელევიზიო სერვისს – როგორც ოჯახებისთვის, ასევე სასტუმროებისა და ბიზნესებისთვის.',
+        'about.hero.p2': 'ჩვენი მიზანია, <strong>ციფრული ტელევიზია</strong> ხელმისაწვდომი გავხადოთ საქართველოს ნებისმიერი მცხოვრებისთვის. OK TV მუშაობს ყველგან, სადაც არსებობს ინტერნეტი – სტაბილური სიგნალი, თანამედროვე ფუნქციები და მაღალი სანდოობა ჩვენი ყოველდღიური პრიორიტეტია.',
+        'about.hero.p3': 'წლების განმავლობაში გავზარდეთ ინფრასტრუქტურა, გავაუმჯობესეთ ტექნოლოგიური პლატფორმა და შევქმენით სერვისი, რომელიც მორგებულია როგორც საოჯახო მომხმარებელზე, ასევე სასტუმროებისა და კორპორატიული ობიექტების მოთხოვნებზე. OK TV არის ის პარტნიორი, რომელიც დგას თქვენს გვერდით – გთავაზობთ კონსულტაციას, ტექნიკურ მხარდაჭერას და მუდმივ განვითარებას.',
+        'about.hero.caption': 'OK TV / აიეტი – გზა, რომელიც იწყება 1993 წლიდან',
+
+        'about.faq.title': 'ხშირად დასმული კითხვები',
+        'about.faq.subtitle': 'ტიპური კითხვები, რომლებიც მომხმარებლებს ყველაზე ხშირად უჩნდებათ OK TV-ის შესახებ. ტექსტები მუდმივად განახლდება თქვენი შეფასებებისა და მოთხოვნების მიხედვით.',
+        'about.faq.q1': 'რა არის OK TV?',
+        'about.faq.a1': 'OK TV არის ციფრული სატელევიზიო პლატფორმა, რომელიც გაძლევს უმაღლესი ხარისხის არხებს და ფილმების ვიდეოთეკას ერთ აპლიკაციაში, სადაც არ უნდა იყო.',
+        'about.faq.q2': 'რამდენი მოწყობილობის დაკავშირება შეიძლება?',
+        'about.faq.a2': 'ერთ ანგარიშზე შესაძლებელია ორი მოწყობილობის დაკავშირება, რაც დამატებით კომფორტს ქმნის ოჯახებისთვის და მცირე ბიზნესებისთვის.',
+        'about.faq.q3': 'ვის შეუძლია სარგებლობა?',
+        'about.faq.a3': 'საქართველოს ნებისმიერ მოქალაქეს, რომელსაც აქვს ინტერნეტთან წვდომა – არ აქვს მნიშვნელობა, რომელი პროვაიდერის აბონენტი ხარ. OK TV მუშაობს ყველგან, სადაც ინტერნეტია.',
+        'about.faq.q4': 'უსაფრთხოა თუ არა პლატფორმა?',
+        'about.faq.a4': 'დიახ. არხები და ფილმები ლეგალურია, ჩვენი სერვერები დაცულია თანამედროვე შიფრირებით და სერვისის გათიშვის რისკი მინიმალურია.',
+        'about.faq.q5': 'რა მოწყობილობებზე მუშაობს?',
+        'about.faq.a5': 'Android, Android TV, iOS / iPadOS, LG WebOS, Samsung TV (Tizen) და სხვა თანამედროვე სმარტ სისტემები. შეგიძლია უყურო როგორც ტელეფონზე, ასევე ტელევიზორზე.',
+        'about.faq.q6': 'როგორ ხდება რეგისტრაცია და გადახდა?',
+        'about.faq.a6': 'გადმოწერე OK TV აპლიკაცია, დარეგისტრირდი ტელეფონის ნომრით, შეიყვანე მიღებული SMS კოდი და შეარჩიე სასურველი პაკეტი. გადახდა შესაძლებელია მობაილ ბანკით ან სწრაფი გადახდის ტერმინალებიდან.',
+
+        'team.title': 'ჩვენი გუნდი',
+        'team.subtitle': 'ადამიანები, რომლებიც ყოველდღიურად ზრუნავენ იმაზე, რომ OK TV იყოს სტაბილური, ტექნოლოგიურად განვითარებული და თქვენს საჭიროებებზე მორგებული სერვისი.',
+        'team.lead.role': 'გაყიდვებისა და მარკეტინგის ხელმძღვანელი',
+        'team.lead.extra': 'მობ: <a href="tel:+995577305485">+995 577 30 54 85</a><br />WhatsApp / Viber / Telegram: <a href="tel:+995597956396">+995 597 95 63 96</a><br />mail: <a href="mailto:ggadelia@tvsarpi.ge">ggadelia@tvsarpi.ge</a>',
+
+        'team.tech.subtitle': 'ტექნიკური ჯგუფის თანამშრომლები უბნების მიხედვით:',
+        'team.tech.varketili.label': 'ვარკეთილი',
+        'team.tech.varketili.name': 'კალისტრატე ტომარაძე',
+        'team.tech.gldani.label': 'გლდანი',
+        'team.tech.gldani.name': 'ბადრი ადეიშვილი',
+        'team.tech.mukhiani.label': 'მუხიანი',
+        'team.tech.mukhiani.name': 'აჩიკო გურგენიძე',
+        'team.tech.didube.label': 'დიდუბე',
+        'team.tech.didube.name': 'ნიკოლოზ ბოკერია',
+        'team.tech.nadzaladevi.label': 'ნაძალადევი',
+        'team.tech.nadzaladevi.name': 'შალვა ქოჩიაშვილი',
+        'team.tech.temka.label': 'თემქა',
+        'team.tech.temka.name': 'იოსებ ტომარაძე',
+        'team.tech.vazisubani.label': 'ვაზისუბანი',
+        'team.tech.vazisubani.name': 'არტომ ვისაბოვი',
+        'team.tech.vake.label': 'ვაკე',
+        'team.tech.vake.name': 'ნიკოლოზ აყიტაშვილი, აკაკი დოლიძე',
+        'team.tech.saburtalo.label': 'საბურთალო',
+        'team.tech.saburtalo.name': 'ედგარ გრიგორიანი, ვლადიმერ ფრანგიშვილი',
+        'team.tech.dighomi.label': 'დიღომი',
+        'team.tech.dighomi.name': 'ალექსანდრე ჩოხაძე',
+        'team.tech.didiDighomi.label': 'დიდი დიღომი',
+        'team.tech.didiDighomi.name': 'ამბროსი ახლოური',
+        'team.tech.other.label': 'დანარჩენი უბნები',
+        'team.tech.other.name': 'თევდორე ლუაშვილი',
+
+        'footer.contact': 'საკონტაქტო ნომერი:',
+        'footer.prefix': '©',
+        'footer.text': ' OK TV / აიეტი. ყველა უფლება დაცულია.',
+
+        'modal.title': 'აირჩიე, საიდან ჩამოტვირთო აპლიკაცია',
+        'modal.subtitle': 'დააჭირე შენთვის სასურველ პლატფორმას – გადავიყვანთ პირდაპირ OK TV-ს ოფიციალურ გვერდზე.',
+
+        'chat.toggleFull': 'OK AI • დახმარება',
+        'chat.toggleShort': 'OK AI',
+        'chat.headerTitle': 'OK AI ასისტენტი',
+        'chat.headerSubtitle': 'Gemini • n8n • Perplexity • Sheets',
+        'chat.welcome': 'გამარჯობა! მე ვარ <strong>OK AI</strong> – შეგიძლია მკითხო ყველაფერი OK TV-ს პაკეტებზე, აპლიკაციის დაყენებაზე ან დაგეგმო სამუშაოები Google კალენდარში.<br />დაწერე შენი კითხვა 👇',
+        'chat.placeholder': 'დაწერე კითხვა ან დავალება...',
+        'chat.send': 'გაგზავნა',
+
+        'cookie.message': 'ჩვენ ვიყენებთ cookies-ს, რომ დავიმახსოვროთ შენი ენა და გავაუმჯობესოთ OK TV გამოცდილება. გაგრძელებით ეთანხმები ჩვენს პირობებს.',
+        'cookie.more': 'ვრცლად',
+        'cookie.accept': 'ვეთანხმები'
+      },
+      en: {
+        'nav.home': 'Home',
+        'nav.packages': 'Packages',
+        'nav.business': 'For Business',
+        'nav.about': 'About Us',
+        'nav.contact': 'Contact',
+
+        'header.live': 'LIVE OKTV',
+        'header.download': 'Download App',
+
+        'store.mobile': 'Google Play • Mobile',
+        'store.tv': 'Google Play • TV',
+        'store.ios': 'Apple • App Store',
+        'store.wgt': 'Smart TV • WGT',
+
+        'about.hero.kicker': 'OK TV / Ayeti',
+        'about.hero.title': 'Serving you since 1993',
+        'about.hero.p1': 'The company <strong>OK TV (Ayeti)</strong> has been operating in the telecommunications field since 1993 and is one of the leading system integrators in Georgia. Thanks to many years of experience and its own fiber-optic network, we provide high-quality digital TV service for families, hotels and businesses.',
+        'about.hero.p2': 'Our goal is to make <strong>digital television</strong> accessible to every resident of Georgia. OK TV works wherever there is internet – stable signal, modern features and high reliability are our daily priorities.',
+        'about.hero.p3': 'Over the years we have expanded our infrastructure, upgraded our technology and built a service tailored both to home users and to hotels and corporate clients. OK TV is your long-term partner, providing consulting, technical support and constant development.',
+        'about.hero.caption': 'OK TV / Ayeti – a story that began in 1993',
+
+        'about.faq.title': 'Frequently Asked Questions',
+        'about.faq.subtitle': 'Typical questions that users most often ask about OK TV. We regularly update the answers based on your feedback and needs.',
+        'about.faq.q1': 'What is OK TV?',
+        'about.faq.a1': 'OK TV is a digital TV platform that gives you high-quality channels and a movie library in a single app – wherever you are.',
+        'about.faq.q2': 'How many devices can I connect?',
+        'about.faq.a2': 'You can connect two devices to a single account, which is very convenient for families and small businesses.',
+        'about.faq.q3': 'Who can use the service?',
+        'about.faq.a3': 'Any person in Georgia who has access to the internet – it does not matter which provider you use. OK TV works anywhere with internet.',
+        'about.faq.q4': 'Is the platform secure?',
+        'about.faq.a4': 'Yes. All channels and movies are fully licensed, our servers are protected with modern encryption and the risk of downtime is minimized.',
+        'about.faq.q5': 'Which devices are supported?',
+        'about.faq.a5': 'Android, Android TV, iOS / iPadOS, LG WebOS, Samsung TV (Tizen) and other modern smart systems. You can watch both on your phone and on your TV.',
+        'about.faq.q6': 'How do registration and payment work?',
+        'about.faq.a6': 'Download the OK TV app, register with your mobile number, enter the SMS code and choose a package. You can pay via mobile banking or fast payment terminals.',
+
+        'team.title': 'Our Team',
+        'team.subtitle': 'People who work every day to keep OK TV stable, innovative and tailored to your needs.',
+        'team.lead.role': 'Head of Sales & Marketing',
+        'team.lead.extra': 'Mob: <a href="tel:+995577305485">+995 577 30 54 85</a><br />WhatsApp / Viber / Telegram: <a href="tel:+995597956396">+995 597 95 63 96</a><br />mail: <a href="mailto:ggadelia@tvsarpi.ge">ggadelia@tvsarpi.ge</a>',
+
+        'team.tech.subtitle': 'Technical team by districts:',
+        'team.tech.varketili.label': 'Varketili',
+        'team.tech.varketili.name': 'Kalistrate Tomaradze',
+        'team.tech.gldani.label': 'Gldani',
+        'team.tech.gldani.name': 'Badri Adeishvili',
+        'team.tech.mukhiani.label': 'Mukhiani',
+        'team.tech.mukhiani.name': 'Achiko Gurgenidze',
+        'team.tech.didube.label': 'Didube',
+        'team.tech.didube.name': 'Nikoloz Bokeria',
+        'team.tech.nadzaladevi.label': 'Nadzaladevi',
+        'team.tech.nadzaladevi.name': 'Shalva Kochiashvili',
+        'team.tech.temka.label': 'Temka',
+        'team.tech.temka.name': 'Ioseb Tomaradze',
+        'team.tech.vazisubani.label': 'Vazisubani',
+        'team.tech.vazisubani.name': 'Artom Visabovi',
+        'team.tech.vake.label': 'Vake',
+        'team.tech.vake.name': 'Nikoloz Akhitashvili, Akaki Dolidze',
+        'team.tech.saburtalo.label': 'Saburtalo',
+        'team.tech.saburtalo.name': 'Edgar Grigorian, Vladimir Frangishvili',
+        'team.tech.dighomi.label': 'Dighomi',
+        'team.tech.dighomi.name': 'Aleksandre Chokhadze',
+        'team.tech.didiDighomi.label': 'Didi Dighomi',
+        'team.tech.didiDighomi.name': 'Ambrosi Akhlouri',
+        'team.tech.other.label': 'Other districts',
+        'team.tech.other.name': 'Tevdore Luashvili',
+
+        'footer.contact': 'Contact number:',
+        'footer.prefix': '©',
+        'footer.text': ' OK TV / Ayeti – real digital television. All rights reserved.',
+
+        'modal.title': 'Choose where to download the app',
+        'modal.subtitle': 'Click your preferred platform – we will send you to the official OK TV page.',
+
+        'chat.toggleFull': 'OK AI • Help',
+        'chat.toggleShort': 'OK AI',
+        'chat.headerTitle': 'OK AI Assistant',
+        'chat.headerSubtitle': 'Gemini • n8n • Perplexity • Sheets',
+        'chat.welcome': 'Hi! I am <strong>OK AI</strong>. Ask me anything about OK TV packages, app installation or let me schedule tasks in Google Calendar.<br />Type your question 👇',
+        'chat.placeholder': 'Type a question or task...',
+        'chat.send': 'Send',
+
+        'cookie.message': 'We use cookies to remember your language and to improve your OK TV experience. By continuing, you agree to our terms.',
+        'cookie.more': 'Learn more',
+        'cookie.accept': 'Accept'
+      },
+      ru: {
+        'nav.home': 'Главная',
+        'nav.packages': 'Пакеты',
+        'nav.business': 'Для бизнеса',
+        'nav.about': 'О компании',
+        'nav.contact': 'Контакты',
+
+        'header.live': 'LIVE OKTV',
+        'header.download': 'Скачать приложение',
+
+        'store.mobile': 'Google Play • Мобильный',
+        'store.tv': 'Google Play • ТВ',
+        'store.ios': 'Apple • App Store',
+        'store.wgt': 'Smart TV • WGT',
+
+        'about.hero.kicker': 'OK TV / Айети',
+        'about.hero.title': 'С вами с 1993 года',
+        'about.hero.p1': 'Компания <strong>OK TV (Айети)</strong> работает в сфере телекоммуникаций с 1993 года и является одним из ведущих системных интеграторов в Грузии. Благодаря многолетнему опыту и собственной волоконно-оптической сети мы предоставляем высококачественное цифровое телевидение для семей, отелей и бизнеса.',
+        'about.hero.p2': 'Наша цель – сделать <strong>цифровое телевидение</strong> доступным каждому жителю Грузии. OK TV работает везде, где есть интернет: стабильный сигнал, современные функции и высокая надёжность – наши ежедневные приоритеты.',
+        'about.hero.p3': 'За годы работы мы расширили инфраструктуру, обновили технологическую платформу и создали сервис, который подходит как для домашних пользователей, так и для отелей и корпоративных клиентов. OK TV – ваш партнёр на долгие годы, предоставляющий консультации, техническую поддержку и постоянное развитие.',
+        'about.hero.caption': 'OK TV / Айети – история, начавшаяся в 1993 году',
+
+        'about.faq.title': 'Часто задаваемые вопросы',
+        'about.faq.subtitle': 'Типичные вопросы, которые пользователи чаще всего задают об OK TV. Мы регулярно обновляем ответы с учётом ваших отзывов и запросов.',
+        'about.faq.q1': 'Что такое OK TV?',
+        'about.faq.a1': 'OK TV – это платформа цифрового телевидения, которая предоставляет телеканалы и библиотеку фильмов в одном приложении – где бы вы ни находились.',
+        'about.faq.q2': 'Сколько устройств можно подключить?',
+        'about.faq.a2': 'К одному аккаунту можно подключить два устройства – это удобно для семей и малого бизнеса.',
+        'about.faq.q3': 'Кто может пользоваться сервисом?',
+        'about.faq.a3': 'Любой житель Грузии, у которого есть доступ к интернету. Неважно, услугами какого провайдера вы пользуетесь – OK TV работает везде, где есть интернет.',
+        'about.faq.q4': 'Насколько безопасна платформа?',
+        'about.faq.a4': 'Да. Все каналы и фильмы лицензированы, серверы защищены современным шифрованием, а риск отключения сервиса минимален.',
+        'about.faq.q5': 'На каких устройствах работает сервис?',
+        'about.faq.a5': 'Android, Android TV, iOS / iPadOS, LG WebOS, Samsung TV (Tizen) и другие современные Smart-системы. Смотреть можно как на телефоне, так и на телевизоре.',
+        'about.faq.q6': 'Как проходят регистрация и оплата?',
+        'about.faq.a6': 'Скачайте приложение OK TV, зарегистрируйтесь по номеру телефона, введите SMS-код и выберите пакет. Оплатить можно через мобильный банк или платёжные терминалы.',
+
+        'team.title': 'Наша команда',
+        'team.subtitle': 'Люди, которые ежедневно заботятся о том, чтобы OK TV был стабильным, технологичным и ориентированным на ваши потребности.',
+        'team.lead.role': 'Руководитель отдела продаж и маркетинга',
+        'team.lead.extra': 'Моб: <a href="tel:+995577305485">+995 577 30 54 85</a><br />WhatsApp / Viber / Telegram: <a href="tel:+995597956396">+995 597 95 63 96</a><br />mail: <a href="mailto:ggadelia@tvsarpi.ge">ggadelia@tvsarpi.ge</a>',
+
+        'team.tech.subtitle': 'Сотрудники технической службы по районам:',
+        'team.tech.varketili.label': 'Варкетили',
+        'team.tech.varketili.name': 'Калистрате Томарадзе',
+        'team.tech.gldani.label': 'Глдани',
+        'team.tech.gldani.name': 'Бадри Адеишвили',
+        'team.tech.mukhiani.label': 'Мухиани',
+        'team.tech.mukhiani.name': 'Ачико Гургенидзе',
+        'team.tech.didube.label': 'Дидубе',
+        'team.tech.didube.name': 'Николоз Бокерия',
+        'team.tech.nadzaladevi.label': 'Надзаладеви',
+        'team.tech.nadzaladevi.name': 'Шалва Кочиашвили',
+        'team.tech.temka.label': 'Темка',
+        'team.tech.temka.name': 'Иосеб Томарадзе',
+        'team.tech.vazisubani.label': 'Вазисубани',
+        'team.tech.vazisubani.name': 'Артём Висабови',
+        'team.tech.vake.label': 'Ваке',
+        'team.tech.vake.name': 'Николоз Ахиташвили, Акаки Долидзе',
+        'team.tech.saburtalo.label': 'Сабуртало',
+        'team.tech.saburtalo.name': 'Эдгар Григорян, Владимир Франгишвили',
+        'team.tech.dighomi.label': 'Дигоми',
+        'team.tech.dighomi.name': 'Александре Чохадзе',
+        'team.tech.didiDighomi.label': 'Диди Дигоми',
+        'team.tech.didiDighomi.name': 'Амброси Ахлуори',
+        'team.tech.other.label': 'Другие районы',
+        'team.tech.other.name': 'Тевдоре Луашвили',
+
+        'footer.contact': 'Контактный номер:',
+        'footer.prefix': '©',
+        'footer.text': ' OK TV / Айети – настоящая цифровая телекомпания. Все права защищены.',
+
+        'modal.title': 'Выберите, где скачать приложение',
+        'modal.subtitle': 'Нажмите на нужную платформу — мы перенаправим вас на официальный сайт OK TV.',
+
+        'chat.toggleFull': 'OK AI • Помощь',
+        'chat.toggleShort': 'OK AI',
+        'chat.headerTitle': 'Ассистент OK AI',
+        'chat.headerSubtitle': 'Gemini • n8n • Perplexity • Sheets',
+        'chat.welcome': 'Привет! Я <strong>OK AI</strong>. Задавайте вопросы о пакетах OK TV, установке приложения или поручайте мне задачи для Google Календаря.<br />Напишите свой вопрос 👇',
+        'chat.placeholder': 'Напишите вопрос или задачу...',
+        'chat.send': 'Отправить',
+
+        'cookie.message': 'Мы используем cookies, чтобы запомнить выбранный язык и улучшить ваш опыт с OK TV. Продолжая, вы соглашаетесь с нашими условиями.',
+        'cookie.more': 'Подробнее',
+        'cookie.accept': 'Согласен'
+      }
+    };
+
+    const langToggle = document.getElementById('langToggle');
+    const langToggleLabel = document.getElementById('langToggleLabel');
+    const langDropdown = document.getElementById('langDropdown');
+    const langSwitch = document.querySelector('.lang-switch');
+    const langOptions = document.querySelectorAll('.lang-option');
+
+    function applyLanguage(lang) {
+      const langPack = translations[lang] || translations.ka;
+      currentLanguage = lang;
+      localStorage.setItem(LANGUAGE_KEY, lang);
+      document.documentElement.lang = lang;
+
+      // ტექსტების ჩანაცვლება
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const value = langPack[key];
+        if (value) {
+          el.innerHTML = value;
+        }
+      });
+
+      // placeholder-ები
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        const value = langPack[key];
+        if (value) {
+          el.setAttribute('placeholder', value);
+        }
+      });
+
+      if (langToggleLabel) {
+        langToggleLabel.textContent = lang.toUpperCase();
+      }
+    }
+
+    function setupLanguage() {
+      const saved = localStorage.getItem(LANGUAGE_KEY);
+      const lang = saved || 'ka';
+      applyLanguage(lang);
+
+      if (langToggle && langSwitch) {
+        langToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          langSwitch.classList.toggle('open');
+        });
+      }
+
+      langOptions.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const selected = btn.getAttribute('data-lang');
+          applyLanguage(selected);
+          langSwitch.classList.remove('open');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (langSwitch && !langSwitch.contains(e.target)) {
+          langSwitch.classList.remove('open');
+        }
+      });
+    }
+
+    setupLanguage();
 
     // Header shadow on scroll
     const mainHeader = document.getElementById('mainHeader');
@@ -1634,26 +2240,26 @@
     const slides = document.querySelectorAll('.hero-slide');
 
     if (track && dots.length && slides.length) {
-      let currentSlide = 0;
+      let currentSlideIndex = 0;
       const totalSlides = dots.length;
       let sliderTimer;
 
       function goToSlide(index) {
-        currentSlide = (index + totalSlides) % totalSlides;
-        const offset = -currentSlide * 100;
+        currentSlideIndex = (index + totalSlides) % totalSlides;
+        const offset = -currentSlideIndex * 100;
         track.style.transform = `translateX(${offset}%)`;
 
         dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === currentSlide);
+          dot.classList.toggle('active', i === currentSlideIndex);
         });
         slides.forEach((slide, i) => {
-          slide.classList.toggle('active', i === currentSlide);
+          slide.classList.toggle('active', i === currentSlideIndex);
         });
       }
 
       function startSlider() {
         sliderTimer = setInterval(() => {
-          goToSlide(currentSlide + 1);
+          goToSlide(currentSlideIndex + 1);
         }, 7000);
       }
 
@@ -1725,6 +2331,148 @@
     if (gadeliaCard) {
       gadeliaCard.addEventListener('click', () => {
         gadeliaCard.classList.toggle('expanded');
+      });
+    }
+
+    // ================= OK AI CHATBOT =================
+    const okAiToggle = document.getElementById('okAiChatToggle');
+    const okAiPanel = document.getElementById('okAiChatPanel');
+    const okAiClose = document.getElementById('okAiChatClose');
+    const okAiForm = document.getElementById('okAiForm');
+    const okAiInput = document.getElementById('okAiInput');
+    const okAiMessages = document.getElementById('okAiMessages');
+    const okAiSendBtn = document.getElementById('okAiSendBtn');
+
+    function toggleOkAiPanel(forceOpen) {
+      if (!okAiPanel) return;
+      const isHidden = okAiPanel.style.display === 'none' || !okAiPanel.style.display;
+      if (forceOpen === true || (forceOpen === undefined && isHidden)) {
+        okAiPanel.style.display = 'flex';
+      } else if (forceOpen === false || !isHidden) {
+        okAiPanel.style.display = 'none';
+      }
+    }
+
+    if (okAiToggle) {
+      okAiToggle.addEventListener('click', () => toggleOkAiPanel());
+    }
+    if (okAiClose) {
+      okAiClose.addEventListener('click', () => toggleOkAiPanel(false));
+    }
+
+    function appendMessage({ from, text }) {
+      if (!okAiMessages) return;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex gap-2';
+
+      if (from === 'user') {
+        wrapper.classList.add('justify-end');
+        wrapper.innerHTML = `
+          <div class="rounded-2xl rounded-tr-sm bg-primary text-white px-3 py-2 max-w-[85%] shadow-sm text-[11px] leading-snug">
+            ${text}
+          </div>
+        `;
+      } else {
+        wrapper.innerHTML = `
+          <div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>
+          <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%] text-[11px] leading-snug">
+            ${text}
+          </div>
+        `;
+      }
+
+      okAiMessages.appendChild(wrapper);
+      okAiMessages.scrollTop = okAiMessages.scrollHeight;
+    }
+
+    async function sendOkAiMessage(message) {
+      if (!message) return;
+      const sessionId = window.okAiSessionId || (window.okAiSessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())));
+
+      const BACKEND_URL = 'https://YOUR_BACKEND_CHAT_ENDPOINT';
+
+      try {
+        if (okAiSendBtn) okAiSendBtn.disabled = true;
+
+        const response = await fetch(BACKEND_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message,
+            sessionId,
+            language: currentLanguage,
+            source: 'oktv-website',
+            page: 'about',
+            consent: localStorage.getItem('oktv_cookieConsent') || 'unknown'
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Backend response not OK');
+        }
+
+        const data = await response.json();
+        const reply = data.reply || data.answer || data.message || translations[currentLanguage]['chat.welcome'];
+        appendMessage({ from: 'bot', text: reply });
+      } catch (error) {
+        console.error('OK AI error:', error);
+        appendMessage({
+          from: 'bot',
+          text: currentLanguage === 'en'
+            ? '⛅ Right now I cannot reach the OK AI server. Please check your backend or try again later.'
+            : currentLanguage === 'ru'
+              ? '⛅ Сейчас не удаётся подключиться к серверу OK AI. Проверьте backend или попробуйте позже.'
+              : '⛅ ამ წუთას ვერ ვუკავშირდები OK AI სერვერს. გადაამოწმე n8n / Gemini ბექენდი ან სცადე ცოტა ხანში თავიდან.'
+        });
+      } finally {
+        if (okAiSendBtn) okAiSendBtn.disabled = false;
+      }
+    }
+
+    if (okAiForm && okAiInput) {
+      okAiForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const value = okAiInput.value.trim();
+        if (!value) return;
+
+        appendMessage({ from: 'user', text: value });
+        okAiInput.value = '';
+        sendOkAiMessage(value);
+      });
+    }
+
+    // ================= COOKIE BANNER =================
+    const COOKIE_KEY = 'oktv_cookieConsent';
+    const cookieBanner = document.getElementById('cookieBanner');
+    const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
+    const cookieMoreBtn = document.getElementById('cookieMoreBtn');
+
+    function showCookieBanner() {
+      if (cookieBanner) cookieBanner.style.display = 'block';
+    }
+
+    function hideCookieBanner() {
+      if (cookieBanner) cookieBanner.style.display = 'none';
+    }
+
+    if (localStorage.getItem(COOKIE_KEY) === 'accepted') {
+      hideCookieBanner();
+    } else {
+      showCookieBanner();
+    }
+
+    if (cookieAcceptBtn) {
+      cookieAcceptBtn.addEventListener('click', () => {
+        localStorage.setItem(COOKIE_KEY, 'accepted');
+        hideCookieBanner();
+      });
+    }
+
+    if (cookieMoreBtn) {
+      cookieMoreBtn.addEventListener('click', () => {
+        window.open('https://oktv.ge/privacy', '_blank');
       });
     }
   </script>
