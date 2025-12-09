@@ -120,10 +120,6 @@
       filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
     }
 
-    /* brand-text-block, brand-name და brand-subtitle
-       შეგვრჩა სტილებში, მაგრამ HTML-ში აღარ გამოიყენება,
-       ამიტომ ეკრანზე ტექსტი აღარ გამოჩნდება. */
-
     .brand-text-block { line-height: 1.1; }
 
     .brand-name {
@@ -255,6 +251,46 @@
 
     .header-btn-ghost:hover {
       background: rgba(0, 159, 227, 0.06);
+    }
+
+    /* ================== LANGUAGE SWITCH ================== */
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-right: 2px;
+    }
+
+    .lang-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.9);
+      background: #ffffff;
+      padding: 4px 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: #4b5563;
+      transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .lang-btn:hover {
+      border-color: var(--primary);
+      background: #eff6ff;
+      box-shadow: 0 3px 10px rgba(37,99,235,0.25);
+    }
+
+    .lang-btn-active {
+      background: var(--primary-dark);
+      color: #ffffff;
+      border-color: var(--primary-dark);
+      box-shadow: 0 3px 10px rgba(37,99,235,0.55);
     }
 
     @media (max-width: 980px) {
@@ -735,7 +771,7 @@
     }
 
     .faq-item.open .faq-answer {
-      max-height: 200px;
+      max-height: 260px;
       padding-bottom: 14px;
     }
 
@@ -1060,14 +1096,13 @@
       transform: translateY(0);
     }
 
-    /* ============= MOBILE OPTIMIZATION – INDEX PAGE ============= */
+    /* ============= MOBILE OPTIMIZATION – RESPONSIVE (ერთიანი დიზაინი ყველა დევაისზე) ============= */
 
     @media (max-width: 768px) {
       body {
         font-size: 15px;
       }
 
-      /* header – პატარა, სკროლირებადი მენით */
       .header-inner {
         gap: 6px;
         padding-inline: 12px;
@@ -1114,7 +1149,6 @@
         padding-top: 12px;
       }
 
-      /* ჩამოსატვირთი ბადჯები – ჰორიზონტალური scroll */
       .store-badges {
         margin-top: 14px;
         gap: 10px;
@@ -1134,9 +1168,8 @@
         scroll-snap-align: center;
       }
 
-      /* კატეგორიების ბლოკი — მობაილზე მთლიანად წაშლილია */
       .hero-categories {
-        display: none;
+        display: none; /* მობაილზე უბრალოდ არ ჩანს, მაგრამ HTML იგივე რჩება */
       }
 
       .download-section {
@@ -1156,7 +1189,6 @@
         padding: 40px 12px 60px;
       }
 
-      /* სოციალური აიქონები და ზარის ღილაკი მარჯვენა ქვედა კუთხეში */
       .floating-socials {
         right: 16px;
         bottom: 112px;
@@ -1177,7 +1209,6 @@
       }
     }
 
-    /* უფრო პატარა ტელეფონები (iPhone SE და მსგავსი) */
     @media (max-width: 480px) {
       .header-inner {
         padding-inline: 10px;
@@ -1213,7 +1244,6 @@
         bottom: 84px;
       }
 
-      /* პატარა, მარჯვენა ქვედა კუთხეში ჩაშენებული ზარის ღილაკი */
       .floating-call-btn {
         right: 10px;
         left: auto;
@@ -1221,6 +1251,81 @@
         justify-content: flex-start;
         padding: 6px 10px;
         font-size: 0.76rem;
+      }
+    }
+
+    /* ================== COOKIE BANNER ================== */
+    .cookie-banner {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      background: rgba(15,23,42,0.98);
+      color: #e5e7eb;
+      display: none;
+    }
+
+    .cookie-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 10px 16px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.8rem;
+    }
+
+    .cookie-text {
+      line-height: 1.5;
+    }
+
+    .cookie-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .cookie-btn {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .cookie-btn-primary {
+      background: linear-gradient(135deg, #10b981, #34d399);
+      color: #0b1120;
+      border-color: #22c55e;
+    }
+
+    .cookie-btn-primary:hover {
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+    }
+
+    .cookie-btn-secondary {
+      background: transparent;
+      color: #e5e7eb;
+      border-color: rgba(148,163,184,0.8);
+    }
+
+    .cookie-btn-secondary:hover {
+      background: rgba(30,64,175,0.55);
+    }
+
+    @media (max-width: 640px) {
+      .cookie-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cookie-actions {
+        width: 100%;
+        justify-content: flex-end;
       }
     }
   </style>
@@ -1250,19 +1355,24 @@
       <div class="header-spacer"></div>
 
       <nav class="nav">
-        <a href="index.html" class="nav-link active" aria-current="page">მთავარი</a>
-        <a href="packages.html" class="nav-link">პაკეტები</a>
-        <a href="business.html" class="nav-link">ბიზნესისთვის</a>
-        <a href="about.html" class="nav-link">ჩვენს შესახებ</a>
-        <a href="contact.html" class="nav-link">კონტაქტი</a>
+        <a href="index.html" class="nav-link active" aria-current="page" data-i18n="nav.home">მთავარი</a>
+        <a href="packages.html" class="nav-link" data-i18n="nav.packages">პაკეტები</a>
+        <a href="business.html" class="nav-link" data-i18n="nav.business">ბიზნესისთვის</a>
+        <a href="about.html" class="nav-link" data-i18n="nav.about">ჩვენს შესახებ</a>
+        <a href="contact.html" class="nav-link" data-i18n="nav.contact">კონტაქტი</a>
       </nav>
 
       <div class="header-cta">
+        <div class="lang-switch" aria-label="Language selector">
+          <button type="button" class="lang-btn lang-btn-active" data-lang="ka">KA</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="ru">RU</button>
+        </div>
         <a href="https://app.oktv.ge/" target="_blank" class="header-btn header-btn-ghost" rel="noopener">
-          <span>LIVE OKTV</span>
+          <span data-i18n="header.live">LIVE OKTV</span>
         </a>
         <a href="#" class="header-btn header-btn-download" id="downloadCtaBtn" role="button">
-          <span>ჩამოტვირთე აპი</span>
+          <span data-i18n="header.download">ჩამოტვირთე აპი</span>
         </a>
       </div>
     </div>
@@ -1336,24 +1446,24 @@
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
              target="_blank" rel="noopener">
             <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
-            <span class="store-badge-label">Google Play • Mobile</span>
+            <span class="store-badge-label" data-i18n="store.mobile">Google Play • Mobile</span>
           </a>
 
           <a class="store-badge" href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
              target="_blank" rel="noopener">
             <img src="badge-google-play-tv.png" alt="Google Play TV" />
-            <span class="store-badge-label">Google Play • TV</span>
+            <span class="store-badge-label" data-i18n="store.tv">Google Play • TV</span>
           </a>
 
           <a class="store-badge" href="https://apps.apple.com/ge/app/oktv/id6478280344"
              target="_blank" rel="noopener">
             <img src="badge-app-store.png" alt="App Store" />
-            <span class="store-badge-label">Apple • App Store</span>
+            <span class="store-badge-label" data-i18n="store.ios">Apple • App Store</span>
           </a>
 
           <a class="store-badge" href="oktv_3.2.7_606.wgt">
             <img src="badge-wgt.png" alt="Smart TV WGT" />
-            <span class="store-badge-label">Smart TV • WGT</span>
+            <span class="store-badge-label" data-i18n="store.wgt">Smart TV • WGT</span>
           </a>
         </div>
 
@@ -1362,8 +1472,8 @@
           <a class="hero-category-card" href="packages.html">
             <div class="hero-category-icon hero-icon-packages"></div>
             <div>
-              <div class="hero-category-title">პაკეტები</div>
-              <div class="hero-category-desc">
+              <div class="hero-category-title" data-i18n="cat.packages.title">პაკეტები</div>
+              <div class="hero-category-desc" data-i18n="cat.packages.desc">
                 საოჯახო, სპორტული და კინოპაკეტები ერთი გვერდიდან.
               </div>
             </div>
@@ -1372,8 +1482,8 @@
           <a class="hero-category-card" href="business.html">
             <div class="hero-category-icon hero-icon-business"></div>
             <div>
-              <div class="hero-category-title">ბიზნესისთვის</div>
-              <div class="hero-category-desc">
+              <div class="hero-category-title" data-i18n="cat.business.title">ბიზნესისთვის</div>
+              <div class="hero-category-desc" data-i18n="cat.business.desc">
                 გადაწყვეტილებები სასტუმროებისთვის, კომპანიებისთვის და ობიექტებისთვის.
               </div>
             </div>
@@ -1382,8 +1492,8 @@
           <a class="hero-category-card" href="about.html">
             <div class="hero-category-icon hero-icon-about"></div>
             <div>
-              <div class="hero-category-title">ჩვენს შესახებ</div>
-              <div class="hero-category-desc">
+              <div class="hero-category-title" data-i18n="cat.about.title">ჩვენს შესახებ</div>
+              <div class="hero-category-desc" data-i18n="cat.about.desc">
                 მეტი ინფორმაცია OK TV-ს ისტორიაზე, გამოცდილებასა და მისიის შესახებ.
               </div>
             </div>
@@ -1392,8 +1502,8 @@
           <a class="hero-category-card" href="contact.html">
             <div class="hero-category-icon hero-icon-contact"></div>
             <div>
-              <div class="hero-category-title">კონტაქტი</div>
-              <div class="hero-category-desc">
+              <div class="hero-category-title" data-i18n="cat.contact.title">კონტაქტი</div>
+              <div class="hero-category-desc" data-i18n="cat.contact.desc">
                 ტელეფონი, მესენჯერები და სოციალური ქსელები – დაგვიკავშირდი მარტივად.
               </div>
             </div>
@@ -1406,8 +1516,8 @@
     <section class="download-section">
       <div class="download-inner reveal">
         <div class="download-text">
-          <h2 class="download-title">როგორ ჩამოვტვირთოთ აპლიკცია?</h2>
-          <p class="download-subtitle">
+          <h2 class="download-title" data-i18n="download.title">როგორ ჩამოვტვირთოთ აპლიკცია?</h2>
+          <p class="download-subtitle" data-i18n="download.subtitle">
             OK TV-ს ჩამოტვირთვა შესაძლებელია ნებისმიერ მოწყობილობაზე: Android, iOS, Windows, Smart TV და სხვა პლატფორმებზე.
             უყურე ციფრულ ტელევიზიას სადაც არ უნდა იყო – ერთი მარტივი ინსტალაციით.
           </p>
@@ -1425,14 +1535,14 @@
     <section class="faq-links-section">
       <div class="faq-links-inner reveal">
         <div>
-          <h2 class="faq-title">ხშირად დასმული კითხვები</h2>
+          <h2 class="faq-title" data-i18n="faq.title">ხშირად დასმული კითხვები</h2>
           <div class="faq-list" id="faqList">
             <div class="faq-item">
               <button class="faq-question" type="button">
-                რა მოწყობილობებზე მუშაობს OK TV?
+                <span data-i18n="faq.q1">რა მოწყობილობებზე მუშაობს OK TV?</span>
                 <span class="faq-icon">›</span>
               </button>
-              <div class="faq-answer">
+              <div class="faq-answer" data-i18n="faq.a1">
                 OK TV შეგიძლიათ გამოიყენოთ Android და iOS ტელეფონებზე, ტაბლეტებზე, Smart TV-ს აპარატებზე,
                 კომპიუტერზე (Windows) და იმ მოწყობილობებზე, სადაც Android TV ან Apple TV აპები მუშაობს.
               </div>
@@ -1440,10 +1550,10 @@
 
             <div class="faq-item">
               <button class="faq-question" type="button">
-                რამდენ მოწყობილობაზე შევძლებ ყურებას ერთიდაიგივე პროფილით?
+                <span data-i18n="faq.q2">რამდენ მოწყობილობაზე შევძლებ ყურებას ერთიდაიგივე პროფილით?</span>
                 <span class="faq-icon">›</span>
               </button>
-              <div class="faq-answer">
+              <div class="faq-answer" data-i18n="faq.a2">
                 ერთი ანგარიში აძლევს შესაძლებლობას ერთზე მეტ ეკრანზე გაიაქტიუროთ სერვისი. ზუსტი რაოდენობა
                 დამოკიდებულია არჩეულ პაკეტზე და შეთანხმებაზე OK TV-სთან.
               </div>
@@ -1451,10 +1561,10 @@
 
             <div class="faq-item">
               <button class="faq-question" type="button">
-                საჭიროა თუ არა გრძელვადიანი კონტრაქტი?
+                <span data-i18n="faq.q3">საჭიროა თუ არა გრძელვადიანი კონტრაქტი?</span>
                 <span class="faq-icon">›</span>
               </button>
-              <div class="faq-answer">
+              <div class="faq-answer" data-i18n="faq.a3">
                 ფიზიკური პირებისთვის პაკეტები, როგორც წესი, თვიურად განახლებადია. ბიზნეს და სასტუმრო პაკეტებზე
                 შედგება ინდივიდუალური კონტრაქტი – პირობები ფიქსირდება წინასწარ, მაქსიმალურად გამჭვირვალედ.
               </div>
@@ -1462,10 +1572,10 @@
 
             <div class="faq-item">
               <button class="faq-question" type="button">
-                პრობლემის შემთხვევაში როგორ დაგეკონტაქტოთ?
+                <span data-i18n="faq.q4">პრობლემის შემთხვევაში როგორ დაგეკონტაქტოთ?</span>
                 <span class="faq-icon">›</span>
               </button>
-              <div class="faq-answer">
+              <div class="faq-answer" data-i18n="faq.a4">
                 მხარდაჭერისთვის შეგიძლიათ მოგვწეროთ Facebook-ზე, დაგვირეკოთ ცხელ ხაზზე
                 ან გამოიყენოთ კონტაქტის ფორმა ჩვენს ვებგვერდზე — ყველა არხი მუდმივად მონიტორინგზეა.
               </div>
@@ -1474,34 +1584,34 @@
         </div>
 
         <div>
-          <h3 class="links-title">ჩვენი ლინკები</h3>
-          <p class="links-subtitle">
+          <h3 class="links-title" data-i18n="links.title">ჩვენი ლინკები</h3>
+          <p class="links-subtitle" data-i18n="links.subtitle">
             მიჰყევით OK TV-ს სოციალურ ქსელებში და ჩამოტვირთეთ აპლიკაცია თქვენი მოწყობილობისთვის.
           </p>
           <div class="links-grid">
             <a class="link-pill" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
               <span class="link-dot"></span>
-              <span>Facebook გვერდი</span>
+              <span data-i18n="links.facebook">Facebook გვერდი</span>
             </a>
             <a class="link-pill" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
               <span class="link-dot"></span>
-              <span>Instagram</span>
+              <span data-i18n="links.instagram">Instagram</span>
             </a>
             <a class="link-pill" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
               <span class="link-dot"></span>
-              <span>TikTok</span>
+              <span data-i18n="links.tiktok">TikTok</span>
             </a>
             <a class="link-pill" href="https://play.google.com/store/apps/details?id=ag.sarpi" target="_blank" rel="noopener">
               <span class="link-dot"></span>
-              <span>Google Play Store</span>
+              <span data-i18n="links.googlePlay">Google Play Store</span>
             </a>
             <a class="link-pill" href="https://apps.apple.com/us/app/oktv/id6478764138" target="_blank" rel="noopener">
               <span class="link-dot"></span>
-              <span>App Store</span>
+              <span data-i18n="links.appStore">App Store</span>
             </a>
             <a class="link-pill" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
               <span class="link-dot"></span>
-              <span>Support / მხარდაჭერა</span>
+              <span data-i18n="links.support">Support / მხარდაჭერა</span>
             </a>
           </div>
         </div>
@@ -1510,7 +1620,8 @@
   </main>
 
   <footer class="footer">
-    © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
+    <span data-i18n="footer.prefix">©</span> <span id="year"></span>
+    <span data-i18n="footer.text"> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.</span>
   </footer>
 
   <!-- FLOATING BUTTONS -->
@@ -1535,40 +1646,32 @@
   <div class="download-modal-backdrop" id="downloadModal">
     <div class="download-modal">
       <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
-      <h3 class="download-modal-title">აირჩიე, საიდან ჩამოტვირთო აპლიკაცია</h3>
-      <p class="download-modal-subtitle">
+      <h3 class="download-modal-title" data-i18n="modal.title">აირჩიე, საიდან ჩამოტვირთო აპლიკაცია</h3>
+      <p class="download-modal-subtitle" data-i18n="modal.subtitle">
         დააჭირე შენთვის სასურველ პლატფორმას – გადავიყვანთ პირდაპირ OK TV-ს ოფიციალურ გვერდზე.
       </p>
       <div class="download-modal-grid">
         <a class="download-option" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
            target="_blank" rel="noopener">
           <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
-          <span class="download-option-label">Google Play • Mobile</span>
+          <span class="download-option-label" data-i18n="store.mobile">Google Play • Mobile</span>
         </a>
         <a class="download-option" href="https://apps.apple.com/ge/app/oktv/id6478280344"
            target="_blank" rel="noopener">
           <img src="badge-app-store.png" alt="Apple App Store" />
-          <span class="download-option-label">Apple • App Store</span>
+          <span class="download-option-label" data-i18n="store.ios">Apple • App Store</span>
         </a>
       </div>
     </div>
   </div>
 
-  <!-- OK AI CHATBOT (Tailwind-ით გაწყობილი ვიჯეტი) -->
-  <!--
-    მნიშვნელოვანი:
-    - ქვედა JS-ში ჩაწერე შენი backend URL:
-      n8n / Cloud Function / Node.js API და ა.შ.
-    - იმ ბექენდში აერთებ Google Gemini API-ს, Perplexity-ს,
-      Google Sheets-ს, Gmail / Calendar API-ს და Business WhatsApp-ს.
-    -Frontend-ში API key-ები არასდროს არ ჩაწერო.
-  -->
+  <!-- OK AI CHATBOT (Tailwind-ით გაწყობილი ვიჯეტი + Gemini/n8n/Perplexity integration backend-ზე) -->
   <button
     id="okAiChatToggle"
     class="fixed z-[85] bottom-24 left-4 flex items-center gap-2 rounded-full bg-primaryDark text-white text-[11px] md:text-xs font-semibold px-4 py-2 shadow-lg shadow-slate-800/40 border border-white/20 backdrop-blur-sm"
   >
-    <span class="hidden sm:inline-block">OK AI • დახმარება</span>
-    <span class="sm:hidden">OK AI</span>
+    <span class="hidden sm:inline-block" data-i18n="chat.toggleFull">OK AI • დახმარება</span>
+    <span class="sm:hidden" data-i18n="chat.toggleShort">OK AI</span>
     <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/15 text-[13px]">💬</span>
   </button>
 
@@ -1584,8 +1687,8 @@
           🤖
         </div>
         <div class="flex flex-col">
-          <span class="text-xs font-semibold leading-tight">OK AI ასისტენტი</span>
-          <span class="text-[10px] text-slate-300 leading-tight">
+          <span class="text-xs font-semibold leading-tight" data-i18n="chat.headerTitle">OK AI ასისტენტი</span>
+          <span class="text-[10px] text-slate-300 leading-tight" data-i18n="chat.headerSubtitle">
             Gemini • n8n • Perplexity • Sheets
           </span>
         </div>
@@ -1608,7 +1711,7 @@
       <div class="flex gap-2">
         <div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>
         <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%]">
-          <p class="leading-snug">
+          <p class="leading-snug" data-i18n="chat.welcome">
             გამარჯობა! მე ვარ <strong>OK AI</strong> – შეგიძლია მკითხო ყველაფერი OK TV-ს პაკეტებზე,
             აპლიკაციის დაყენებაზე ან დაგეგმო სამუშაოები Google კალენდარში.<br />
             დაწერე შენი კითხვა 👇
@@ -1623,6 +1726,7 @@
         id="okAiInput"
         type="text"
         autocomplete="off"
+        data-i18n-placeholder="chat.placeholder"
         placeholder="დაწერე კითხვა ან დავალება..."
         class="flex-1 text-[11px] px-2.5 py-1.5 rounded-full border border-slate-200 focus:outline-none focus:border-primary focus:ring-[1.5px] focus:ring-primary/30"
       />
@@ -1630,15 +1734,275 @@
         type="submit"
         class="inline-flex items-center justify-center px-2.5 py-1.5 rounded-full bg-primary text-white text-[11px] font-semibold hover:bg-primaryDark transition shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
         id="okAiSendBtn"
+        data-i18n="chat.send"
       >
         გაგზავნა
       </button>
     </form>
   </div>
 
+  <!-- COOKIE BANNER -->
+  <div id="cookieBanner" class="cookie-banner">
+    <div class="cookie-inner">
+      <p class="cookie-text" data-i18n="cookie.message">
+        ჩვენ ვიყენებთ cookies-ს, რომ დავიმახსოვროთ შენი ენა და გავაუმჯობესოთ OK TV გამოცდილება. გაგრძელებით ეთანხმები ჩვენს პირობებს.
+      </p>
+      <div class="cookie-actions">
+        <button id="cookieMoreBtn" class="cookie-btn cookie-btn-secondary" type="button" data-i18n="cookie.more">
+          ვრცლად
+        </button>
+        <button id="cookieAcceptBtn" class="cookie-btn cookie-btn-primary" type="button" data-i18n="cookie.accept">
+          ვეთანხმები
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ================= LANGUAGE & I18N =================
+    const LANGUAGE_KEY = 'oktv_lang';
+    let currentLanguage = 'ka';
+
+    const translations = {
+      ka: {
+        'nav.home': 'მთავარი',
+        'nav.packages': 'პაკეტები',
+        'nav.business': 'ბიზნესისთვის',
+        'nav.about': 'ჩვენს შესახებ',
+        'nav.contact': 'კონტაქტი',
+
+        'header.live': 'LIVE OKTV',
+        'header.download': 'ჩამოტვირთე აპი',
+
+        'store.mobile': 'Google Play • Mobile',
+        'store.tv': 'Google Play • TV',
+        'store.ios': 'Apple • App Store',
+        'store.wgt': 'Smart TV • WGT',
+
+        'cat.packages.title': 'პაკეტები',
+        'cat.packages.desc': 'საოჯახო, სპორტული და კინოპაკეტები ერთი გვერდიდან.',
+        'cat.business.title': 'ბიზნესისთვის',
+        'cat.business.desc': 'გადაწყვეტილებები სასტუმროებისთვის, კომპანიებისთვის და ობიექტებისთვის.',
+        'cat.about.title': 'ჩვენს შესახებ',
+        'cat.about.desc': 'მეტი ინფორმაცია OK TV-ს ისტორიაზე, გამოცდილებასა და მისიის შესახებ.',
+        'cat.contact.title': 'კონტაქტი',
+        'cat.contact.desc': 'ტელეფონი, მესენჯერები და სოციალური ქსელები – დაგვიკავშირდი მარტივად.',
+
+        'download.title': 'როგორ ჩამოვტვირთოთ აპლიკცია?',
+        'download.subtitle': 'OK TV-ს ჩამოტვირთვა შესაძლებელია ნებისმიერ მოწყობილობაზე: Android, iOS, Windows, Smart TV და სხვა პლატფორმებზე. უყურე ციფრულ ტელევიზიას სადაც არ უნდა იყო – ერთი მარტივი ინსტალაციით.',
+
+        'faq.title': 'ხშირად დასმული კითხვები',
+        'faq.q1': 'რა მოწყობილობებზე მუშაობს OK TV?',
+        'faq.a1': 'OK TV შეგიძლიათ გამოიყენოთ Android და iOS ტელეფონებზე, ტაბლეტებზე, Smart TV-ს აპარატებზე, კომპიუტერზე (Windows) და იმ მოწყობილობებზე, სადაც Android TV ან Apple TV აპები მუშაობს.',
+        'faq.q2': 'რამდენ მოწყობილობაზე შევძლებ ყურებას ერთიდაიგივე პროფილით?',
+        'faq.a2': 'ერთი ანგარიში აძლევს შესაძლებლობას ერთზე მეტ ეკრანზე გაიაქტიუროთ სერვისი. ზუსტი რაოდენობა დამოკიდებულია არჩეულ პაკეტზე და შეთანხმებაზე OK TV-სთან.',
+        'faq.q3': 'საჭიროა თუ არა გრძელვადიანი კონტრაქტი?',
+        'faq.a3': 'ფიზიკური პირებისთვის პაკეტები, როგორც წესი, თვიურად განახლებადია. ბიზნეს და სასტუმრო პაკეტებზე შედგება ინდივიდუალური კონტრაქტი – პირობები ფიქსირდება წინასწარ, მაქსიმალურად გამჭვირვალედ.',
+        'faq.q4': 'პრობლემის შემთხვევაში როგორ დაგეკონტაქტოთ?',
+        'faq.a4': 'მხარდაჭერისთვის შეგიძლიათ მოგვწეროთ Facebook-ზე, დაგვირეკოთ ცხელ ხაზზე ან გამოიყენოთ კონტაქტის ფორმა ჩვენს ვებგვერდზე — ყველა არხი მუდმივად მონიტორინგზეა.',
+
+        'links.title': 'ჩვენი ლინკები',
+        'links.subtitle': 'მიჰყევით OK TV-ს სოციალურ ქსელებში და ჩამოტვირთეთ აპლიკაცია თქვენი მოწყობილობისთვის.',
+        'links.facebook': 'Facebook გვერდი',
+        'links.instagram': 'Instagram',
+        'links.tiktok': 'TikTok',
+        'links.googlePlay': 'Google Play Store',
+        'links.appStore': 'App Store',
+        'links.support': 'Support / მხარდაჭერა',
+
+        'footer.prefix': '©',
+        'footer.text': ' OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.',
+
+        'modal.title': 'აირჩიე, საიდან ჩამოტვირთო აპლიკაცია',
+        'modal.subtitle': 'დააჭირე შენთვის სასურველ პლატფორმას – გადავიყვანთ პირდაპირ OK TV-ს ოფიციალურ გვერდზე.',
+
+        'chat.toggleFull': 'OK AI • დახმარება',
+        'chat.toggleShort': 'OK AI',
+        'chat.headerTitle': 'OK AI ასისტენტი',
+        'chat.headerSubtitle': 'Gemini • n8n • Perplexity • Sheets',
+        'chat.welcome': 'გამარჯობა! მე ვარ <strong>OK AI</strong> – შეგიძლია მკითხო ყველაფერი OK TV-ს პაკეტებზე, აპლიკაციის დაყენებაზე ან დაგეგმო სამუშაოები Google კალენდარში.<br />დაწერე შენი კითხვა 👇',
+        'chat.placeholder': 'დაწერე კითხვა ან დავალება...',
+        'chat.send': 'გაგზავნა',
+
+        'cookie.message': 'ჩვენ ვიყენებთ cookies-ს, რომ დავიმახსოვროთ შენი ენა და გავაუმჯობესოთ OK TV გამოცდილება. გაგრძელებით ეთანხმები ჩვენს პირობებს.',
+        'cookie.more': 'ვრცლად',
+        'cookie.accept': 'ვეთანხმები'
+      },
+      en: {
+        'nav.home': 'Home',
+        'nav.packages': 'Packages',
+        'nav.business': 'For Business',
+        'nav.about': 'About Us',
+        'nav.contact': 'Contact',
+
+        'header.live': 'LIVE OKTV',
+        'header.download': 'Download App',
+
+        'store.mobile': 'Google Play • Mobile',
+        'store.tv': 'Google Play • TV',
+        'store.ios': 'Apple • App Store',
+        'store.wgt': 'Smart TV • WGT',
+
+        'cat.packages.title': 'Packages',
+        'cat.packages.desc': 'Family, sports and movie bundles from one place.',
+        'cat.business.title': 'For Business',
+        'cat.business.desc': 'Solutions for hotels, companies and commercial sites.',
+        'cat.about.title': 'About Us',
+        'cat.about.desc': 'Learn more about OK TV history, experience and mission.',
+        'cat.contact.title': 'Contact',
+        'cat.contact.desc': 'Phone, messengers and social media – contact us easily.',
+
+        'download.title': 'How to download the app?',
+        'download.subtitle': 'You can install OK TV on Android, iOS, Windows, Smart TV and many other platforms. Watch digital TV wherever you are with a single simple installation.',
+
+        'faq.title': 'Frequently Asked Questions',
+        'faq.q1': 'On which devices does OK TV work?',
+        'faq.a1': 'You can use OK TV on Android and iOS phones, tablets, Smart TVs, Windows PCs and devices that support Android TV or Apple TV apps.',
+        'faq.q2': 'How many devices can watch with one account?',
+        'faq.a2': 'One account can be activated on more than one screen. The exact number depends on the chosen package and your agreement with OK TV.',
+        'faq.q3': 'Do I need a long-term contract?',
+        'faq.a3': 'For individuals, packages are usually renewed month by month. For business and hotel packages, we sign an individual contract with clearly defined terms.',
+        'faq.q4': 'How can I contact support if I have a problem?',
+        'faq.a4': 'You can write to us on Facebook, call our hotline or use the contact form on the website – all channels are monitored constantly.',
+
+        'links.title': 'Our links',
+        'links.subtitle': 'Follow OK TV on social media and download the app for your device.',
+        'links.facebook': 'Facebook page',
+        'links.instagram': 'Instagram',
+        'links.tiktok': 'TikTok',
+        'links.googlePlay': 'Google Play Store',
+        'links.appStore': 'App Store',
+        'links.support': 'Support',
+
+        'footer.prefix': '©',
+        'footer.text': ' OK TV / Ayeti – real digital television. All rights reserved.',
+
+        'modal.title': 'Choose where to download the app',
+        'modal.subtitle': 'Click your preferred platform – we will send you to the official OK TV page.',
+
+        'chat.toggleFull': 'OK AI • Help',
+        'chat.toggleShort': 'OK AI',
+        'chat.headerTitle': 'OK AI Assistant',
+        'chat.headerSubtitle': 'Gemini • n8n • Perplexity • Sheets',
+        'chat.welcome': 'Hi! I am <strong>OK AI</strong>. You can ask me anything about OK TV packages, app installation or let me schedule tasks in Google Calendar.<br />Type your question 👇',
+        'chat.placeholder': 'Type a question or task...',
+        'chat.send': 'Send',
+
+        'cookie.message': 'We use cookies to remember your language and to improve your OK TV experience. By continuing, you agree to our terms.',
+        'cookie.more': 'Learn more',
+        'cookie.accept': 'Accept'
+      },
+      ru: {
+        'nav.home': 'Главная',
+        'nav.packages': 'Пакеты',
+        'nav.business': 'Для бизнеса',
+        'nav.about': 'О компании',
+        'nav.contact': 'Контакты',
+
+        'header.live': 'LIVE OKTV',
+        'header.download': 'Скачать приложение',
+
+        'store.mobile': 'Google Play • Мобильный',
+        'store.tv': 'Google Play • ТВ',
+        'store.ios': 'Apple • App Store',
+        'store.wgt': 'Smart TV • WGT',
+
+        'cat.packages.title': 'Пакеты',
+        'cat.packages.desc': 'Домашние, спортивные и кино-пакеты в одном месте.',
+        'cat.business.title': 'Для бизнеса',
+        'cat.business.desc': 'Решения для отелей, компаний и коммерческих объектов.',
+        'cat.about.title': 'О компании',
+        'cat.about.desc': 'Узнайте больше об истории, опыте и миссии OK TV.',
+        'cat.contact.title': 'Контакты',
+        'cat.contact.desc': 'Телефон, мессенджеры и соцсети — свяжитесь с нами легко.',
+
+        'download.title': 'Как скачать приложение?',
+        'download.subtitle': 'OK TV можно установить на устройства Android, iOS, Windows, Smart TV и другие платформы. Смотрите цифровое телевидение где бы вы ни находились — с одной простой установкой.',
+
+        'faq.title': 'Часто задаваемые вопросы',
+        'faq.q1': 'На каких устройствах работает OK TV?',
+        'faq.a1': 'OK TV можно использовать на телефонах и планшетах Android и iOS, на Smart TV, компьютерах Windows и устройствах с Android TV или Apple TV.',
+        'faq.q2': 'На скольких устройствах можно смотреть с одного аккаунта?',
+        'faq.a2': 'Один аккаунт можно активировать на нескольких экранах. Точное количество зависит от выбранного пакета и договора с OK TV.',
+        'faq.q3': 'Нужен ли долгосрочный контракт?',
+        'faq.a3': 'Для частных клиентов пакеты обычно продлеваются помесячно. Для бизнес- и гостиничных решений заключается индивидуальный договор с прозрачными условиями.',
+        'faq.q4': 'Как связаться с поддержкой при проблеме?',
+        'faq.a4': 'Вы можете написать нам в Facebook, позвонить на горячую линию или использовать форму контактов на сайте — все каналы находятся под постоянным мониторингом.',
+
+        'links.title': 'Наши ссылки',
+        'links.subtitle': 'Подписывайтесь на OK TV в соцсетях и скачивайте приложение для своего устройства.',
+        'links.facebook': 'Страница Facebook',
+        'links.instagram': 'Instagram',
+        'links.tiktok': 'TikTok',
+        'links.googlePlay': 'Google Play Store',
+        'links.appStore': 'App Store',
+        'links.support': 'Поддержка',
+
+        'footer.prefix': '©',
+        'footer.text': ' OK TV / Айети – настоящая цифровая телекомпания. Все права защищены.',
+
+        'modal.title': 'Выберите, где скачать приложение',
+        'modal.subtitle': 'Нажмите на нужную платформу — мы перенаправим вас на официальный сайт OK TV.',
+
+        'chat.toggleFull': 'OK AI • Помощь',
+        'chat.toggleShort': 'OK AI',
+        'chat.headerTitle': 'Ассистент OK AI',
+        'chat.headerSubtitle': 'Gemini • n8n • Perplexity • Sheets',
+        'chat.welcome': 'Привет! Я <strong>OK AI</strong>. Задавайте вопросы о пакетах OK TV, установке приложения или поручайте мне задачи для Google Календаря.<br />Напишите свой вопрос 👇',
+        'chat.placeholder': 'Напишите вопрос или задачу...',
+        'chat.send': 'Отправить',
+
+        'cookie.message': 'Мы используем cookies, чтобы запомнить выбранный язык и улучшить ваш опыт с OK TV. Продолжая, вы соглашаетесь с нашими условиями.',
+        'cookie.more': 'Подробнее',
+        'cookie.accept': 'Согласен'
+      }
+    };
+
+    function applyLanguage(lang) {
+      const langPack = translations[lang] || translations.ka;
+      currentLanguage = lang;
+      localStorage.setItem(LANGUAGE_KEY, lang);
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const value = langPack[key];
+        if (value) {
+          el.innerHTML = value;
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        const value = langPack[key];
+        if (value) {
+          el.setAttribute('placeholder', value);
+        }
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        const btnLang = btn.getAttribute('data-lang');
+        btn.classList.toggle('lang-btn-active', btnLang === lang);
+      });
+    }
+
+    function setupLanguage() {
+      const saved = localStorage.getItem(LANGUAGE_KEY);
+      const lang = saved || 'ka';
+      applyLanguage(lang);
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const selected = btn.getAttribute('data-lang');
+          applyLanguage(selected);
+        });
+      });
+    }
+
+    setupLanguage();
 
     // Header shadow on scroll
     const mainHeader = document.getElementById('mainHeader');
@@ -1811,15 +2175,20 @@
 
     async function sendOkAiMessage(message) {
       if (!message) return;
-      // ერთი სესიის იდენტიფიკატორი – შეგიძლია გამოიყენო n8n-ში thread-ისთვის
       const sessionId = window.okAiSessionId || (window.okAiSessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())));
 
       // აქ ჩაწერე შენი ბექენდის URL:
       // n8n webhook, Cloud Function, Render-ზე გაშვებული Node.js და ა.შ.
+      // იქიდან უკვე:
+      //  - იძახებ Google Gemini / Perplexity API-ებს
+      //  - ინახავ დიალოგს Google Sheets-ში
+      //  - აგზავნი ელფოსტას Gmail API-ით
+      //  - ამატებ Calendar event-ებს
+      //  - აგზავნი შეტყობინებებს Business WhatsApp-ში
       const BACKEND_URL = 'https://YOUR_BACKEND_CHAT_ENDPOINT';
 
       try {
-        okAiSendBtn.disabled = true;
+        if (okAiSendBtn) okAiSendBtn.disabled = true;
 
         const response = await fetch(BACKEND_URL, {
           method: 'POST',
@@ -1829,13 +2198,10 @@
           body: JSON.stringify({
             message,
             sessionId,
+            language: currentLanguage,
             source: 'oktv-landing',
-            // ბექენდის მხარეს შეგიძლია გადაწყვიტო:
-            // - გამოიყენო Google Gemini / Perplexity
-            // - ჩაწერო დიალოგი Google Sheets-ში
-            // - გაგზავნო ელფოსტა Gmail API-ით
-            // - ჩასვა მოვლენა Google Calendar-ში
-            // - გაუგზავნო შეტყობინება Business WhatsApp-ს
+            page: 'index',
+            consent: localStorage.getItem('oktv_cookieConsent') || 'unknown'
           })
         });
 
@@ -1844,17 +2210,21 @@
         }
 
         const data = await response.json();
-        const reply = data.reply || data.answer || data.message || 'სერვერმა წარმატებით მიიღო მოთხოვნა, მაგრამ პასუხის ტექსტი ვერ წავიკითხე.';
+        const reply = data.reply || data.answer || data.message || translations[currentLanguage]['chat.welcome'];
 
         appendMessage({ from: 'bot', text: reply });
       } catch (error) {
         console.error('OK AI error:', error);
         appendMessage({
           from: 'bot',
-          text: '⛅ ამ წუთას ვერ ვუკავშირდები OK AI სერვერს. გადაამოწმე n8n / Gemini ბექენდი ან სცადე ცოტა ხანში თავიდან.'
+          text: currentLanguage === 'en'
+            ? '⛅ Right now I cannot reach the OK AI server. Please check your n8n / Gemini backend or try again later.'
+            : currentLanguage === 'ru'
+              ? '⛅ Сейчас не удаётся подключиться к серверу OK AI. Проверьте backend n8n / Gemini или попробуйте позже.'
+              : '⛅ ამ წუთას ვერ ვუკავშირდები OK AI სერვერს. გადაამოწმე n8n / Gemini ბექენდი ან სცადე ცოტა ხანში თავიდან.'
         });
       } finally {
-        okAiSendBtn.disabled = false;
+        if (okAiSendBtn) okAiSendBtn.disabled = false;
       }
     }
 
@@ -1867,6 +2237,40 @@
         appendMessage({ from: 'user', text: value });
         okAiInput.value = '';
         sendOkAiMessage(value);
+      });
+    }
+
+    // ================= COOKIE BANNER LOGIC =================
+    const COOKIE_KEY = 'oktv_cookieConsent';
+    const cookieBanner = document.getElementById('cookieBanner');
+    const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
+    const cookieMoreBtn = document.getElementById('cookieMoreBtn');
+
+    function showCookieBanner() {
+      if (cookieBanner) cookieBanner.style.display = 'block';
+    }
+
+    function hideCookieBanner() {
+      if (cookieBanner) cookieBanner.style.display = 'none';
+    }
+
+    if (localStorage.getItem(COOKIE_KEY) === 'accepted') {
+      hideCookieBanner();
+    } else {
+      showCookieBanner();
+    }
+
+    if (cookieAcceptBtn) {
+      cookieAcceptBtn.addEventListener('click', () => {
+        localStorage.setItem(COOKIE_KEY, 'accepted');
+        hideCookieBanner();
+      });
+    }
+
+    if (cookieMoreBtn) {
+      cookieMoreBtn.addEventListener('click', () => {
+        // აქ ჩაწერე შენი კონფიდენციალურობის პოლიტიკის URL
+        window.open('https://oktv.ge/privacy', '_blank');
       });
     }
   </script>
