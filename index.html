@@ -170,7 +170,8 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;       /* ყოველთვის ერთ ხაზზე */
+      white-space: nowrap;
     }
 
     .nav-link {
@@ -186,6 +187,7 @@
       color: var(--text-muted);
       cursor: pointer;
       transition: color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      flex-shrink: 0;
     }
 
     .nav-link::after {
@@ -487,7 +489,7 @@
       .nav {
         order: 2;
         width: 100%;
-        justify-content: center;
+        justify-content: flex-start;
       }
     }
 
@@ -1635,13 +1637,30 @@
       }
     }
 
-    /* ================== OK AI პოზიციონირება ================== */
+    /* ================== OK AI პოზიციონირება და ზომა ================== */
 
-    /* Desktop – OK AI კონტაქტის ზემოთ, მარჯვენა ქვედა კუთხე */
+    /* Desktop – OK AI კონტაქტის ზემოთ, იგივე სიმაღლე როგორც კონტაქტს */
     #okAiChatToggle {
       position: fixed;
       right: 24px;
       bottom: 96px; /* კონტაქტზე ზემოთ */
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: none;
+      background: linear-gradient(135deg, #009fe3, #0077b6);
+      color: #ffffff;
+      box-shadow: 0 18px 40px rgba(37,99,235,0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    #okAiChatToggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 50px rgba(37,99,235,0.8);
     }
 
     #okAiChatPanel {
@@ -1652,7 +1671,7 @@
       width: min(360px, 92vw);
     }
 
-    /* Mobile – ოდნავ უფრო შიგნით, მაგრამ მაინც კონტაქტის ზემოთ */
+    /* Mobile – იგივე სიმაღლე როგორც კონტაქტს */
     @media (max-width: 768px) {
       #okAiChatToggle {
         right: 16px;
@@ -1662,6 +1681,13 @@
         right: 8px;
         bottom: 112px;
         width: min(360px, 94vw);
+      }
+    }
+
+    @media (max-width: 480px) {
+      #okAiChatToggle {
+        padding: 8px 13px;
+        font-size: 0.8rem;
       }
     }
   </style>
