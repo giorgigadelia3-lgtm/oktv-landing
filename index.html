@@ -163,7 +163,8 @@
       color: var(--text-muted);
     }
 
-    .header-spacer { flex: 1; }
+    /* ცოტა გავაპატარავეთ, რომ მენიუ ლოგოსთან ახლოს მივიდეს */
+    .header-spacer { flex: 0.4; }
 
     .nav {
       display: flex;
@@ -287,6 +288,30 @@
 
     .header-btn-ghost:hover {
       background: rgba(0, 159, 227, 0.06);
+    }
+
+    /* ზედა ბალანსის ღილაკი – მხოლოდ desktop-ზე */
+    .header-btn-balance {
+      display: none;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      border-color: #16a34a;
+      box-shadow: 0 8px 24px rgba(34,197,94,0.65);
+    }
+
+    .header-btn-balance::before {
+      content: "";
+      display: none; /* რომ თოვლის ფიფქი არ ედგას */
+    }
+
+    .header-btn-balance:hover {
+      box-shadow: 0 14px 32px rgba(22,163,74,0.9);
+      transform: translateY(-1px);
+    }
+
+    @media (min-width: 981px) {
+      .header-btn-balance {
+        display: inline-flex;
+      }
     }
 
     /* ================== LANGUAGE SWITCH (DROPDOWN) ================== */
@@ -626,6 +651,20 @@
 
     .dark-mode .balance-btn {
       box-shadow: 0 18px 40px rgba(22,163,74,0.9);
+    }
+
+    /* Desktop-ზე ქვედა მწვანე ღილაკი აღარ ჩანს – მხოლოდ ჰედერშია */
+    @media (min-width: 981px) {
+      .balance-wrap {
+        display: none;
+      }
+    }
+
+    /* Mobile-ზე ოდნავ ზემოთ აწევა */
+    @media (max-width: 768px) {
+      .balance-wrap {
+        margin-top: 6px;
+      }
     }
 
     /* ================== STORE BADGES ================== */
@@ -1096,7 +1135,7 @@
       border-color: #111827;
     }
 
-    /* ================== FLOATING CONTACT BUTTON ================== */
+    /* ================== FLOATING CONTACT ================== */
 
     .floating-contact {
       position: fixed;
@@ -1595,6 +1634,36 @@
         justify-content: flex-end;
       }
     }
+
+    /* ================== OK AI პოზიციონირება ================== */
+
+    /* Desktop – OK AI კონტაქტის ზემოთ, მარჯვენა ქვედა კუთხე */
+    #okAiChatToggle {
+      position: fixed;
+      right: 24px;
+      bottom: 96px; /* კონტაქტზე ზემოთ */
+    }
+
+    #okAiChatPanel {
+      position: fixed;
+      right: 24px;
+      left: auto;
+      bottom: 120px;
+      width: min(360px, 92vw);
+    }
+
+    /* Mobile – ოდნავ უფრო შიგნით, მაგრამ მაინც კონტაქტის ზემოთ */
+    @media (max-width: 768px) {
+      #okAiChatToggle {
+        right: 16px;
+        bottom: 96px;
+      }
+      #okAiChatPanel {
+        right: 8px;
+        bottom: 112px;
+        width: min(360px, 94vw);
+      }
+    }
   </style>
 </head>
 <body>
@@ -1630,6 +1699,11 @@
       </nav>
 
       <div class="header-cta">
+        <!-- ზედა ბალანსის ღილაკი (desktop) -->
+        <button type="button" class="header-btn header-btn-balance" id="headerBalanceBtn">
+          <span data-i18n="balance.topup">შეავსე შენი ბალანსი</span>
+        </button>
+
         <!-- Theme toggle -->
         <button type="button" id="themeToggle" class="theme-toggle">
           <span class="theme-toggle-icon" id="themeIcon">🌙</span>
@@ -1721,7 +1795,7 @@
           </div>
         </div>
 
-        <!-- TOP-UP BALANCE BUTTON -->
+        <!-- TOP-UP BALANCE BUTTON (მთავარი – mobile / tablet) -->
         <div class="balance-wrap reveal">
           <button class="balance-btn" type="button" data-i18n="balance.topup">
             შეავსე შენი ბალანსი
@@ -1960,7 +2034,7 @@
     </div>
   </div>
 
-  <!-- OK AI CHATBOT (frontend; Gemini/n8n/Perplexity integration ბექენდის მხარეს) -->
+  <!-- OK AI CHATBOT -->
   <button
     id="okAiChatToggle"
     class="fixed z-[85] bottom-24 left-4 flex items-center gap-2 rounded-full bg-primaryDark text-white text-[11px] md:text-xs font-semibold px-4 py-2 shadow-lg shadow-slate-800/40 border border-white/20 backdrop-blur-sm"
@@ -2096,7 +2170,7 @@
         'faq.q1': 'რა მოწყობილობებზე მუშაობს OK TV?',
         'faq.a1': 'OK TV შეგიძლიათ გამოიყენოთ Android და iOS ტელეფონებზე, ტაბლეტებზე, Smart TV-ს აპარატებზე, კომპიუტერზე (Windows) და იმ მოწყობილობებზე, სადაც Android TV ან Apple TV აპები მუშაობს.',
         'faq.q2': 'რამდენ მოწყობილობაზე შევძლებ ყურებას ერთიდაიგივე პროფილით?',
-        'faq.a2': 'ერთი ანგარიში აძლევს შესაძლებლობას ერთზე მეტ ეკრანზე გაიაქტიუროთ სერვისი. ზუსტი რაოდენობა დამოკიდებულია არჩეულ პაკეტზე და შეთანხმებაზე OK TV-სთან.',
+        'faq.a2': 'ერთი ანგარიში აძლევს საშუალებას ერთზე მეტ ეკრანზე გაიაქტიუროთ სერვისი. ზუსტი რაოდენობა დამოკიდებულია არჩეულ პაკეტზე და შეთანხმებაზე OK TV-სთან.',
         'faq.q3': 'საჭიროა თუ არა გრძელვადიანი კონტრაქტი?',
         'faq.a3': 'ფიზიკური პირებისთვის პაკეტები, როგორც წესი, თვიურად განახლებადია. ბიზნეს და სასტუმრო პაკეტებზე შედგება ინდივიდუალური კონტრაქტი – პირობები ფიქსირდება წინასწარ, მაქსიმალურად გამჭვირვალედ.',
         'faq.q4': 'პრობლემის შემთხვევაში როგორ დაგეკონტაქტოთ?',
@@ -2351,21 +2425,14 @@
     }
 
     function setupTheme() {
-      const savedTheme = localStorage.getItem(THEME_KEY);
-      let mode = savedTheme;
-
-      if (!mode) {
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        mode = prefersDark ? 'dark' : 'light';
-      }
-
-      applyTheme(mode);
+      // მოთხოვნა: ყოველთვის daylight-ზე ჩაირთოს საიტი
+      applyTheme('light');
 
       const themeToggle = document.getElementById('themeToggle');
       if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-          const current = localStorage.getItem(THEME_KEY) || 'light';
-          applyTheme(current === 'dark' ? 'light' : 'dark');
+          const isDark = document.documentElement.classList.contains('dark-mode');
+          applyTheme(isDark ? 'light' : 'dark');
         });
       }
     }
@@ -2545,13 +2612,6 @@
       if (!message) return;
       const sessionId = window.okAiSessionId || (window.okAiSessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())));
 
-      // აქ ჩაწერე შენი ბექენდის URL (n8n webhook / Cloud Function / Render backend და ა.შ.)
-      // ბექენდის მხარეს უკვე აკეთებ:
-      //  - Gemini / Perplexity API გამოძახებებს
-      //  - Google Sheets-ში ჩაწერას
-      //  - Gmail API-თ ელფოსტებს
-      //  - Calendar event-ების შექმნას
-      //  - Business WhatsApp შეტყობინებებს და ა.შ.
       const BACKEND_URL = 'https://YOUR_BACKEND_CHAT_ENDPOINT';
 
       try {
