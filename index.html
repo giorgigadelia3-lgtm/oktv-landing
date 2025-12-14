@@ -2495,7 +2495,7 @@
       if (!message) return;
       const sessionId = window.okAiSessionId || (window.okAiSessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())));
 
-      const BACKEND_URL = 'https://gadela.app.n8n.cloud/webhook/oktv-chat';
+      const BACKEND_URL = 'https://gadela.app.n8n.cloud/webhook/ok-ai-chat';
 
       try {
         if (okAiSendBtn) okAiSendBtn.disabled = true;
