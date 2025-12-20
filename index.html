@@ -2,7 +2,7 @@
 <html lang="ka">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1360, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>OK TV • მთავარი</title>
     <!-- Tailwind CDN (preflight გამორთული, რომ არსებული სტილები არ დაიფლოს) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,7 +35,6 @@
         --text-main: #111827;
         --text-muted: #6b7280;
         --border-soft: #d1d5db;
-        --design-width: 1360px;
         --nav-height: 80px;
         --radius-lg: 24px;
         --radius-pill: 999px;
@@ -62,7 +61,6 @@
       body {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
           sans-serif;
-        min-width: var(--design-width);
         background: radial-gradient(
             circle at 0 0,
             rgba(59, 130, 246, 0.07),
@@ -78,11 +76,6 @@
         position: relative;
         overflow-x: hidden;
         transition: background 0.2s ease, color 0.2s ease;
-      }
-      @media (max-width: 1360px) {
-        body {
-          overflow-x: auto;
-        }
       }
       .dark-mode body {
         background: radial-gradient(
@@ -705,30 +698,6 @@
         height: auto;
         display: block;
       }
-      .store-badge-live {
-        width: 150px;
-        height: 44px;
-        border-radius: 999px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.72rem;
-        font-weight: 800;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: #0b1120;
-        background: linear-gradient(135deg, #e0f2fe, #bfdbfe);
-        border: 1px solid rgba(148, 163, 184, 0.7);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7),
-          0 10px 24px rgba(14, 165, 233, 0.25);
-      }
-      .dark-mode .store-badge-live {
-        color: #e5e7eb;
-        background: linear-gradient(135deg, rgba(14, 165, 233, 0.22), rgba(37, 99, 235, 0.4));
-        border-color: rgba(56, 189, 248, 0.6);
-        box-shadow: inset 0 1px 0 rgba(148, 163, 184, 0.3),
-          0 16px 36px rgba(0, 0, 0, 0.6);
-      }
       .store-badge-label {
         margin-top: 4px;
         font-size: 0.78rem;
@@ -911,10 +880,14 @@
         position: relative;
         flex: 1 1 360px;
         max-width: 520px;
-        border-radius: 24px;
+        border-radius: 26px;
         overflow: hidden;
+        padding: 8px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(148, 163, 184, 0.45);
         box-shadow: var(--shadow-soft);
-        background: #000000;
+        --download-video-ratio: 16 / 9;
+        aspect-ratio: var(--download-video-ratio);
         transform: translateY(0);
         transition: transform 0.18s ease, box-shadow 0.18s ease;
       }
@@ -926,10 +899,12 @@
         width: 100%;
         height: 100%;
         display: block;
+        border-radius: 18px;
+        background: #000000;
       }
       .download-video-overlay {
         position: absolute;
-        inset: 0;
+        inset: 8px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -937,6 +912,7 @@
         gap: 14px;
         background: linear-gradient(180deg, rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.2));
         backdrop-filter: blur(8px);
+        border-radius: 18px;
         z-index: 2;
         transition: opacity 0.2s ease, visibility 0.2s ease;
       }
@@ -1028,6 +1004,11 @@
       }
       .dark-mode .download-video-choice-btn:hover {
         border-color: #38bdf8;
+      }
+      .dark-mode .download-video-wrap {
+        background: rgba(2, 6, 23, 0.92);
+        border-color: #1f2937;
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.75);
       }
       @media (max-width: 900px) {
         .download-inner {
@@ -1561,7 +1542,7 @@
       /* ============= MOBILE OPTIMIZATION – RESPONSIVE ============= */
       @media (max-width: 768px) {
         body {
-          font-size: 15px;
+          font-size: 16px;
         }
         .header-inner {
           gap: 6px;
@@ -1603,20 +1584,23 @@
         }
         .store-badges {
           margin-top: 14px;
-          gap: 10px;
+          gap: 12px;
           flex-wrap: nowrap;
           justify-content: flex-start;
-          padding-inline: 10px;
+          align-items: center;
+          padding-inline: 14px;
+          scroll-padding-inline: 14px;
           overflow-x: auto;
           -webkit-overflow-scrolling: touch;
           scroll-snap-type: x mandatory;
         }
         .store-badge {
-          min-width: 75%;
+          min-width: 78%;
           max-width: 360px;
           border-radius: 999px;
           padding: 6px 16px 8px;
           scroll-snap-align: center;
+          scroll-snap-stop: always;
         }
         .hero-categories {
           display: none;
@@ -2023,14 +2007,13 @@
               <img src="badge-wgt.png" alt="Smart TV WGT" />
               <span class="store-badge-label" data-i18n="store.wgt">Smart TV • WGT</span>
             </a>
-            <a
-              class="store-badge store-badge-live-link"
-              href="https://app.oktv.ge/"
-              target="_blank"
-              rel="noopener"
-              data-i18n-aria="store.live"
-            >
-              <span class="store-badge-live" aria-hidden="true">LIVE OK TV</span>
+            <!-- Live OK TV button image filename: live-oktv-button.png -->
+            <a class="store-badge" href="https://app.oktv.ge/" target="_blank" rel="noopener">
+              <img
+                src="live-oktv-button.png"
+                alt="Live OK TV"
+                data-i18n-alt="store.live"
+              />
               <span class="store-badge-label" data-i18n="store.live">Live OK TV</span>
             </a>
           </div>
@@ -2108,6 +2091,7 @@
                     type="button"
                     class="download-video-choice-btn"
                     data-video-src="oktv-app-download.mp4"
+                    data-video-ratio="16 / 9"
                     data-i18n="download.choice.mobile"
                   >
                     Download app on mobile
@@ -2116,6 +2100,7 @@
                     type="button"
                     class="download-video-choice-btn"
                     data-video-src="oktv-app-download-tv-1080x1350.mp4"
+                    data-video-ratio="4 / 5"
                     data-i18n="download.choice.tv"
                   >
                     Download app on TV
@@ -2923,6 +2908,7 @@
       });
 
       // ================= DOWNLOAD VIDEO CHOOSER =================
+      const downloadVideoWrap = document.getElementById("downloadVideoWrap");
       const downloadVideo = document.getElementById("downloadVideo");
       const downloadVideoSource = document.getElementById("downloadVideoSource");
       const downloadVideoOverlay = document.getElementById("downloadVideoOverlay");
@@ -2944,6 +2930,9 @@
         if (!downloadVideoOverlay) return;
         downloadVideoOverlay.classList.remove("hidden");
         downloadVideoOverlay.classList.remove("show-choices");
+        if (downloadVideoWrap) {
+          downloadVideoWrap.style.setProperty("--download-video-ratio", "16 / 9");
+        }
       }
 
       if (downloadVideoPlay) {
@@ -2953,10 +2942,14 @@
       downloadVideoButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
           const src = btn.dataset.videoSrc;
+          const ratio = btn.dataset.videoRatio;
           if (!src || !downloadVideo || !downloadVideoSource) return;
           downloadVideoSource.src = src;
           downloadVideo.load();
           downloadVideo.setAttribute("controls", "");
+          if (downloadVideoWrap && ratio) {
+            downloadVideoWrap.style.setProperty("--download-video-ratio", ratio);
+          }
           downloadVideo.play().catch(() => {});
           hideDownloadChoices();
         });
