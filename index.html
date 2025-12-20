@@ -1106,12 +1106,15 @@
         }
         .offers-media {
           order: 1;
-          max-width: 100%;
+          max-width: 380px;
+          width: 100%;
+          margin: 0 auto;
         }
         .offers-media img {
-          max-height: 360px;
           width: 100%;
-          object-fit: contain;
+          height: auto;
+          aspect-ratio: 4 / 5;
+          object-fit: cover;
         }
         .offers-title {
           font-size: 1.35rem;
