@@ -57,6 +57,8 @@
         scroll-behavior: smooth;
         -webkit-text-size-adjust: 100%;
         text-size-adjust: 100%;
+        width: 100%;
+        overflow-x: hidden;
       }
       body {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -76,6 +78,13 @@
         position: relative;
         overflow-x: hidden;
         transition: background 0.2s ease, color 0.2s ease;
+        width: 100%;
+      }
+      main,
+      section,
+      header,
+      footer {
+        width: 100%;
       }
       .dark-mode body {
         background: radial-gradient(
@@ -661,6 +670,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        flex: 0 0 auto;
         border-radius: 999px;
         padding: 6px 14px 8px;
         background: #ffffff;
@@ -886,8 +896,7 @@
         background: rgba(255, 255, 255, 0.95);
         border: 1px solid rgba(148, 163, 184, 0.45);
         box-shadow: var(--shadow-soft);
-        --download-video-ratio: 16 / 9;
-        aspect-ratio: var(--download-video-ratio);
+        aspect-ratio: 16 / 9;
         transform: translateY(0);
         transition: transform 0.18s ease, box-shadow 0.18s ease;
       }
@@ -901,6 +910,7 @@
         display: block;
         border-radius: 18px;
         background: #000000;
+        object-fit: contain;
       }
       .download-video-overlay {
         position: absolute;
@@ -1233,7 +1243,7 @@
       .floating-contact {
         position: fixed;
         right: 24px;
-        bottom: 24px;
+        bottom: calc(24px + env(safe-area-inset-bottom));
         z-index: 80;
         display: flex;
         flex-direction: column;
@@ -1332,7 +1342,7 @@
       @media (max-width: 480px) {
         .floating-contact {
           right: 12px;
-          bottom: 16px;
+          bottom: calc(16px + env(safe-area-inset-bottom));
         }
         .contact-toggle-btn {
           padding: 8px 13px;
@@ -1544,6 +1554,15 @@
         body {
           font-size: 16px;
         }
+        section {
+          padding: 64px 14px;
+        }
+        #okAiChatToggle {
+          right: 16px;
+        }
+        .floating-contact {
+          right: 16px;
+        }
         .header-inner {
           gap: 6px;
           padding-inline: 12px;
@@ -1715,7 +1734,7 @@
       #okAiChatToggle {
         position: fixed;
         right: 24px;
-        bottom: 96px;
+        bottom: calc(96px + env(safe-area-inset-bottom));
         border-radius: 999px;
         padding: 10px 16px;
         font-size: 0.88rem;
@@ -2007,14 +2026,14 @@
               <img src="badge-wgt.png" alt="Smart TV WGT" />
               <span class="store-badge-label" data-i18n="store.wgt">Smart TV • WGT</span>
             </a>
-            <!-- Live OK TV button image filename: live-oktv-button.png -->
+            <!-- Live OKTV button image: live-oktv-button.png -->
             <a class="store-badge" href="https://app.oktv.ge/" target="_blank" rel="noopener">
               <img
                 src="live-oktv-button.png"
-                alt="Live OK TV"
+                alt="LIVE OKTV"
                 data-i18n-alt="store.live"
               />
-              <span class="store-badge-label" data-i18n="store.live">Live OK TV</span>
+              <span class="store-badge-label" data-i18n="store.live">LIVE OKTV</span>
             </a>
           </div>
 
@@ -2091,7 +2110,6 @@
                     type="button"
                     class="download-video-choice-btn"
                     data-video-src="oktv-app-download.mp4"
-                    data-video-ratio="16 / 9"
                     data-i18n="download.choice.mobile"
                   >
                     Download app on mobile
@@ -2100,7 +2118,6 @@
                     type="button"
                     class="download-video-choice-btn"
                     data-video-src="oktv-app-download-tv-1080x1350.mp4"
-                    data-video-ratio="4 / 5"
                     data-i18n="download.choice.tv"
                   >
                     Download app on TV
@@ -2447,7 +2464,7 @@
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
           "store.wgt": "Smart TV • WGT",
-          "store.live": "LIVE OK TV",
+          "store.live": "LIVE OKTV",
           "cat.packages.title": "პაკეტები",
           "cat.packages.desc": "საოჯახო, სპორტული და კინოპაკეტები ერთი გვერდიდან.",
           "cat.business.title": "ბიზნესისთვის",
@@ -2525,7 +2542,7 @@
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
           "store.wgt": "Smart TV • WGT",
-          "store.live": "Live OK TV",
+          "store.live": "LIVE OKTV",
           "cat.packages.title": "Packages",
           "cat.packages.desc": "Family, sports, and movie packages in one place.",
           "cat.business.title": "Business",
@@ -2602,7 +2619,7 @@
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
           "store.wgt": "Smart TV • WGT",
-          "store.live": "Live OK TV",
+          "store.live": "LIVE OKTV",
           "cat.packages.title": "Пакеты",
           "cat.packages.desc": "Семейные, спортивные и кино-пакеты на одной странице.",
           "cat.business.title": "Для бизнеса",
@@ -2908,7 +2925,6 @@
       });
 
       // ================= DOWNLOAD VIDEO CHOOSER =================
-      const downloadVideoWrap = document.getElementById("downloadVideoWrap");
       const downloadVideo = document.getElementById("downloadVideo");
       const downloadVideoSource = document.getElementById("downloadVideoSource");
       const downloadVideoOverlay = document.getElementById("downloadVideoOverlay");
@@ -2930,9 +2946,6 @@
         if (!downloadVideoOverlay) return;
         downloadVideoOverlay.classList.remove("hidden");
         downloadVideoOverlay.classList.remove("show-choices");
-        if (downloadVideoWrap) {
-          downloadVideoWrap.style.setProperty("--download-video-ratio", "16 / 9");
-        }
       }
 
       if (downloadVideoPlay) {
@@ -2942,14 +2955,10 @@
       downloadVideoButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
           const src = btn.dataset.videoSrc;
-          const ratio = btn.dataset.videoRatio;
           if (!src || !downloadVideo || !downloadVideoSource) return;
           downloadVideoSource.src = src;
           downloadVideo.load();
           downloadVideo.setAttribute("controls", "");
-          if (downloadVideoWrap && ratio) {
-            downloadVideoWrap.style.setProperty("--download-video-ratio", ratio);
-          }
           downloadVideo.play().catch(() => {});
           hideDownloadChoices();
         });
