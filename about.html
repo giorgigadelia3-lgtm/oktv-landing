@@ -2,7 +2,7 @@
 <html lang="ka">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>OK TV • ჩვენს შესახებ</title>
   <link rel="stylesheet" href="responsive.css" />
 
@@ -1392,6 +1392,847 @@
         justify-content: flex-end;
       }
     }
+  /* ================== SHARED HEADER & BUTTONS (INDEX) ================== */
+
+/* DARK MODE VARIABLES OVERRIDE */
+      .dark-mode {
+        --bg-page: #020617;
+        --bg-section: #020617;
+        --text-main: #e5e7eb;
+        --text-muted: #9ca3af;
+        --border-soft: #1f2937;
+      }
+.dark-mode body {
+        background: radial-gradient(
+            circle at 0 0,
+            rgba(56, 189, 248, 0.12),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 100% 100%,
+            rgba(59, 130, 246, 0.14),
+            transparent 55%
+          ),
+          #020617;
+      }
+
+/* ================== HEADER ================== */
+      .main-header {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+        transition: box-shadow 0.2s ease, background 0.2s ease;
+      }
+      .dark-mode .main-header {
+        background: rgba(15, 23, 42, 0.96);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      }
+      .main-header.scrolled {
+        box-shadow: 0 8px 30px rgba(15, 23, 42, 0.18);
+        background: rgba(255, 255, 255, 0.98);
+      }
+      .dark-mode .main-header.scrolled {
+        background: rgba(15, 23, 42, 0.98);
+      }
+      .header-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+        height: var(--nav-height);
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 0 16px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .brand-logo {
+        height: 64px;
+        width: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 8px 18px rgba(59, 130, 246, 0.58));
+      }
+      .brand-text-block {
+        line-height: 1.1;
+      }
+      .brand-name {
+        font-size: 1.3rem;
+        font-weight: 900;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--primary-dark);
+        white-space: nowrap;
+      }
+      .brand-subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+      /* ცოტა გავაპატარავეთ, რომ მენიუ ლოგოსთან ახლოს მივიდეს */
+      .header-spacer {
+        flex: 0.4;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: nowrap;
+        /* ყოველთვის ერთ ხაზზე */
+        white-space: nowrap;
+      }
+      .nav-link {
+        position: relative;
+        border: none;
+        background: transparent;
+        padding: 8px 12px;
+        border-radius: var(--radius-pill);
+        font-size: 0.82rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: color 0.15s ease, background 0.15s ease,
+          box-shadow 0.15s ease;
+        flex-shrink: 0;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 20%;
+        right: 20%;
+        bottom: 6px;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.18s ease-out;
+      }
+      .nav-link:hover {
+        color: var(--primary-dark);
+        background: rgba(0, 159, 227, 0.06);
+        box-shadow: 0 3px 8px rgba(148, 163, 184, 0.35);
+      }
+      .dark-mode .nav-link:hover {
+        background: rgba(37, 99, 235, 0.2);
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.8);
+      }
+      .nav-link.active {
+        color: var(--primary-dark);
+        background: rgba(0, 159, 227, 0.09);
+      }
+      .nav-link.active::after {
+        transform: scaleX(1);
+      }
+      .header-cta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: 6px;
+        flex-shrink: 0;
+      }
+      .header-btn {
+        position: relative;
+        border-radius: var(--radius-pill);
+        padding: 8px 16px;
+        border: 1px solid var(--primary);
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #ffffff;
+        background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 4px 16px rgba(0, 159, 227, 0.4);
+        white-space: nowrap;
+        transform: translateY(0);
+        transition: box-shadow 0.18s ease, transform 0.18s ease,
+          background 0.18s ease;
+        overflow: hidden;
+      }
+      .header-btn::before {
+        content: "❄";
+        position: absolute;
+        top: -8px;
+        right: 16px;
+        font-size: 0.85rem;
+        opacity: 0.7;
+      }
+      .header-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 22px rgba(0, 159, 227, 0.6);
+      }
+      .header-btn span {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+      .header-btn-ghost {
+        background: #ffffff;
+        color: var(--primary-dark);
+        border-color: var(--primary-dark);
+        box-shadow: none;
+      }
+      .dark-mode .header-btn-ghost {
+        background: transparent;
+        color: #e5e7eb;
+        border-color: #38bdf8;
+      }
+      .header-btn-ghost::before {
+        content: "❄";
+        color: #93c5fd;
+      }
+      .header-btn-ghost:hover {
+        background: rgba(0, 159, 227, 0.06);
+      }
+      /* ზედა ბალანსის ღილაკი – მხოლოდ desktop-ზე */
+      .header-btn-balance {
+        display: none;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        border-color: #16a34a;
+        box-shadow: 0 8px 24px rgba(34, 197, 94, 0.65);
+      }
+      .header-btn-balance::before {
+        content: "";
+        display: none;
+        /* რომ თოვლის ფიფქი არ ედგას */
+      }
+      .header-btn-balance:hover {
+        box-shadow: 0 14px 32px rgba(22, 163, 74, 0.9);
+        transform: translateY(-1px);
+      }
+      @media (min-width: 981px) {
+        .header-btn-balance {
+          display: inline-flex;
+        }
+      }
+      /* ================== LANGUAGE SWITCH (DROPDOWN) ================== */
+      .lang-switch {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .lang-toggle {
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.9);
+        background: #ffffff;
+        padding: 4px 10px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: #4b5563;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: background 0.15s ease, color 0.15s ease,
+          border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+      .lang-chevron {
+        font-size: 0.6rem;
+        opacity: 0.7;
+      }
+      .lang-toggle:hover {
+        border-color: var(--primary);
+        background: #eff6ff;
+        box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+      }
+      .dark-mode .lang-toggle {
+        background: #020617;
+        border-color: rgba(148, 163, 184, 0.7);
+        color: #e5e7eb;
+      }
+      .dark-mode .lang-toggle:hover {
+        background: #0f172a;
+        border-color: #38bdf8;
+        box-shadow: 0 3px 12px rgba(15, 23, 42, 0.9);
+      }
+      .lang-dropdown {
+        position: absolute;
+        top: 110%;
+        right: 0;
+        min-width: 90px;
+        background: #ffffff;
+        border-radius: 14px;
+        border: 1px solid rgba(148, 163, 184, 0.75);
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.25);
+        padding: 4px;
+        display: none;
+        z-index: 60;
+      }
+      .dark-mode .lang-dropdown {
+        background: #020617;
+        border-color: #1f2937;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      }
+      .lang-dropdown.open {
+        display: block;
+      }
+      .lang-option {
+        width: 100%;
+        border-radius: 999px;
+        border: none;
+        background: transparent;
+        padding: 5px 8px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: #4b5563;
+        text-align: left;
+        transition: background 0.15s ease, color 0.15s ease;
+      }
+      .lang-option:hover {
+        background: #eff6ff;
+        color: var(--primary-dark);
+      }
+      .lang-option-active {
+        background: #1d4ed8;
+        color: #ffffff;
+      }
+      .dark-mode .lang-option {
+        color: #e5e7eb;
+      }
+      .dark-mode .lang-option:hover {
+        background: #0f172a;
+        color: #e5e7eb;
+      }
+      .dark-mode .lang-option-active {
+        background: #1d4ed8;
+        color: #ffffff;
+      }
+      /* ================== THEME TOGGLE ================== */
+      .theme-toggle {
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.9);
+        background: #ffffff;
+        padding: 4px 8px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: #4b5563;
+        transition: background 0.15s ease, color 0.15s ease,
+          border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+      .theme-toggle-icon {
+        font-size: 0.9rem;
+      }
+      .theme-toggle:hover {
+        border-color: var(--primary);
+        background: #eff6ff;
+        box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+      }
+      .dark-mode .theme-toggle {
+        background: #020617;
+        border-color: rgba(148, 163, 184, 0.7);
+        color: #e5e7eb;
+      }
+      .dark-mode .theme-toggle:hover {
+        background: #0f172a;
+        border-color: #38bdf8;
+        box-shadow: 0 3px 12px rgba(15, 23, 42, 0.9);
+      }
+      @media (max-width: 980px) {
+        .header-inner {
+          flex-wrap: wrap;
+          justify-content: space-between;
+          gap: 8px;
+          padding-top: 8px;
+          padding-bottom: 8px;
+          height: auto;
+        }
+        .brand {
+          order: 0;
+        }
+        .header-spacer {
+          display: none;
+        }
+        .header-cta {
+          order: 1;
+          margin-left: 0;
+        }
+        .nav {
+          order: 2;
+          width: 100%;
+          justify-content: flex-start;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          white-space: nowrap;
+          padding-top: 4px;
+          padding-bottom: 8px;
+          -webkit-overflow-scrolling: touch;
+        }
+        .nav-link {
+          flex-shrink: 0;
+        }
+      }
+      @media (max-width: 640px) {
+        .brand-logo {
+          height: 56px;
+        }
+        .brand-name {
+          font-size: 1.05rem;
+        }
+        .brand-subtitle {
+          font-size: 0.64rem;
+        }
+        .nav-link {
+          font-size: 0.75rem;
+          padding-inline: 8px;
+        }
+        .header-cta {
+          width: 100%;
+          justify-content: flex-end;
+        }
+      }
+
+/* ================== FLOATING CONTACT ================== */
+      .floating-contact {
+        position: fixed;
+        right: 24px;
+        bottom: calc(24px + env(safe-area-inset-bottom));
+        z-index: 80;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+      }
+      .contact-toggle-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        background: linear-gradient(135deg, #0ea5e9, #2563eb);
+        color: #ffffff;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        box-shadow: 0 18px 40px rgba(37, 99, 235, 0.55);
+        backdrop-filter: blur(6px);
+        cursor: pointer;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+      }
+      .contact-toggle-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 26px 54px rgba(37, 99, 235, 0.75);
+      }
+      .contact-toggle-icon {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.15rem;
+      }
+      .contact-menu {
+        position: absolute;
+        right: 0;
+        bottom: 120%;
+        display: none;
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        box-shadow: 0 22px 48px rgba(15, 23, 42, 0.28);
+        backdrop-filter: blur(10px);
+      }
+      .dark-mode .contact-menu {
+        background: rgba(2, 6, 23, 0.92);
+        border-color: rgba(30, 41, 59, 0.9);
+        box-shadow: 0 26px 56px rgba(0, 0, 0, 0.8);
+      }
+      .contact-menu.open {
+        display: flex;
+      }
+      .contact-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: #ffffff;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s ease, border-color 0.15s ease,
+          transform 0.15s ease, box-shadow 0.15s ease;
+        text-decoration: none;
+        color: var(--text-main);
+      }
+      .contact-item:hover {
+        background: #eff6ff;
+        border-color: rgba(37, 99, 235, 0.5);
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(15, 23, 42, 0.2);
+      }
+      .dark-mode .contact-item {
+        background: rgba(2, 6, 23, 0.92);
+        border-color: rgba(30, 41, 59, 0.9);
+        color: #e5e7eb;
+      }
+      .dark-mode .contact-item:hover {
+        background: rgba(2, 6, 23, 0.92);
+        border-color: #38bdf8;
+      }
+      .contact-item img {
+        width: 18px;
+        height: 18px;
+      }
+      @media (max-width: 480px) {
+        .floating-contact {
+          right: 12px;
+          bottom: calc(16px + env(safe-area-inset-bottom));
+        }
+        .contact-toggle-btn {
+          padding: 8px 13px;
+          font-size: 0.8rem;
+        }
+        .contact-toggle-icon {
+          width: 24px;
+          height: 24px;
+          font-size: 1rem;
+        }
+      }
+
+/* ================== DOWNLOAD MODAL ================== */
+      .download-modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.55);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 90;
+      }
+      .download-modal-backdrop.active {
+        display: flex;
+      }
+      .download-modal {
+        background: #f9fafb;
+        border-radius: 20px;
+        padding: 22px 22px 18px;
+        max-width: 420px;
+        width: 100%;
+        box-shadow: 0 30px 80px rgba(15, 23, 42, 0.75);
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        position: relative;
+      }
+      .dark-mode .download-modal {
+        background: #020617;
+        border-color: #1f2937;
+        box-shadow: 0 32px 90px rgba(0, 0, 0, 1);
+      }
+      .download-modal-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 8px;
+      }
+      .download-modal-subtitle {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+      }
+      .download-modal-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .download-option {
+        flex: 1 1 180px;
+        border-radius: 18px;
+        background: #ffffff;
+        border: 1px solid rgba(209, 213, 219, 0.9);
+        padding: 10px 10px 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: border-color 0.16s ease, box-shadow 0.16s ease,
+          transform 0.16s ease, background 0.16s ease;
+      }
+      .dark-mode .download-option {
+        background: #020617;
+        border-color: #1f2937;
+      }
+      .download-option img {
+        width: 140px;
+        height: auto;
+      }
+      .download-option-label {
+        margin-top: 4px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        letter-spacing: 0.04em;
+      }
+      .download-option:hover {
+        transform: translateY(-2px);
+        background: #f0f9ff;
+        border-color: var(--primary);
+        box-shadow: 0 12px 26px rgba(15, 23, 42, 0.24);
+      }
+      .dark-mode .download-option:hover {
+        background: #020617;
+        border-color: #38bdf8;
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.95);
+      }
+      .download-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        border: none;
+        background: transparent;
+        font-size: 1.1rem;
+        cursor: pointer;
+        color: #6b7280;
+      }
+      .download-modal-close:hover {
+        color: #111827;
+      }
+      .dark-mode .download-modal-close:hover {
+        color: #e5e7eb;
+      }
+
+/* ================== COOKIE BANNER ================== */
+      .cookie-banner {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+        background: rgba(15, 23, 42, 0.98);
+        color: #e5e7eb;
+        display: none;
+      }
+      .cookie-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 10px 16px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 0.8rem;
+      }
+      .cookie-text {
+        line-height: 1.5;
+      }
+      .cookie-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .cookie-btn {
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: background 0.15s ease, color 0.15s ease,
+          border-color 0.15s ease;
+      }
+      .cookie-btn-primary {
+        background: linear-gradient(135deg, #10b981, #34d399);
+        color: #0b1120;
+        border-color: #22c55e;
+      }
+      .cookie-btn-primary:hover {
+        background: linear-gradient(135deg, #22c55e, #4ade80);
+      }
+      .cookie-btn-secondary {
+        background: transparent;
+        color: #e5e7eb;
+        border-color: rgba(148, 163, 184, 0.8);
+      }
+      .cookie-btn-secondary:hover {
+        background: rgba(30, 64, 175, 0.55);
+      }
+      @media (max-width: 640px) {
+        .cookie-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .cookie-actions {
+          width: 100%;
+          justify-content: flex-end;
+        }
+      }
+
+/* ================== OK AI CHAT ================== */
+      body.okai-open {
+        overflow: hidden;
+      }
+      #okAiChatToggle {
+        position: fixed;
+        right: 24px;
+        bottom: calc(96px + env(safe-area-inset-bottom));
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-size: 0.88rem;
+        font-weight: 700;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: linear-gradient(135deg, #0ea5e9, #2563eb);
+        color: #ffffff;
+        box-shadow: 0 18px 40px rgba(37, 99, 235, 0.55);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        cursor: pointer;
+        z-index: 110;
+      }
+      #okAiChatToggle:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 26px 54px rgba(37, 99, 235, 0.75);
+      }
+      #okAiChatPanel {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: calc(var(--okai-vh, 1vh) * 100);
+        height: 100svh;
+        height: 100dvh;
+        min-height: calc(var(--okai-vh, 1vh) * 100);
+        min-height: 100svh;
+        min-height: 100dvh;
+        max-height: 100svh;
+        max-height: 100dvh;
+        display: none;
+        flex-direction: column;
+        border-radius: 0;
+        background: radial-gradient(circle at top, rgba(14, 165, 233, 0.12), transparent 55%),
+          #f8fafc;
+        color: #0f172a;
+        border: none;
+        box-shadow: none;
+        z-index: 120;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      #okAiChatPanel.open {
+        display: flex;
+      }
+      .okai-header {
+        flex: 0 0 auto;
+        padding: 18px 20px;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      }
+      .okai-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        box-shadow: 0 10px 20px rgba(15, 23, 42, 0.35);
+      }
+      .okai-header-subtitle {
+        color: rgba(226, 232, 240, 0.75);
+      }
+      .okai-messages {
+        flex: 1 1 auto;
+        min-height: 0;
+        padding: 18px 22px;
+        background: transparent;
+        color: #0f172a;
+        font-size: 0.95rem;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-bottom: 32px;
+      }
+      .okai-form {
+        flex: 0 0 auto;
+        flex-shrink: 0;
+        position: sticky;
+        bottom: 0;
+        z-index: 2;
+        padding: 14px 20px calc(14px + env(safe-area-inset-bottom));
+        background: #ffffff;
+        border-top: 1px solid #e2e8f0;
+      }
+      .okai-input {
+        font-size: 0.92rem;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: #f8fafc;
+        border-color: #e2e8f0;
+      }
+      .okai-send {
+        padding: 9px 16px;
+        font-size: 0.85rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        box-shadow: 0 10px 24px rgba(14, 165, 233, 0.35);
+      }
+      .okai-bubble-bot {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        color: #0f172a;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      }
+      .okai-bubble-user {
+        background: linear-gradient(135deg, #009fe3, #0077b6);
+        border: none;
+        color: #ffffff;
+        box-shadow: 0 14px 28px rgba(0, 159, 227, 0.35);
+      }
+      .dark-mode #okAiChatToggle {
+        border-color: rgba(148, 163, 184, 0.35);
+        box-shadow: 0 18px 40px rgba(2, 6, 23, 0.65);
+      }
+      .dark-mode #okAiChatPanel {
+        background: radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 55%),
+          #0b1220;
+        color: #e5e7eb;
+      }
+      .dark-mode .okai-header {
+        background: linear-gradient(135deg, #020617, #111827);
+        border-bottom-color: rgba(51, 65, 85, 0.6);
+      }
+      .dark-mode .okai-form {
+        background: #0b1220;
+        border-top-color: #1f2937;
+      }
+      .dark-mode .okai-input {
+        background: #0f172a;
+        border-color: #1f2937;
+        color: #e5e7eb;
+      }
+      .dark-mode .okai-bubble-bot {
+        background: #0f172a;
+        border-color: #1f2937;
+        color: #e5e7eb;
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.6);
+      }
+      .dark-mode .okai-bubble-user {
+        background: linear-gradient(135deg, #0ea5e9, #2563eb);
+      }
+
+/* ================== END SHARED HEADER & BUTTONS ================== */
   </style>
 </head>
 <body>
@@ -1410,45 +2251,55 @@
   </div>
 
   <!-- HEADER -->
-  <header class="main-header" id="mainHeader">
-    <div class="header-inner">
-      <div class="brand">
-        <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
-      </div>
-
-      <div class="header-spacer"></div>
-
-      <nav class="nav" aria-label="მთავარი ნავიგაცია">
-        <a href="index.html" class="nav-link" data-i18n="nav.home">მთავარი</a>
-        <a class="nav-link" href="packages.html" data-i18n="nav.packages">პაკეტები</a>
-        <a class="nav-link" href="business.html" data-i18n="nav.business">ბიზნესისთვის</a>
-        <a class="nav-link active" href="about.html" data-i18n="nav.about">ჩვენს შესახებ</a>
-        <a class="nav-link" href="contact.html" data-i18n="nav.contact">კონტაქტი</a>
-      </nav>
-
-      <div class="header-cta">
-        <!-- ენის ჩასაშლელი -->
-        <div class="lang-switch" aria-label="Language selector">
-          <button type="button" class="lang-toggle" id="langToggle">
-            <span id="langToggleLabel">KA</span>
-            <span class="lang-toggle-icon">▾</span>
-          </button>
-          <div class="lang-dropdown" id="langDropdown" aria-hidden="true">
-            <button type="button" class="lang-option" data-lang="ka">ქართული</button>
-            <button type="button" class="lang-option" data-lang="en">English</button>
-            <button type="button" class="lang-option" data-lang="ru">Русский</button>
-          </div>
+    <header class="main-header" id="mainHeader">
+      <div class="header-inner">
+        <div class="brand">
+          <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
         </div>
-
-        <a href="https://app.oktv.ge/" target="_blank" class="header-btn header-btn-ghost" rel="noopener">
-          <span data-i18n="header.live">LIVE OKTV</span>
-        </a>
-        <a href="#" class="header-btn header-btn-download" id="downloadCtaBtn" role="button">
-          <span data-i18n="header.download">ჩამოტვირთე აპი</span>
-        </a>
+        <div class="header-spacer"></div>
+        <nav class="nav">
+          <a href="index.html" class="nav-link" data-i18n="nav.home">მთავარი</a>
+          <a href="packages.html" class="nav-link" data-i18n="nav.packages">პაკეტები</a>
+          <a href="business.html" class="nav-link" data-i18n="nav.business">ბიზნესისთვის</a>
+          <a href="about.html" class="nav-link active" aria-current="page" data-i18n="nav.about">ჩვენს შესახებ</a>
+          <a href="contact.html" class="nav-link" data-i18n="nav.contact">კონტაქტი</a>
+        </nav>
+        <div class="header-cta">
+          <!-- ზედა ბალანსის ღილაკი (desktop) -->
+          <a
+            href="http://mypay.ge/pay/11644"
+            class="header-btn header-btn-balance"
+            id="headerBalanceBtn"
+            target="_blank"
+            rel="noopener"
+          >
+            <span data-i18n="balance.topup">შეავსე შენი ბალანსი</span>
+          </a>
+          <!-- Theme toggle -->
+          <button type="button" id="themeToggle" class="theme-toggle">
+            <span class="theme-toggle-icon" id="themeIcon">🌙</span>
+          </button>
+          <!-- Language dropdown -->
+          <div class="lang-switch" aria-label="Language selector">
+            <button type="button" class="lang-toggle" id="langToggle">
+              <span id="langCurrentLabel">KA</span>
+              <span class="lang-chevron">▾</span>
+            </button>
+            <div class="lang-dropdown" id="langDropdown">
+              <button type="button" class="lang-option lang-option-active" data-lang="ka">KA</button>
+              <button type="button" class="lang-option" data-lang="en">EN</button>
+              <button type="button" class="lang-option" data-lang="ru">RU</button>
+            </div>
+          </div>
+          <a href="https://app.oktv.ge/" target="_blank" class="header-btn header-btn-ghost" rel="noopener">
+            <span data-i18n="header.live">LIVE OKTV</span>
+          </a>
+          <a href="#" class="header-btn header-btn-download" id="downloadCtaBtn" role="button">
+            <span data-i18n="header.download">ჩამოტვირთე აპი</span>
+          </a>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
   <main>
     <!-- ბანერების სლაიდერი + ჩამოსატვირთი ბეჯები -->
@@ -1736,125 +2587,151 @@
     </div>
   </footer>
 
-  <!-- Floating socials -->
-  <div class="floating-socials">
-    <a class="social-btn" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
-      <img src="icon-facebook.png" alt="Facebook" />
-    </a>
-    <a class="social-btn" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
-      <img src="icon-instagram.png" alt="Instagram" />
-    </a>
-    <a class="social-btn" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
-      <img src="icon-tiktok.png" alt="TikTok" />
-    </a>
-  </div>
-
-  <!-- Floating call -->
-  <a href="tel:+995322901011" class="floating-call-btn">
-    <span class="floating-call-icon">📞</span>
-    <span class="floating-call-text">(+995 032) 2 90 10 11</span>
-  </a>
-
-  <!-- Download modal -->
-  <div class="download-modal-backdrop" id="downloadModal">
-    <div class="download-modal">
-      <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
-      <h3 class="download-modal-title" data-i18n="modal.title">აირჩიე, საიდან ჩამოტვირთო აპლიკაცია</h3>
-      <p class="download-modal-subtitle" data-i18n="modal.subtitle">
-        დააჭირე შენთვის სასურველ პლატფორმას – გადავიყვანთ პირდაპირ OK TV-ს ოფიციალურ გვერდზე.
-      </p>
-      <div class="download-modal-grid">
-        <a class="download-option" href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
-           target="_blank" rel="noopener">
-          <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
-          <span class="download-option-label" data-i18n="store.mobile">Google Play • Mobile</span>
-        </a>
-        <a class="download-option" href="https://apps.apple.com/ge/app/oktv/id6478280344"
-           target="_blank" rel="noopener">
-          <img src="badge-app-store.png" alt="Apple App Store" />
-          <span class="download-option-label" data-i18n="store.ios">Apple App Store</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- OK AI CHATBOT -->
-  <button
-    id="okAiChatToggle"
-    class="fixed z-[85] bottom-24 left-4 flex items-center gap-2 rounded-full bg-primaryDark text-white text-[11px] md:text-xs font-semibold px-4 py-2 shadow-lg shadow-slate-800/40 border border-white/20 backdrop-blur-sm"
-  >
-    <span class="hidden sm:inline-block" data-i18n="chat.toggleFull">OK AI • დახმარება</span>
-    <span class="sm:hidden" data-i18n="chat.toggleShort">OK AI</span>
-    <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/15 text-[13px]">💬</span>
-  </button>
-
-  <div
-    id="okAiChatPanel"
-    class="fixed z-[86] bottom-24 left-4 w-[min(360px,92vw)] max-h-[70vh] rounded-2xl bg-white shadow-2xl shadow-slate-900/50 border border-slate-200 flex flex-col overflow-hidden"
-    style="display: none;"
-  >
-    <!-- header -->
-    <div class="flex items-center justify-between px-3 py-2.5 bg-slate-900 text-white">
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-lg">
-          🤖
-        </div>
-        <div class="flex flex-col">
-          <span class="text-xs font-semibold leading-tight" data-i18n="chat.headerTitle">OK AI ასისტენტი</span>
-          <span class="text-[10px] text-slate-300 leading-tight" data-i18n="chat.headerSubtitle">
-            Gemini • n8n • Perplexity • Sheets
-          </span>
-        </div>
-      </div>
-      <button
-        type="button"
-        id="okAiChatClose"
-        class="text-slate-300 hover:text-white text-sm px-1"
-        aria-label="დახურვა"
-      >
-        ✕
+    <!-- FLOATING CONTACT -->
+    <div class="floating-contact">
+      <button type="button" id="contactToggle" class="contact-toggle-btn">
+        <span class="contact-toggle-icon">📞</span>
+        <span data-i18n="contact.button">კონტაქტი</span>
       </button>
+      <div class="contact-menu" id="contactMenu">
+        <a class="contact-item" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
+          <img src="icon-facebook.png" alt="Facebook" />
+          <span>Facebook</span>
+        </a>
+        <a class="contact-item" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
+          <img src="icon-instagram.png" alt="Instagram" />
+          <span>Instagram</span>
+        </a>
+        <a class="contact-item" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
+          <img src="icon-tiktok.png" alt="TikTok" />
+          <span>TikTok</span>
+        </a>
+        <a class="contact-item" href="tel:+995322901011">
+          <span>📞</span>
+          <span>(+995 032) 2 90 10 11</span>
+        </a>
+      </div>
     </div>
 
-    <!-- messages -->
-    <div
-      id="okAiMessages"
-      class="flex-1 bg-slate-50/80 px-3 py-2.5 overflow-y-auto text-[11px] space-y-2"
+    <!-- DOWNLOAD MODAL -->
+    <div class="download-modal-backdrop" id="downloadModal">
+      <div class="download-modal">
+        <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
+        <h3 class="download-modal-title" data-i18n="modal.title">აირჩიე, საიდან ჩამოტვირთო აპლიკაცია</h3>
+        <p class="download-modal-subtitle" data-i18n="modal.subtitle">
+          დააჭირე შენთვის სასურველ პლატფორმას – გადავიყვანთ პირდაპირ OK TV-ს ოფიციალურ გვერდზე.
+        </p>
+        <div class="download-modal-grid">
+          <a
+            class="download-option"
+            href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
+            <span class="download-option-label" data-i18n="store.mobile">Google Play • Mobile</span>
+          </a>
+          <a class="download-option" href="https://apps.apple.com/ge/app/oktv/id6478280344" target="_blank" rel="noopener">
+            <img src="badge-app-store.png" alt="Apple App Store" />
+            <span class="download-option-label" data-i18n="store.ios">Apple • App Store</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- OK AI CHATBOT -->
+    <button
+      id="okAiChatToggle"
+      class="okai-toggle z-[85] flex items-center gap-2"
+      aria-controls="okAiChatPanel"
+      aria-expanded="false"
+      aria-haspopup="dialog"
     >
-      <div class="flex gap-2">
-        <div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>
-        <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%]">
-          <p class="leading-snug" data-i18n="chat.welcome">
-            გამარჯობა! მე ვარ <strong>OK AI</strong> – შეგიძლია მკითხო ყველაფერი OK TV-ს პაკეტებზე,
-            აპლიკაციის დაყენებაზე ან დაგეგმო სამუშაოები Google კალენდარში.<br />
-            დაწერე შენი კითხვა 👇
-          </p>
+      <span class="hidden sm:inline-block" data-i18n="chat.toggleFull">OK AI • დახმარება</span>
+      <span class="sm:hidden" data-i18n="chat.toggleShort">OK AI</span>
+      <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/15 text-[13px]">💬</span>
+    </button>
+
+    <div
+      id="okAiChatPanel"
+      class="okai-panel z-[86] max-h-[100vh] rounded-2xl bg-white shadow-2xl shadow-slate-900/50 border border-slate-200 flex flex-col overflow-hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-labelledby="okAiChatTitle"
+    >
+      <!-- header -->
+      <div class="okai-header flex items-center justify-between px-3 py-2.5 bg-slate-900 text-white">
+        <div class="flex items-center gap-2">
+          <div
+            class="okai-avatar w-8 h-8 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-lg"
+          >
+            🤖
+          </div>
+          <div class="flex flex-col">
+            <span
+              id="okAiChatTitle"
+              class="text-xs font-semibold leading-tight"
+              data-i18n="chat.headerTitle"
+            >
+              OK AI ასისტენტი
+            </span>
+            <span
+              class="okai-header-subtitle text-[10px] text-slate-300 leading-tight"
+              data-i18n="chat.headerSubtitle"
+            >
+              Gemini • n8n • Perplexity • Sheets
+            </span>
+          </div>
+        </div>
+        <button type="button" id="okAiChatClose" class="text-slate-300 hover:text-white text-sm px-1" aria-label="დახურვა">
+          ✕
+        </button>
+      </div>
+
+      <!-- messages -->
+      <div
+        id="okAiMessages"
+        class="okai-messages flex-1 bg-slate-50/80 px-3 py-2.5 overflow-y-auto text-[11px] space-y-2"
+      >
+        <div class="flex gap-2">
+          <div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">
+            OK
+          </div>
+          <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%] okai-bubble okai-bubble-bot">
+            <p class="leading-snug" data-i18n="chat.welcome">
+              გამარჯობა! მე ვარ <strong>OK AI</strong> – შეგიძლია მკითხო ყველაფერი OK TV-ს პაკეტებზე, აპლიკაციის დაყენებაზე ან დაგეგმო სამუშაოები Google კალენდარში.<br />
+              დაწერე შენი კითხვა 👇
+            </p>
+          </div>
         </div>
       </div>
+
+      <!-- input -->
+      <form
+        id="okAiForm"
+        class="okai-form border-t border-slate-200 bg-white px-2.5 py-2 flex items-center gap-1.5"
+      >
+        <input
+          id="okAiInput"
+          type="text"
+          autocomplete="off"
+          data-i18n-placeholder="chat.placeholder"
+          placeholder="დაწერე კითხვა ან დავალება..."
+          class="okai-input flex-1 text-[11px] px-2.5 py-1.5 rounded-full border border-slate-200 focus:outline-none focus:border-primary focus:ring-[1.5px] focus:ring-primary/30"
+        />
+        <button
+          type="submit"
+          class="okai-send inline-flex items-center justify-center px-2.5 py-1.5 rounded-full bg-primary text-white text-[11px] font-semibold hover:bg-primaryDark transition shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
+          id="okAiSendBtn"
+          data-i18n="chat.send"
+        >
+          გაგზავნა
+        </button>
+      </form>
     </div>
 
-    <!-- input -->
-    <form id="okAiForm" class="border-t border-slate-200 bg-white px-2.5 py-2 flex items-center gap-1.5">
-      <input
-        id="okAiInput"
-        type="text"
-        autocomplete="off"
-        data-i18n-placeholder="chat.placeholder"
-        placeholder="დაწერე კითხვა ან დავალება..."
-        class="flex-1 text-[11px] px-2.5 py-1.5 rounded-full border border-slate-200 focus:outline-none комфортfocus:border-primary focus:ring-[1.5px] focus:ring-primary/30"
-      />
-      <button
-        type="submit"
-        class="inline-flex items-center justify-center px-2.5 py-1.5 rounded-full bg-primary text-white text-[11px] font-semibold hover:bg-primaryDark transition shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
-        id="okAiSendBtn"
-        data-i18n="chat.send"
-      >
-        გაგზავნა
-      </button>
-    </form>
-  </div>
-
-  <!-- COOKIE BANNER -->
+    <!-- COOKIE BANNER -->
   <div id="cookieBanner" class="cookie-banner">
     <div class="cookie-inner">
       <p class="cookie-text" data-i18n="cookie.message">
@@ -2143,70 +3020,158 @@
       }
     };
 
-    const langToggle = document.getElementById('langToggle');
-    const langToggleLabel = document.getElementById('langToggleLabel');
-    const langDropdown = document.getElementById('langDropdown');
-    const langSwitch = document.querySelector('.lang-switch');
-    const langOptions = document.querySelectorAll('.lang-option');
+    const fallbackTranslations = {
+      "balance.topup": {
+        ka: "შეავსე შენი ბალანსი",
+        en: "Top up your balance",
+        ru: "Пополнить баланс",
+      },
+      "contact.button": {
+        ka: "კონტაქტი",
+        en: "Contact",
+        ru: "Контакты",
+      },
+      "chat.error": {
+        ka: "⛅ ამ წუთას ვერ ვუკავშირდები OK AI სერვერს. გადაამოწმე n8n / Gemini ბექენდი ან სცადე ცოტა ხანში თავიდან.",
+        en: "⛅ Right now I cannot reach the OK AI server. Please check your n8n / Gemini backend or try again later.",
+        ru: "⛅ Сейчас не удается подключиться к серверу OK AI. Проверьте backend n8n / Gemini или попробуйте позже.",
+      },
+    };
+
+    Object.entries(fallbackTranslations).forEach(([key, values]) => {
+      Object.entries(values).forEach(([lang, value]) => {
+        if (translations[lang] && !translations[lang][key]) {
+          translations[lang][key] = value;
+        }
+      });
+    });
+
+    });
+
+
+    const langToggle = document.getElementById("langToggle");
+    const langDropdown = document.getElementById("langDropdown");
+    const langOptions = document.querySelectorAll(".lang-option");
 
     function applyLanguage(lang) {
-      const langPack = translations[lang] || translations.ka;
-      currentLanguage = lang;
-      localStorage.setItem(LANGUAGE_KEY, lang);
-      document.documentElement.lang = lang;
-
-      // ტექსტების ჩანაცვლება
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        const value = langPack[key];
-        if (value) {
-          el.innerHTML = value;
+        const langPack = translations[lang] || translations.ka;
+        currentLanguage = lang;
+        localStorage.setItem(LANGUAGE_KEY, lang);
+        document.documentElement.lang = lang;
+        const pageTitle = langPack["page.title"];
+        if (pageTitle) {
+          document.title = pageTitle;
         }
-      });
 
-      // placeholder-ები
-      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        const key = el.getAttribute('data-i18n-placeholder');
-        const value = langPack[key];
-        if (value) {
-          el.setAttribute('placeholder', value);
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          const value = langPack[key];
+          if (value) {
+            el.innerHTML = value;
+          }
+        });
+
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-placeholder");
+          const value = langPack[key];
+          if (value) {
+            el.setAttribute("placeholder", value);
+          }
+        });
+        document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-alt");
+          const value = langPack[key];
+          if (value) {
+            el.setAttribute("alt", value);
+          }
+        });
+        document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-aria");
+          const value = langPack[key];
+          if (value) {
+            el.setAttribute("aria-label", value);
+          }
+        });
+        document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-title");
+          const value = langPack[key];
+          if (value) {
+            el.setAttribute("title", value);
+          }
+        });
+
+        const langLabel = document.getElementById("langCurrentLabel");
+        if (langLabel) {
+          langLabel.textContent = lang.toUpperCase();
         }
-      });
 
-      if (langToggleLabel) {
-        langToggleLabel.textContent = lang.toUpperCase();
-      }
-    }
-
-    function setupLanguage() {
-      const saved = localStorage.getItem(LANGUAGE_KEY);
-      const lang = saved || 'ka';
-      applyLanguage(lang);
-
-      if (langToggle && langSwitch) {
-        langToggle.addEventListener('click', (e) => {
-          e.stopPropagation();
-          langSwitch.classList.toggle('open');
+        document.querySelectorAll(".lang-option").forEach((btn) => {
+          const btnLang = btn.getAttribute("data-lang");
+          btn.classList.toggle("lang-option-active", btnLang === lang);
         });
       }
 
-      langOptions.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const selected = btn.getAttribute('data-lang');
-          applyLanguage(selected);
-          langSwitch.classList.remove('open');
-        });
-      });
+      function setupLanguage() {
+        const saved = localStorage.getItem(LANGUAGE_KEY);
+        const lang = saved || "ka";
+        applyLanguage(lang);
 
-      document.addEventListener('click', (e) => {
-        if (langSwitch && !langSwitch.contains(e.target)) {
-          langSwitch.classList.remove('open');
+        const langDropdown = document.getElementById("langDropdown");
+        const langToggle = document.getElementById("langToggle");
+
+        if (langToggle && langDropdown) {
+          langToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle("open");
+          });
+
+          document.querySelectorAll(".lang-option").forEach((btn) => {
+            btn.addEventListener("click", (ev) => {
+              ev.stopPropagation();
+              const selected = btn.getAttribute("data-lang");
+              applyLanguage(selected);
+              langDropdown.classList.remove("open");
+            });
+          });
+
+          document.addEventListener("click", () => {
+            langDropdown.classList.remove("open");
+          });
         }
-      });
-    }
+      }
 
-    setupLanguage();
+      setupLanguage();
+
+      // ================= THEME / DARK MODE =================
+      const THEME_KEY = "oktv_theme";
+
+      function applyTheme(mode) {
+        const root = document.documentElement;
+        const icon = document.getElementById("themeIcon");
+        const isDark = mode === "dark";
+        root.classList.toggle("dark-mode", isDark);
+        if (icon) icon.textContent = isDark ? "☀️" : "🌙";
+
+        localStorage.setItem(THEME_KEY, mode);
+      }
+
+      function setupTheme() {
+        const savedTheme = localStorage.getItem(THEME_KEY);
+        const initialTheme = savedTheme === "dark" ? "dark" : "light";
+        applyTheme(initialTheme);
+
+        const themeToggle = document.getElementById("themeToggle");
+        if (themeToggle) {
+          themeToggle.addEventListener("click", () => {
+            const nextTheme = document.documentElement.classList.contains("dark-mode")
+              ? "light"
+              : "dark";
+            applyTheme(nextTheme);
+          });
+        }
+      }
+
+      setupTheme();
 
     // Header shadow on scroll
     const mainHeader = document.getElementById('mainHeader');
@@ -2334,116 +3299,197 @@
       });
     }
 
-    // ================= OK AI CHATBOT =================
-    const okAiToggle = document.getElementById('okAiChatToggle');
-    const okAiPanel = document.getElementById('okAiChatPanel');
-    const okAiClose = document.getElementById('okAiChatClose');
-    const okAiForm = document.getElementById('okAiForm');
-    const okAiInput = document.getElementById('okAiInput');
-    const okAiMessages = document.getElementById('okAiMessages');
-    const okAiSendBtn = document.getElementById('okAiSendBtn');
-
-    function toggleOkAiPanel(forceOpen) {
-      if (!okAiPanel) return;
-      const isHidden = okAiPanel.style.display === 'none' || !okAiPanel.style.display;
-      if (forceOpen === true || (forceOpen === undefined && isHidden)) {
-        okAiPanel.style.display = 'flex';
-      } else if (forceOpen === false || !isHidden) {
-        okAiPanel.style.display = 'none';
+    function syncOkAiViewportHeight() {
+        const viewportHeight =
+          (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+        document.documentElement.style.setProperty(
+          "--okai-vh",
+          `${viewportHeight * 0.01}px`
+        );
       }
-    }
 
-    if (okAiToggle) {
-      okAiToggle.addEventListener('click', () => toggleOkAiPanel());
-    }
-    if (okAiClose) {
-      okAiClose.addEventListener('click', () => toggleOkAiPanel(false));
-    }
-
-    function appendMessage({ from, text }) {
-      if (!okAiMessages) return;
-      const wrapper = document.createElement('div');
-      wrapper.className = 'flex gap-2';
-
-      if (from === 'user') {
-        wrapper.classList.add('justify-end');
-        wrapper.innerHTML = `
-          <div class="rounded-2xl rounded-tr-sm bg-primary text-white px-3 py-2 max-w-[85%] shadow-sm text-[11px] leading-snug">
-            ${text}
-          </div>
-        `;
+      syncOkAiViewportHeight();
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener("resize", syncOkAiViewportHeight);
       } else {
-        wrapper.innerHTML = `
-          <div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>
-          <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%] text-[11px] leading-snug">
-            ${text}
-          </div>
-        `;
+        window.addEventListener("resize", syncOkAiViewportHeight);
       }
 
-      okAiMessages.appendChild(wrapper);
-      okAiMessages.scrollTop = okAiMessages.scrollHeight;
-    }
+      // ================= OK AI CHATBOT LOGIC =================
+      const okAiToggle = document.getElementById("okAiChatToggle");
+      const okAiPanel = document.getElementById("okAiChatPanel");
+      const okAiClose = document.getElementById("okAiChatClose");
+      const okAiForm = document.getElementById("okAiForm");
+      const okAiInput = document.getElementById("okAiInput");
+      const okAiMessages = document.getElementById("okAiMessages");
+      const okAiSendBtn = document.getElementById("okAiSendBtn");
 
-    async function sendOkAiMessage(message) {
-      if (!message) return;
-      const sessionId = window.okAiSessionId || (window.okAiSessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())));
+      function toggleOkAiPanel(forceOpen) {
+        if (!okAiPanel) return;
+        const isOpen = okAiPanel.classList.contains("open");
+        const shouldOpen = forceOpen === true || (forceOpen === undefined && !isOpen);
 
-      const BACKEND_URL = 'https://YOUR_BACKEND_CHAT_ENDPOINT';
+        if (shouldOpen) {
+          syncOkAiViewportHeight();
+          okAiPanel.classList.add("open");
+          okAiPanel.setAttribute("aria-hidden", "false");
+          document.body.classList.add("okai-open");
+          if (okAiToggle) {
+            okAiToggle.setAttribute("aria-expanded", "true");
+            okAiToggle.style.display = "none";
+          }
+          if (contactMenu) contactMenu.classList.remove("open");
+          if (contactToggle) contactToggle.style.display = "none";
+          if (okAiInput) {
+            setTimeout(() => okAiInput.focus(), 0);
+          }
+        } else {
+          okAiPanel.classList.remove("open");
+          okAiPanel.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("okai-open");
+          if (okAiToggle) {
+            okAiToggle.setAttribute("aria-expanded", "false");
+            okAiToggle.style.display = "inline-flex";
+          }
+          if (contactToggle && !(contactMenu && contactMenu.classList.contains("open"))) {
+            contactToggle.style.display = "inline-flex";
+          }
+        }
+      }
 
-      try {
-        if (okAiSendBtn) okAiSendBtn.disabled = true;
+      if (okAiToggle) {
+        okAiToggle.addEventListener("click", () => toggleOkAiPanel());
+      }
 
-        const response = await fetch(BACKEND_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            message,
-            sessionId,
-            language: currentLanguage,
-            source: 'oktv-website',
-            page: 'about',
-            consent: localStorage.getItem('oktv_cookieConsent') || 'unknown'
-          })
-        });
+      if (okAiClose) {
+        okAiClose.addEventListener("click", () => toggleOkAiPanel(false));
+      }
 
-        if (!response.ok) {
-          throw new Error('Backend response not OK');
+      function appendMessage({ from, text }) {
+        if (!okAiMessages) return;
+        const wrapper = document.createElement("div");
+        wrapper.className = "flex gap-2";
+
+        if (from === "user") {
+          wrapper.classList.add("justify-end");
+          wrapper.innerHTML = `<div class="rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%] shadow-sm text-[11px] leading-snug okai-bubble okai-bubble-user">
+            ${text}
+          </div>`;
+        } else {
+          wrapper.innerHTML = `<div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>
+          <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%] text-[11px] leading-snug okai-bubble okai-bubble-bot">
+            ${text}
+          </div>`;
         }
 
-        const data = await response.json();
-        const reply = data.reply || data.answer || data.message || translations[currentLanguage]['chat.welcome'];
-        appendMessage({ from: 'bot', text: reply });
-      } catch (error) {
-        console.error('OK AI error:', error);
-        appendMessage({
-          from: 'bot',
-          text: currentLanguage === 'en'
-            ? '⛅ Right now I cannot reach the OK AI server. Please check your backend or try again later.'
-            : currentLanguage === 'ru'
-              ? '⛅ Сейчас не удаётся подключиться к серверу OK AI. Проверьте backend или попробуйте позже.'
-              : '⛅ ამ წუთას ვერ ვუკავშირდები OK AI სერვერს. გადაამოწმე n8n / Gemini ბექენდი ან სცადე ცოტა ხანში თავიდან.'
-        });
-      } finally {
-        if (okAiSendBtn) okAiSendBtn.disabled = false;
+        okAiMessages.appendChild(wrapper);
+        okAiMessages.scrollTop = okAiMessages.scrollHeight;
       }
-    }
 
-    if (okAiForm && okAiInput) {
-      okAiForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const value = okAiInput.value.trim();
-        if (!value) return;
+      async function sendOkAiMessage(message) {
+        if (!message) return;
+        const sessionId =
+          window.okAiSessionId ||
+          (window.okAiSessionId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
+        const BACKEND_URL =
+          "https://gadela.app.n8n.cloud/webhook/40130b15-5473-4dfe-9e9e-12ab31358097/chat";
 
-        appendMessage({ from: 'user', text: value });
-        okAiInput.value = '';
-        sendOkAiMessage(value);
+        try {
+          if (okAiSendBtn) okAiSendBtn.disabled = true;
+
+          const response = await fetch(BACKEND_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              message,
+              sessionId,
+              language: currentLanguage,
+              source: "oktv-landing",
+              page: "index",
+              consent: localStorage.getItem("oktv_cookieConsent") || "unknown",
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error("Backend response not OK");
+          }
+
+          const data = await response.json();
+          const reply =
+            data.reply ||
+            data.answer ||
+            data.message ||
+            (translations[currentLanguage] && translations[currentLanguage]["chat.welcome"]) ||
+            translations.ka["chat.welcome"];
+          appendMessage({ from: "bot", text: reply });
+        } catch (error) {
+          console.error("OK AI error:", error);
+          const errorMessage =
+            (translations[currentLanguage] && translations[currentLanguage]["chat.error"]) ||
+            translations.ka["chat.error"];
+          appendMessage({
+            from: "bot",
+            text: errorMessage,
+          });
+        } finally {
+          if (okAiSendBtn) okAiSendBtn.disabled = false;
+        }
+      }
+
+      if (okAiForm && okAiInput) {
+        okAiForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const value = okAiInput.value.trim();
+          if (!value) return;
+          appendMessage({ from: "user", text: value });
+          okAiInput.value = "";
+          sendOkAiMessage(value);
+        });
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          toggleOkAiPanel(false);
+        }
       });
-    }
 
-    // ================= COOKIE BANNER =================
+      // ================= CONTACT BUTTON LOGIC =================
+      const contactToggle = document.getElementById("contactToggle");
+      const contactMenu = document.getElementById("contactMenu");
+
+      function setContactMenuOpen(open) {
+        if (!contactMenu) return;
+
+        if (open) {
+          contactMenu.classList.add("open");
+          // როცა კონტაქტი იხსნება – OK AI ქრება და ჩატი იკეტება
+          toggleOkAiPanel(false);
+          if (okAiToggle) okAiToggle.style.display = "none";
+        } else {
+          contactMenu.classList.remove("open");
+          // როცა კონტაქტი იხურება – OK AI ღილაკი ისევ ჩნდება
+          if (okAiToggle) okAiToggle.style.display = "inline-flex";
+        }
+      }
+
+      if (contactToggle && contactMenu) {
+        contactToggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isOpen = contactMenu.classList.contains("open");
+          setContactMenuOpen(!isOpen);
+        });
+
+        document.addEventListener("click", () => {
+          setContactMenuOpen(false);
+        });
+
+        contactMenu.addEventListener("click", (e) => {
+          e.stopPropagation();
+        });
+      }
+
+      // ================= COOKIE BANNER LOGIC =================
+
+      // ================= COOKIE BANNER =================
     const COOKIE_KEY = 'oktv_cookieConsent';
     const cookieBanner = document.getElementById('cookieBanner');
     const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
