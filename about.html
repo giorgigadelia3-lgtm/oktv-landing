@@ -1392,7 +1392,9 @@
         justify-content: flex-end;
       }
     }
-  /* ================== SHARED HEADER & BUTTONS (INDEX) ================== */
+  
+
+/* ================== SHARED HEADER & BUTTONS (INDEX) ================== */
 
 /* DARK MODE VARIABLES OVERRIDE */
       .dark-mode {
@@ -2233,7 +2235,7 @@
       }
 
 /* ================== END SHARED HEADER & BUTTONS ================== */
-  </style>
+</style>
 </head>
 <body>
   <!-- თოვლის ფენა -->
@@ -2251,7 +2253,7 @@
   </div>
 
   <!-- HEADER -->
-    <header class="main-header" id="mainHeader">
+  <header class="main-header" id="mainHeader">
       <div class="header-inner">
         <div class="brand">
           <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
@@ -2587,7 +2589,7 @@
     </div>
   </footer>
 
-    <!-- FLOATING CONTACT -->
+<!-- FLOATING CONTACT -->
     <div class="floating-contact">
       <button type="button" id="contactToggle" class="contact-toggle-btn">
         <span class="contact-toggle-icon">📞</span>
@@ -2614,6 +2616,8 @@
     </div>
 
     <!-- DOWNLOAD MODAL -->
+
+<!-- DOWNLOAD MODAL -->
     <div class="download-modal-backdrop" id="downloadModal">
       <div class="download-modal">
         <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
@@ -2640,6 +2644,8 @@
     </div>
 
     <!-- OK AI CHATBOT -->
+
+<!-- OK AI CHATBOT -->
     <button
       id="okAiChatToggle"
       class="okai-toggle z-[85] flex items-center gap-2"
@@ -2732,31 +2738,32 @@
     </div>
 
     <!-- COOKIE BANNER -->
-  <div id="cookieBanner" class="cookie-banner">
-    <div class="cookie-inner">
-      <p class="cookie-text" data-i18n="cookie.message">
-        ჩვენ ვიყენებთ cookies-ს, რომ დავიმახსოვროთ შენი ენა და გავაუმჯობესოთ OK TV გამოცდილება. გაგრძელებით ეთანხმები ჩვენს პირობებს.
-      </p>
-      <div class="cookie-actions">
-        <button id="cookieMoreBtn" class="cookie-btn cookie-btn-secondary" type="button" data-i18n="cookie.more">
-          ვრცლად
-        </button>
-        <button id="cookieAcceptBtn" class="cookie-btn cookie-btn-primary" type="button" data-i18n="cookie.accept">
-          ვეთანხმები
-        </button>
+
+<!-- COOKIE BANNER -->
+    <div id="cookieBanner" class="cookie-banner">
+      <div class="cookie-inner">
+        <p class="cookie-text" data-i18n="cookie.message">
+          ჩვენ ვიყენებთ cookies-ს, რომ დავიმახსოვროთ შენი ენა, თემა (Light/Dark) და გავაუმჯობესოთ OK TV გამოცდილება. გაგრძელებით ეთანხმები ჩვენს პირობებს.
+        </p>
+        <div class="cookie-actions">
+          <button id="cookieMoreBtn" class="cookie-btn cookie-btn-secondary" type="button" data-i18n="cookie.more">
+            ვრცლად
+          </button>
+          <button id="cookieAcceptBtn" class="cookie-btn cookie-btn-primary" type="button" data-i18n="cookie.accept">
+            ვეთანხმები
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    // წელი
-    document.getElementById('year').textContent = new Date().getFullYear();
+    <script>
+// Footer year
+document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ================= LANGUAGE & I18N =================
-    const LANGUAGE_KEY = 'oktv_lang';
-    let currentLanguage = 'ka';
-
-    const translations = {
+// ================= LANGUAGE & I18N =================
+const LANGUAGE_KEY = "oktv_lang";
+let currentLanguage = "ka";
+const translations = {
       ka: {
         'nav.home': 'მთავარი',
         'nav.packages': 'პაკეტები',
@@ -3020,507 +3027,484 @@
       }
     };
 
-    const fallbackTranslations = {
-      "balance.topup": {
-        ka: "შეავსე შენი ბალანსი",
-        en: "Top up your balance",
-        ru: "Пополнить баланс",
+const fallbackTranslations = {
+  "balance.topup": {
+    ka: "შეავსე შენი ბალანსი",
+    en: "Top up your balance",
+    ru: "Пополнить баланс",
+  },
+  "contact.button": {
+    ka: "კონტაქტი",
+    en: "Contact",
+    ru: "Контакты",
+  },
+  "chat.error": {
+    ka: "⛅ ამ წუთას ვერ ვუკავშირდები OK AI სერვერს. გადაამოწმე n8n / Gemini ბექენდი ან სცადე ცოტა ხანში თავიდან.",
+    en: "⛅ Right now I cannot reach the OK AI server. Please check your n8n / Gemini backend or try again later.",
+    ru: "⛅ Сейчас не удается подключиться к серверу OK AI. Проверьте backend n8n / Gemini или попробуйте позже.",
+  },
+};
+
+Object.entries(fallbackTranslations).forEach(([key, values]) => {
+  Object.entries(values).forEach(([lang, value]) => {
+    if (translations[lang] && !translations[lang][key]) {
+      translations[lang][key] = value;
+    }
+  });
+});
+
+function applyLanguage(lang) {
+  const langPack = translations[lang] || translations.ka;
+  currentLanguage = lang;
+  localStorage.setItem(LANGUAGE_KEY, lang);
+  document.documentElement.lang = lang;
+  const pageTitle = langPack["page.title"];
+  if (pageTitle) {
+    document.title = pageTitle;
+  }
+
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    const value = langPack[key];
+    if (value) {
+      el.innerHTML = value;
+    }
+  });
+
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    const value = langPack[key];
+    if (value) {
+      el.setAttribute("placeholder", value);
+    }
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-alt");
+    const value = langPack[key];
+    if (value) {
+      el.setAttribute("alt", value);
+    }
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-aria");
+    const value = langPack[key];
+    if (value) {
+      el.setAttribute("aria-label", value);
+    }
+  });
+  document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-title");
+    const value = langPack[key];
+    if (value) {
+      el.setAttribute("title", value);
+    }
+  });
+
+  const langLabel = document.getElementById("langCurrentLabel");
+  if (langLabel) {
+    langLabel.textContent = lang.toUpperCase();
+  }
+
+  document.querySelectorAll(".lang-option").forEach((btn) => {
+    const btnLang = btn.getAttribute("data-lang");
+    btn.classList.toggle("lang-option-active", btnLang === lang);
+  });
+}
+
+function setupLanguage() {
+  const saved = localStorage.getItem(LANGUAGE_KEY);
+  const lang = saved || "ka";
+  applyLanguage(lang);
+
+  const langDropdown = document.getElementById("langDropdown");
+  const langToggle = document.getElementById("langToggle");
+
+  if (langToggle && langDropdown) {
+    langToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      langDropdown.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".lang-option").forEach((btn) => {
+      btn.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        const selected = btn.getAttribute("data-lang");
+        applyLanguage(selected);
+        langDropdown.classList.remove("open");
+      });
+    });
+
+    document.addEventListener("click", () => {
+      langDropdown.classList.remove("open");
+    });
+  }
+}
+
+setupLanguage();
+
+// ================= THEME / DARK MODE =================
+const THEME_KEY = "oktv_theme";
+
+function applyTheme(mode) {
+  const root = document.documentElement;
+  const icon = document.getElementById("themeIcon");
+  const isDark = mode === "dark";
+  root.classList.toggle("dark-mode", isDark);
+  if (icon) icon.textContent = isDark ? "??" : "??";
+
+  localStorage.setItem(THEME_KEY, mode);
+}
+
+function setupTheme() {
+  const savedTheme = localStorage.getItem(THEME_KEY);
+  const initialTheme = savedTheme === "dark" ? "dark" : "light";
+  applyTheme(initialTheme);
+
+  const themeToggle = document.getElementById("themeToggle");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const nextTheme = document.documentElement.classList.contains("dark-mode")
+        ? "light"
+        : "dark";
+      applyTheme(nextTheme);
+    });
+  }
+}
+
+setupTheme();
+
+// Header shadow on scroll
+const mainHeader = document.getElementById("mainHeader");
+window.addEventListener("scroll", () => {
+  if (!mainHeader) return;
+  if (window.scrollY > 16) {
+    mainHeader.classList.add("scrolled");
+  } else {
+    mainHeader.classList.remove("scrolled");
+  }
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll(".reveal");
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  reveals.forEach((el) => io.observe(el));
+} else {
+  reveals.forEach((el) => el.classList.add("visible"));
+}
+
+// HERO slider
+const track = document.getElementById("heroTrack");
+const dots = document.querySelectorAll(".hero-dot");
+const slides = document.querySelectorAll(".hero-slide");
+
+if (track && dots.length && slides.length) {
+  let currentSlideIndex = 0;
+  const totalSlides = dots.length;
+  let sliderTimer;
+
+  function goToSlide(index) {
+    currentSlideIndex = (index + totalSlides) % totalSlides;
+    const offset = -currentSlideIndex * 100;
+    track.style.transform = `translateX(${offset}%)`;
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === currentSlideIndex);
+    });
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === currentSlideIndex);
+    });
+  }
+
+  function startSlider() {
+    sliderTimer = setInterval(() => {
+      goToSlide(currentSlideIndex + 1);
+    }, 7000);
+  }
+
+  function resetSlider() {
+    clearInterval(sliderTimer);
+    startSlider();
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const index = Number(dot.dataset.index);
+      goToSlide(index);
+      resetSlider();
+    });
+  });
+
+  const heroSlider = document.getElementById("heroSlider");
+  if (heroSlider) {
+    heroSlider.addEventListener("mouseenter", () => clearInterval(sliderTimer));
+    heroSlider.addEventListener("mouseleave", () => startSlider());
+  }
+
+  goToSlide(0);
+  startSlider();
+}
+
+// Team card expand
+const gadeliaCard = document.getElementById("gadeliaCard");
+if (gadeliaCard) {
+  gadeliaCard.addEventListener("click", () => {
+    gadeliaCard.classList.toggle("expanded");
+  });
+}
+
+// Download modal logic
+const downloadBtn = document.getElementById("downloadCtaBtn");
+const downloadModal = document.getElementById("downloadModal");
+const downloadModalClose = document.getElementById("downloadModalClose");
+
+function openDownloadModal(event) {
+  if (event) event.preventDefault();
+  if (!downloadModal) return;
+  downloadModal.classList.add("active");
+}
+
+function closeDownloadModal() {
+  if (!downloadModal) return;
+  downloadModal.classList.remove("active");
+}
+
+if (downloadBtn) {
+  downloadBtn.addEventListener("click", openDownloadModal);
+}
+
+if (downloadModal && downloadModalClose) {
+  downloadModalClose.addEventListener("click", closeDownloadModal);
+  downloadModal.addEventListener("click", (e) => {
+    if (e.target === downloadModal) {
+      closeDownloadModal();
+    }
+  });
+}
+
+function syncOkAiViewportHeight() {
+  const viewportHeight =
+    (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+  document.documentElement.style.setProperty("--okai-vh", `${viewportHeight * 0.01}px`);
+}
+
+syncOkAiViewportHeight();
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", syncOkAiViewportHeight);
+} else {
+  window.addEventListener("resize", syncOkAiViewportHeight);
+}
+
+// ================= OK AI CHATBOT LOGIC =================
+const okAiToggle = document.getElementById("okAiChatToggle");
+const okAiPanel = document.getElementById("okAiChatPanel");
+const okAiClose = document.getElementById("okAiChatClose");
+const okAiForm = document.getElementById("okAiForm");
+const okAiInput = document.getElementById("okAiInput");
+const okAiMessages = document.getElementById("okAiMessages");
+const okAiSendBtn = document.getElementById("okAiSendBtn");
+
+function toggleOkAiPanel(forceOpen) {
+  if (!okAiPanel) return;
+  const isOpen = okAiPanel.classList.contains("open");
+  const shouldOpen = forceOpen === true || (forceOpen === undefined && !isOpen);
+
+  if (shouldOpen) {
+    syncOkAiViewportHeight();
+    okAiPanel.classList.add("open");
+    okAiPanel.setAttribute("aria-hidden", "false");
+    document.body.classList.add("okai-open");
+    if (okAiToggle) {
+      okAiToggle.setAttribute("aria-expanded", "true");
+      okAiToggle.style.display = "none";
+    }
+    if (contactMenu) contactMenu.classList.remove("open");
+    if (contactToggle) contactToggle.style.display = "none";
+    if (okAiInput) {
+      setTimeout(() => okAiInput.focus(), 0);
+    }
+  } else {
+    okAiPanel.classList.remove("open");
+    okAiPanel.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("okai-open");
+    if (okAiToggle) {
+      okAiToggle.setAttribute("aria-expanded", "false");
+      okAiToggle.style.display = "inline-flex";
+    }
+    if (contactToggle && !(contactMenu && contactMenu.classList.contains("open"))) {
+      contactToggle.style.display = "inline-flex";
+    }
+  }
+}
+
+if (okAiToggle) {
+  okAiToggle.addEventListener("click", () => toggleOkAiPanel());
+}
+
+if (okAiClose) {
+  okAiClose.addEventListener("click", () => toggleOkAiPanel(false));
+}
+
+function appendMessage({ from, text }) {
+  if (!okAiMessages) return;
+  const wrapper = document.createElement("div");
+  wrapper.className = "flex gap-2";
+
+  if (from === "user") {
+    wrapper.classList.add("justify-end");
+    wrapper.innerHTML = `<div class="rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%] shadow-sm text-[11px] leading-snug okai-bubble okai-bubble-user">${text}</div>`;
+  } else {
+    wrapper.innerHTML = `<div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>
+      <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%] text-[11px] leading-snug okai-bubble okai-bubble-bot">${text}</div>`;
+  }
+
+  okAiMessages.appendChild(wrapper);
+  okAiMessages.scrollTop = okAiMessages.scrollHeight;
+}
+
+async function sendOkAiMessage(message) {
+  if (!message) return;
+  const sessionId =
+    window.okAiSessionId ||
+    (window.okAiSessionId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
+
+  const BACKEND_URL = "https://YOUR_BACKEND_CHAT_ENDPOINT";
+
+  try {
+    if (okAiSendBtn) okAiSendBtn.disabled = true;
+
+    const response = await fetch(BACKEND_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      "contact.button": {
-        ka: "კონტაქტი",
-        en: "Contact",
-        ru: "Контакты",
-      },
-      "chat.error": {
-        ka: "⛅ ამ წუთას ვერ ვუკავშირდები OK AI სერვერს. გადაამოწმე n8n / Gemini ბექენდი ან სცადე ცოტა ხანში თავიდან.",
-        en: "⛅ Right now I cannot reach the OK AI server. Please check your n8n / Gemini backend or try again later.",
-        ru: "⛅ Сейчас не удается подключиться к серверу OK AI. Проверьте backend n8n / Gemini или попробуйте позже.",
-      },
-    };
-
-    Object.entries(fallbackTranslations).forEach(([key, values]) => {
-      Object.entries(values).forEach(([lang, value]) => {
-        if (translations[lang] && !translations[lang][key]) {
-          translations[lang][key] = value;
-        }
-      });
+      body: JSON.stringify({
+        message,
+        sessionId,
+        language: currentLanguage,
+        source: "oktv-website",
+        page: "about",
+        consent: localStorage.getItem("oktv_cookieConsent") || "unknown",
+      }),
     });
 
+    if (!response.ok) {
+      throw new Error("Backend response not OK");
+    }
+
+    const data = await response.json();
+    const reply = data.reply || data.answer || data.message || translations[currentLanguage]["chat.welcome"];
+    appendMessage({ from: "bot", text: reply });
+  } catch (error) {
+    console.error("OK AI error:", error);
+    appendMessage({
+      from: "bot",
+      text: translations[currentLanguage]["chat.error"] || translations.ka["chat.error"],
     });
-
-
-    const langToggle = document.getElementById("langToggle");
-    const langDropdown = document.getElementById("langDropdown");
-    const langOptions = document.querySelectorAll(".lang-option");
-
-    function applyLanguage(lang) {
-        const langPack = translations[lang] || translations.ka;
-        currentLanguage = lang;
-        localStorage.setItem(LANGUAGE_KEY, lang);
-        document.documentElement.lang = lang;
-        const pageTitle = langPack["page.title"];
-        if (pageTitle) {
-          document.title = pageTitle;
-        }
-
-        document.querySelectorAll("[data-i18n]").forEach((el) => {
-          const key = el.getAttribute("data-i18n");
-          const value = langPack[key];
-          if (value) {
-            el.innerHTML = value;
-          }
-        });
-
-        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-          const key = el.getAttribute("data-i18n-placeholder");
-          const value = langPack[key];
-          if (value) {
-            el.setAttribute("placeholder", value);
-          }
-        });
-        document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
-          const key = el.getAttribute("data-i18n-alt");
-          const value = langPack[key];
-          if (value) {
-            el.setAttribute("alt", value);
-          }
-        });
-        document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
-          const key = el.getAttribute("data-i18n-aria");
-          const value = langPack[key];
-          if (value) {
-            el.setAttribute("aria-label", value);
-          }
-        });
-        document.querySelectorAll("[data-i18n-title]").forEach((el) => {
-          const key = el.getAttribute("data-i18n-title");
-          const value = langPack[key];
-          if (value) {
-            el.setAttribute("title", value);
-          }
-        });
-
-        const langLabel = document.getElementById("langCurrentLabel");
-        if (langLabel) {
-          langLabel.textContent = lang.toUpperCase();
-        }
-
-        document.querySelectorAll(".lang-option").forEach((btn) => {
-          const btnLang = btn.getAttribute("data-lang");
-          btn.classList.toggle("lang-option-active", btnLang === lang);
-        });
-      }
-
-      function setupLanguage() {
-        const saved = localStorage.getItem(LANGUAGE_KEY);
-        const lang = saved || "ka";
-        applyLanguage(lang);
-
-        const langDropdown = document.getElementById("langDropdown");
-        const langToggle = document.getElementById("langToggle");
-
-        if (langToggle && langDropdown) {
-          langToggle.addEventListener("click", (e) => {
-            e.stopPropagation();
-            langDropdown.classList.toggle("open");
-          });
-
-          document.querySelectorAll(".lang-option").forEach((btn) => {
-            btn.addEventListener("click", (ev) => {
-              ev.stopPropagation();
-              const selected = btn.getAttribute("data-lang");
-              applyLanguage(selected);
-              langDropdown.classList.remove("open");
-            });
-          });
-
-          document.addEventListener("click", () => {
-            langDropdown.classList.remove("open");
-          });
-        }
-      }
-
-      setupLanguage();
-
-      // ================= THEME / DARK MODE =================
-      const THEME_KEY = "oktv_theme";
-
-      function applyTheme(mode) {
-        const root = document.documentElement;
-        const icon = document.getElementById("themeIcon");
-        const isDark = mode === "dark";
-        root.classList.toggle("dark-mode", isDark);
-        if (icon) icon.textContent = isDark ? "☀️" : "🌙";
-
-        localStorage.setItem(THEME_KEY, mode);
-      }
-
-      function setupTheme() {
-        const savedTheme = localStorage.getItem(THEME_KEY);
-        const initialTheme = savedTheme === "dark" ? "dark" : "light";
-        applyTheme(initialTheme);
-
-        const themeToggle = document.getElementById("themeToggle");
-        if (themeToggle) {
-          themeToggle.addEventListener("click", () => {
-            const nextTheme = document.documentElement.classList.contains("dark-mode")
-              ? "light"
-              : "dark";
-            applyTheme(nextTheme);
-          });
-        }
-      }
-
-      setupTheme();
-
-    // Header shadow on scroll
-    const mainHeader = document.getElementById('mainHeader');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 16) {
-        mainHeader.classList.add('scrolled');
-      } else {
-        mainHeader.classList.remove('scrolled');
-      }
-    });
-
-    // Reveal on scroll
-    const reveals = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      reveals.forEach(el => io.observe(el));
-    } else {
-      reveals.forEach(el => el.classList.add('visible'));
-    }
-
-    // HERO slider
-    const track = document.getElementById('heroTrack');
-    const dots  = document.querySelectorAll('.hero-dot');
-    const slides = document.querySelectorAll('.hero-slide');
-
-    if (track && dots.length && slides.length) {
-      let currentSlideIndex = 0;
-      const totalSlides = dots.length;
-      let sliderTimer;
-
-      function goToSlide(index) {
-        currentSlideIndex = (index + totalSlides) % totalSlides;
-        const offset = -currentSlideIndex * 100;
-        track.style.transform = `translateX(${offset}%)`;
-
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === currentSlideIndex);
-        });
-        slides.forEach((slide, i) => {
-          slide.classList.toggle('active', i === currentSlideIndex);
-        });
-      }
-
-      function startSlider() {
-        sliderTimer = setInterval(() => {
-          goToSlide(currentSlideIndex + 1);
-        }, 7000);
-      }
-
-      function resetSlider() {
-        clearInterval(sliderTimer);
-        startSlider();
-      }
-
-      dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const index = Number(dot.dataset.index);
-          goToSlide(index);
-          resetSlider();
-        });
-      });
-
-      const heroSlider = document.getElementById('heroSlider');
-      if (heroSlider) {
-        heroSlider.addEventListener('mouseenter', () => clearInterval(sliderTimer));
-        heroSlider.addEventListener('mouseleave', () => startSlider());
-      }
-
-      goToSlide(0);
-      startSlider();
-    }
-
-    // Download modal logic
-    const downloadBtn = document.getElementById('downloadCtaBtn');
-    const downloadModal = document.getElementById('downloadModal');
-    const downloadModalClose = document.getElementById('downloadModalClose');
-
-    function openDownloadModal(event) {
-      if (event) event.preventDefault();
-      if (downloadModal) {
-        downloadModal.classList.add('active');
-      }
-    }
-
-    function closeDownloadModal() {
-      if (downloadModal) {
-        downloadModal.classList.remove('active');
-      }
-    }
-
-    if (downloadBtn) {
-      downloadBtn.addEventListener('click', openDownloadModal);
-    }
-
-    if (downloadModalClose) {
-      downloadModalClose.addEventListener('click', closeDownloadModal);
-    }
-
-    if (downloadModal) {
-      downloadModal.addEventListener('click', (e) => {
-        if (e.target === downloadModal) {
-          closeDownloadModal();
-        }
-      });
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeDownloadModal();
-      }
-    });
-
-    // გიორგი გადელიას ბარათზე დაჭერისას საკონტაქტო ინფორმაციის გამოჩენა
-    const gadeliaCard = document.getElementById('gadeliaCard');
-    if (gadeliaCard) {
-      gadeliaCard.addEventListener('click', () => {
-        gadeliaCard.classList.toggle('expanded');
-      });
-    }
-
-    function syncOkAiViewportHeight() {
-        const viewportHeight =
-          (window.visualViewport && window.visualViewport.height) || window.innerHeight;
-        document.documentElement.style.setProperty(
-          "--okai-vh",
-          `${viewportHeight * 0.01}px`
-        );
-      }
-
-      syncOkAiViewportHeight();
-      if (window.visualViewport) {
-        window.visualViewport.addEventListener("resize", syncOkAiViewportHeight);
-      } else {
-        window.addEventListener("resize", syncOkAiViewportHeight);
-      }
-
-      // ================= OK AI CHATBOT LOGIC =================
-      const okAiToggle = document.getElementById("okAiChatToggle");
-      const okAiPanel = document.getElementById("okAiChatPanel");
-      const okAiClose = document.getElementById("okAiChatClose");
-      const okAiForm = document.getElementById("okAiForm");
-      const okAiInput = document.getElementById("okAiInput");
-      const okAiMessages = document.getElementById("okAiMessages");
-      const okAiSendBtn = document.getElementById("okAiSendBtn");
-
-      function toggleOkAiPanel(forceOpen) {
-        if (!okAiPanel) return;
-        const isOpen = okAiPanel.classList.contains("open");
-        const shouldOpen = forceOpen === true || (forceOpen === undefined && !isOpen);
-
-        if (shouldOpen) {
-          syncOkAiViewportHeight();
-          okAiPanel.classList.add("open");
-          okAiPanel.setAttribute("aria-hidden", "false");
-          document.body.classList.add("okai-open");
-          if (okAiToggle) {
-            okAiToggle.setAttribute("aria-expanded", "true");
-            okAiToggle.style.display = "none";
-          }
-          if (contactMenu) contactMenu.classList.remove("open");
-          if (contactToggle) contactToggle.style.display = "none";
-          if (okAiInput) {
-            setTimeout(() => okAiInput.focus(), 0);
-          }
-        } else {
-          okAiPanel.classList.remove("open");
-          okAiPanel.setAttribute("aria-hidden", "true");
-          document.body.classList.remove("okai-open");
-          if (okAiToggle) {
-            okAiToggle.setAttribute("aria-expanded", "false");
-            okAiToggle.style.display = "inline-flex";
-          }
-          if (contactToggle && !(contactMenu && contactMenu.classList.contains("open"))) {
-            contactToggle.style.display = "inline-flex";
-          }
-        }
-      }
-
-      if (okAiToggle) {
-        okAiToggle.addEventListener("click", () => toggleOkAiPanel());
-      }
-
-      if (okAiClose) {
-        okAiClose.addEventListener("click", () => toggleOkAiPanel(false));
-      }
-
-      function appendMessage({ from, text }) {
-        if (!okAiMessages) return;
-        const wrapper = document.createElement("div");
-        wrapper.className = "flex gap-2";
-
-        if (from === "user") {
-          wrapper.classList.add("justify-end");
-          wrapper.innerHTML = `<div class="rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%] shadow-sm text-[11px] leading-snug okai-bubble okai-bubble-user">
-            ${text}
-          </div>`;
-        } else {
-          wrapper.innerHTML = `<div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>
-          <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%] text-[11px] leading-snug okai-bubble okai-bubble-bot">
-            ${text}
-          </div>`;
-        }
-
-        okAiMessages.appendChild(wrapper);
-        okAiMessages.scrollTop = okAiMessages.scrollHeight;
-      }
-
-      async function sendOkAiMessage(message) {
-        if (!message) return;
-        const sessionId =
-          window.okAiSessionId ||
-          (window.okAiSessionId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
-        const BACKEND_URL =
-          "https://gadela.app.n8n.cloud/webhook/40130b15-5473-4dfe-9e9e-12ab31358097/chat";
-
-        try {
-          if (okAiSendBtn) okAiSendBtn.disabled = true;
-
-          const response = await fetch(BACKEND_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              message,
-              sessionId,
-              language: currentLanguage,
-              source: "oktv-landing",
-              page: "index",
-              consent: localStorage.getItem("oktv_cookieConsent") || "unknown",
-            }),
-          });
-
-          if (!response.ok) {
-            throw new Error("Backend response not OK");
-          }
-
-          const data = await response.json();
-          const reply =
-            data.reply ||
-            data.answer ||
-            data.message ||
-            (translations[currentLanguage] && translations[currentLanguage]["chat.welcome"]) ||
-            translations.ka["chat.welcome"];
-          appendMessage({ from: "bot", text: reply });
-        } catch (error) {
-          console.error("OK AI error:", error);
-          const errorMessage =
-            (translations[currentLanguage] && translations[currentLanguage]["chat.error"]) ||
-            translations.ka["chat.error"];
-          appendMessage({
-            from: "bot",
-            text: errorMessage,
-          });
-        } finally {
-          if (okAiSendBtn) okAiSendBtn.disabled = false;
-        }
-      }
-
-      if (okAiForm && okAiInput) {
-        okAiForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const value = okAiInput.value.trim();
-          if (!value) return;
-          appendMessage({ from: "user", text: value });
-          okAiInput.value = "";
-          sendOkAiMessage(value);
-        });
-      }
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          toggleOkAiPanel(false);
-        }
-      });
-
-      // ================= CONTACT BUTTON LOGIC =================
-      const contactToggle = document.getElementById("contactToggle");
-      const contactMenu = document.getElementById("contactMenu");
-
-      function setContactMenuOpen(open) {
-        if (!contactMenu) return;
-
-        if (open) {
-          contactMenu.classList.add("open");
-          // როცა კონტაქტი იხსნება – OK AI ქრება და ჩატი იკეტება
-          toggleOkAiPanel(false);
-          if (okAiToggle) okAiToggle.style.display = "none";
-        } else {
-          contactMenu.classList.remove("open");
-          // როცა კონტაქტი იხურება – OK AI ღილაკი ისევ ჩნდება
-          if (okAiToggle) okAiToggle.style.display = "inline-flex";
-        }
-      }
-
-      if (contactToggle && contactMenu) {
-        contactToggle.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const isOpen = contactMenu.classList.contains("open");
-          setContactMenuOpen(!isOpen);
-        });
-
-        document.addEventListener("click", () => {
-          setContactMenuOpen(false);
-        });
-
-        contactMenu.addEventListener("click", (e) => {
-          e.stopPropagation();
-        });
-      }
-
-      // ================= COOKIE BANNER LOGIC =================
-
-      // ================= COOKIE BANNER =================
-    const COOKIE_KEY = 'oktv_cookieConsent';
-    const cookieBanner = document.getElementById('cookieBanner');
-    const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
-    const cookieMoreBtn = document.getElementById('cookieMoreBtn');
-
-    function showCookieBanner() {
-      if (cookieBanner) cookieBanner.style.display = 'block';
-    }
-
-    function hideCookieBanner() {
-      if (cookieBanner) cookieBanner.style.display = 'none';
-    }
-
-    if (localStorage.getItem(COOKIE_KEY) === 'accepted') {
-      hideCookieBanner();
-    } else {
-      showCookieBanner();
-    }
-
-    if (cookieAcceptBtn) {
-      cookieAcceptBtn.addEventListener('click', () => {
-        localStorage.setItem(COOKIE_KEY, 'accepted');
-        hideCookieBanner();
-      });
-    }
-
-    if (cookieMoreBtn) {
-      cookieMoreBtn.addEventListener('click', () => {
-        window.open('https://oktv.ge/privacy', '_blank');
-      });
-    }
-  </script>
+  } finally {
+    if (okAiSendBtn) okAiSendBtn.disabled = false;
+  }
+}
+
+if (okAiForm && okAiInput) {
+  okAiForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const value = okAiInput.value.trim();
+    if (!value) return;
+
+    appendMessage({ from: "user", text: value });
+    okAiInput.value = "";
+    sendOkAiMessage(value);
+  });
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    toggleOkAiPanel(false);
+  }
+});
+
+// ================= CONTACT BUTTON LOGIC =================
+const contactToggle = document.getElementById("contactToggle");
+const contactMenu = document.getElementById("contactMenu");
+
+function setContactMenuOpen(open) {
+  if (!contactMenu) return;
+
+  if (open) {
+    contactMenu.classList.add("open");
+    toggleOkAiPanel(false);
+    if (okAiToggle) okAiToggle.style.display = "none";
+  } else {
+    contactMenu.classList.remove("open");
+    if (okAiToggle) okAiToggle.style.display = "inline-flex";
+  }
+}
+
+if (contactToggle && contactMenu) {
+  contactToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = contactMenu.classList.contains("open");
+    setContactMenuOpen(!isOpen);
+  });
+
+  document.addEventListener("click", () => {
+    setContactMenuOpen(false);
+  });
+
+  contactMenu.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+}
+
+// ================= COOKIE BANNER LOGIC =================
+const COOKIE_KEY = "oktv_cookieConsent";
+const cookieBanner = document.getElementById("cookieBanner");
+const cookieAcceptBtn = document.getElementById("cookieAcceptBtn");
+const cookieMoreBtn = document.getElementById("cookieMoreBtn");
+
+function showCookieBanner() {
+  if (cookieBanner) cookieBanner.style.display = "block";
+}
+
+function hideCookieBanner() {
+  if (cookieBanner) cookieBanner.style.display = "none";
+}
+
+const savedConsent = localStorage.getItem(COOKIE_KEY);
+if (!savedConsent) {
+  showCookieBanner();
+}
+
+if (cookieAcceptBtn) {
+  cookieAcceptBtn.addEventListener("click", () => {
+    localStorage.setItem(COOKIE_KEY, "accepted");
+    hideCookieBanner();
+  });
+}
+
+if (cookieMoreBtn) {
+  cookieMoreBtn.addEventListener("click", () => {
+    window.open("https://oktv.ge", "_blank");
+  });
+}
+
+// Close download modal on Escape
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeDownloadModal();
+  }
+});
+</script>
 </body>
 </html>
