@@ -459,6 +459,13 @@
       font-size: 0.95rem;
     }
 
+    .contact-chip-icon img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      display: block;
+    }
+
     .contact-chip-label {
       font-weight: 600;
     }
@@ -675,12 +682,19 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: #0f172a;
-      color: #ffffff;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.9rem;
+    }
+
+    .social-pill-icon img {
+      width: 14px;
+      height: 14px;
+      object-fit: contain;
+      display: block;
     }
 
     @media (max-width: 980px) {
@@ -2130,7 +2144,9 @@
             </a>
 
             <a href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" class="contact-chip" rel="noopener">
-              <div class="contact-chip-icon">f</div>
+              <div class="contact-chip-icon">
+                <img src="icon-facebook.png" alt="Facebook" />
+              </div>
               <div>
                 <div class="contact-chip-label" data-i18n="contact.link.facebook">Facebook</div>
                 <div class="contact-chip-sub">@oktv.ge</div>
@@ -2138,7 +2154,9 @@
             </a>
 
             <a href="https://www.instagram.com/oktv.ge/" target="_blank" class="contact-chip" rel="noopener">
-              <div class="contact-chip-icon">◎</div>
+              <div class="contact-chip-icon">
+                <img src="icon-instagram.png" alt="Instagram" />
+              </div>
               <div>
                 <div class="contact-chip-label" data-i18n="contact.link.instagram">Instagram</div>
                 <div class="contact-chip-sub">@oktv.ge</div>
@@ -2146,7 +2164,9 @@
             </a>
 
             <a href="https://www.tiktok.com/@oktv.ge" target="_blank" class="contact-chip" rel="noopener">
-              <div class="contact-chip-icon">◎</div>
+              <div class="contact-chip-icon">
+                <img src="icon-tiktok.png" alt="TikTok" />
+              </div>
               <div>
                 <div class="contact-chip-label" data-i18n="contact.link.tiktok">TikTok</div>
                 <div class="contact-chip-sub">@oktv.ge</div>
@@ -2240,19 +2260,25 @@
             <div class="contact-social-inline">
               <a href="https://www.facebook.com/profile.php?id=61582964341078"
                  target="_blank" class="social-pill" rel="noopener">
-                <span class="social-pill-icon">f</span>
+                <span class="social-pill-icon">
+                  <img src="icon-facebook.png" alt="Facebook" />
+                </span>
                 <span data-i18n="contact.social.facebook">Facebook</span>
               </a>
 
               <a href="https://www.instagram.com/oktv.ge/"
                  target="_blank" class="social-pill" rel="noopener">
-                <span class="social-pill-icon">◎</span>
+                <span class="social-pill-icon">
+                  <img src="icon-instagram.png" alt="Instagram" />
+                </span>
                 <span data-i18n="contact.social.instagram">Instagram</span>
               </a>
 
               <a href="https://www.tiktok.com/@oktv.ge"
                  target="_blank" class="social-pill" rel="noopener">
-                <span class="social-pill-icon">◎</span>
+                <span class="social-pill-icon">
+                  <img src="icon-tiktok.png" alt="TikTok" />
+                </span>
                 <span data-i18n="contact.social.tiktok">TikTok</span>
               </a>
             </div>

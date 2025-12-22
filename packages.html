@@ -234,67 +234,10 @@
       background: rgba(0, 159, 227, 0.06);
     }
 
-    @media (max-width: 980px) {
-      .header-inner {
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 8px;
-        padding-top: 8px;
-        padding-bottom: 8px;
-        height: auto;
-      }
-      .brand { order: 0; }
-      .header-spacer { display: none; }
-      .nav {
-        order: 2;
-        width: 100%;
-        justify-content: center;
-      }
-      .header-cta {
-        order: 1;
-        margin-left: 0;
-      }
-    }
 
-    @media (max-width: 640px) {
-      body { padding-top: 84px; }
 
-      .brand-logo { height: 56px; }
 
-      .header-inner {
-        gap: 4px;
-        padding-top: 4px;
-        padding-bottom: 4px;
-      }
 
-      /* ჰორიზონტალური swipe მენიუ ჰედერში */
-      .nav {
-        order: 2;
-        width: 100%;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        padding-bottom: 4px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .nav::-webkit-scrollbar {
-        display: none;
-      }
-
-      .nav-link {
-        flex: 0 0 auto;
-        scroll-snap-align: center;
-        font-size: 0.75rem;
-        padding: 6px 10px;
-      }
-
-      .header-cta {
-        width: 100%;
-        justify-content: flex-end;
-      }
-    }
 
     /* ================== HERO – PACKAGES SLIDER ================== */
 
@@ -847,6 +790,15 @@
       height: auto;
       display: block;
       object-fit: cover;
+    }
+
+    .dark-mode .bonus-library-section {
+      background: #020617;
+      border-top-color: #111827;
+    }
+
+    .dark-mode .bonus-library-title {
+      color: #e5e7eb;
     }
 
     /* ================== FOOTER ================== */

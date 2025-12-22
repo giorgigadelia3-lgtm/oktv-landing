@@ -537,6 +537,7 @@
         border: 1px solid rgba(148, 163, 184, 0.5);
         transition: background 0.2s ease, border-color 0.2s ease,
           box-shadow 0.2s ease;
+        touch-action: pan-y;
       }
       .dark-mode .hero-slider {
         background: radial-gradient(circle at 0 0, #0f172a, #020617);
@@ -583,6 +584,50 @@
       }
       .hero-slide.active .hero-image {
         transform: scale(1);
+      }
+      .hero-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        border: none;
+        background: rgba(15, 23, 42, 0.65);
+        color: #ffffff;
+        font-size: 1.4rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 12px 26px rgba(15, 23, 42, 0.35);
+        opacity: 0.6;
+        transition: opacity 0.2s ease, transform 0.2s ease,
+          background 0.2s ease;
+        z-index: 5;
+      }
+      .hero-arrow:hover {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.04);
+        background: rgba(15, 23, 42, 0.82);
+      }
+      .hero-arrow-prev {
+        left: 16px;
+      }
+      .hero-arrow-next {
+        right: 16px;
+      }
+      @media (max-width: 768px) {
+        .hero-arrow {
+          width: 36px;
+          height: 36px;
+          font-size: 1.15rem;
+        }
+      }
+      @media (hover: none) {
+        .hero-arrow {
+          opacity: 0.85;
+        }
       }
       .hero-slider-bottom {
         display: flex;
@@ -2034,6 +2079,12 @@
                 </div>
               </article>
             </div>
+            <button class="hero-arrow hero-arrow-prev" type="button" id="heroPrev" aria-label="Previous slide">
+              &lsaquo;
+            </button>
+            <button class="hero-arrow hero-arrow-next" type="button" id="heroNext" aria-label="Next slide">
+              &rsaquo;
+            </button>
           </div>
           <div class="hero-slider-bottom">
             <div class="hero-dots" id="heroDots">
@@ -2898,8 +2949,11 @@
       const track = document.getElementById("heroTrack");
       const dots = document.querySelectorAll(".hero-dot");
       const slides = document.querySelectorAll(".hero-slide");
+      const heroSlider = document.getElementById("heroSlider");
+      const prevBtn = document.getElementById("heroPrev");
+      const nextBtn = document.getElementById("heroNext");
 
-      if (track && dots.length && slides.length) {
+      if (track && dots.length && slides.length && heroSlider) {
         let currentSlide = 0;
         const totalSlides = dots.length;
         let sliderTimer;
@@ -2919,6 +2973,7 @@
         }
 
         function startSlider() {
+          clearInterval(sliderTimer);
           sliderTimer = setInterval(() => {
             goToSlide(currentSlide + 1);
           }, 7000);
@@ -2937,7 +2992,84 @@
           });
         });
 
-        const heroSlider = document.getElementById("heroSlider");
+        function nextSlide() {
+          goToSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+          goToSlide(currentSlide - 1);
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener("click", () => {
+            prevSlide();
+            resetSlider();
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => {
+            nextSlide();
+            resetSlider();
+          });
+        }
+
+        let pointerDown = false;
+        let pointerType = "mouse";
+        let startX = 0;
+        let lastX = 0;
+        let isDragging = false;
+        const swipeThreshold = 40;
+
+        heroSlider.addEventListener("pointerdown", (event) => {
+          if (event.button !== undefined && event.button !== 0) return;
+          if (event.target.closest(".hero-arrow")) return;
+          pointerDown = true;
+          pointerType = event.pointerType || "mouse";
+          isDragging = false;
+          startX = event.clientX;
+          lastX = event.clientX;
+          clearInterval(sliderTimer);
+          heroSlider.setPointerCapture(event.pointerId);
+        });
+
+        heroSlider.addEventListener("pointermove", (event) => {
+          if (!pointerDown) return;
+          lastX = event.clientX;
+          if (Math.abs(lastX - startX) > 6) {
+            isDragging = true;
+          }
+        });
+
+        heroSlider.addEventListener("pointerup", (event) => {
+          if (!pointerDown) return;
+          pointerDown = false;
+          heroSlider.releasePointerCapture(event.pointerId);
+          const delta = event.clientX - startX;
+
+          if (Math.abs(delta) > swipeThreshold) {
+            if (delta > 0) {
+              prevSlide();
+            } else {
+              nextSlide();
+            }
+            resetSlider();
+            return;
+          }
+
+          if (!isDragging && pointerType === "touch") {
+            nextSlide();
+            resetSlider();
+          } else {
+            startSlider();
+          }
+        });
+
+        heroSlider.addEventListener("pointercancel", () => {
+          pointerDown = false;
+          startSlider();
+        });
+
         heroSlider.addEventListener("mouseenter", () => clearInterval(sliderTimer));
         heroSlider.addEventListener("mouseleave", () => startSlider());
 
