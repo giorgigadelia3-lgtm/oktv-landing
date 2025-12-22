@@ -721,6 +721,12 @@
       background: #ffffff;
       border-top: 1px solid rgba(209, 213, 219, 0.7);
       margin-top: 8px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .dark-mode .footer {
+      background: #020617;
+      border-color: #111827;
     }
 
     .footer-contact-line {
@@ -736,6 +742,10 @@
 
     .footer-phone-link:hover {
       color: #0ea5e9;
+    }
+
+    .dark-mode .footer-phone-link {
+      color: #bbf7d0;
     }
 
     .footer-social-list {
@@ -766,6 +776,16 @@
       box-shadow: 0 12px 26px rgba(15,23,42,0.26);
     }
 
+    .dark-mode .footer-social-list a {
+      background: #020617;
+      border-color: #1f2937;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.6);
+    }
+
+    .dark-mode .footer-social-list a:hover {
+      box-shadow: 0 14px 30px rgba(0,0,0,0.75);
+    }
+
     .footer-social-list img {
       width: 18px;
       height: 18px;
@@ -773,6 +793,10 @@
 
     .footer-copy {
       font-size: 0.77rem;
+    }
+
+    .dark-mode .footer-copy {
+      color: #9ca3af;
     }
 
     /* ================== FLOATING SOCIAL ICONS + პატარა CALL ================== */
@@ -1053,6 +1077,84 @@
       transform: translateY(0);
     }
   
+
+/* ================== CONTACT DARK MODE ================== */
+.dark-mode #contactMain {
+  background: linear-gradient(180deg, #0b1220 0%, #020617 60%, #020617 100%);
+  box-shadow: inset 0 -1px 0 rgba(31, 41, 55, 0.8);
+}
+
+.dark-mode .contact-chip {
+  background: #0f172a;
+  border-color: #1f2937;
+  color: #e5e7eb;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
+.dark-mode .contact-chip:hover {
+  background: #111827;
+  border-color: #38bdf8;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.6);
+}
+
+.dark-mode .contact-chip-sub {
+  color: #9ca3af;
+}
+
+.dark-mode .contact-panel {
+  background: #0f172a;
+  border-color: #1f2937;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .contact-panel::after {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .contact-panel-title {
+  color: #93c5fd;
+}
+
+.dark-mode .contact-detail-item {
+  background: #0b1220;
+  border-color: #1f2937;
+}
+
+.dark-mode .contact-detail-label {
+  color: #9ca3af;
+}
+
+.dark-mode .contact-detail-value {
+  color: #e5e7eb;
+}
+
+.dark-mode .contact-panel-note strong {
+  color: #e5e7eb;
+}
+
+.dark-mode .contact-panel-light {
+  background: linear-gradient(135deg, #0b1220 0%, #0f172a 40%, #111827 100%);
+}
+
+.dark-mode .contact-panel-light .contact-panel-subtitle {
+  color: #cbd5f5;
+}
+
+.dark-mode .store-badge {
+  background: #0f172a;
+  border-color: rgba(148, 163, 184, 0.45);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .store-badge:hover {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+}
+
+.dark-mode .store-badge-label {
+  color: #cbd5f5;
+}
 
 /* ================== SHARED HEADER & BUTTONS (INDEX) ================== */
 
@@ -1894,6 +1996,27 @@
         background: linear-gradient(135deg, #0ea5e9, #2563eb);
       }
 
+/* HEADER CONSISTENCY OVERRIDES (RESPONSIVE.CSS) */
+@media (max-width: 1024px) {
+  .brand-logo { height: 64px; }
+  .brand-name { font-size: 1.3rem; }
+  .brand-subtitle { font-size: 0.75rem; }
+  .nav-link { font-size: 0.82rem; padding: 8px 12px; }
+  .header-btn { padding: 8px 16px; box-shadow: 0 4px 16px rgba(0, 159, 227, 0.4); }
+}
+
+@media (max-width: 768px) {
+  .header-cta { flex-wrap: nowrap; gap: 8px; }
+  .nav { flex-wrap: nowrap; row-gap: 0; }
+}
+
+@media (max-width: 480px) {
+  .brand-logo { height: 56px; }
+  .brand-name { font-size: 1.05rem; }
+  .brand-subtitle { font-size: 0.64rem; }
+  .nav-link { font-size: 0.75rem; padding-inline: 8px; }
+}
+
 /* ================== END SHARED HEADER & BUTTONS ================== */
 </style>
 </head>
@@ -1967,25 +2090,25 @@
     <section id="contactMain">
       <div class="contact-shell reveal">
         <div class="contact-header-row">
-          <div class="contact-kicker">საკონტაქტო ცენტრი • მხარდაჭერა</div>
-          <h1 class="contact-title">
+          <div class="contact-kicker" data-i18n="contact.hero.kicker">საკონტაქტო ცენტრი • მხარდაჭერა</div>
+          <h1 class="contact-title" data-i18n="contact.hero.title">
             კონტაქტი • OK TV-ის მხარდაჭერა შენთვის ხელმისაწვდომია
           </h1>
-          <p class="contact-subtitle">
+          <p class="contact-subtitle" data-i18n="contact.hero.subtitle">
             დაგვირეკე, მოგვწერე ან დაგვიკავშირდი სოციალურ ქსელებში – ჩვენთან ყოველთვის იპოვი ციფრულ მხარდაჭერას.
             OK TV-ის გუნდი მზად არის დაგეხმაროს პაკეტის შერჩევაში, აპლიკაციის დაყენებაში და ნებისმიერი ტექნიკური
             საკითხის გადაწყვეტაში.
           </p>
           <a href="tel:+995322901011" class="contact-main-btn">
             <div class="contact-main-btn-icon">📞</div>
-            <span>კონტაქტი</span>
+            <span data-i18n="contact.hero.cta">კონტაქტი</span>
           </a>
 
           <div class="contact-links-row">
             <a href="tel:+995322901011" class="contact-chip">
               <div class="contact-chip-icon">📞</div>
               <div>
-                <div class="contact-chip-label">ქოლცენტრი</div>
+                <div class="contact-chip-label" data-i18n="contact.link.callcenter">ქოლცენტრი</div>
                 <div class="contact-chip-sub">(+995 032) 2 90 10 11</div>
               </div>
             </a>
@@ -1993,7 +2116,7 @@
             <a href="mailto:info@oktv.ge" class="contact-chip">
               <div class="contact-chip-icon">✉️</div>
               <div>
-                <div class="contact-chip-label">ელ.ფოსტა</div>
+                <div class="contact-chip-label" data-i18n="contact.link.email">ელ.ფოსტა</div>
                 <div class="contact-chip-sub">info@oktv.ge</div>
               </div>
             </a>
@@ -2001,7 +2124,7 @@
             <a href="https://app.oktv.ge/" target="_blank" class="contact-chip" rel="noopener">
               <div class="contact-chip-icon">🌐</div>
               <div>
-                <div class="contact-chip-label">ვებსაიტი</div>
+                <div class="contact-chip-label" data-i18n="contact.link.website">ვებსაიტი</div>
                 <div class="contact-chip-sub">www.oktv.ge</div>
               </div>
             </a>
@@ -2009,7 +2132,7 @@
             <a href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" class="contact-chip" rel="noopener">
               <div class="contact-chip-icon">f</div>
               <div>
-                <div class="contact-chip-label">Facebook</div>
+                <div class="contact-chip-label" data-i18n="contact.link.facebook">Facebook</div>
                 <div class="contact-chip-sub">@oktv.ge</div>
               </div>
             </a>
@@ -2017,7 +2140,7 @@
             <a href="https://www.instagram.com/oktv.ge/" target="_blank" class="contact-chip" rel="noopener">
               <div class="contact-chip-icon">◎</div>
               <div>
-                <div class="contact-chip-label">Instagram</div>
+                <div class="contact-chip-label" data-i18n="contact.link.instagram">Instagram</div>
                 <div class="contact-chip-sub">@oktv.ge</div>
               </div>
             </a>
@@ -2025,7 +2148,7 @@
             <a href="https://www.tiktok.com/@oktv.ge" target="_blank" class="contact-chip" rel="noopener">
               <div class="contact-chip-icon">◎</div>
               <div>
-                <div class="contact-chip-label">TikTok</div>
+                <div class="contact-chip-label" data-i18n="contact.link.tiktok">TikTok</div>
                 <div class="contact-chip-sub">@oktv.ge</div>
               </div>
             </a>
@@ -2034,8 +2157,8 @@
 
         <div class="contact-grid">
           <article class="contact-panel">
-            <h2 class="contact-panel-title">ტელეფონი და ელ-ფოსტა</h2>
-            <p class="contact-panel-subtitle">
+            <h2 class="contact-panel-title" data-i18n="contact.panel.main.title">ტელეფონი და ელ-ფოსტა</h2>
+            <p class="contact-panel-subtitle" data-i18n="contact.panel.main.subtitle">
               თუ გჭირდება ოპერატიული დახმარება ან სერვისთან დაკავშირებული ინფორმაცია,
               დაგვიკავშირდი პირდაპირ ჩვენი საკონტაქტო ცენტრით.
             </p>
@@ -2044,7 +2167,7 @@
               <div class="contact-detail-item">
                 <div class="contact-detail-icon">📞</div>
                 <div class="contact-detail-text">
-                  <span class="contact-detail-label">ქოლცენტრი</span>
+                  <span class="contact-detail-label" data-i18n="contact.panel.label.callcenter">ქოლცენტრი</span>
                   <a href="tel:+995322901011" class="contact-detail-value">(+995 032) 2 90 10 11</a>
                 </div>
               </div>
@@ -2052,7 +2175,7 @@
               <div class="contact-detail-item">
                 <div class="contact-detail-icon">✉️</div>
                 <div class="contact-detail-text">
-                  <span class="contact-detail-label">ელ.ფოსტა</span>
+                  <span class="contact-detail-label" data-i18n="contact.panel.label.email">ელ.ფოსტა</span>
                   <a href="mailto:info@oktv.ge" class="contact-detail-value">info@oktv.ge</a>
                 </div>
               </div>
@@ -2060,7 +2183,7 @@
               <div class="contact-detail-item">
                 <div class="contact-detail-icon">🌐</div>
                 <div class="contact-detail-text">
-                  <span class="contact-detail-label">LIVE OKTV</span>
+                  <span class="contact-detail-label" data-i18n="contact.panel.label.live">LIVE OKTV</span>
                   <a href="https://app.oktv.ge/" target="_blank" class="contact-detail-value" rel="noopener">
                     www.oktv.ge
                   </a>
@@ -2068,15 +2191,15 @@
               </div>
             </div>
 
-            <p class="contact-panel-note">
+            <p class="contact-panel-note" data-i18n="contact.panel.note">
               <strong>გთხოვთ მიმართოთ</strong> სამუშაო საათებში, ან მოგვწერეთ ელ.ფოსტაზე
               და აუცილებლად დაგიბრუნებთ პასუხს მოკლე დროში.
             </p>
           </article>
 
           <article class="contact-panel contact-panel-light">
-            <h2 class="contact-panel-title">აპლიკაციები და სოციალური მხარდაჭერა</h2>
-            <p class="contact-panel-subtitle">
+            <h2 class="contact-panel-title" data-i18n="contact.panel.social.title">აპლიკაციები და სოციალური მხარდაჭერა</h2>
+            <p class="contact-panel-subtitle" data-i18n="contact.panel.social.subtitle">
               ჩამოტვირთე OK TV აპლიკაცია ნებისმიერი მოწყობილობიდან და დაგვიმეგობრდი სოციალურ ქსელებში,
               სადაც შეგიძლიათ მოგვწეროთ მხარდაჭერისთვის ან მონაწილეობა მიიღოთ ჩვენს აქციებში.
             </p>
@@ -2086,30 +2209,30 @@
                  href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
                  target="_blank" rel="noopener">
                 <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
-                <span class="store-badge-label">Google Play • Mobile</span>
+                <span class="store-badge-label" data-i18n="store.mobile">Google Play • Mobile</span>
               </a>
 
               <a class="store-badge"
                  href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
                  target="_blank" rel="noopener">
                 <img src="badge-google-play-tv.png" alt="Google Play TV" />
-                <span class="store-badge-label">Google Play • TV</span>
+                <span class="store-badge-label" data-i18n="store.tv">Google Play • TV</span>
               </a>
 
               <a class="store-badge"
                  href="https://apps.apple.com/ge/app/oktv/id6478280344"
                  target="_blank" rel="noopener">
                 <img src="badge-app-store.png" alt="App Store" />
-                <span class="store-badge-label">Apple • App Store</span>
+                <span class="store-badge-label" data-i18n="store.ios">Apple • App Store</span>
               </a>
 
               <a class="store-badge" href="oktv_3.2.7_606.wgt">
                 <img src="badge-wgt.png" alt="Smart TV WGT" />
-                <span class="store-badge-label">Smart TV • WGT</span>
+                <span class="store-badge-label" data-i18n="store.wgt">Smart TV • WGT</span>
               </a>
             </div>
 
-            <div class="contact-panel-note" style="margin-top:14px;">
+            <div class="contact-panel-note" style="margin-top:14px;" data-i18n="contact.panel.social.note">
               OK TV-ს აპლიკაციით მიიღებ სრულ ციფრულ ტელევიზიას სადაც არ უნდა იყო –
               ტელეფონზე, ტელევიზორზე თუ სხვა მოწყობილობაზე.
             </div>
@@ -2118,19 +2241,19 @@
               <a href="https://www.facebook.com/profile.php?id=61582964341078"
                  target="_blank" class="social-pill" rel="noopener">
                 <span class="social-pill-icon">f</span>
-                <span>Facebook</span>
+                <span data-i18n="contact.social.facebook">Facebook</span>
               </a>
 
               <a href="https://www.instagram.com/oktv.ge/"
                  target="_blank" class="social-pill" rel="noopener">
                 <span class="social-pill-icon">◎</span>
-                <span>Instagram</span>
+                <span data-i18n="contact.social.instagram">Instagram</span>
               </a>
 
               <a href="https://www.tiktok.com/@oktv.ge"
                  target="_blank" class="social-pill" rel="noopener">
                 <span class="social-pill-icon">◎</span>
-                <span>TikTok</span>
+                <span data-i18n="contact.social.tiktok">TikTok</span>
               </a>
             </div>
           </article>
@@ -2142,7 +2265,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-contact-line">
-      საკონტაქტო ნომერი:
+      <span data-i18n="footer.contact">საკონტაქტო ნომერი:</span>
       <a href="tel:+995322901011" class="footer-phone-link">(+995 032) 2 90 10 11</a>
     </div>
 
@@ -2162,7 +2285,8 @@
     </div>
 
     <div class="footer-copy">
-      © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
+      <span data-i18n="footer.prefix">©</span> <span id="year"></span>
+      <span data-i18n="footer.text">OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.</span>
     </div>
   </footer>
 
@@ -2571,8 +2695,90 @@ const translations = {
           "chat.send": "Отправить",
           "chat.error":
             "⛅ Сейчас не удается подключиться к серверу OK AI. Проверьте backend n8n / Gemini или попробуйте позже.",
-        },
-      };
+      },
+    };
+
+const contactPageTranslations = {
+  ka: {
+    "contact.hero.kicker": "საკონტაქტო ცენტრი • მხარდაჭერა",
+    "contact.hero.title": "კონტაქტი • OK TV-ის მხარდაჭერა შენთვის ხელმისაწვდომია",
+    "contact.hero.subtitle": "დაგვირეკე, მოგვწერე ან დაგვიკავშირდი სოციალურ ქსელებში – ჩვენთან ყოველთვის იპოვი ციფრულ მხარდაჭერას. OK TV-ის გუნდი მზად არის დაგეხმაროს პაკეტის შერჩევაში, აპლიკაციის დაყენებაში და ნებისმიერი ტექნიკური საკითხის გადაწყვეტაში.",
+    "contact.hero.cta": "კონტაქტი",
+    "contact.link.callcenter": "ქოლცენტრი",
+    "contact.link.email": "ელ.ფოსტა",
+    "contact.link.website": "ვებსაიტი",
+    "contact.link.facebook": "Facebook",
+    "contact.link.instagram": "Instagram",
+    "contact.link.tiktok": "TikTok",
+    "contact.panel.main.title": "ტელეფონი და ელ-ფოსტა",
+    "contact.panel.main.subtitle": "თუ გჭირდება ოპერატიული დახმარება ან სერვისთან დაკავშირებული ინფორმაცია, დაგვიკავშირდი პირდაპირ ჩვენი საკონტაქტო ცენტრით.",
+    "contact.panel.label.callcenter": "ქოლცენტრი",
+    "contact.panel.label.email": "ელ.ფოსტა",
+    "contact.panel.label.live": "LIVE OKTV",
+    "contact.panel.note": "<strong>გთხოვთ მიმართოთ</strong> სამუშაო საათებში, ან მოგვწერეთ ელ.ფოსტაზე და აუცილებლად დაგიბრუნებთ პასუხს მოკლე დროში.",
+    "contact.panel.social.title": "აპლიკაციები და სოციალური მხარდაჭერა",
+    "contact.panel.social.subtitle": "ჩამოტვირთე OK TV აპლიკაცია ნებისმიერი მოწყობილობიდან და დაგვიმეგობრდი სოციალურ ქსელებში, სადაც შეგიძლიათ მოგვწეროთ მხარდაჭერისთვის ან მონაწილეობა მიიღოთ ჩვენს აქციებში.",
+    "contact.panel.social.note": "OK TV-ს აპლიკაციით მიიღებ სრულ ციფრულ ტელევიზიას სადაც არ უნდა იყო – ტელეფონზე, ტელევიზორზე თუ სხვა მოწყობილობაზე.",
+    "contact.social.facebook": "Facebook",
+    "contact.social.instagram": "Instagram",
+    "contact.social.tiktok": "TikTok",
+    "footer.contact": "საკონტაქტო ნომერი:"
+  },
+  en: {
+    "contact.hero.kicker": "Contact Center • Support",
+    "contact.hero.title": "Contact • OK TV support is here for you",
+    "contact.hero.subtitle": "Call us, write to us, or reach us on social media — you will always find digital support with us. The OK TV team is ready to help you choose a package, set up the app, and resolve any technical issue.",
+    "contact.hero.cta": "Contact",
+    "contact.link.callcenter": "Call Center",
+    "contact.link.email": "Email",
+    "contact.link.website": "Website",
+    "contact.link.facebook": "Facebook",
+    "contact.link.instagram": "Instagram",
+    "contact.link.tiktok": "TikTok",
+    "contact.panel.main.title": "Phone & Email",
+    "contact.panel.main.subtitle": "If you need prompt assistance or service-related information, contact our support center directly.",
+    "contact.panel.label.callcenter": "Call Center",
+    "contact.panel.label.email": "Email",
+    "contact.panel.label.live": "LIVE OKTV",
+    "contact.panel.note": "<strong>Please contact us</strong> during working hours, or email us and we will get back to you shortly.",
+    "contact.panel.social.title": "Apps & Social Support",
+    "contact.panel.social.subtitle": "Download the OK TV app on any device and connect with us on social networks, where you can message support or join our promotions.",
+    "contact.panel.social.note": "With the OK TV app you get full digital TV wherever you are — on your phone, TV, or any other device.",
+    "contact.social.facebook": "Facebook",
+    "contact.social.instagram": "Instagram",
+    "contact.social.tiktok": "TikTok",
+    "footer.contact": "Contact number:"
+  },
+  ru: {
+    "contact.hero.kicker": "Контактный центр • Поддержка",
+    "contact.hero.title": "Контакты • Поддержка OK TV всегда доступна",
+    "contact.hero.subtitle": "Позвоните, напишите или свяжитесь с нами в соцсетях — у нас вы всегда найдете цифровую поддержку. Команда OK TV готова помочь с выбором пакета, установкой приложения и решением любых технических вопросов.",
+    "contact.hero.cta": "Связаться",
+    "contact.link.callcenter": "Колл-центр",
+    "contact.link.email": "Эл. почта",
+    "contact.link.website": "Сайт",
+    "contact.link.facebook": "Facebook",
+    "contact.link.instagram": "Instagram",
+    "contact.link.tiktok": "TikTok",
+    "contact.panel.main.title": "Телефон и почта",
+    "contact.panel.main.subtitle": "Если нужна оперативная помощь или информация по сервису, свяжитесь с нашим контактным центром.",
+    "contact.panel.label.callcenter": "Колл-центр",
+    "contact.panel.label.email": "Эл. почта",
+    "contact.panel.label.live": "LIVE OKTV",
+    "contact.panel.note": "<strong>Пожалуйста, обращайтесь</strong> в рабочие часы, или пишите на почту — мы обязательно ответим в ближайшее время.",
+    "contact.panel.social.title": "Приложения и социальная поддержка",
+    "contact.panel.social.subtitle": "Скачайте приложение OK TV на любое устройство и добавляйтесь к нам в соцсетях, где можно написать в поддержку или участвовать в акциях.",
+    "contact.panel.social.note": "С приложением OK TV вы получаете полноценное цифровое ТВ где бы вы ни были — на телефоне, телевизоре или другом устройстве.",
+    "contact.social.facebook": "Facebook",
+    "contact.social.instagram": "Instagram",
+    "contact.social.tiktok": "TikTok",
+    "footer.contact": "Контактный номер:"
+  }
+};
+
+Object.keys(contactPageTranslations).forEach((lang) => {
+  Object.assign(translations[lang], contactPageTranslations[lang]);
+});
 
 Object.keys(translations).forEach((lang) => {
   translations[lang]["page.title"] = document.title;
@@ -2701,14 +2907,14 @@ function applyTheme(mode) {
   const icon = document.getElementById("themeIcon");
   const isDark = mode === "dark";
   root.classList.toggle("dark-mode", isDark);
-  if (icon) icon.textContent = isDark ? "??" : "??";
+  if (icon) icon.textContent = isDark ? "☀️" : "🌙";
 
   localStorage.setItem(THEME_KEY, mode);
 }
 
 function setupTheme() {
   const savedTheme = localStorage.getItem(THEME_KEY);
-  const initialTheme = savedTheme === "dark" ? "dark" : "light";
+  const initialTheme = savedTheme === "light" ? "light" : "dark";
   applyTheme(initialTheme);
 
   const themeToggle = document.getElementById("themeToggle");

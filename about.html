@@ -1394,6 +1394,57 @@
     }
   
 
+/* ================== ABOUT DARK MODE ================== */
+.dark-mode #aboutTop {
+  background: linear-gradient(180deg, #0b1220 0%, #020617 60%, #020617 100%);
+  box-shadow: inset 0 -1px 0 rgba(31, 41, 55, 0.8);
+}
+
+.dark-mode .about-story-card {
+  background: #0f172a;
+  border-color: #1f2937;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+}
+
+.dark-mode .about-section-title {
+  color: #93c5fd;
+}
+
+.dark-mode .about-faq-item {
+  background: #0f172a;
+  border-color: #1f2937;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .about-faq-item::before {
+  opacity: 0.2;
+}
+
+.dark-mode .team-card {
+  background: #0f172a;
+  border-color: #1f2937;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .team-card:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55);
+}
+
+.dark-mode .team-card::before {
+  opacity: 0.25;
+}
+
+.dark-mode .footer-social-list a {
+  background: #0f172a;
+  border-color: #1f2937;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+}
+
+.dark-mode .footer-social-list a:hover {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.85);
+}
+
 /* ================== SHARED HEADER & BUTTONS (INDEX) ================== */
 
 /* DARK MODE VARIABLES OVERRIDE */
@@ -2233,6 +2284,27 @@
       .dark-mode .okai-bubble-user {
         background: linear-gradient(135deg, #0ea5e9, #2563eb);
       }
+
+/* HEADER CONSISTENCY OVERRIDES (RESPONSIVE.CSS) */
+@media (max-width: 1024px) {
+  .brand-logo { height: 64px; }
+  .brand-name { font-size: 1.3rem; }
+  .brand-subtitle { font-size: 0.75rem; }
+  .nav-link { font-size: 0.82rem; padding: 8px 12px; }
+  .header-btn { padding: 8px 16px; box-shadow: 0 4px 16px rgba(0, 159, 227, 0.4); }
+}
+
+@media (max-width: 768px) {
+  .header-cta { flex-wrap: nowrap; gap: 8px; }
+  .nav { flex-wrap: nowrap; row-gap: 0; }
+}
+
+@media (max-width: 480px) {
+  .brand-logo { height: 56px; }
+  .brand-name { font-size: 1.05rem; }
+  .brand-subtitle { font-size: 0.64rem; }
+  .nav-link { font-size: 0.75rem; padding-inline: 8px; }
+}
 
 /* ================== END SHARED HEADER & BUTTONS ================== */
 </style>
@@ -3150,14 +3222,14 @@ function applyTheme(mode) {
   const icon = document.getElementById("themeIcon");
   const isDark = mode === "dark";
   root.classList.toggle("dark-mode", isDark);
-  if (icon) icon.textContent = isDark ? "??" : "??";
+  if (icon) icon.textContent = isDark ? "☀️" : "🌙";
 
   localStorage.setItem(THEME_KEY, mode);
 }
 
 function setupTheme() {
   const savedTheme = localStorage.getItem(THEME_KEY);
-  const initialTheme = savedTheme === "dark" ? "dark" : "light";
+  const initialTheme = savedTheme === "light" ? "light" : "dark";
   applyTheme(initialTheme);
 
   const themeToggle = document.getElementById("themeToggle");

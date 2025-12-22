@@ -2853,7 +2853,7 @@
 
       function setupTheme() {
         const savedTheme = localStorage.getItem(THEME_KEY);
-        const initialTheme = savedTheme === "dark" ? "dark" : "light";
+        const initialTheme = savedTheme === "light" ? "light" : "dark";
         applyTheme(initialTheme);
 
         const themeToggle = document.getElementById("themeToggle");

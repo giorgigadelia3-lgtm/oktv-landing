@@ -60,7 +60,6 @@
         var(--bg-page);
       color: var(--text-main);
       overflow-x: hidden;
-      padding-top: var(--nav-height);
     }
 
     img { max-width: 100%; display: block; }
@@ -81,7 +80,7 @@
 
     /* ================== HEADER ================== */
     .main-header {
-      position: fixed;
+      position: sticky;
       top: 0;
       left: 0;
       right: 0;
@@ -860,6 +859,12 @@
       background: #ffffff;
       border-top: 1px solid rgba(209, 213, 219, 0.7);
       margin-top: 8px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .dark-mode .footer {
+      background: #020617;
+      border-color: #111827;
     }
 
     /* ================== REVEAL ANIMATION ================== */
@@ -968,6 +973,96 @@
         min-width: 240px;
       }
     }
+  /* ================== PACKAGES DARK MODE ================== */
+  .dark-mode #packages-hero {
+    background: linear-gradient(180deg, #0b1220 0%, #020617 60%, #020617 100%);
+    box-shadow: inset 0 -1px 0 rgba(31, 41, 55, 0.8);
+  }
+
+  .dark-mode .hero-slider {
+    background: radial-gradient(circle at 0 0, rgba(30, 64, 175, 0.25), #0b1220);
+    border-color: #1f2937;
+    box-shadow: 0 26px 60px rgba(0, 0, 0, 0.6);
+  }
+
+  .dark-mode .hero-slider::after {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  }
+
+  .dark-mode .store-badge {
+    background: #0f172a;
+    border-color: rgba(148, 163, 184, 0.4);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  }
+
+  .dark-mode .store-badge:hover {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
+  }
+
+  .dark-mode .hero-category-card {
+    background: #0f172a;
+    border-color: #1f2937;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  }
+
+  .dark-mode .hero-category-title {
+    color: #93c5fd;
+  }
+
+  .dark-mode .packages-title {
+    color: #93c5fd;
+  }
+
+  .dark-mode .package-list-item {
+    background: #0f172a;
+    border-color: #1f2937;
+  }
+
+  .dark-mode .package-list-item:hover {
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.5);
+  }
+
+  .dark-mode .package-list-item.active {
+    background: linear-gradient(135deg, #0b1220, #0f172a);
+    border-color: #38bdf8;
+    box-shadow: 0 12px 26px rgba(30, 64, 175, 0.55);
+  }
+
+  .dark-mode .package-list-name {
+    color: #93c5fd;
+  }
+
+  .dark-mode .package-info-card {
+    background: #0f172a;
+    border-color: #1f2937;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .dark-mode .package-info-title {
+    color: #93c5fd;
+  }
+
+  .dark-mode .package-bonus {
+    color: #7dd3fc;
+  }
+
+  .dark-mode .social-fb,
+  .dark-mode .social-ig,
+  .dark-mode .social-tt {
+    background: #0f172a;
+    border-color: rgba(148, 163, 184, 0.4);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+  }
+
+  .dark-mode .social-fb:hover,
+  .dark-mode .social-ig:hover,
+  .dark-mode .social-tt:hover {
+    background: #111827;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.75);
+  }
+
   /* ================== SHARED HEADER & BUTTONS (INDEX) ================== */
 
 /* DARK MODE VARIABLES OVERRIDE */
@@ -1935,26 +2030,26 @@
              href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
              target="_blank" rel="noopener">
             <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
-            <span class="store-badge-label">Google Play Mobile</span>
+            <span class="store-badge-label" data-i18n="store.mobile">Google Play Mobile</span>
           </a>
 
           <a class="store-badge"
              href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
              target="_blank" rel="noopener">
             <img src="badge-google-play-tv.png" alt="Google Play TV" />
-            <span class="store-badge-label">Google Play TV</span>
+            <span class="store-badge-label" data-i18n="store.tv">Google Play TV</span>
           </a>
 
           <a class="store-badge"
              href="https://apps.apple.com/ge/app/oktv/id6478280344"
              target="_blank" rel="noopener">
             <img src="badge-app-store.png" alt="App Store" />
-            <span class="store-badge-label">App Store</span>
+            <span class="store-badge-label" data-i18n="store.ios">App Store</span>
           </a>
 
           <a class="store-badge" href="oktv_3.2.7_606.wgt">
             <img src="badge-wgt.png" alt="WGT Smart TV" />
-            <span class="store-badge-label">Smart TV WGT</span>
+            <span class="store-badge-label" data-i18n="store.wgt">Smart TV WGT</span>
           </a>
         </div>
 
@@ -1963,8 +2058,8 @@
           <a class="hero-category-card" href="index.html">
             <div class="hero-category-icon hero-icon-main"></div>
             <div>
-              <div class="hero-category-title">მთავარი</div>
-              <div class="hero-category-desc">
+              <div class="hero-category-title" data-i18n="packages.hero.home.title">მთავარი</div>
+              <div class="hero-category-desc" data-i18n="packages.hero.home.desc">
                 დაბრუნდი საწყის გვერდზე და ნახე OK TV-ს ყველა შესაძლებლობა.
               </div>
             </div>
@@ -1973,8 +2068,8 @@
           <a class="hero-category-card" href="business.html">
             <div class="hero-category-icon hero-icon-business"></div>
             <div>
-              <div class="hero-category-title">კომპანიებისთვის</div>
-              <div class="hero-category-desc">
+              <div class="hero-category-title" data-i18n="packages.hero.business.title">კომპანიებისთვის</div>
+              <div class="hero-category-desc" data-i18n="packages.hero.business.desc">
                 გადაწყვეტები სასტუმროებისთვის, კომპანიებისთვის და ობიექტებისთვის.
               </div>
             </div>
@@ -1983,8 +2078,8 @@
           <a class="hero-category-card" href="about.html">
             <div class="hero-category-icon hero-icon-about"></div>
             <div>
-              <div class="hero-category-title">ჩვენს შესახებ</div>
-              <div class="hero-category-desc">
+              <div class="hero-category-title" data-i18n="packages.hero.about.title">ჩვენს შესახებ</div>
+              <div class="hero-category-desc" data-i18n="packages.hero.about.desc">
                 მეტი ინფორმაცია OK TV-ს ისტორიასა და მისიის შესახებ.
               </div>
             </div>
@@ -1993,8 +2088,8 @@
           <a class="hero-category-card" href="contact.html">
             <div class="hero-category-icon hero-icon-contact"></div>
             <div>
-              <div class="hero-category-title">კონტაქტი</div>
-              <div class="hero-category-desc">
+              <div class="hero-category-title" data-i18n="packages.hero.contact.title">კონტაქტი</div>
+              <div class="hero-category-desc" data-i18n="packages.hero.contact.desc">
                 ტელეფონი, მესენჯერები და სოციალური ქსელები – დაგვიკავშირდი მარტივად.
               </div>
             </div>
@@ -2006,8 +2101,8 @@
     <!-- ================== PACKAGES LIST ================== -->
     <section class="packages-list-section">
       <div class="packages-inner reveal">
-        <h2 class="packages-title">OK TV პაკეტები</h2>
-        <p class="packages-subtitle">
+        <h2 class="packages-title" data-i18n="packages.page.title">OK TV პაკეტები</h2>
+        <p class="packages-subtitle" data-i18n="packages.page.subtitle">
           ყველა ძირითადი პაკეტი ერთ ადგილას. ქვემოთ ნახავ იგივე პაკეტების ჩამონათვალს,
           რომლებიც ზემოთ ბანერების ანიმაციაზე ბრუნავს. აირჩიე ნებისმიერი, რომ მოკლედ გაიგო რას მოიცავს.
         </p>
@@ -2020,8 +2115,8 @@
                 <img src="package-1.jpg" alt="ეკონომი პაკეტი" />
               </div>
               <div class="package-list-text">
-                <div class="package-list-name">ეკონომი</div>
-                <div class="package-list-meta">68 არხი • 9 ლარი თვეში</div>
+                <div class="package-list-name" data-i18n="packages.list.economy.name">ეკონომი</div>
+                <div class="package-list-meta" data-i18n="packages.list.economy.meta">68 არხი • 9 ლარი თვეში</div>
               </div>
             </button>
 
@@ -2030,8 +2125,8 @@
                 <img src="package-2.jpg" alt="გასართობი პაკეტი" />
               </div>
               <div class="package-list-text">
-                <div class="package-list-name">გასართობი</div>
-                <div class="package-list-meta">14 არხი • 4 ლარი თვეში</div>
+                <div class="package-list-name" data-i18n="packages.list.entertainment.name">გასართობი</div>
+                <div class="package-list-meta" data-i18n="packages.list.entertainment.meta">14 არხი • 4 ლარი თვეში</div>
               </div>
             </button>
 
@@ -2040,8 +2135,8 @@
                 <img src="package-3.jpg" alt="დოკუმენტური და შემეცნებითი პაკეტი" />
               </div>
               <div class="package-list-text">
-                <div class="package-list-name">დოკუმენტური და შემეცნებითი</div>
-                <div class="package-list-meta">11 არხი • 4 ლარი თვეში</div>
+                <div class="package-list-name" data-i18n="packages.list.documentary.name">დოკუმენტური და შემეცნებითი</div>
+                <div class="package-list-meta" data-i18n="packages.list.documentary.meta">11 არხი • 4 ლარი თვეში</div>
               </div>
             </button>
 
@@ -2050,8 +2145,8 @@
                 <img src="package-4.jpg" alt="სპორტ პაკეტი" />
               </div>
               <div class="package-list-text">
-                <div class="package-list-name">სპორტი</div>
-                <div class="package-list-meta">8 არხი • 4 ლარი თვეში</div>
+                <div class="package-list-name" data-i18n="packages.list.sport.name">სპორტი</div>
+                <div class="package-list-meta" data-i18n="packages.list.sport.meta">8 არხი • 4 ლარი თვეში</div>
               </div>
             </button>
 
@@ -2060,8 +2155,8 @@
                 <img src="package-5.jpg" alt="სპორტ ექსკლუზივი პაკეტი" />
               </div>
               <div class="package-list-text">
-                <div class="package-list-name">სპორტ ექსკლუზივი</div>
-                <div class="package-list-meta">3 არხი • 4 ლარი თვეში</div>
+                <div class="package-list-name" data-i18n="packages.list.sportExclusive.name">სპორტ ექსკლუზივი</div>
+                <div class="package-list-meta" data-i18n="packages.list.sportExclusive.meta">3 არხი • 4 ლარი თვეში</div>
               </div>
             </button>
 
@@ -2070,8 +2165,8 @@
                 <img src="package-6.jpg" alt="კინო პაკეტი" />
               </div>
               <div class="package-list-text">
-                <div class="package-list-name">კინო</div>
-                <div class="package-list-meta">19 არხი • 4 ლარი თვეში</div>
+                <div class="package-list-name" data-i18n="packages.list.cinema.name">კინო</div>
+                <div class="package-list-meta" data-i18n="packages.list.cinema.meta">19 არხი • 4 ლარი თვეში</div>
               </div>
             </button>
 
@@ -2080,8 +2175,8 @@
                 <img src="package-7.jpg" alt="პრემიუმ კინო პაკეტი" />
               </div>
               <div class="package-list-text">
-                <div class="package-list-name">პრემიუმ კინო</div>
-                <div class="package-list-meta">12 არხი • 4 ლარი თვეში</div>
+                <div class="package-list-name" data-i18n="packages.list.premiumCinema.name">პრემიუმ კინო</div>
+                <div class="package-list-meta" data-i18n="packages.list.premiumCinema.meta">12 არხი • 4 ლარი თვეში</div>
               </div>
             </button>
 
@@ -2090,8 +2185,8 @@
                 <img src="package-8.jpg" alt="საინფორმაციო პაკეტი" />
               </div>
               <div class="package-list-text">
-                <div class="package-list-name">ზოგადი საინფორმაციო</div>
-                <div class="package-list-meta">16 არხი • 4 ლარი თვეში</div>
+                <div class="package-list-name" data-i18n="packages.list.news.name">ზოგადი საინფორმაციო</div>
+                <div class="package-list-meta" data-i18n="packages.list.news.meta">16 არხი • 4 ლარი თვეში</div>
               </div>
             </button>
 
@@ -2100,8 +2195,8 @@
                 <img src="package-9.jpg" alt="+18 პაკეტი" />
               </div>
               <div class="package-list-text">
-                <div class="package-list-name">+18</div>
-                <div class="package-list-meta">3 არხი • 4 ლარი თვეში</div>
+                <div class="package-list-name" data-i18n="packages.list.adult.name">+18</div>
+                <div class="package-list-meta" data-i18n="packages.list.adult.meta">3 არხი • 4 ლარი თვეში</div>
               </div>
             </button>
           </div>
@@ -2143,7 +2238,8 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
+    <span data-i18n="footer.prefix">©</span> <span id="year"></span>
+    <span data-i18n="footer.text">OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.</span>
   </footer>
 
     <!-- FLOATING CONTACT -->
@@ -2302,6 +2398,7 @@
 // ================= LANGUAGE & I18N =================
       const LANGUAGE_KEY = "oktv_lang";
       let currentLanguage = "ka";
+      let packageDataReady = false;
       const translations = {
         ka: {
           "page.title": "OK TV • მთავარი",
@@ -2537,6 +2634,103 @@
       };
 
       // ზუსტად იგივე applyLanguage / setupLanguage რასაც შენ იყენებდი (შევინარჩუნე სრული ლოგიკა)
+      const packagesPageTranslations = {
+        ka: {
+          "packages.page.title": "OK TV პაკეტები",
+          "packages.page.subtitle": "ყველა ძირითადი პაკეტი ერთ ადგილას. ქვემოთ ნახავ იგივე პაკეტების ჩამონათვალს, რომლებიც ზემოთ ბანერების ანიმაციაზე ბრუნავს. აირჩიე ნებისმიერი, რომ მოკლედ გაიგო რას მოიცავს.",
+          "packages.hero.home.title": "მთავარი",
+          "packages.hero.home.desc": "დაბრუნდი საწყის გვერდზე და ნახე OK TV-ს ყველა შესაძლებლობა.",
+          "packages.hero.business.title": "კომპანიებისთვის",
+          "packages.hero.business.desc": "გადაწყვეტები სასტუმროებისთვის, კომპანიებისთვის და ობიექტებისთვის.",
+          "packages.hero.about.title": "ჩვენს შესახებ",
+          "packages.hero.about.desc": "მეტი ინფორმაცია OK TV-ს ისტორიასა და მისიის შესახებ.",
+          "packages.hero.contact.title": "კონტაქტი",
+          "packages.hero.contact.desc": "ტელეფონი, მესენჯერები და სოციალური ქსელები – დაგვიკავშირდი მარტივად.",
+          "packages.list.economy.name": "ეკონომი",
+          "packages.list.economy.meta": "68 არხი • 9 ლარი თვეში",
+          "packages.list.entertainment.name": "გასართობი",
+          "packages.list.entertainment.meta": "14 არხი • 4 ლარი თვეში",
+          "packages.list.documentary.name": "დოკუმენტური და შემეცნებითი",
+          "packages.list.documentary.meta": "11 არხი • 4 ლარი თვეში",
+          "packages.list.sport.name": "სპორტი",
+          "packages.list.sport.meta": "8 არხი • 4 ლარი თვეში",
+          "packages.list.sportExclusive.name": "სპორტ ექსკლუზივი",
+          "packages.list.sportExclusive.meta": "3 არხი • 4 ლარი თვეში",
+          "packages.list.cinema.name": "კინო",
+          "packages.list.cinema.meta": "19 არხი • 4 ლარი თვეში",
+          "packages.list.premiumCinema.name": "პრემიუმ კინო",
+          "packages.list.premiumCinema.meta": "12 არხი • 4 ლარი თვეში",
+          "packages.list.news.name": "ზოგადი საინფორმაციო",
+          "packages.list.news.meta": "16 არხი • 4 ლარი თვეში",
+          "packages.list.adult.name": "+18",
+          "packages.list.adult.meta": "3 არხი • 4 ლარი თვეში"
+        },
+        en: {
+          "packages.page.title": "OK TV Packages",
+          "packages.page.subtitle": "All key packages in one place. Below you'll see the same package list that rotates in the banner above. Pick any package to quickly see what it includes.",
+          "packages.hero.home.title": "Home",
+          "packages.hero.home.desc": "Go back to the main page and explore all OK TV features.",
+          "packages.hero.business.title": "For Companies",
+          "packages.hero.business.desc": "Solutions for hotels, companies, and venues.",
+          "packages.hero.about.title": "About Us",
+          "packages.hero.about.desc": "More information about OK TV's history and mission.",
+          "packages.hero.contact.title": "Contact",
+          "packages.hero.contact.desc": "Phone, messengers, and social networks - reach us easily.",
+          "packages.list.economy.name": "Economy",
+          "packages.list.economy.meta": "68 channels • 9 GEL / month",
+          "packages.list.entertainment.name": "Entertainment",
+          "packages.list.entertainment.meta": "14 channels • 4 GEL / month",
+          "packages.list.documentary.name": "Documentary & Educational",
+          "packages.list.documentary.meta": "11 channels • 4 GEL / month",
+          "packages.list.sport.name": "Sports",
+          "packages.list.sport.meta": "8 channels • 4 GEL / month",
+          "packages.list.sportExclusive.name": "Sports Exclusive",
+          "packages.list.sportExclusive.meta": "3 channels • 4 GEL / month",
+          "packages.list.cinema.name": "Cinema",
+          "packages.list.cinema.meta": "19 channels • 4 GEL / month",
+          "packages.list.premiumCinema.name": "Premium Cinema",
+          "packages.list.premiumCinema.meta": "12 channels • 4 GEL / month",
+          "packages.list.news.name": "News & Information",
+          "packages.list.news.meta": "16 channels • 4 GEL / month",
+          "packages.list.adult.name": "+18",
+          "packages.list.adult.meta": "3 channels • 4 GEL / month"
+        },
+        ru: {
+          "packages.page.title": "Пакеты OK TV",
+          "packages.page.subtitle": "Все основные пакеты в одном месте. Ниже вы увидите тот же список пакетов, который вращается в баннере выше. Выберите любой, чтобы кратко узнать, что входит.",
+          "packages.hero.home.title": "Главная",
+          "packages.hero.home.desc": "Вернитесь на главную страницу и посмотрите все возможности OK TV.",
+          "packages.hero.business.title": "Для компаний",
+          "packages.hero.business.desc": "Решения для отелей, компаний и объектов.",
+          "packages.hero.about.title": "О нас",
+          "packages.hero.about.desc": "Больше информации об истории и миссии OK TV.",
+          "packages.hero.contact.title": "Контакты",
+          "packages.hero.contact.desc": "Телефон, мессенджеры и соцсети — свяжитесь с нами легко.",
+          "packages.list.economy.name": "Эконом",
+          "packages.list.economy.meta": "68 каналов • 9 лари в месяц",
+          "packages.list.entertainment.name": "Развлекательный",
+          "packages.list.entertainment.meta": "14 каналов • 4 лари в месяц",
+          "packages.list.documentary.name": "Документальный и познавательный",
+          "packages.list.documentary.meta": "11 каналов • 4 лари в месяц",
+          "packages.list.sport.name": "Спорт",
+          "packages.list.sport.meta": "8 каналов • 4 лари в месяц",
+          "packages.list.sportExclusive.name": "Спорт Эксклюзив",
+          "packages.list.sportExclusive.meta": "3 канала • 4 лари в месяц",
+          "packages.list.cinema.name": "Кино",
+          "packages.list.cinema.meta": "19 каналов • 4 лари в месяц",
+          "packages.list.premiumCinema.name": "Премиум Кино",
+          "packages.list.premiumCinema.meta": "12 каналов • 4 лари в месяц",
+          "packages.list.news.name": "Информационный",
+          "packages.list.news.meta": "16 каналов • 4 лари в месяц",
+          "packages.list.adult.name": "+18",
+          "packages.list.adult.meta": "3 канала • 4 лари в месяц"
+        }
+      };
+
+      Object.keys(packagesPageTranslations).forEach((lang) => {
+        Object.assign(translations[lang], packagesPageTranslations[lang]);
+      });
+
       function applyLanguage(lang) {
         const langPack = translations[lang] || translations.ka;
         currentLanguage = lang;
@@ -2593,6 +2787,10 @@
           const btnLang = btn.getAttribute("data-lang");
           btn.classList.toggle("lang-option-active", btnLang === lang);
         });
+
+        if (packageDataReady) {
+          refreshPackageDetails();
+        }
       }
 
       function setupLanguage() {
@@ -2645,7 +2843,7 @@
 
       function setupTheme() {
         const savedTheme = localStorage.getItem(THEME_KEY);
-        const initialTheme = savedTheme === "dark" ? "dark" : "light";
+        const initialTheme = savedTheme === "light" ? "light" : "dark";
         applyTheme(initialTheme);
 
         const themeToggle = document.getElementById("themeToggle");
@@ -2990,6 +3188,152 @@ function syncOkAiViewportHeight() {
       }
     };
 
+    const packageDataTranslations = {
+      en: {
+        economy: {
+          title: "1) Economy - 68 channels, 9 GEL / month",
+          subtitle: "Basic package with family, news, entertainment, and kids channels.",
+          body:
+            "The Economy package includes 68 channels across family, news, entertainment, kids, and regional content. It's the best starting option for everyday viewing at a friendly price.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
+        },
+        entertainment: {
+          title: "2) Entertainment - 14 channels, 4 GEL / month",
+          subtitle: "Comedy, music, lifestyle, and light entertainment.",
+          body:
+            "Curated entertainment lineup with popular shows, music, comedy, and lifestyle channels. Great for relaxed viewing and fun with friends.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
+        },
+        documentary: {
+          title: "3) Documentary & Educational - 11 channels, 4 GEL / month",
+          subtitle: "Science, nature, history, and educational content.",
+          body:
+            "Documentary and educational channels covering science, nature, history, and culture. Ideal for curious viewers and learning-focused households.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
+        },
+        sport: {
+          title: "4) Sports - 8 channels, 4 GEL / month",
+          subtitle: "Live games, highlights, and analysis.",
+          body:
+            "Sports package with live matches, leagues, and analysis. A solid choice for everyday sports coverage.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
+        },
+        sportExclusive: {
+          title: "5) Sports Exclusive - 3 channels, 4 GEL / month",
+          subtitle: "Premium sports channels with top competitions.",
+          body:
+            "Premium sports channels with exclusive tournaments and marquee events. For devoted fans who want the best coverage.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
+        },
+        cinema: {
+          title: "6) Cinema - 19 channels, 4 GEL / month",
+          subtitle: "Movies across genres: action, drama, comedy, family.",
+          body:
+            "Cinema package with 19 movie channels across genres - action, drama, comedy, romance, and family. Perfect for movie nights.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
+        },
+        premiumCinema: {
+          title: "7) Premium Cinema - 12 channels, 4 GEL / month",
+          subtitle: "Premium movie channels in HD/UHD.",
+          body:
+            "Premium cinema lineup with HD/UHD channels and a focus on new releases. Best for high-quality movie viewing.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
+        },
+        news: {
+          title: "8) News & Information - 16 channels, 4 GEL / month",
+          subtitle: "Local and international news, business, and analysis.",
+          body:
+            "Information package with local and international news channels, talk shows, and analysis. Stay updated throughout the day.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
+        },
+        adult: {
+          title: "9) +18 - 3 channels, 4 GEL / month",
+          subtitle: "Adult content for 18+ viewers only.",
+          body:
+            "Adult package for 18+ audiences only. Includes restricted channels and can be controlled with parental settings.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
+        }
+      },
+      ru: {
+        economy: {
+          title: "1) Эконом — 68 каналов, 9 лари в месяц",
+          subtitle: "Базовый пакет с семейными, новостными, развлекательными и детскими каналами.",
+          body:
+            "Пакет «Эконом» включает 68 каналов: семейные, новости, развлечения, детские и региональные. Отличный стартовый вариант для ежедневного просмотра по доступной цене.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
+        },
+        entertainment: {
+          title: "2) Развлекательный — 14 каналов, 4 лари в месяц",
+          subtitle: "Комедия, музыка, лайфстайл и легкие развлечения.",
+          body:
+            "Подборка развлекательных каналов с популярными шоу, музыкой и комедией. Отлично для отдыха и веселого просмотра.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
+        },
+        documentary: {
+          title: "3) Документальный и познавательный — 11 каналов, 4 лари в месяц",
+          subtitle: "Наука, природа, история и образовательный контент.",
+          body:
+            "Документальные и познавательные каналы о науке, природе, истории и культуре. Идеально для любознательных зрителей.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
+        },
+        sport: {
+          title: "4) Спорт — 8 каналов, 4 лари в месяц",
+          subtitle: "Прямые трансляции, обзоры и аналитика.",
+          body:
+            "Спортивный пакет с прямыми матчами, лигами и аналитикой. Хороший выбор для регулярного спорта.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
+        },
+        sportExclusive: {
+          title: "5) Спорт Эксклюзив — 3 канала, 4 лари в месяц",
+          subtitle: "Премиальные спортивные каналы и топ‑соревнования.",
+          body:
+            "Премиальные спорт‑каналы с эксклюзивными турнирами и ключевыми событиями. Для настоящих фанатов.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
+        },
+        cinema: {
+          title: "6) Кино — 19 каналов, 4 лари в месяц",
+          subtitle: "Фильмы разных жанров: экшн, драма, комедия, семейные.",
+          body:
+            "Пакет «Кино» с 19 фильм‑каналами разных жанров — экшн, драма, комедия, романтика и семейные. Идеально для кино‑вечеров.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
+        },
+        premiumCinema: {
+          title: "7) Премиум Кино — 12 каналов, 4 лари в месяц",
+          subtitle: "Премиальные кино‑каналы в HD/UHD.",
+          body:
+            "Премиальная подборка кино‑каналов в HD/UHD с акцентом на новые релизы. Для качественного просмотра.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
+        },
+        news: {
+          title: "8) Информационный — 16 каналов, 4 лари в месяц",
+          subtitle: "Новости, общественно‑политические и бизнес‑каналы.",
+          body:
+            "Информационный пакет с местными и международными новостями, ток‑шоу и аналитикой. Будьте в курсе событий.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
+        },
+        adult: {
+          title: "9) +18 — 3 канала, 4 лари в месяц",
+          subtitle: "Контент 18+ только для взрослых.",
+          body:
+            "Пакет для аудитории 18+. Включает каналы с ограниченным контентом и поддерживает родительский контроль.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
+        }
+      }
+    };
+
+    function getPackageData(key) {
+      const base = packageData[key];
+      if (!base) return null;
+      const langPack = packageDataTranslations[currentLanguage];
+      if (langPack && langPack[key]) {
+        return {
+          title: langPack[key].title || base.title,
+          subtitle: langPack[key].subtitle || base.subtitle,
+          body: langPack[key].body || base.body,
+        };
+      }
+      return base;
+    }
+
+    function refreshPackageDetails() {
+      const listEl = document.getElementById("packageList");
+      const titleEl = document.getElementById("packageInfoTitle");
+      const subtitleEl = document.getElementById("packageInfoSubtitle");
+      const bodyEl = document.getElementById("packageInfoBody");
+      if (!listEl || !titleEl || !subtitleEl || !bodyEl) return;
+      const activeBtn = listEl.querySelector(".package-list-item.active");
+      const key = activeBtn ? activeBtn.dataset.key : "economy";
+      const data = getPackageData(key);
+      if (!data) return;
+      titleEl.textContent = data.title;
+      subtitleEl.textContent = data.subtitle;
+      bodyEl.innerHTML = data.body;
+    }
+
+    packageDataReady = true;
+
     const packageListEl = document.getElementById('packageList');
     const packageInfoEl = document.getElementById('packageInfo');
     const titleEl = document.getElementById('packageInfoTitle');
@@ -2997,7 +3341,7 @@ function syncOkAiViewportHeight() {
     const bodyEl = document.getElementById('packageInfoBody');
 
     function setPackage(key) {
-      const data = packageData[key];
+      const data = getPackageData(key);
       if (!data) return;
       titleEl.textContent = data.title;
       subtitleEl.textContent = data.subtitle;

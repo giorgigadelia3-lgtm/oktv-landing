@@ -1234,6 +1234,108 @@
     }
   
 
+/* ================== BUSINESS DARK MODE ================== */
+.dark-mode #companies-hero {
+  background: linear-gradient(180deg, #0b1220 0%, #020617 60%, #020617 100%);
+  box-shadow: inset 0 -1px 0 rgba(31, 41, 55, 0.8);
+}
+
+.dark-mode .map-hero {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.22), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(6, 182, 212, 0.18), transparent 55%),
+    #0f172a;
+  border-color: #1f2937;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+}
+
+.dark-mode .map-hero::after {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+  mix-blend-mode: normal;
+}
+
+.dark-mode .map-image-wrap {
+  background: #0b1220;
+}
+
+.dark-mode .map-caption {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+.dark-mode .map-caption-title {
+  color: #93c5fd;
+}
+
+.dark-mode .map-caption-badge {
+  background: #0f172a;
+  border-color: rgba(148, 163, 184, 0.45);
+  color: #e2e8f0;
+}
+
+.dark-mode .companies-title {
+  color: #93c5fd;
+}
+
+.dark-mode .company-banner-card {
+  background: #0f172a;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .company-banner-label {
+  background: #0b1220;
+  border-color: #1f2937;
+  color: #e2e8f0;
+  text-shadow: none;
+}
+
+.dark-mode .tech-section {
+  background: #020617;
+  border-top-color: #1f2937;
+  border-bottom-color: #1f2937;
+}
+
+.dark-mode .tech-title {
+  color: #93c5fd;
+}
+
+.dark-mode .tech-visual-card {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(14, 116, 144, 0.12));
+  border-color: rgba(30, 64, 175, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .tech-card {
+  background: #0f172a;
+  border-color: #1f2937;
+}
+
+.dark-mode .tech-card:hover {
+  background: #111827;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .tech-card.active {
+  background: linear-gradient(135deg, #0b1220, #0f172a);
+  box-shadow: 0 14px 32px rgba(30, 64, 175, 0.45);
+}
+
+.dark-mode .tech-name {
+  color: #93c5fd;
+}
+
+.dark-mode .tech-details-box {
+  background: #0f172a;
+  border-color: #1f2937;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+.dark-mode .tech-details-title {
+  color: #93c5fd;
+}
+
 /* ================== SHARED HEADER & BUTTONS (INDEX) ================== */
 
 /* DARK MODE VARIABLES OVERRIDE */
@@ -2074,6 +2176,27 @@
         background: linear-gradient(135deg, #0ea5e9, #2563eb);
       }
 
+/* HEADER CONSISTENCY OVERRIDES (RESPONSIVE.CSS) */
+@media (max-width: 1024px) {
+  .brand-logo { height: 64px; }
+  .brand-name { font-size: 1.3rem; }
+  .brand-subtitle { font-size: 0.75rem; }
+  .nav-link { font-size: 0.82rem; padding: 8px 12px; }
+  .header-btn { padding: 8px 16px; box-shadow: 0 4px 16px rgba(0, 159, 227, 0.4); }
+}
+
+@media (max-width: 768px) {
+  .header-cta { flex-wrap: nowrap; gap: 8px; }
+  .nav { flex-wrap: nowrap; row-gap: 0; }
+}
+
+@media (max-width: 480px) {
+  .brand-logo { height: 56px; }
+  .brand-name { font-size: 1.05rem; }
+  .brand-subtitle { font-size: 0.64rem; }
+  .nav-link { font-size: 0.75rem; padding-inline: 8px; }
+}
+
 /* ================== END SHARED HEADER & BUTTONS ================== */
 </style>
 </head>
@@ -2155,14 +2278,14 @@
 
           <div class="map-caption">
             <div>
-              <div class="map-caption-title">კორპორატიული კლიენტების გეოგრაფიული არეალი</div>
-              <div class="map-caption-text">
+              <div class="map-caption-title" data-i18n="business.map.title">კორპორატიული კლიენტების გეოგრაფიული არეალი</div>
+              <div class="map-caption-text" data-i18n="business.map.text">
                 OK TV-ს სიგნალი დღეს უკვე მუშაობს საქართველოში მრავალ ტურისტულ და ბიზნეს ლოკაციაში. ბანერზე
                 ნაჩვენებია ჩვენი პარტნიორი ობიექტების განაწილება ქვეყნის მასშტაბით – თქვენს მიერ შექმნილი
                 პინიანი რუკის ვიზუალით.
               </div>
             </div>
-            <div class="map-caption-badge">
+            <div class="map-caption-badge" data-i18n="business.map.badge">
               პარტნიორი ობიექტების რუკა
             </div>
           </div>
@@ -2173,8 +2296,8 @@
     <!-- COMPANIES SEGMENTS -->
     <section class="companies-section">
       <div class="section-inner reveal">
-        <h2 class="companies-title">კომპანიის მიმართულებები, რომლებსაც ჩვენ ვემსახურებით</h2>
-        <p class="companies-subtitle">
+        <h2 class="companies-title" data-i18n="business.companies.title">კომპანიის მიმართულებები, რომლებსაც ჩვენ ვემსახურებით</h2>
+        <p class="companies-subtitle" data-i18n="business.companies.subtitle">
           OK TV ემსახურება სხვადასხვა ტიპის ობიექტებს – საერთაშორისო და ლოკალურ სასტუმროებს, სპორტ ბარებს,
           ჰოსტელებს, კოტეჯებსა და სამშენებლო კომპანიებს. თითოეულ მიმართულებას ვთავაზობთ მის საჭიროებაზე მორგებულ
           სატელევიზიო პაკეტებს, ტექნოლოგიურ გადაწყვეტას და ტექნიკურ მხარდაჭერას.
@@ -2186,7 +2309,7 @@
             <div class="company-banner-image">
               <img src="company-banner-1.jpg" alt="სასტუმროები" />
             </div>
-            <div class="company-banner-label">სასტუმროები</div>
+            <div class="company-banner-label" data-i18n="business.company.hotels">სასტუმროები</div>
           </article>
 
           <!-- 2) ჰოსტელები (ძველი მესამე ბანერი) -->
@@ -2194,7 +2317,7 @@
             <div class="company-banner-image">
               <img src="company-banner-3.jpg" alt="ჰოსტელები" />
             </div>
-            <div class="company-banner-label">ჰოსტელები</div>
+            <div class="company-banner-label" data-i18n="business.company.hostels">ჰოსტელები</div>
           </article>
 
           <!-- 3) კოტეჯები (ძველი მეოთხე ბანერი) -->
@@ -2202,7 +2325,7 @@
             <div class="company-banner-image">
               <img src="company-banner-4.jpg" alt="კოტეჯები" />
             </div>
-            <div class="company-banner-label">კოტეჯები</div>
+            <div class="company-banner-label" data-i18n="business.company.cottages">კოტეჯები</div>
           </article>
 
           <!-- 4) სპორტ ბარები (ძველი მეორე ბანერი) -->
@@ -2210,7 +2333,7 @@
             <div class="company-banner-image">
               <img src="company-banner-2.jpg" alt="სპორტ ბარები" />
             </div>
-            <div class="company-banner-label">სპორტ ბარები</div>
+            <div class="company-banner-label" data-i18n="business.company.sportsBars">სპორტ ბარები</div>
           </article>
 
           <!-- 5) სამშენებლო კომპანიები იგივე -->
@@ -2218,7 +2341,7 @@
             <div class="company-banner-image">
               <img src="company-banner-5.jpg" alt="სამშენებლო კომპანიები" />
             </div>
-            <div class="company-banner-label">სამშენებლო კომპანიები</div>
+            <div class="company-banner-label" data-i18n="business.company.construction">სამშენებლო კომპანიები</div>
           </article>
         </div>
       </div>
@@ -2228,8 +2351,8 @@
     <section class="tech-section">
       <div class="section-inner tech-layout reveal">
         <div>
-          <h2 class="tech-title">ჩვენი ტექნოლოგიები</h2>
-          <p class="tech-subtitle">
+          <h2 class="tech-title" data-i18n="business.tech.title">ჩვენი ტექნოლოგიები</h2>
+          <p class="tech-subtitle" data-i18n="business.tech.subtitle">
             ჩვენ შეგვიძლია საქართველოს მაშტაბით, პრაქტიკულად ნებისმიერ ლოკაციაზე და სხვადასხვა ტექნოლოგიით
             მოვაწოდოთ ციფრული ტელევიზიის სერვისი – როგორც უკვე არსებულ, ისე ახალი ინჟინერიული ინფრასტრუქტურის ზედა.
           </p>
@@ -2246,50 +2369,50 @@
             <button class="tech-card" data-tech="ott" type="button">
               <div class="tech-icon tech-icon-ott"></div>
               <div class="tech-name">OTT</div>
-              <div class="tech-tagline">ტელევიზია ინტერნეტით, ნებისმიერ მოწყობილობაზე.</div>
+              <div class="tech-tagline" data-i18n="business.tech.ott.tagline">ტელევიზია ინტერნეტით, ნებისმიერ მოწყობილობაზე.</div>
             </button>
 
             <!-- IPTV და DVBT ადგილებით შეცვლილია -->
             <button class="tech-card" data-tech="iptv" type="button">
               <div class="tech-icon tech-icon-iptv"></div>
               <div class="tech-name">IPTV</div>
-              <div class="tech-tagline">ტელევიზიის მიწოდება IP ქსელზე, დახვეწილი კონტროლით.</div>
+              <div class="tech-tagline" data-i18n="business.tech.iptv.tagline">ტელევიზიის მიწოდება IP ქსელზე, დახვეწილი კონტროლით.</div>
             </button>
 
             <button class="tech-card" data-tech="dvbc" type="button">
               <div class="tech-icon tech-icon-dvbc"></div>
               <div class="tech-name">DVBC</div>
-              <div class="tech-tagline">ციფრული კაბელი, სტაბილური სიგნალისთვის.</div>
+              <div class="tech-tagline" data-i18n="business.tech.dvbc.tagline">ციფრული კაბელი, სტაბილური სიგნალისთვის.</div>
             </button>
 
             <button class="tech-card" data-tech="dvbt" type="button">
               <div class="tech-icon tech-icon-dvbt"></div>
               <div class="tech-name">DVBT</div>
-              <div class="tech-tagline">დიგიტალური მიწისზედა მაუწყებლობა, ანტენით.</div>
+              <div class="tech-tagline" data-i18n="business.tech.dvbt.tagline">დიგიტალური მიწისზედა მაუწყებლობა, ანტენით.</div>
             </button>
 
             <button class="tech-card" data-tech="dvbs2" type="button">
               <div class="tech-icon tech-icon-dvbs2"></div>
               <div class="tech-name">DVBS2</div>
-              <div class="tech-tagline">სატელიტური სიგნალი რთული ლოკაციებისთვის.</div>
+              <div class="tech-tagline" data-i18n="business.tech.dvbs2.tagline">სატელიტური სიგნალი რთული ლოკაციებისთვის.</div>
             </button>
 
             <button class="tech-card" data-tech="smart" type="button">
               <div class="tech-icon tech-icon-smart"></div>
               <div class="tech-name">Smart TV App</div>
-              <div class="tech-tagline">აპლიკაცია პოპულარულ Smart TV პლატფორმებზე.</div>
+              <div class="tech-tagline" data-i18n="business.tech.smart.tagline">აპლიკაცია პოპულარულ Smart TV პლატფორმებზე.</div>
             </button>
 
             <button class="tech-card" data-tech="web" type="button">
               <div class="tech-icon tech-icon-web"></div>
               <div class="tech-name">Web TV</div>
-              <div class="tech-tagline">წვდომა პირდაპირ ბრაუზერიდან, დამატებითი აპის გარეშე.</div>
+              <div class="tech-tagline" data-i18n="business.tech.web.tagline">წვდომა პირდაპირ ბრაუზერიდან, დამატებითი აპის გარეშე.</div>
             </button>
           </div>
 
           <div class="tech-details-box" id="techDetails">
-            <div class="tech-details-title" id="techDetailsTitle">აირჩიე ტექნოლოგია მარჯვნივ</div>
-            <p class="tech-details-text" id="techDetailsText">
+            <div class="tech-details-title" id="techDetailsTitle" data-i18n="business.tech.prompt.title">აირჩიე ტექნოლოგია მარჯვნივ</div>
+            <p class="tech-details-text" id="techDetailsText" data-i18n="business.tech.prompt.text">
               დააჭირე ნებისმიერ ბლოკს, რომ მოკლედ ნახო, როგორ მუშაობს კონკრეტული ტექნოლოგია და რისთვის
               არის იდეალური. ასე შეგიძლია შეარჩიო შენს ობიექტზე ყველაზე სწორი გადაწყვეტა – არსებული კაბელების,
               ინტერნეტ ინფრასტრუქტურისა და ბიუჯეტის გათვალისწინებით.
@@ -2304,8 +2427,8 @@
       <div class="section-inner reveal">
         <div class="contact-cta-card">
           <div class="contact-cta-main">
-            <div class="contact-cta-title">დაინტერესების შემთხვევაში დაგვიკავშირდით</div>
-            <div class="contact-cta-text">
+            <div class="contact-cta-title" data-i18n="business.cta.title">დაინტერესების შემთხვევაში დაგვიკავშირდით</div>
+            <div class="contact-cta-text" data-i18n="business.cta.text">
               თუ გსურთ, რომ თქვენი სასტუმრო, კომპანია ან ნებისმიერი ობიექტი OK TV-ს ქსელში ჩაერთოს,
               მოგვწერეთ ელ-ფოსტაზე ან დაგვირეკეთ – შეგვიძლია მოგიმზადოთ ინდივიდუალური კომერციული შეთავაზება,
               ტექნოლოგიის შერჩევით და დეტალური კონსულტაციით.
@@ -2331,7 +2454,7 @@
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-contact-line">
-        საკონტაქტო ნომერი:
+        <span data-i18n="footer.contact">საკონტაქტო ნომერი:</span>
         <a href="tel:+995322901011" class="footer-phone-link">(+995 032) 2 90 10 11</a>
       </div>
 
@@ -2348,7 +2471,8 @@
       </div>
 
       <div class="footer-copy">
-        © <span id="year"></span> OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
+        <span data-i18n="footer.prefix">©</span> <span id="year"></span>
+        <span data-i18n="footer.text">OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.</span>
       </div>
     </div>
   </footer>
@@ -2527,6 +2651,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
 // ================= LANGUAGE & I18N =================
 const LANGUAGE_KEY = "oktv_lang";
 let currentLanguage = "ka";
+let techInfoReady = false;
 const translations = {
         ka: {
           "page.title": "OK TV • მთავარი",
@@ -2758,8 +2883,93 @@ const translations = {
           "chat.send": "Отправить",
           "chat.error":
             "⛅ Сейчас не удается подключиться к серверу OK AI. Проверьте backend n8n / Gemini или попробуйте позже.",
-        },
-      };
+      },
+    };
+
+const businessPageTranslations = {
+  ka: {
+    "business.map.title": "კორპორატიული კლიენტების გეოგრაფიული არეალი",
+    "business.map.text": "OK TV-ს სიგნალი დღეს უკვე მუშაობს საქართველოში მრავალ ტურისტულ და ბიზნეს ლოკაციაში. ბანერზე ნაჩვენებია ჩვენი პარტნიორი ობიექტების განაწილება ქვეყნის მასშტაბით – თქვენს მიერ შექმნილი პინიანი რუკის ვიზუალით.",
+    "business.map.badge": "პარტნიორი ობიექტების რუკა",
+    "business.companies.title": "კომპანიის მიმართულებები, რომლებსაც ჩვენ ვემსახურებით",
+    "business.companies.subtitle": "OK TV ემსახურება სხვადასხვა ტიპის ობიექტებს – საერთაშორისო და ლოკალურ სასტუმროებს, სპორტ ბარებს, ჰოსტელებს, კოტეჯებსა და სამშენებლო კომპანიებს. თითოეულ მიმართულებას ვთავაზობთ მის საჭიროებაზე მორგებულ სატელევიზიო პაკეტებს, ტექნოლოგიურ გადაწყვეტას და ტექნიკურ მხარდაჭერას.",
+    "business.company.hotels": "სასტუმროები",
+    "business.company.hostels": "ჰოსტელები",
+    "business.company.cottages": "კოტეჯები",
+    "business.company.sportsBars": "სპორტ ბარები",
+    "business.company.construction": "სამშენებლო კომპანიები",
+    "business.tech.title": "ჩვენი ტექნოლოგიები",
+    "business.tech.subtitle": "ჩვენ შეგვიძლია საქართველოს მაშტაბით, პრაქტიკულად ნებისმიერ ლოკაციაზე და სხვადასხვა ტექნოლოგიით მოვაწოდოთ ციფრული ტელევიზიის სერვისი – როგორც უკვე არსებულ, ისე ახალი ინჟინერიული ინფრასტრუქტურის ზედა.",
+    "business.tech.ott.tagline": "ტელევიზია ინტერნეტით, ნებისმიერ მოწყობილობაზე.",
+    "business.tech.iptv.tagline": "ტელევიზიის მიწოდება IP ქსელზე, დახვეწილი კონტროლით.",
+    "business.tech.dvbc.tagline": "ციფრული კაბელი, სტაბილური სიგნალისთვის.",
+    "business.tech.dvbt.tagline": "დიგიტალური მიწისზედა მაუწყებლობა, ანტენით.",
+    "business.tech.dvbs2.tagline": "სატელიტური სიგნალი რთული ლოკაციებისთვის.",
+    "business.tech.smart.tagline": "აპლიკაცია პოპულარულ Smart TV პლატფორმებზე.",
+    "business.tech.web.tagline": "წვდომა პირდაპირ ბრაუზერიდან, დამატებითი აპის გარეშე.",
+    "business.tech.prompt.title": "აირჩიე ტექნოლოგია მარჯვნივ",
+    "business.tech.prompt.text": "დააჭირე ნებისმიერ ბლოკს, რომ მოკლედ ნახო, როგორ მუშაობს კონკრეტული ტექნოლოგია და რისთვის არის იდეალური. ასე შეგიძლია შეარჩიო შენს ობიექტზე ყველაზე სწორი გადაწყვეტა – არსებული კაბელების, ინტერნეტ ინფრასტრუქტურისა და ბიუჯეტის გათვალისწინებით.",
+    "business.cta.title": "დაინტერესების შემთხვევაში დაგვიკავშირდით",
+    "business.cta.text": "თუ გსურთ, რომ თქვენი სასტუმრო, კომპანია ან ნებისმიერი ობიექტი OK TV-ს ქსელში ჩაერთოს, მოგვწერეთ ელ-ფოსტაზე ან დაგვირეკეთ – შეგვიძლია მოგიმზადოთ ინდივიდუალური კომერციული შეთავაზება, ტექნოლოგიის შერჩევით და დეტალური კონსულტაციით.",
+    "footer.contact": "საკონტაქტო ნომერი:"
+  },
+  en: {
+    "business.map.title": "Geographic coverage of corporate clients",
+    "business.map.text": "The OK TV signal already operates in many tourist and business locations across Georgia. The banner shows the distribution of our partner venues nationwide, visualized with your custom pin map.",
+    "business.map.badge": "Partner venues map",
+    "business.companies.title": "Business segments we serve",
+    "business.companies.subtitle": "OK TV serves different types of venues — international and local hotels, sports bars, hostels, cottages, and construction companies. For each segment we provide tailored TV packages, technology solutions, and technical support.",
+    "business.company.hotels": "Hotels",
+    "business.company.hostels": "Hostels",
+    "business.company.cottages": "Cottages",
+    "business.company.sportsBars": "Sports Bars",
+    "business.company.construction": "Construction Companies",
+    "business.tech.title": "Our technologies",
+    "business.tech.subtitle": "Across Georgia, we can deliver digital TV at virtually any location using different technologies — both on existing infrastructure and on newly built engineering networks.",
+    "business.tech.ott.tagline": "TV over the internet, on any device.",
+    "business.tech.iptv.tagline": "TV delivery over IP networks with advanced control.",
+    "business.tech.dvbc.tagline": "Digital cable for a stable signal.",
+    "business.tech.dvbt.tagline": "Digital terrestrial broadcasting via antenna.",
+    "business.tech.dvbs2.tagline": "Satellite signal for hard-to-reach locations.",
+    "business.tech.smart.tagline": "App for popular Smart TV platforms.",
+    "business.tech.web.tagline": "Access directly from the browser, no extra app.",
+    "business.tech.prompt.title": "Choose a technology on the right",
+    "business.tech.prompt.text": "Click any block to see how a technology works and what it’s best for. This helps you select the right solution for your venue, considering cabling, internet infrastructure, and budget.",
+    "business.cta.title": "Contact us if you’re interested",
+    "business.cta.text": "If you want your hotel, company, or any venue to join the OK TV network, email or call us — we can prepare a custom commercial offer with technology selection and detailed consultation.",
+    "footer.contact": "Contact number:"
+  },
+  ru: {
+    "business.map.title": "География корпоративных клиентов",
+    "business.map.text": "Сигнал OK TV уже работает во многих туристических и бизнес‑локациях по всей Грузии. На баннере показано распределение наших партнерских объектов по стране — в виде вашей пин‑карты.",
+    "business.map.badge": "Карта партнерских объектов",
+    "business.companies.title": "Сферы, которые мы обслуживаем",
+    "business.companies.subtitle": "OK TV обслуживает разные типы объектов — международные и локальные отели, спорт‑бары, хостелы, коттеджи и строительные компании. Для каждого направления мы предлагаем адаптированные ТВ‑пакеты, технологические решения и техническую поддержку.",
+    "business.company.hotels": "Отели",
+    "business.company.hostels": "Хостелы",
+    "business.company.cottages": "Коттеджи",
+    "business.company.sportsBars": "Спорт-бары",
+    "business.company.construction": "Строительные компании",
+    "business.tech.title": "Наши технологии",
+    "business.tech.subtitle": "По всей Грузии мы можем предоставлять цифровое ТВ практически в любой локации и на разных технологиях — как на существующей, так и на новой инженерной инфраструктуре.",
+    "business.tech.ott.tagline": "Телевидение через интернет на любом устройстве.",
+    "business.tech.iptv.tagline": "Доставка ТВ по IP-сети с продвинутым контролем.",
+    "business.tech.dvbc.tagline": "Цифровой кабель для стабильного сигнала.",
+    "business.tech.dvbt.tagline": "Цифровое эфирное вещание через антенну.",
+    "business.tech.dvbs2.tagline": "Спутниковый сигнал для сложных локаций.",
+    "business.tech.smart.tagline": "Приложение для популярных платформ Smart TV.",
+    "business.tech.web.tagline": "Доступ прямо из браузера без дополнительного приложения.",
+    "business.tech.prompt.title": "Выберите технологию справа",
+    "business.tech.prompt.text": "Нажмите на любой блок, чтобы кратко увидеть, как работает технология и для чего она подходит. Так вы сможете выбрать оптимальное решение для объекта с учетом кабелей, интернет‑инфраструктуры и бюджета.",
+    "business.cta.title": "Свяжитесь с нами при интересе",
+    "business.cta.text": "Если вы хотите подключить ваш отель, компанию или объект к сети OK TV, напишите нам или позвоните — подготовим индивидуальное коммерческое предложение с подбором технологии и подробной консультацией.",
+    "footer.contact": "Контактный номер:"
+  }
+};
+
+Object.keys(businessPageTranslations).forEach((lang) => {
+  Object.assign(translations[lang], businessPageTranslations[lang]);
+});
 
 Object.keys(translations).forEach((lang) => {
   translations[lang]["page.title"] = document.title;
@@ -2847,6 +3057,10 @@ function applyLanguage(lang) {
     const btnLang = btn.getAttribute("data-lang");
     btn.classList.toggle("lang-option-active", btnLang === lang);
   });
+
+  if (techInfoReady) {
+    refreshTechDetails();
+  }
 }
 
 function setupLanguage() {
@@ -2888,14 +3102,14 @@ function applyTheme(mode) {
   const icon = document.getElementById("themeIcon");
   const isDark = mode === "dark";
   root.classList.toggle("dark-mode", isDark);
-  if (icon) icon.textContent = isDark ? "??" : "??";
+  if (icon) icon.textContent = isDark ? "☀️" : "🌙";
 
   localStorage.setItem(THEME_KEY, mode);
 }
 
 function setupTheme() {
   const savedTheme = localStorage.getItem(THEME_KEY);
-  const initialTheme = savedTheme === "dark" ? "dark" : "light";
+  const initialTheme = savedTheme === "light" ? "light" : "dark";
   applyTheme(initialTheme);
 
   const themeToggle = document.getElementById("themeToggle");
@@ -2980,6 +3194,118 @@ const techInfo = {
   }
 };
 
+const techInfoTranslations = {
+  en: {
+    ott: {
+      title: "OTT (Over-the-Top)",
+      text:
+        "OTT delivers TV over the internet to any device. It doesn't require traditional cable infrastructure and scales easily across locations. OK TV's OTT solution is flexible and fast to deploy."
+    },
+    dvbt: {
+      title: "DVBT — Digital Terrestrial Broadcasting",
+      text:
+        "DVBT uses terrestrial antennas to deliver digital TV. It's a stable option where broadcast coverage is available and works well for classic antenna setups."
+    },
+    dvbc: {
+      title: "DVBC — Digital Cable TV",
+      text:
+        "DVBC works over coaxial cable networks (RG-6 or similar). Ideal for buildings with existing cable infrastructure and centralized signal distribution."
+    },
+    iptv: {
+      title: "IPTV — TV over IP Network",
+      text:
+        "IPTV delivers television over LAN/Wi-Fi networks. It supports multicast/unicast, advanced control, and flexible service management."
+    },
+    dvbs2: {
+      title: "DVBS2 — Satellite Delivery",
+      text:
+        "DVBS2 uses satellite transmission for locations where terrestrial or cable access is limited. It requires a dish and receiver and provides wide coverage."
+    },
+    smart: {
+      title: "Smart TV App",
+      text:
+        "Native app for popular Smart TV platforms. Branded experience, easy updates, and a smooth user interface."
+    },
+    web: {
+      title: "Web TV — Browser Access",
+      text:
+        "Web TV runs directly in the browser without additional apps. Suitable for PCs and laptops with quick access via link."
+    }
+  },
+  ru: {
+    ott: {
+      title: "OTT (Over-the-Top)",
+      text:
+        "OTT передает ТВ через интернет на любые устройства. Не требует традиционной кабельной инфраструктуры и легко масштабируется по локациям. Решение OK TV по OTT гибкое и быстро внедряемое."
+    },
+    dvbt: {
+      title: "DVBT — Цифровое эфирное вещание",
+      text:
+        "DVBT использует наземные антенны для цифрового ТВ. Это стабильный вариант там, где есть эфирное покрытие, и подходит для классических антенн."
+    },
+    dvbc: {
+      title: "DVBC — Цифровое кабельное ТВ",
+      text:
+        "DVBC работает по коаксиальным сетям (RG‑6 и аналоги). Подходит для зданий с существующей кабельной инфраструктурой и централизованным распределением сигнала."
+    },
+    iptv: {
+      title: "IPTV — ТВ по IP‑сети",
+      text:
+        "IPTV доставляет телевидение по сетям LAN/Wi‑Fi. Поддерживает multicast/unicast, продвинутое управление и гибкий контроль сервиса."
+    },
+    dvbs2: {
+      title: "DVBS2 — Спутниковая доставка",
+      text:
+        "DVBS2 использует спутниковую передачу там, где ограничен доступ к эфирным или кабельным сетям. Требует антенну и ресивер, обеспечивает широкое покрытие."
+    },
+    smart: {
+      title: "Smart TV App",
+      text:
+        "Нативное приложение для популярных платформ Smart TV. Фирменный интерфейс, удобные обновления и плавный UX."
+    },
+    web: {
+      title: "Web TV — Доступ через браузер",
+      text:
+        "Web TV работает прямо в браузере без дополнительных приложений. Подходит для ПК и ноутбуков с быстрым доступом по ссылке."
+    }
+  }
+};
+
+function getTechInfo(key) {
+  const base = techInfo[key];
+  if (!base) return null;
+  const langPack = techInfoTranslations[currentLanguage];
+  if (langPack && langPack[key]) {
+    return {
+      title: langPack[key].title || base.title,
+      text: langPack[key].text || base.text,
+    };
+  }
+  return base;
+}
+
+function refreshTechDetails() {
+  const titleEl = document.getElementById("techDetailsTitle");
+  const textEl = document.getElementById("techDetailsText");
+  if (!titleEl || !textEl) return;
+  const activeCard = document.querySelector(".tech-card.active");
+  if (activeCard) {
+    const info = getTechInfo(activeCard.dataset.tech);
+    if (info) {
+      titleEl.textContent = info.title;
+      textEl.textContent = info.text;
+    }
+    return;
+  }
+  const langPack = translations[currentLanguage] || translations.ka;
+  const defaultTitle = langPack["business.tech.prompt.title"];
+  const defaultText = langPack["business.tech.prompt.text"];
+  if (defaultTitle) titleEl.textContent = defaultTitle;
+  if (defaultText) textEl.textContent = defaultText;
+}
+
+techInfoReady = true;
+
 const techCards = document.querySelectorAll(".tech-card");
 const techDetailsTitle = document.getElementById("techDetailsTitle");
 const techDetailsText = document.getElementById("techDetailsText");
@@ -2987,7 +3313,7 @@ const techDetailsText = document.getElementById("techDetailsText");
 techCards.forEach((card) => {
   card.addEventListener("click", () => {
     const key = card.dataset.tech;
-    const info = techInfo[key];
+    const info = getTechInfo(key);
     if (!info) return;
 
     techCards.forEach((c) => c.classList.remove("active"));
