@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ka">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>OK TV • პაკეტები</title>
-
-  <!-- Tailwind CDN (preflight გამორთული, რომ არსებული სტილები არ დაიფლოს) -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>OK TV • მთავარი</title>
+    <!-- Tailwind CDN (preflight გამორთული, რომ არსებული სტილები არ დაიფლოს) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -24,1000 +23,24 @@
         },
       };
     </script>
-  <style>
-    /* ================== ROOT & RESET ================== */
-    :root {
-      --primary: #009fe3;
-      --primary-dark: #0077b6;
-      --primary-soft: #e1f5ff;
-      --accent: #00b6bd;
-      --bg-page: #f5f7fb;
-      --bg-section: #ffffff;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --border-soft: #d1d5db;
-      --nav-height: 80px;
-      --radius-lg: 24px;
-      --radius-pill: 999px;
-      --shadow-soft: 0 14px 40px rgba(15, 23, 42, 0.16);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 0 0, rgba(59,130,246,0.07), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(56,189,248,0.08), transparent 55%),
-        var(--bg-page);
-      color: var(--text-main);
-      overflow-x: hidden;
-    }
-
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-
-    main { min-height: 100vh; }
-
-    section {
-      padding: 72px 16px;
-    }
-
-    .section-inner,
-    .hero-inner,
-    .packages-inner {
-      max-width: 1360px;
-      margin: 0 auto;
-    }
-
-    /* ================== HEADER ================== */
-    .main-header {
-      position: sticky;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      background: rgba(255,255,255,0.98);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
-      transition: box-shadow 0.2s ease, background 0.2s ease;
-    }
-
-    .main-header.scrolled {
-      box-shadow: 0 8px 30px rgba(15,23,42,0.18);
-      background: rgba(255,255,255,0.99);
-    }
-
-    .header-inner {
-      max-width: 1360px;
-      margin: 0 auto;
-      height: var(--nav-height);
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      padding: 0 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    .brand-logo {
-      height: 64px;
-      object-fit: contain;
-      filter: drop-shadow(0 8px 18px rgba(59,130,246,0.58));
-    }
-
-    .header-spacer { flex: 1; }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .nav-link {
-      position: relative;
-      border: none;
-      background: transparent;
-      padding: 8px 12px;
-      border-radius: var(--radius-pill);
-      font-size: 0.82rem;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 20%;
-      right: 20%;
-      bottom: 6px;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 0.18s ease-out;
-    }
-
-    .nav-link:hover {
-      color: var(--primary-dark);
-      background: rgba(0,159,227,0.06);
-      box-shadow: 0 3px 8px rgba(148,163,184,0.35);
-    }
-
-    .nav-link.active {
-      color: var(--primary-dark);
-      background: rgba(0, 159, 227, 0.09);
-    }
-
-    .nav-link.active::after { transform: scaleX(1); }
-
-    .header-cta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-left: 6px;
-      flex-shrink: 0;
-    }
-
-    .header-btn {
-      position: relative;
-      border-radius: var(--radius-pill);
-      padding: 8px 16px;
-      border: 1px solid var(--primary);
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #ffffff;
-      background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 4px 16px rgba(0, 159, 227, 0.4);
-      white-space: nowrap;
-      transform: translateY(0);
-      transition: box-shadow 0.18s ease, transform 0.18s ease, background 0.18s ease;
-      overflow: hidden;
-    }
-
-    .header-btn::before {
-      content: "❄";
-      position: absolute;
-      top: -8px;
-      right: 16px;
-      font-size: 0.85rem;
-      opacity: 0.7;
-    }
-
-    .header-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 22px rgba(0, 159, 227, 0.6);
-    }
-
-    .header-btn span {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .header-btn-ghost {
-      background: #ffffff;
-      color: var(--primary-dark);
-      border-color: var(--primary-dark);
-      box-shadow: none;
-    }
-
-    .header-btn-ghost::before {
-      content: "❄";
-      color: #93c5fd;
-    }
-
-    .header-btn-ghost:hover {
-      background: rgba(0, 159, 227, 0.06);
-    }
-
-
-
-
-
-
-    /* ================== HERO – PACKAGES SLIDER ================== */
-
-    #packages-hero {
-      padding-top: 44px;
-      padding-bottom: 64px;
-      background: linear-gradient(180deg, #e5f4ff 0%, #f5f7fb 60%, #f5f7fb 100%);
-      box-shadow: inset 0 -1px 0 rgba(209, 213, 219, 0.7);
-    }
-
-    .hero-slider {
-      position: relative;
-      border-radius: 30px;
-      background: radial-gradient(circle at 0 0, #e0f2fe, #ffffff);
-      box-shadow: 0 26px 60px rgba(15,23,42,0.25);
-      overflow: hidden;
-      border: 1px solid rgba(148,163,184,0.5);
-    }
-
-    .hero-slider::before {
-      /* ლამაზი გლოუ ჩარჩო */
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: 32px;
-      background:
-        radial-gradient(circle at 0 0, rgba(59,130,246,0.35), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(45,212,191,0.3), transparent 55%);
-      mix-blend-mode: screen;
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
-    .hero-slider::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      border-radius: 30px;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.9),
-        inset 0 -1px 0 rgba(15,23,42,0.07);
-      mix-blend-mode: screen;
-    }
-
-    .hero-packages-track {
-      display: flex;
-      align-items: stretch;
-      gap: 18px;
-      padding: 20px 32px;
-      animation: packagesMarquee 40s linear infinite;
-      will-change: transform;
-    }
-
-    .hero-package-slide {
-      flex: 0 0 260px;
-      border-radius: 26px;
-      overflow: hidden;
-      box-shadow: 0 16px 40px rgba(15,23,42,0.25);
-      background: #0f172a;
-      position: relative;
-    }
-
-    .hero-package-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transform: scale(1.02);
-      transition: transform 0.5s ease;
-    }
-
-    .hero-package-slide::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 0 0, rgba(255,255,255,0.08), transparent 55%);
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .hero-package-slide:hover img {
-      transform: scale(1.04);
-    }
-
-    @keyframes packagesMarquee {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* ================== STORE BADGES (APPLICATION DOWNLOAD) ================== */
-
-    .store-badges {
-      max-width: 1120px;
-      margin: 24px auto 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .store-badge {
-      position: relative;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: 6px 14px 8px;
-      background: #ffffff;
-      border: 1px solid rgba(148,163,184,0.6);
-      box-shadow: 0 6px 16px rgba(15,23,42,0.16);
-      cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-      min-width: 190px;
-    }
-
-    .store-badge::before {
-      content: "❄";
-      position: absolute;
-      top: -10px;
-      left: 16px;
-      font-size: 0.9rem;
-      opacity: 0.75;
-    }
-
-    .store-badge:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(15,23,42,0.26);
-      border-color: var(--primary);
-    }
-
-    .store-badge img {
-      width: 150px;
-      height: auto;
-      display: block;
-    }
-
-    .store-badge-label {
-      margin-top: 4px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-    }
-
-    /* ================== HERO CATEGORIES – ნავიგაციის 4 ბლოკი ================== */
-
-    .hero-categories {
-      max-width: 1120px;
-      margin: 32px auto 0;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-      position: relative;
-      z-index: 5;
-    }
-
-    .hero-category-card {
-      border-radius: 20px;
-      padding: 16px;
-      background: #ffffff;
-      border: 1px solid var(--border-soft);
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
-      font-size: 0.86rem;
-      cursor: pointer;
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
-    }
-
-    .hero-category-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.22);
-      border-color: var(--primary);
-    }
-
-    .hero-category-icon {
-      flex-shrink: 0;
-      width: 42px;
-      height: 42px;
-      border-radius: 16px;
-      position: relative;
-      background: radial-gradient(circle at 0 0, #e0f2fe, #bfdbfe);
-      box-shadow: 0 4px 10px rgba(148, 163, 184, 0.5);
-    }
-
-    .hero-category-title {
-      font-weight: 700;
-      color: var(--primary-dark);
-    }
-
-    .hero-category-desc {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    /* პატარა აიკონები */
-    .hero-icon-main::before {
-      content: "";
-      position: absolute;
-      width: 18px;
-      height: 12px;
-      border-radius: 6px;
-      border: 2px solid #0f172a;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(135deg, #eef2ff, #dbeafe);
-    }
-
-    .hero-icon-business::before {
-      content: "";
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-radius: 4px;
-      border: 2px solid #0f172a;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      background: #eef2ff;
-    }
-
-    .hero-icon-about {
-      background: radial-gradient(circle at 0 0, #e0f2fe, #93c5fd);
-    }
-    .hero-icon-about::before {
-      content: "";
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      border: 2px solid #0f172a;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .hero-icon-about::after {
-      content: "";
-      position: absolute;
-      width: 2px;
-      height: 14px;
-      background: #0f172a;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 999px;
-    }
-
-    .hero-icon-contact {
-      background: radial-gradient(circle at 0 0, #e0f2fe, #60a5fa);
-    }
-    .hero-icon-contact::before {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 24px;
-      border-radius: 8px;
-      border: 2px solid #0f172a;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) rotate(-18deg);
-    }
-
-    /* ================== PACKAGES LIST SECTION ================== */
-
-    .packages-list-section {
-      padding: 72px 16px 80px;
-      background: var(--bg-page);
-    }
-
-    .packages-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 8px;
-    }
-
-    .packages-subtitle {
-      font-size: 0.98rem;
-      color: var(--text-muted);
-      max-width: 620px;
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-
-    .packages-list-layout {
-      display: block; /* დესკტოპზეც და მობილურზეც – ერთი სვეტი, როგორც მობილურზე */
-    }
-
-    .packages-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      transition: max-height 0.25s ease;
-    }
-
-    .packages-list.collapsed {
-      max-height: 260px;
-      overflow-y: auto;
-    }
-
-    .package-list-item {
-      width: 100%;
-      border-radius: 20px;
-      border: 1px solid #e5e7eb;
-      background: #ffffff;
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      text-align: left;
-      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease, background 0.18s ease;
-    }
-
-    .package-list-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 26px rgba(15,23,42,0.18);
-      border-color: var(--primary);
-    }
-
-    .package-list-item.active {
-      border-color: var(--primary-dark);
-      background: linear-gradient(135deg,#e0f2ff,#ffffff);
-      box-shadow: 0 12px 26px rgba(37,99,235,0.35);
-    }
-
-    .package-thumb-wrap {
-      flex-shrink: 0;
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 18px rgba(15,23,42,0.3);
-      background: #0f172a;
-    }
-
-    .package-thumb-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .package-list-text {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .package-list-name {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-    }
-
-    .package-list-meta {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    .package-info-card {
-      border-radius: 24px;
-      background: #ffffff;
-      border: 1px solid rgba(209,213,219,0.9);
-      padding: 18px 18px 20px;
-      box-shadow: 0 16px 40px rgba(15,23,42,0.2);
-      margin-top: 18px;
-      display: none;
-    }
-
-    .package-info-card.open {
-      display: block;
-    }
-
-    .package-info-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 6px;
-    }
-
-    .package-info-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .package-info-body {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      color: var(--text-main);
-    }
-
-    .package-bonus {
-      display: block;
-      margin-top: 6px;
-      font-weight: 700;
-      color: var(--primary-dark);
-    }
-
-    /* ძველი დიდ ბანერს ვეღარ გამოვიყენებთ – საერთოდ ამოვიღეთ HTML-იდან */
-
-    /* ================== FLOATING SOCIAL ICONS ================== */
-
-    .social-fb,
-    .social-ig,
-    .social-tt {
-      position: fixed;
-      right: 24px;
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
-      background: #ffffff;
-      border: 1px solid rgba(148,163,184,0.7);
-      box-shadow: 0 14px 30px rgba(15,23,42,0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      z-index: 60;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
-    }
-
-    .social-fb { bottom: 170px; }
-    .social-ig { bottom: 122px; }
-    .social-tt { bottom: 74px; }
-
-    .social-fb:hover,
-    .social-ig:hover,
-    .social-tt:hover {
-      transform: translateY(-2px);
-      background: #f3f4ff;
-      border-color: var(--primary);
-      box-shadow: 0 20px 40px rgba(15,23,42,0.6);
-    }
-
-    .social-fb img,
-    .social-ig img,
-    .social-tt img {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
-      display: block;
-    }
-
-    /* ================== FLOATING CALL BUTTON ================== */
-
-    .floating-call-btn {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-      z-index: 59;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #10b981, #059669);
-      color: #ffffff;
-      font-size: 0.88rem;
-      font-weight: 600;
-      box-shadow: 0 18px 40px rgba(5,150,105,0.6);
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .floating-call-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 24px 50px rgba(5,150,105,0.75);
-    }
-
-    .floating-call-icon {
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      background: rgba(15,23,42,0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.15rem;
-      box-shadow: 0 0 0 0 rgba(16,185,129,0.55);
-      animation: phonePulse 2.1s ease-out infinite;
-    }
-
-    .floating-call-text {
-      white-space: nowrap;
-    }
-
-    @keyframes phonePulse {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(16,185,129,0.55);
+    <style>
+      /* ================== ROOT & RESET ================== */
+      :root {
+        --primary: #009fe3;
+        --primary-dark: #0077b6;
+        --primary-soft: #e1f5ff;
+        --accent: #00b6bd;
+        --bg-page: #f5f7fb;
+        --bg-section: #ffffff;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+        --border-soft: #d1d5db;
+        --nav-height: 80px;
+        --radius-lg: 24px;
+        --radius-pill: 999px;
+        --shadow-soft: 0 14px 40px rgba(15, 23, 42, 0.16);
       }
-      50% {
-        transform: scale(1.06);
-        box-shadow: 0 0 0 10px rgba(16,185,129,0);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(16,185,129,0);
-      }
-    }
-
-    /* ================== BONUS MOVIE LIBRARY SECTION ================== */
-
-    .bonus-library-section {
-      padding: 56px 16px 72px;
-      background: #ffffff;
-      border-top: 1px solid rgba(209,213,219,0.6);
-    }
-
-    .bonus-library-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 32px;
-      align-items: center;
-    }
-
-    .bonus-library-title {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 10px;
-    }
-
-    .bonus-library-subtitle {
-      font-size: 0.96rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      max-width: 520px;
-    }
-
-    .bonus-library-banner {
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 18px 44px rgba(15,23,42,0.3);
-      background: #020617;
-    }
-
-    .bonus-library-banner img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
-
-    .dark-mode .bonus-library-section {
-      background: #020617;
-      border-top-color: #111827;
-    }
-
-    .dark-mode .bonus-library-title {
-      color: #e5e7eb;
-    }
-
-    /* ================== FOOTER ================== */
-
-    .footer {
-      padding: 20px 16px 26px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      background: #ffffff;
-      border-top: 1px solid rgba(209, 213, 219, 0.7);
-      margin-top: 8px;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .dark-mode .footer {
-      background: #020617;
-      border-color: #111827;
-    }
-
-    /* ================== REVEAL ANIMATION ================== */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ================== MOBILE OPTIMIZATION ================== */
-
-    @media (max-width: 980px) {
-      .hero-categories {
-        /* მობილურზე: ჰორიზონტალური სკროლი, მექანიკური swipe */
-        display: flex;
-        overflow-x: auto;
-        gap: 10px;
-        padding-bottom: 4px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .hero-category-card {
-        min-width: 260px;
-        scroll-snap-align: center;
-      }
-    }
-
-    @media (max-width: 768px) {
-      body {
-        font-size: 15px;
-      }
-
-      #packages-hero {
-        padding-top: 52px; /* ოდნავ ქვემოთ, რომ ჰედერს არ ეფარებოდეს */
-        padding-bottom: 40px;
-      }
-
-      .hero-slider {
-        margin-inline: 10px;
-        margin-top: 12px; /* ბანერები კიდევ უფრო ქვემოთ ჩამოწეული */
-        border-radius: 24px;
-      }
-
-      .hero-packages-track {
-        padding: 16px 20px;
-      }
-
-      /* ჩამოტვირთვის ბეჯები მობილურზე არ გამოჩნდეს */
-      .store-badges {
-        display: none;
-      }
-
-      .packages-list-section {
-        padding: 48px 12px 64px;
-      }
-
-      .social-fb,
-      .social-ig,
-      .social-tt {
-        right: 16px;
-        width: 34px;
-        height: 34px;
-      }
-
-      .social-fb { bottom: 156px; }
-      .social-ig { bottom: 112px; }
-      .social-tt { bottom: 68px; }
-
-      /* მობილურზე პატარა ტელეფონის ღილაკი, მხოლოდ აიკონით */
-      .floating-call-btn {
-        right: 16px;
-        bottom: 16px;
-        left: auto;
-        padding: 6px;
-        border-radius: 999px;
-        font-size: 0.8rem;
-      }
-
-      .floating-call-icon {
-        width: 34px;
-        height: 34px;
-      }
-
-      .floating-call-text {
-        display: none;
-      }
-
-      .bonus-library-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-category-card {
-        min-width: 240px;
-      }
-
-      .store-badge {
-        min-width: 240px;
-      }
-    }
-  /* ================== PACKAGES DARK MODE ================== */
-  .dark-mode #packages-hero {
-    background: linear-gradient(180deg, #0b1220 0%, #020617 60%, #020617 100%);
-    box-shadow: inset 0 -1px 0 rgba(31, 41, 55, 0.8);
-  }
-
-  .dark-mode .hero-slider {
-    background: radial-gradient(circle at 0 0, rgba(30, 64, 175, 0.25), #0b1220);
-    border-color: #1f2937;
-    box-shadow: 0 26px 60px rgba(0, 0, 0, 0.6);
-  }
-
-  .dark-mode .hero-slider::after {
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.4);
-  }
-
-  .dark-mode .store-badge {
-    background: #0f172a;
-    border-color: rgba(148, 163, 184, 0.4);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-  }
-
-  .dark-mode .store-badge:hover {
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
-  }
-
-  .dark-mode .hero-category-card {
-    background: #0f172a;
-    border-color: #1f2937;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
-  }
-
-  .dark-mode .hero-category-title {
-    color: #93c5fd;
-  }
-
-  .dark-mode .packages-title {
-    color: #93c5fd;
-  }
-
-  .dark-mode .package-list-item {
-    background: #0f172a;
-    border-color: #1f2937;
-  }
-
-  .dark-mode .package-list-item:hover {
-    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.5);
-  }
-
-  .dark-mode .package-list-item.active {
-    background: linear-gradient(135deg, #0b1220, #0f172a);
-    border-color: #38bdf8;
-    box-shadow: 0 12px 26px rgba(30, 64, 175, 0.55);
-  }
-
-  .dark-mode .package-list-name {
-    color: #93c5fd;
-  }
-
-  .dark-mode .package-info-card {
-    background: #0f172a;
-    border-color: #1f2937;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-  }
-
-  .dark-mode .package-info-title {
-    color: #93c5fd;
-  }
-
-  .dark-mode .package-bonus {
-    color: #7dd3fc;
-  }
-
-  .dark-mode .social-fb,
-  .dark-mode .social-ig,
-  .dark-mode .social-tt {
-    background: #0f172a;
-    border-color: rgba(148, 163, 184, 0.4);
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
-  }
-
-  .dark-mode .social-fb:hover,
-  .dark-mode .social-ig:hover,
-  .dark-mode .social-tt:hover {
-    background: #111827;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.75);
-  }
-
-  /* ================== SHARED HEADER & BUTTONS (INDEX) ================== */
-
-/* DARK MODE VARIABLES OVERRIDE */
+      /* DARK MODE VARIABLES OVERRIDE */
       .dark-mode {
         --bg-page: #020617;
         --bg-section: #020617;
@@ -1025,7 +48,45 @@
         --text-muted: #9ca3af;
         --border-soft: #1f2937;
       }
-.dark-mode body {
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        width: 100%;
+        overflow-x: hidden;
+      }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: radial-gradient(
+            circle at 0 0,
+            rgba(59, 130, 246, 0.07),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 100% 100%,
+            rgba(56, 189, 248, 0.08),
+            transparent 55%
+          ),
+          var(--bg-page);
+        color: var(--text-main);
+        position: relative;
+        overflow-x: hidden;
+        transition: background 0.2s ease, color 0.2s ease;
+        width: 100%;
+      }
+      main,
+      section,
+      header,
+      footer {
+        width: 100%;
+      }
+      .dark-mode body {
         background: radial-gradient(
             circle at 0 0,
             rgba(56, 189, 248, 0.12),
@@ -1038,8 +99,25 @@
           ),
           #020617;
       }
-
-/* ================== HEADER ================== */
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      main {
+        min-height: 100vh;
+      }
+      section {
+        padding: 72px 16px;
+      }
+      .section-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+      }
+      /* ================== HEADER ================== */
       .main-header {
         position: sticky;
         top: 0;
@@ -1424,8 +502,835 @@
           justify-content: flex-end;
         }
       }
-
-/* ================== FLOATING CONTACT ================== */
+      /* ================== HERO ================== */
+      #home {
+        padding-top: 44px;
+        padding-bottom: 72px;
+        background: linear-gradient(
+          180deg,
+          #e5f4ff 0%,
+          #f5f7fb 50%,
+          #f5f7fb 100%
+        );
+        box-shadow: inset 0 -1px 0 rgba(209, 213, 219, 0.7);
+        transition: background 0.2s ease, box-shadow 0.2s ease;
+      }
+      .dark-mode #home {
+        background: radial-gradient(
+            circle at 0 0,
+            rgba(59, 130, 246, 0.2),
+            transparent 55%
+          ),
+          #020617;
+        box-shadow: inset 0 -1px 0 rgba(15, 23, 42, 0.9);
+      }
+      .hero-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+      }
+      .hero-slider {
+        position: relative;
+        border-radius: 30px;
+        background: radial-gradient(circle at 0 0, #e0f2fe, #ffffff);
+        box-shadow: 0 26px 60px rgba(15, 23, 42, 0.25);
+        overflow: hidden;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        transition: background 0.2s ease, border-color 0.2s ease,
+          box-shadow 0.2s ease;
+        touch-action: pan-y;
+      }
+      .dark-mode .hero-slider {
+        background: radial-gradient(circle at 0 0, #0f172a, #020617);
+        border-color: rgba(37, 99, 235, 0.7);
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95);
+      }
+      .hero-slider::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: 30px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9),
+          inset 0 -1px 0 rgba(15, 23, 42, 0.07);
+        mix-blend-mode: screen;
+      }
+      .dark-mode .hero-slider::after {
+        box-shadow: inset 0 1px 0 rgba(148, 163, 184, 0.6),
+          inset 0 -1px 0 rgba(15, 23, 42, 0.8);
+        mix-blend-mode: normal;
+      }
+      .hero-slide-track {
+        display: flex;
+        transition: transform 0.6s ease;
+        will-change: transform;
+      }
+      .hero-slide {
+        min-width: 100%;
+        padding: 0;
+      }
+      .hero-image-wrap {
+        position: relative;
+        border-radius: 30px;
+        overflow: hidden;
+        height: clamp(230px, 55vw, 560px);
+      }
+      .hero-image {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        transform: scale(1.02);
+        transition: transform 0.6s ease;
+      }
+      .hero-slide.active .hero-image {
+        transform: scale(1);
+      }
+      .hero-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        border: none;
+        background: rgba(15, 23, 42, 0.65);
+        color: #ffffff;
+        font-size: 1.4rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 12px 26px rgba(15, 23, 42, 0.35);
+        opacity: 0.6;
+        transition: opacity 0.2s ease, transform 0.2s ease,
+          background 0.2s ease;
+        z-index: 5;
+      }
+      .hero-arrow:hover {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.04);
+        background: rgba(15, 23, 42, 0.82);
+      }
+      .hero-arrow-prev {
+        left: 16px;
+      }
+      .hero-arrow-next {
+        right: 16px;
+      }
+      @media (max-width: 768px) {
+        .hero-arrow {
+          width: 36px;
+          height: 36px;
+          font-size: 1.15rem;
+        }
+      }
+      @media (hover: none) {
+        .hero-arrow {
+          opacity: 0.85;
+        }
+      }
+      .hero-slider-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 16px;
+        padding-bottom: 6px;
+        background: transparent;
+        border-top: none;
+        gap: 8px;
+      }
+      .hero-dots {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .hero-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 999px;
+        border: 1px solid var(--primary);
+        background: #ffffff;
+        cursor: pointer;
+        transition: background 0.18s ease, transform 0.18s ease,
+          border-color 0.18s ease;
+      }
+      .hero-dot.active {
+        background: var(--primary);
+        border-color: var(--primary-dark);
+        transform: scale(1.1);
+      }
+      /* ================== TOP-UP BALANCE BUTTON ================== */
+      .balance-wrap {
+        max-width: 1120px;
+        margin: 18px auto 0;
+        display: flex;
+        justify-content: center;
+      }
+      .balance-btn {
+        border-radius: 999px;
+        border: none;
+        padding: 9px 22px;
+        font-size: 0.86rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: #ffffff;
+        box-shadow: 0 10px 30px rgba(34, 197, 94, 0.55);
+        transition: transform 0.16s ease, box-shadow 0.16s ease;
+      }
+      .balance-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 44px rgba(22, 163, 74, 0.8);
+      }
+      .dark-mode .balance-btn {
+        box-shadow: 0 18px 40px rgba(22, 163, 74, 0.9);
+      }
+      /* Desktop-ზე ქვედა მწვანე ღილაკი აღარ ჩანს – მხოლოდ ჰედერშია */
+      @media (min-width: 981px) {
+        .balance-wrap {
+          display: none;
+        }
+      }
+      /* Mobile-ზე ოდნავ ზემოთ აწევა */
+      @media (max-width: 768px) {
+        .balance-wrap {
+          margin-top: 6px;
+        }
+      }
+      /* ================== STORE BADGES ================== */
+      .store-badges {
+        max-width: 1120px;
+        margin: 12px auto 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+        align-items: flex-start;
+      }
+      .store-badge {
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        border-radius: 999px;
+        padding: 6px 14px 8px;
+        background: #ffffff;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.16);
+        cursor: pointer;
+        transition: transform 0.18s ease, box-shadow 0.18s ease,
+          border-color 0.18s ease, background 0.18s ease;
+        min-width: 170px;
+      }
+      .dark-mode .store-badge {
+        background: #020617;
+        border-color: rgba(148, 163, 184, 0.8);
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.9);
+      }
+      .store-badge::before {
+        content: "❄";
+        position: absolute;
+        top: -10px;
+        left: 16px;
+        font-size: 0.9rem;
+        opacity: 0.75;
+      }
+      .store-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.26);
+        border-color: var(--primary);
+        background: #ffffff;
+      }
+      .dark-mode .store-badge:hover {
+        background: #020617;
+      }
+      .store-badge img {
+        width: 150px;
+        height: auto;
+        display: block;
+      }
+      .store-badge-label {
+        margin-top: 4px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        letter-spacing: 0.04em;
+      }
+      /* ================== ქვედა კატეგორიის ბლოკები ================== */
+      .hero-categories {
+        max-width: 1120px;
+        margin: 32px auto 0;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        position: relative;
+        z-index: 5;
+      }
+      .hero-category-card {
+        border-radius: 20px;
+        padding: 16px;
+        background: #ffffff;
+        border: 1px solid var(--border-soft);
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+        font-size: 0.86rem;
+        cursor: pointer;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        transition: box-shadow 0.18s ease, transform 0.18s ease,
+          border-color 0.18s ease, background 0.18s ease;
+      }
+      .hero-category-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.22);
+        border-color: var(--primary);
+      }
+      .dark-mode .hero-category-card {
+        background: #020617;
+        border-color: #1f2937;
+        box-shadow: 0 16px 38px rgba(0, 0, 0, 0.9);
+      }
+      .hero-category-icon {
+        flex-shrink: 0;
+        width: 42px;
+        height: 42px;
+        border-radius: 16px;
+        position: relative;
+        background: radial-gradient(circle at 0 0, #e0f2fe, #bfdbfe);
+        box-shadow: 0 4px 10px rgba(148, 163, 184, 0.5);
+      }
+      .hero-category-title {
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+      .hero-category-desc {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+      .hero-icon-packages::before {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 13px;
+        border: 2px solid #0f172a;
+        border-radius: 4px;
+        background: linear-gradient(135deg, #eef2ff, #dbeafe);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .hero-icon-packages::after {
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 2px;
+        background: #0f172a;
+        bottom: 7px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 999px;
+      }
+      .hero-icon-business::before {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border: 2px solid #0f172a;
+        border-radius: 4px;
+        background: #eef2ff;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .hero-icon-about {
+        background: radial-gradient(circle at 0 0, #e0f2fe, #93c5fd);
+      }
+      .hero-icon-about::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid #0f172a;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .hero-icon-about::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 14px;
+        background: #0f172a;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 999px;
+      }
+      .hero-icon-contact {
+        background: radial-gradient(circle at 0 0, #e0f2fe, #60a5fa);
+      }
+      .hero-icon-contact::before {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 24px;
+        border: 2px solid #0f172a;
+        border-radius: 8px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-18deg);
+      }
+      @media (max-width: 980px) {
+        .hero-categories {
+          max-width: 100%;
+          margin-top: 24px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 640px) {
+        .hero-categories {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        #home {
+          padding-bottom: 56px;
+        }
+      }
+      /* ================== DOWNLOAD SECTION ================== */
+      .download-section {
+        background: var(--bg-page);
+        padding: 64px 16px 80px;
+        transition: background 0.2s ease;
+      }
+      .download-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .download-text {
+        flex: 1 1 320px;
+      }
+      .download-title {
+        font-size: 1.7rem;
+        font-weight: 800;
+        color: var(--primary-dark);
+        margin-bottom: 10px;
+      }
+      .download-subtitle {
+        font-size: 0.98rem;
+        color: var(--text-muted);
+        max-width: 520px;
+        line-height: 1.6;
+      }
+      .download-video-wrap {
+        position: relative;
+        flex: 1 1 360px;
+        max-width: 520px;
+        border-radius: 26px;
+        overflow: hidden;
+        padding: 8px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        box-shadow: var(--shadow-soft);
+        aspect-ratio: 16 / 9;
+        transform: translateY(0);
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+      }
+      .download-video-wrap:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.45);
+      }
+      .download-video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border-radius: 18px;
+        background: #000000;
+        object-fit: contain;
+      }
+      .download-video-overlay {
+        position: absolute;
+        inset: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.2));
+        backdrop-filter: blur(8px);
+        border-radius: 18px;
+        z-index: 2;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+      }
+      .download-video-overlay.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .download-video-play {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        background: radial-gradient(circle at 30% 30%, #38bdf8, #2563eb);
+        color: #ffffff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        cursor: pointer;
+        box-shadow: 0 16px 30px rgba(37, 99, 235, 0.4);
+        transition: transform 0.16s ease, box-shadow 0.16s ease;
+      }
+      .download-video-play:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 22px 38px rgba(37, 99, 235, 0.55);
+      }
+      .download-video-choice {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        box-shadow: 0 16px 36px rgba(15, 23, 42, 0.25);
+      }
+      .download-video-choice-title {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: #0f172a;
+      }
+      .download-video-choice-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .download-video-choice-btn {
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        background: linear-gradient(135deg, #ffffff, #f1f5f9);
+        padding: 8px 14px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #0f172a;
+        cursor: pointer;
+        transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      }
+      .download-video-choice-btn:hover {
+        transform: translateY(-1px);
+        border-color: var(--primary);
+        box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
+      }
+      .download-video-overlay.show-choices .download-video-play {
+        display: none;
+      }
+      .download-video-overlay.show-choices .download-video-choice {
+        display: flex;
+      }
+      .dark-mode .download-video-overlay {
+        background: linear-gradient(180deg, rgba(2, 6, 23, 0.7), rgba(2, 6, 23, 0.35));
+      }
+      .dark-mode .download-video-choice {
+        background: rgba(2, 6, 23, 0.92);
+        border-color: rgba(30, 41, 59, 0.8);
+        box-shadow: 0 20px 44px rgba(0, 0, 0, 0.7);
+      }
+      .dark-mode .download-video-choice-title {
+        color: #e5e7eb;
+      }
+      .dark-mode .download-video-choice-btn {
+        background: linear-gradient(135deg, #0f172a, #111827);
+        color: #e5e7eb;
+        border-color: rgba(51, 65, 85, 0.8);
+      }
+      .dark-mode .download-video-choice-btn:hover {
+        border-color: #38bdf8;
+      }
+      .dark-mode .download-video-wrap {
+        background: rgba(2, 6, 23, 0.92);
+        border-color: #1f2937;
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.75);
+      }
+      @media (max-width: 900px) {
+        .download-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .download-video-wrap {
+          align-self: stretch;
+        }
+      }
+      /* ================== OFFERS SECTION ================== */
+      .offers-section {
+        background: var(--bg-section);
+        padding: 64px 16px 80px;
+        border-top: 1px solid rgba(209, 213, 219, 0.6);
+        border-bottom: 1px solid rgba(209, 213, 219, 0.6);
+        transition: background 0.2s ease, border-color 0.2s ease;
+      }
+      .offers-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 36px;
+      }
+      .offers-media {
+        flex: 0 0 420px;
+        max-width: 420px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .offers-media img {
+        width: 100%;
+        height: auto;
+        border-radius: 24px;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        box-shadow: var(--shadow-soft);
+        background: #ffffff;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+      }
+      .offers-media img:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 22px 48px rgba(15, 23, 42, 0.24);
+      }
+      .offers-content {
+        flex: 1;
+      }
+      .offers-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--primary-dark);
+        margin-bottom: 10px;
+      }
+      .offers-subtitle {
+        font-size: 1rem;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+        line-height: 1.6;
+      }
+      .offers-body {
+        font-size: 0.95rem;
+        color: var(--text-main);
+        line-height: 1.7;
+      }
+      .dark-mode .offers-section {
+        background: #020617;
+        border-color: #111827;
+      }
+      .dark-mode .offers-media img {
+        border-color: #1f2937;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      }
+      @media (max-width: 768px) {
+        .offers-section {
+          padding: 56px 14px 64px;
+        }
+        .offers-inner {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 18px;
+        }
+        .offers-content {
+          order: 0;
+        }
+        .offers-media {
+          order: 1;
+          max-width: 380px;
+          width: 100%;
+          margin: 0 auto;
+        }
+        .offers-media img {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 4 / 5;
+          object-fit: cover;
+        }
+        .offers-title {
+          font-size: 1.35rem;
+          line-height: 1.35;
+        }
+        .offers-subtitle {
+          font-size: 0.96rem;
+          line-height: 1.6;
+        }
+        .offers-body {
+          font-size: 0.92rem;
+          line-height: 1.65;
+        }
+      }
+      /* ================== FAQ + LINKS SECTION ================== */
+      .faq-links-section {
+        background: #ffffff;
+        padding: 56px 16px 72px;
+        border-top: 1px solid rgba(209, 213, 219, 0.6);
+        border-bottom: 1px solid rgba(209, 213, 219, 0.6);
+        transition: background 0.2s ease, border-color 0.2s ease;
+      }
+      .dark-mode .faq-links-section {
+        background: #020617;
+        border-color: #111827;
+      }
+      .faq-links-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+        gap: 40px;
+      }
+      .faq-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--primary-dark);
+        margin-bottom: 16px;
+      }
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .faq-item {
+        border-radius: 16px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+        transition: box-shadow 0.18s ease, transform 0.18s ease,
+          background 0.18s ease, border-color 0.18s ease;
+      }
+      .faq-item.open {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+      }
+      .dark-mode .faq-item {
+        background: #020617;
+        border-color: #1f2937;
+        box-shadow: 0 16px 38px rgba(0, 0, 0, 0.9);
+      }
+      .faq-question {
+        width: 100%;
+        border: none;
+        background: transparent;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #111827;
+      }
+      .dark-mode .faq-question {
+        color: #e5e7eb;
+      }
+      .faq-icon {
+        font-size: 1.2rem;
+        color: var(--primary);
+        margin-left: 8px;
+        transition: transform 0.2s ease;
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 16px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+        transition: max-height 0.25s ease, padding-bottom 0.25s ease;
+      }
+      .faq-item.open .faq-answer {
+        max-height: 260px;
+        padding-bottom: 14px;
+      }
+      .faq-item.open .faq-icon {
+        transform: rotate(90deg);
+      }
+      .links-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 12px;
+      }
+      .links-subtitle {
+        font-size: 0.86rem;
+        color: var(--text-muted);
+        margin-bottom: 16px;
+      }
+      .links-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .link-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid #e5e7eb;
+        background: #f9fafb;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: background 0.15s ease, border-color 0.15s ease,
+          transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .link-pill:hover {
+        background: #eef6ff;
+        border-color: var(--primary);
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.16);
+      }
+      .dark-mode .link-pill {
+        background: #020617;
+        border-color: #1f2937;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.85);
+      }
+      .dark-mode .link-pill:hover {
+        background: #020617;
+        border-color: #38bdf8;
+      }
+      .link-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--primary);
+      }
+      @media (max-width: 900px) {
+        .faq-links-inner {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+      /* FOOTER */
+      .footer {
+        padding: 20px 16px 26px;
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        background: #ffffff;
+        border-top: 1px solid rgba(209, 213, 219, 0.7);
+        margin-top: 8px;
+        transition: background 0.2s ease, border-color 0.2s ease;
+      }
+      .dark-mode .footer {
+        background: #020617;
+        border-color: #111827;
+      }
+      /* ================== FLOATING CONTACT ================== */
       .floating-contact {
         position: fixed;
         right: 24px;
@@ -1540,8 +1445,7 @@
           font-size: 1rem;
         }
       }
-
-/* ================== DOWNLOAD MODAL ================== */
+      /* ================== DOWNLOAD MODAL ================== */
       .download-modal-backdrop {
         position: fixed;
         inset: 0;
@@ -1641,8 +1545,215 @@
       .dark-mode .download-modal-close:hover {
         color: #e5e7eb;
       }
-
-/* ================== COOKIE BANNER ================== */
+      /* ================== SNOW ANIMATION ================== */
+      .snowflakes {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 4;
+        overflow: hidden;
+      }
+      .snowflake {
+        position: absolute;
+        top: -10%;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+        text-shadow: 0 0 6px rgba(148, 163, 184, 0.9),
+          0 0 12px rgba(191, 219, 254, 0.9);
+        animation-name: snowFall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      @keyframes snowFall {
+        0% {
+          transform: translateY(0) translateX(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(120vh) translateX(25px);
+          opacity: 0;
+        }
+      }
+      .snowflake:nth-child(1) {
+        left: 5%;
+        animation-duration: 12s;
+        animation-delay: 0s;
+      }
+      .snowflake:nth-child(2) {
+        left: 15%;
+        animation-duration: 16s;
+        animation-delay: 2s;
+      }
+      .snowflake:nth-child(3) {
+        left: 25%;
+        animation-duration: 14s;
+        animation-delay: 4s;
+      }
+      .snowflake:nth-child(4) {
+        left: 35%;
+        animation-duration: 18s;
+        animation-delay: 1s;
+      }
+      .snowflake:nth-child(5) {
+        left: 45%;
+        animation-duration: 17s;
+        animation-delay: 3s;
+      }
+      .snowflake:nth-child(6) {
+        left: 55%;
+        animation-duration: 15s;
+        animation-delay: 5s;
+      }
+      .snowflake:nth-child(7) {
+        left: 65%;
+        animation-duration: 19s;
+        animation-delay: 0.5s;
+      }
+      .snowflake:nth-child(8) {
+        left: 75%;
+        animation-duration: 13s;
+        animation-delay: 2.5s;
+      }
+      .snowflake:nth-child(9) {
+        left: 85%;
+        animation-duration: 16s;
+        animation-delay: 4.5s;
+      }
+      .snowflake:nth-child(10) {
+        left: 95%;
+        animation-duration: 20s;
+        animation-delay: 1.5s;
+      }
+      /* REVEAL */
+      .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* ============= MOBILE OPTIMIZATION – RESPONSIVE ============= */
+      @media (max-width: 768px) {
+        body {
+          font-size: 16px;
+        }
+        section {
+          padding: 64px 14px;
+        }
+        #okAiChatToggle {
+          right: 16px;
+        }
+        .floating-contact {
+          right: 16px;
+        }
+        .header-inner {
+          gap: 6px;
+          padding-inline: 12px;
+        }
+        .header-cta {
+          order: 1;
+          margin-left: 0;
+          gap: 6px;
+        }
+        .nav {
+          order: 2;
+          width: 100%;
+          justify-content: flex-start;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          white-space: nowrap;
+          padding-top: 4px;
+          padding-bottom: 8px;
+          -webkit-overflow-scrolling: touch;
+        }
+        .nav-link {
+          flex-shrink: 0;
+        }
+        #home {
+          padding-top: 32px;
+          padding-bottom: 40px;
+        }
+        .hero-slider {
+          margin-inline: 10px;
+          border-radius: 24px;
+        }
+        .hero-image-wrap {
+          border-radius: 24px;
+          height: clamp(210px, 60vw, 320px);
+        }
+        .hero-slider-bottom {
+          padding-top: 12px;
+        }
+        .store-badges {
+          margin-top: 14px;
+          gap: 12px;
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          align-items: center;
+          padding-inline: 14px;
+          scroll-padding-inline: 14px;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scroll-snap-type: x mandatory;
+        }
+        .store-badge {
+          min-width: 78%;
+          max-width: 360px;
+          border-radius: 999px;
+          padding: 6px 16px 8px;
+          scroll-snap-align: center;
+          scroll-snap-stop: always;
+        }
+        .hero-categories {
+          display: none;
+        }
+        .download-section {
+          padding: 40px 12px 56px;
+        }
+        .download-inner {
+          gap: 20px;
+        }
+        .download-video-wrap {
+          max-width: 100%;
+          border-radius: 20px;
+        }
+        .faq-links-section {
+          padding: 40px 12px 60px;
+        }
+      }
+      @media (max-width: 480px) {
+        .header-inner {
+          padding-inline: 10px;
+        }
+        .brand-logo {
+          height: 52px;
+        }
+        .brand-name {
+          font-size: 1rem;
+        }
+        .brand-subtitle {
+          font-size: 0.6rem;
+        }
+        .header-btn {
+          padding: 7px 12px;
+          box-shadow: 0 3px 10px rgba(0, 159, 227, 0.4);
+        }
+        .store-badge img {
+          width: 130px;
+        }
+        .hero-categories {
+          padding-inline: 8px;
+        }
+      }
+      /* ================== COOKIE BANNER ================== */
       .cookie-banner {
         position: fixed;
         left: 0;
@@ -1707,8 +1818,7 @@
           justify-content: flex-end;
         }
       }
-
-/* ================== OK AI CHAT ================== */
+      /* ================== OK AI CHAT ================== */
       body.okai-open {
         overflow: hidden;
       }
@@ -1854,12 +1964,24 @@
       .dark-mode .okai-bubble-user {
         background: linear-gradient(135deg, #0ea5e9, #2563eb);
       }
+    </style>
+  </head>
+  <body>
+    <!-- SNOW overlay -->
+    <div class="snowflakes" aria-hidden="true">
+      <div class="snowflake">❄</div>
+      <div class="snowflake">✻</div>
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❄</div>
+      <div class="snowflake">✼</div>
+      <div class="snowflake">❆</div>
+      <div class="snowflake">❄</div>
+      <div class="snowflake">✻</div>
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❄</div>
+    </div>
 
-/* ================== END SHARED HEADER & BUTTONS ================== */
-  </style>
-</head>
-<body>
-  <!-- HEADER -->
+    <!-- HEADER -->
     <header class="main-header" id="mainHeader">
       <div class="header-inner">
         <div class="brand">
@@ -1867,8 +1989,8 @@
         </div>
         <div class="header-spacer"></div>
         <nav class="nav">
-          <a href="index.html" class="nav-link" data-i18n="nav.home">მთავარი</a>
-          <a href="packages.html" class="nav-link active" aria-current="page" data-i18n="nav.packages">პაკეტები</a>
+          <a href="index.html" class="nav-link active" aria-current="page" data-i18n="nav.home">მთავარი</a>
+          <a href="packages.html" class="nav-link" data-i18n="nav.packages">პაკეტები</a>
           <a href="business.html" class="nav-link" data-i18n="nav.business">ბიზნესისთვის</a>
           <a href="about.html" class="nav-link" data-i18n="nav.about">ჩვენს შესახებ</a>
           <a href="contact.html" class="nav-link" data-i18n="nav.contact">კონტაქტი</a>
@@ -1910,289 +2032,370 @@
       </div>
     </header>
 
-  <main>
-    <!-- ================== HERO – 9 ბანერის სლაიდერი ================== -->
-    <section id="packages-hero">
-      <div class="hero-inner">
-        <div class="hero-slider reveal">
-          <div class="hero-packages-track">
-            <!-- 9 ბანერი – პირველი წრე -->
-            <div class="hero-package-slide">
-              <img src="package-1.jpg" alt="ეკონომი – 68 არხი, 9 ლარი თვეში" />
+    <main>
+      <!-- HERO + SLIDER -->
+      <section id="home">
+        <div class="hero-inner">
+          <div class="hero-slider reveal" id="heroSlider">
+            <div class="hero-slide-track" id="heroTrack">
+              <article class="hero-slide">
+                <div class="hero-image-wrap">
+                  <picture>
+                    <source srcset="hero-slide1-mobile.jpg" media="(max-width: 768px)" />
+                    <img src="hero-slide1.jpg" alt="ბანერი 1" class="hero-image" />
+                  </picture>
+                </div>
+              </article>
+              <article class="hero-slide">
+                <div class="hero-image-wrap">
+                  <picture>
+                    <source srcset="hero-slide2-mobile.jpg" media="(max-width: 768px)" />
+                    <img src="hero-slide2.jpg" alt="ბანერი 2" class="hero-image" />
+                  </picture>
+                </div>
+              </article>
+              <article class="hero-slide">
+                <div class="hero-image-wrap">
+                  <picture>
+                    <source srcset="hero-slide3-mobile.jpg" media="(max-width: 768px)" />
+                    <img src="hero-slide3.jpg" alt="ბანერი 3" class="hero-image" />
+                  </picture>
+                </div>
+              </article>
+              <article class="hero-slide">
+                <div class="hero-image-wrap">
+                  <picture>
+                    <source srcset="hero-slide4-mobile.jpg" media="(max-width: 768px)" />
+                    <img src="hero-slide4.jpg" alt="ბანერი 4" class="hero-image" />
+                  </picture>
+                </div>
+              </article>
+              <article class="hero-slide">
+                <div class="hero-image-wrap">
+                  <picture>
+                    <source srcset="hero-slide5-mobile.jpg" media="(max-width: 768px)" />
+                    <img src="hero-slide5.jpg" alt="ბანერი 5" class="hero-image" />
+                  </picture>
+                </div>
+              </article>
             </div>
-            <div class="hero-package-slide">
-              <img src="package-2.jpg" alt="გასართობი – 14 არხი, 4 ლარი თვეში" />
+            <button class="hero-arrow hero-arrow-prev" type="button" id="heroPrev" aria-label="Previous slide">
+              &lsaquo;
+            </button>
+            <button class="hero-arrow hero-arrow-next" type="button" id="heroNext" aria-label="Next slide">
+              &rsaquo;
+            </button>
+          </div>
+          <div class="hero-slider-bottom">
+            <div class="hero-dots" id="heroDots">
+              <button class="hero-dot active" data-index="0"></button>
+              <button class="hero-dot" data-index="1"></button>
+              <button class="hero-dot" data-index="2"></button>
+              <button class="hero-dot" data-index="3"></button>
+              <button class="hero-dot" data-index="4"></button>
             </div>
-            <div class="hero-package-slide">
-              <img src="package-3.jpg" alt="დოკუმენტური და შემეცნებითი – 11 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-4.jpg" alt="სპორტი – 8 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-5.jpg" alt="სპორტ ექსკლუზივი – 3 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-6.jpg" alt="კინო – 19 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-7.jpg" alt="პრემიუმ კინო – 12 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-8.jpg" alt="ზოგადი საინფორმაციო – 16 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-9.jpg" alt="+18 – 3 არხი, 4 ლარი თვეში" />
-            </div>
+          </div>
 
-            <!-- იგივე 9 ბანერი – მეორე წრე უწყვეტი ანიმაციისთვის -->
-            <div class="hero-package-slide">
-              <img src="package-1.jpg" alt="ეკონომი – 68 არხი, 9 ლარი თვეში" />
+          <!-- TOP-UP BALANCE BUTTON (მთავარი – mobile / tablet) -->
+          <div class="balance-wrap reveal">
+            <a
+              class="balance-btn"
+              href="http://mypay.ge/pay/11644"
+              target="_blank"
+              rel="noopener"
+              data-i18n="balance.topup"
+            >
+              შეავსე შენი ბალანსი
+            </a>
+          </div>
+
+          <!-- STORE BADGES -->
+          <div class="store-badges reveal">
+            <a
+              class="store-badge"
+              href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
+              target="_blank"
+              rel="noopener"
+            >
+              <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
+              <span class="store-badge-label" data-i18n="store.mobile">Google Play • Mobile</span>
+            </a>
+            <a
+              class="store-badge"
+              href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
+              target="_blank"
+              rel="noopener"
+            >
+              <img src="badge-google-play-tv.png" alt="Google Play TV" />
+              <span class="store-badge-label" data-i18n="store.tv">Google Play • TV</span>
+            </a>
+            <a
+              class="store-badge"
+              href="https://apps.apple.com/ge/app/oktv/id6478280344"
+              target="_blank"
+              rel="noopener"
+            >
+              <img src="badge-app-store.png" alt="App Store" />
+              <span class="store-badge-label" data-i18n="store.ios">Apple • App Store</span>
+            </a>
+            <a class="store-badge" href="oktv_3.2.7_606.wgt">
+              <img src="badge-wgt.png" alt="Smart TV WGT" />
+              <span class="store-badge-label" data-i18n="store.wgt">Smart TV • WGT</span>
+            </a>
+            <!-- Live OKTV button image: live-oktv-button.png -->
+            <a class="store-badge" href="https://app.oktv.ge/" target="_blank" rel="noopener">
+              <img
+                src="live-oktv-button.png"
+                alt="LIVE OKTV"
+                data-i18n-alt="store.live"
+              />
+              <span class="store-badge-label" data-i18n="store.live">LIVE OKTV</span>
+            </a>
+          </div>
+
+          <!-- HERO CATEGORIES (desktop only now) -->
+          <div class="hero-categories reveal">
+            <a class="hero-category-card" href="packages.html">
+              <div class="hero-category-icon hero-icon-packages"></div>
+              <div>
+                <div class="hero-category-title" data-i18n="cat.packages.title">პაკეტები</div>
+                <div class="hero-category-desc" data-i18n="cat.packages.desc">
+                  საოჯახო, სპორტული და კინოპაკეტები ერთი გვერდიდან.
+                </div>
+              </div>
+            </a>
+            <a class="hero-category-card" href="business.html">
+              <div class="hero-category-icon hero-icon-business"></div>
+              <div>
+                <div class="hero-category-title" data-i18n="cat.business.title">ბიზნესისთვის</div>
+                <div class="hero-category-desc" data-i18n="cat.business.desc">
+                  გადაწყვეტილებები სასტუმროებისთვის, კომპანიებისთვის და ობიექტებისთვის.
+                </div>
+              </div>
+            </a>
+            <a class="hero-category-card" href="about.html">
+              <div class="hero-category-icon hero-icon-about"></div>
+              <div>
+                <div class="hero-category-title" data-i18n="cat.about.title">ჩვენს შესახებ</div>
+                <div class="hero-category-desc" data-i18n="cat.about.desc">
+                  მეტი ინფორმაცია OK TV-ს ისტორიაზე, გამოცდილებასა და მისიის შესახებ.
+                </div>
+              </div>
+            </a>
+            <a class="hero-category-card" href="contact.html">
+              <div class="hero-category-icon hero-icon-contact"></div>
+              <div>
+                <div class="hero-category-title" data-i18n="cat.contact.title">კონტაქტი</div>
+                <div class="hero-category-desc" data-i18n="cat.contact.desc">
+                  ტელეფონი, მესენჯერები და სოციალური ქსელები – დაგვიკავშირდი მარტივად.
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOWNLOAD SECTION -->
+      <section class="download-section">
+        <div class="download-inner reveal">
+          <div class="download-text">
+            <h2 class="download-title" data-i18n="download.title">როგორ ჩამოვტვირთოთ აპლიკცია?</h2>
+            <p class="download-subtitle" data-i18n="download.subtitle">
+              OK TV-ს ჩამოტვირთვა შესაძლებელია ნებისმიერ მოწყობილობაზე: Android,
+              iOS, Windows, Smart TV და სხვა პლატფორმებზე. უყურე ციფრულ ტელევიზიას
+              სადაც არ უნდა იყო – ერთი მარტივი ინსტალაციით.
+            </p>
+          </div>
+          <div class="download-video-wrap" id="downloadVideoWrap">
+            <div class="download-video-overlay" id="downloadVideoOverlay">
+              <button
+                type="button"
+                class="download-video-play"
+                id="downloadVideoPlay"
+                data-i18n-aria="download.play"
+                aria-label="Play"
+              >
+                <span class="download-video-play-icon">▶</span>
+              </button>
+              <div class="download-video-choice" id="downloadVideoChoice">
+                <p class="download-video-choice-title" data-i18n="download.choiceTitle">
+                  Choose a platform video
+                </p>
+                <div class="download-video-choice-actions">
+                  <button
+                    type="button"
+                    class="download-video-choice-btn"
+                    data-video-src="oktv-app-download.mp4"
+                    data-i18n="download.choice.mobile"
+                  >
+                    Download app on mobile
+                  </button>
+                  <button
+                    type="button"
+                    class="download-video-choice-btn"
+                    data-video-src="oktv-app-download-tv-1080x1350.mp4"
+                    data-i18n="download.choice.tv"
+                  >
+                    Download app on TV
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="hero-package-slide">
-              <img src="package-2.jpg" alt="გასართობი – 14 არხი, 4 ლარი თვეში" />
+            <video
+              id="downloadVideo"
+              class="download-video"
+              poster="oktv-app-download-poster.jpg"
+              preload="metadata"
+              playsinline
+            >
+              <source id="downloadVideoSource" src="oktv-app-download.mp4" type="video/mp4" />
+              თქვენი ბრაუზერი არ უჭერს მხარს ვიდეოს ტეგს.
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <!-- OFFERS SECTION -->
+      <section class="offers-section">
+        <div class="offers-inner reveal">
+          <div class="offers-media">
+            <img
+              src="offers-showcase.png"
+              alt="Offers and giveaways preview"
+              data-i18n-alt="offers.imageAlt"
+            />
+          </div>
+          <div class="offers-content">
+            <h2 class="offers-title" data-i18n="offers.title">
+              The most offers, discounts, and giveaways in one place
+            </h2>
+            <p class="offers-subtitle" data-i18n="offers.subtitle">
+              Everything in one hub — curated for OK TV viewers.
+            </p>
+            <p class="offers-body" data-i18n="offers.body">
+              Discover seasonal promotions, limited-time discounts, and special giveaways. Stay
+              updated and never miss an exclusive offer.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ + LINKS -->
+      <section class="faq-links-section">
+        <div class="faq-links-inner reveal">
+          <div>
+            <h2 class="faq-title" data-i18n="faq.title">ხშირად დასმული კითხვები</h2>
+            <div class="faq-list" id="faqList">
+              <div class="faq-item">
+                <button class="faq-question" type="button">
+                  <span data-i18n="faq.q1">რა მოწყობილობებზე მუშაობს OK TV?</span>
+                  <span class="faq-icon">›</span>
+                </button>
+                <div class="faq-answer" data-i18n="faq.a1">
+                  OK TV შეგიძლიათ გამოიყენოთ Android და iOS ტელეფონებზე, ტაბლეტებზე,
+                  Smart TV-ს აპარატებზე, კომპიუტერზე (Windows) და იმ მოწყობილობებზე,
+                  სადაც Android TV ან Apple TV აპები მუშაობს.
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question" type="button">
+                  <span data-i18n="faq.q2">რამდენ მოწყობილობაზე შევძლებ ყურებას ერთიდაიგივე პროფილით?</span>
+                  <span class="faq-icon">›</span>
+                </button>
+                <div class="faq-answer" data-i18n="faq.a2">
+                  ერთი ანგარიში აძლევს შესაძლებლობას ერთზე მეტ ეკრანზე გაიაქტიუროთ
+                  სერვისი. ზუსტი რაოდენობა დამოკიდებულია არჩეულ პაკეტზე და
+                  შეთანხმებაზე OK TV-სთან.
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question" type="button">
+                  <span data-i18n="faq.q3">საჭიროა თუ არა გრძელვადიანი კონტრაქტი?</span>
+                  <span class="faq-icon">›</span>
+                </button>
+                <div class="faq-answer" data-i18n="faq.a3">
+                  ფიზიკური პირებისთვის პაკეტები, როგორც წესი, თვიურად განახლებადია.
+                  ბიზნეს და სასტუმრო პაკეტებზე შედგება ინდივიდუალური კონტრაქტი –
+                  პირობები ფიქსირდება წინასწარ, მაქსიმალურად გამჭვირვალედ.
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question" type="button">
+                  <span data-i18n="faq.q4">პრობლემის შემთხვევაში როგორ დაგეკონტაქტოთ?</span>
+                  <span class="faq-icon">›</span>
+                </button>
+                <div class="faq-answer" data-i18n="faq.a4">
+                  მხარდაჭერისთვის შეგიძლიათ მოგვწეროთ Facebook-ზე, დაგვირეკოთ ცხელ
+                  ხაზზე ან გამოიყენოთ კონტაქტის ფორმა ჩვენს ვებგვერდზე — ყველა არხი
+                  მუდმივად მონიტორინგზეა.
+                </div>
+              </div>
             </div>
-            <div class="hero-package-slide">
-              <img src="package-3.jpg" alt="დოკუმენტური და შემეცნებითი – 11 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-4.jpg" alt="სპორტი – 8 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-5.jpg" alt="სპორტ ექსკლუზივი – 3 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-6.jpg" alt="კინო – 19 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-7.jpg" alt="პრემიუმ კინო – 12 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-8.jpg" alt="ზოგადი საინფორმაციო – 16 არხი, 4 ლარი თვეში" />
-            </div>
-            <div class="hero-package-slide">
-              <img src="package-9.jpg" alt="+18 – 3 არხი, 4 ლარი თვეში" />
+          </div>
+          <div>
+            <h3 class="links-title" data-i18n="links.title">ჩვენი ლინკები</h3>
+            <p class="links-subtitle" data-i18n="links.subtitle">
+              მიჰყევით OK TV-ს სოციალურ ქსელებში და ჩამოტვირთეთ აპლიკაცია თქვენი
+              მოწყობილობისთვის.
+            </p>
+            <div class="links-grid">
+              <a
+                class="link-pill"
+                href="https://www.facebook.com/profile.php?id=61582964341078"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="link-dot"></span>
+                <span data-i18n="links.facebook">Facebook გვერდი</span>
+              </a>
+              <a class="link-pill" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
+                <span class="link-dot"></span>
+                <span data-i18n="links.instagram">Instagram</span>
+              </a>
+              <a class="link-pill" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
+                <span class="link-dot"></span>
+                <span data-i18n="links.tiktok">TikTok</span>
+              </a>
+              <a
+                class="link-pill"
+                href="https://play.google.com/store/apps/details?id=ag.sarpi"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="link-dot"></span>
+                <span data-i18n="links.googlePlay">Google Play Store</span>
+              </a>
+              <a
+                class="link-pill"
+                href="https://apps.apple.com/us/app/oktv/id6478764138"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="link-dot"></span>
+                <span data-i18n="links.appStore">App Store</span>
+              </a>
+              <a
+                class="link-pill"
+                href="https://www.facebook.com/profile.php?id=61582964341078"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="link-dot"></span>
+                <span data-i18n="links.support">Support / მხარდაჭერა</span>
+              </a>
             </div>
           </div>
         </div>
+      </section>
+    </main>
 
-        <!-- ჩამოტვირთვის ბადჯები (დასამალად მობილურზე) -->
-        <div class="store-badges reveal">
-          <a class="store-badge"
-             href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
-             target="_blank" rel="noopener">
-            <img src="badge-google-play-mobile.png" alt="Google Play Mobile" />
-            <span class="store-badge-label" data-i18n="store.mobile">Google Play Mobile</span>
-          </a>
-
-          <a class="store-badge"
-             href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
-             target="_blank" rel="noopener">
-            <img src="badge-google-play-tv.png" alt="Google Play TV" />
-            <span class="store-badge-label" data-i18n="store.tv">Google Play TV</span>
-          </a>
-
-          <a class="store-badge"
-             href="https://apps.apple.com/ge/app/oktv/id6478280344"
-             target="_blank" rel="noopener">
-            <img src="badge-app-store.png" alt="App Store" />
-            <span class="store-badge-label" data-i18n="store.ios">App Store</span>
-          </a>
-
-          <a class="store-badge" href="oktv_3.2.7_606.wgt">
-            <img src="badge-wgt.png" alt="WGT Smart TV" />
-            <span class="store-badge-label" data-i18n="store.wgt">Smart TV WGT</span>
-          </a>
-        </div>
-
-        <!-- ქვედა 4 ნავიგაციური ბლოკი -->
-        <div class="hero-categories reveal">
-          <a class="hero-category-card" href="index.html">
-            <div class="hero-category-icon hero-icon-main"></div>
-            <div>
-              <div class="hero-category-title" data-i18n="packages.hero.home.title">მთავარი</div>
-              <div class="hero-category-desc" data-i18n="packages.hero.home.desc">
-                დაბრუნდი საწყის გვერდზე და ნახე OK TV-ს ყველა შესაძლებლობა.
-              </div>
-            </div>
-          </a>
-
-          <a class="hero-category-card" href="business.html">
-            <div class="hero-category-icon hero-icon-business"></div>
-            <div>
-              <div class="hero-category-title" data-i18n="packages.hero.business.title">კომპანიებისთვის</div>
-              <div class="hero-category-desc" data-i18n="packages.hero.business.desc">
-                გადაწყვეტები სასტუმროებისთვის, კომპანიებისთვის და ობიექტებისთვის.
-              </div>
-            </div>
-          </a>
-
-          <a class="hero-category-card" href="about.html">
-            <div class="hero-category-icon hero-icon-about"></div>
-            <div>
-              <div class="hero-category-title" data-i18n="packages.hero.about.title">ჩვენს შესახებ</div>
-              <div class="hero-category-desc" data-i18n="packages.hero.about.desc">
-                მეტი ინფორმაცია OK TV-ს ისტორიასა და მისიის შესახებ.
-              </div>
-            </div>
-          </a>
-
-          <a class="hero-category-card" href="contact.html">
-            <div class="hero-category-icon hero-icon-contact"></div>
-            <div>
-              <div class="hero-category-title" data-i18n="packages.hero.contact.title">კონტაქტი</div>
-              <div class="hero-category-desc" data-i18n="packages.hero.contact.desc">
-                ტელეფონი, მესენჯერები და სოციალური ქსელები – დაგვიკავშირდი მარტივად.
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================== PACKAGES LIST ================== -->
-    <section class="packages-list-section">
-      <div class="packages-inner reveal">
-        <h2 class="packages-title" data-i18n="packages.page.title">OK TV პაკეტები</h2>
-        <p class="packages-subtitle" data-i18n="packages.page.subtitle">
-          ყველა ძირითადი პაკეტი ერთ ადგილას. ქვემოთ ნახავ იგივე პაკეტების ჩამონათვალს,
-          რომლებიც ზემოთ ბანერების ანიმაციაზე ბრუნავს. აირჩიე ნებისმიერი, რომ მოკლედ გაიგო რას მოიცავს.
-        </p>
-
-        <div class="packages-list-layout">
-          <!-- პაკეტების სია -->
-          <div class="packages-list" id="packageList">
-            <button class="package-list-item active" data-key="economy" type="button">
-              <div class="package-thumb-wrap">
-                <img src="package-1.jpg" alt="ეკონომი პაკეტი" />
-              </div>
-              <div class="package-list-text">
-                <div class="package-list-name" data-i18n="packages.list.economy.name">ეკონომი</div>
-                <div class="package-list-meta" data-i18n="packages.list.economy.meta">68 არხი • 9 ლარი თვეში</div>
-              </div>
-            </button>
-
-            <button class="package-list-item" data-key="entertainment" type="button">
-              <div class="package-thumb-wrap">
-                <img src="package-2.jpg" alt="გასართობი პაკეტი" />
-              </div>
-              <div class="package-list-text">
-                <div class="package-list-name" data-i18n="packages.list.entertainment.name">გასართობი</div>
-                <div class="package-list-meta" data-i18n="packages.list.entertainment.meta">14 არხი • 4 ლარი თვეში</div>
-              </div>
-            </button>
-
-            <button class="package-list-item" data-key="documentary" type="button">
-              <div class="package-thumb-wrap">
-                <img src="package-3.jpg" alt="დოკუმენტური და შემეცნებითი პაკეტი" />
-              </div>
-              <div class="package-list-text">
-                <div class="package-list-name" data-i18n="packages.list.documentary.name">დოკუმენტური და შემეცნებითი</div>
-                <div class="package-list-meta" data-i18n="packages.list.documentary.meta">11 არხი • 4 ლარი თვეში</div>
-              </div>
-            </button>
-
-            <button class="package-list-item" data-key="sport" type="button">
-              <div class="package-thumb-wrap">
-                <img src="package-4.jpg" alt="სპორტ პაკეტი" />
-              </div>
-              <div class="package-list-text">
-                <div class="package-list-name" data-i18n="packages.list.sport.name">სპორტი</div>
-                <div class="package-list-meta" data-i18n="packages.list.sport.meta">8 არხი • 4 ლარი თვეში</div>
-              </div>
-            </button>
-
-            <button class="package-list-item" data-key="sportExclusive" type="button">
-              <div class="package-thumb-wrap">
-                <img src="package-5.jpg" alt="სპორტ ექსკლუზივი პაკეტი" />
-              </div>
-              <div class="package-list-text">
-                <div class="package-list-name" data-i18n="packages.list.sportExclusive.name">სპორტ ექსკლუზივი</div>
-                <div class="package-list-meta" data-i18n="packages.list.sportExclusive.meta">3 არხი • 4 ლარი თვეში</div>
-              </div>
-            </button>
-
-            <button class="package-list-item" data-key="cinema" type="button">
-              <div class="package-thumb-wrap">
-                <img src="package-6.jpg" alt="კინო პაკეტი" />
-              </div>
-              <div class="package-list-text">
-                <div class="package-list-name" data-i18n="packages.list.cinema.name">კინო</div>
-                <div class="package-list-meta" data-i18n="packages.list.cinema.meta">19 არხი • 4 ლარი თვეში</div>
-              </div>
-            </button>
-
-            <button class="package-list-item" data-key="premiumCinema" type="button">
-              <div class="package-thumb-wrap">
-                <img src="package-7.jpg" alt="პრემიუმ კინო პაკეტი" />
-              </div>
-              <div class="package-list-text">
-                <div class="package-list-name" data-i18n="packages.list.premiumCinema.name">პრემიუმ კინო</div>
-                <div class="package-list-meta" data-i18n="packages.list.premiumCinema.meta">12 არხი • 4 ლარი თვეში</div>
-              </div>
-            </button>
-
-            <button class="package-list-item" data-key="news" type="button">
-              <div class="package-thumb-wrap">
-                <img src="package-8.jpg" alt="საინფორმაციო პაკეტი" />
-              </div>
-              <div class="package-list-text">
-                <div class="package-list-name" data-i18n="packages.list.news.name">ზოგადი საინფორმაციო</div>
-                <div class="package-list-meta" data-i18n="packages.list.news.meta">16 არხი • 4 ლარი თვეში</div>
-              </div>
-            </button>
-
-            <button class="package-list-item" data-key="adult" type="button">
-              <div class="package-thumb-wrap">
-                <img src="package-9.jpg" alt="+18 პაკეტი" />
-              </div>
-              <div class="package-list-text">
-                <div class="package-list-name" data-i18n="packages.list.adult.name">+18</div>
-                <div class="package-list-meta" data-i18n="packages.list.adult.meta">3 არხი • 4 ლარი თვეში</div>
-              </div>
-            </button>
-          </div>
-
-          <!-- პაკეტის დეტალები – მობილურის მსგავსი ანიმაციით დესკტოპზეც -->
-          <aside class="package-info-card" id="packageInfo">
-            <div class="package-info-title" id="packageInfoTitle">
-              1) ეკონომი – 68 არხი, 9 ლარი თვეში
-            </div>
-            <div class="package-info-subtitle" id="packageInfoSubtitle">
-              საბაზისო, მაგრამ ძალიან მდიდარი პაკეტი ყოველდღიური ყურებისთვის.
-            </div>
-            <div class="package-info-body" id="packageInfoBody">
-              <!-- body შინაარსს ჩავსვამთ JS–ით -->
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================== BONUS MOVIE LIBRARY BLOCK ================== -->
-    <section class="bonus-library-section">
-      <div class="bonus-library-inner">
-        <div>
-          <h2 class="bonus-library-title">400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად</h2>
-          <p class="bonus-library-subtitle">
-            შენ შეგიძლია მიიღო 400-ზე მეტი ვიდეო ბიბლიოთეკა საჩუქრად, სადაც შეგიძლია უყურო,
-            როგორც ქართულ, ასევე უცხოურ კინოებს და სერიალებს. ბიბლიოთეკა მუდმივად
-            ახლდება, რომ ყოველთვის გქონდეს ახალი ფილმები და სერიები ერთ სივრცეში.
-          </p>
-        </div>
-        <div class="bonus-library-banner">
-          <!-- აქ ჩააგდებ ბანერს სახელით movie-library-banner.jpg -->
-          <img src="movie-library-banner.jpg" alt="400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად" />
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <span data-i18n="footer.prefix">©</span> <span id="year"></span>
-    <span data-i18n="footer.text">OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.</span>
-  </footer>
+    <footer class="footer">
+      <span data-i18n="footer.prefix">©</span>
+      <span id="year"></span>
+      <span data-i18n="footer.text">
+        OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
+      </span>
+    </footer>
 
     <!-- FLOATING CONTACT -->
     <div class="floating-contact">
@@ -2338,19 +2541,30 @@
       </form>
     </div>
 
-    
+    <!-- COOKIE BANNER -->
+    <div id="cookieBanner" class="cookie-banner">
+      <div class="cookie-inner">
+        <p class="cookie-text" data-i18n="cookie.message">
+          ჩვენ ვიყენებთ cookies-ს, რომ დავიმახსოვროთ შენი ენა, თემა (Light/Dark) და გავაუმჯობესოთ OK TV გამოცდილება. გაგრძელებით ეთანხმები ჩვენს პირობებს.
+        </p>
+        <div class="cookie-actions">
+          <button id="cookieMoreBtn" class="cookie-btn cookie-btn-secondary" type="button" data-i18n="cookie.more">
+            ვრცლად
+          </button>
+          <button id="cookieAcceptBtn" class="cookie-btn cookie-btn-primary" type="button" data-i18n="cookie.accept">
+            ვეთანხმები
+          </button>
+        </div>
+      </div>
+    </div>
 
+    <script>
+      // Footer year
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-  <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ================= SHARED HEADER/BUTTONS LOGIC =================
-
-// ================= LANGUAGE & I18N =================
+      // ================= LANGUAGE & I18N =================
       const LANGUAGE_KEY = "oktv_lang";
       let currentLanguage = "ka";
-      let packageDataReady = false;
       const translations = {
         ka: {
           "page.title": "OK TV • მთავარი",
@@ -2586,103 +2800,6 @@
       };
 
       // ზუსტად იგივე applyLanguage / setupLanguage რასაც შენ იყენებდი (შევინარჩუნე სრული ლოგიკა)
-      const packagesPageTranslations = {
-        ka: {
-          "packages.page.title": "OK TV პაკეტები",
-          "packages.page.subtitle": "ყველა ძირითადი პაკეტი ერთ ადგილას. ქვემოთ ნახავ იგივე პაკეტების ჩამონათვალს, რომლებიც ზემოთ ბანერების ანიმაციაზე ბრუნავს. აირჩიე ნებისმიერი, რომ მოკლედ გაიგო რას მოიცავს.",
-          "packages.hero.home.title": "მთავარი",
-          "packages.hero.home.desc": "დაბრუნდი საწყის გვერდზე და ნახე OK TV-ს ყველა შესაძლებლობა.",
-          "packages.hero.business.title": "კომპანიებისთვის",
-          "packages.hero.business.desc": "გადაწყვეტები სასტუმროებისთვის, კომპანიებისთვის და ობიექტებისთვის.",
-          "packages.hero.about.title": "ჩვენს შესახებ",
-          "packages.hero.about.desc": "მეტი ინფორმაცია OK TV-ს ისტორიასა და მისიის შესახებ.",
-          "packages.hero.contact.title": "კონტაქტი",
-          "packages.hero.contact.desc": "ტელეფონი, მესენჯერები და სოციალური ქსელები – დაგვიკავშირდი მარტივად.",
-          "packages.list.economy.name": "ეკონომი",
-          "packages.list.economy.meta": "68 არხი • 9 ლარი თვეში",
-          "packages.list.entertainment.name": "გასართობი",
-          "packages.list.entertainment.meta": "14 არხი • 4 ლარი თვეში",
-          "packages.list.documentary.name": "დოკუმენტური და შემეცნებითი",
-          "packages.list.documentary.meta": "11 არხი • 4 ლარი თვეში",
-          "packages.list.sport.name": "სპორტი",
-          "packages.list.sport.meta": "8 არხი • 4 ლარი თვეში",
-          "packages.list.sportExclusive.name": "სპორტ ექსკლუზივი",
-          "packages.list.sportExclusive.meta": "3 არხი • 4 ლარი თვეში",
-          "packages.list.cinema.name": "კინო",
-          "packages.list.cinema.meta": "19 არხი • 4 ლარი თვეში",
-          "packages.list.premiumCinema.name": "პრემიუმ კინო",
-          "packages.list.premiumCinema.meta": "12 არხი • 4 ლარი თვეში",
-          "packages.list.news.name": "ზოგადი საინფორმაციო",
-          "packages.list.news.meta": "16 არხი • 4 ლარი თვეში",
-          "packages.list.adult.name": "+18",
-          "packages.list.adult.meta": "3 არხი • 4 ლარი თვეში"
-        },
-        en: {
-          "packages.page.title": "OK TV Packages",
-          "packages.page.subtitle": "All key packages in one place. Below you'll see the same package list that rotates in the banner above. Pick any package to quickly see what it includes.",
-          "packages.hero.home.title": "Home",
-          "packages.hero.home.desc": "Go back to the main page and explore all OK TV features.",
-          "packages.hero.business.title": "For Companies",
-          "packages.hero.business.desc": "Solutions for hotels, companies, and venues.",
-          "packages.hero.about.title": "About Us",
-          "packages.hero.about.desc": "More information about OK TV's history and mission.",
-          "packages.hero.contact.title": "Contact",
-          "packages.hero.contact.desc": "Phone, messengers, and social networks - reach us easily.",
-          "packages.list.economy.name": "Economy",
-          "packages.list.economy.meta": "68 channels • 9 GEL / month",
-          "packages.list.entertainment.name": "Entertainment",
-          "packages.list.entertainment.meta": "14 channels • 4 GEL / month",
-          "packages.list.documentary.name": "Documentary & Educational",
-          "packages.list.documentary.meta": "11 channels • 4 GEL / month",
-          "packages.list.sport.name": "Sports",
-          "packages.list.sport.meta": "8 channels • 4 GEL / month",
-          "packages.list.sportExclusive.name": "Sports Exclusive",
-          "packages.list.sportExclusive.meta": "3 channels • 4 GEL / month",
-          "packages.list.cinema.name": "Cinema",
-          "packages.list.cinema.meta": "19 channels • 4 GEL / month",
-          "packages.list.premiumCinema.name": "Premium Cinema",
-          "packages.list.premiumCinema.meta": "12 channels • 4 GEL / month",
-          "packages.list.news.name": "News & Information",
-          "packages.list.news.meta": "16 channels • 4 GEL / month",
-          "packages.list.adult.name": "+18",
-          "packages.list.adult.meta": "3 channels • 4 GEL / month"
-        },
-        ru: {
-          "packages.page.title": "Пакеты OK TV",
-          "packages.page.subtitle": "Все основные пакеты в одном месте. Ниже вы увидите тот же список пакетов, который вращается в баннере выше. Выберите любой, чтобы кратко узнать, что входит.",
-          "packages.hero.home.title": "Главная",
-          "packages.hero.home.desc": "Вернитесь на главную страницу и посмотрите все возможности OK TV.",
-          "packages.hero.business.title": "Для компаний",
-          "packages.hero.business.desc": "Решения для отелей, компаний и объектов.",
-          "packages.hero.about.title": "О нас",
-          "packages.hero.about.desc": "Больше информации об истории и миссии OK TV.",
-          "packages.hero.contact.title": "Контакты",
-          "packages.hero.contact.desc": "Телефон, мессенджеры и соцсети — свяжитесь с нами легко.",
-          "packages.list.economy.name": "Эконом",
-          "packages.list.economy.meta": "68 каналов • 9 лари в месяц",
-          "packages.list.entertainment.name": "Развлекательный",
-          "packages.list.entertainment.meta": "14 каналов • 4 лари в месяц",
-          "packages.list.documentary.name": "Документальный и познавательный",
-          "packages.list.documentary.meta": "11 каналов • 4 лари в месяц",
-          "packages.list.sport.name": "Спорт",
-          "packages.list.sport.meta": "8 каналов • 4 лари в месяц",
-          "packages.list.sportExclusive.name": "Спорт Эксклюзив",
-          "packages.list.sportExclusive.meta": "3 канала • 4 лари в месяц",
-          "packages.list.cinema.name": "Кино",
-          "packages.list.cinema.meta": "19 каналов • 4 лари в месяц",
-          "packages.list.premiumCinema.name": "Премиум Кино",
-          "packages.list.premiumCinema.meta": "12 каналов • 4 лари в месяц",
-          "packages.list.news.name": "Информационный",
-          "packages.list.news.meta": "16 каналов • 4 лари в месяц",
-          "packages.list.adult.name": "+18",
-          "packages.list.adult.meta": "3 канала • 4 лари в месяц"
-        }
-      };
-
-      Object.keys(packagesPageTranslations).forEach((lang) => {
-        Object.assign(translations[lang], packagesPageTranslations[lang]);
-      });
-
       function applyLanguage(lang) {
         const langPack = translations[lang] || translations.ka;
         currentLanguage = lang;
@@ -2739,10 +2856,6 @@
           const btnLang = btn.getAttribute("data-lang");
           btn.classList.toggle("lang-option-active", btnLang === lang);
         });
-
-        if (packageDataReady) {
-          refreshPackageDetails();
-        }
       }
 
       function setupLanguage() {
@@ -2774,13 +2887,9 @@
         }
       }
 
-      ["ka", "en", "ru"].forEach((lang) => {
-        if (translations[lang]) translations[lang]["page.title"] = document.title;
-      });
-
       setupLanguage();
 
-// ================= THEME / DARK MODE =================
+      // ================= THEME / DARK MODE =================
       const THEME_KEY = "oktv_theme";
 
       function applyTheme(mode) {
@@ -2795,7 +2904,7 @@
 
       function setupTheme() {
         const savedTheme = localStorage.getItem(THEME_KEY);
-        const initialTheme = savedTheme === "light" ? "light" : "dark";
+        const initialTheme = savedTheme === "dark" ? "dark" : "light";
         applyTheme(initialTheme);
 
         const themeToggle = document.getElementById("themeToggle");
@@ -2811,7 +2920,173 @@
 
       setupTheme();
 
-// Download modal logic
+      // Header shadow on scroll
+      const mainHeader = document.getElementById("mainHeader");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 16) {
+          mainHeader.classList.add("scrolled");
+        } else {
+          mainHeader.classList.remove("scrolled");
+        }
+      });
+
+      // Reveal on scroll
+      const reveals = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      reveals.forEach((el) => io.observe(el));
+
+      // HERO slider
+      const track = document.getElementById("heroTrack");
+      const dots = document.querySelectorAll(".hero-dot");
+      const slides = document.querySelectorAll(".hero-slide");
+      const heroSlider = document.getElementById("heroSlider");
+      const prevBtn = document.getElementById("heroPrev");
+      const nextBtn = document.getElementById("heroNext");
+
+      if (track && dots.length && slides.length && heroSlider) {
+        let currentSlide = 0;
+        const totalSlides = dots.length;
+        let sliderTimer;
+
+        function goToSlide(index) {
+          currentSlide = (index + totalSlides) % totalSlides;
+          const offset = -currentSlide * 100;
+          track.style.transform = `translateX(${offset}%)`;
+
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentSlide);
+          });
+
+          slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === currentSlide);
+          });
+        }
+
+        function startSlider() {
+          clearInterval(sliderTimer);
+          sliderTimer = setInterval(() => {
+            goToSlide(currentSlide + 1);
+          }, 7000);
+        }
+
+        function resetSlider() {
+          clearInterval(sliderTimer);
+          startSlider();
+        }
+
+        dots.forEach((dot) => {
+          dot.addEventListener("click", () => {
+            const index = Number(dot.dataset.index);
+            goToSlide(index);
+            resetSlider();
+          });
+        });
+
+        function nextSlide() {
+          goToSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+          goToSlide(currentSlide - 1);
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener("click", () => {
+            prevSlide();
+            resetSlider();
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => {
+            nextSlide();
+            resetSlider();
+          });
+        }
+
+        let pointerDown = false;
+        let pointerType = "mouse";
+        let startX = 0;
+        let lastX = 0;
+        let isDragging = false;
+        const swipeThreshold = 40;
+
+        heroSlider.addEventListener("pointerdown", (event) => {
+          if (event.button !== undefined && event.button !== 0) return;
+          if (event.target.closest(".hero-arrow")) return;
+          pointerDown = true;
+          pointerType = event.pointerType || "mouse";
+          isDragging = false;
+          startX = event.clientX;
+          lastX = event.clientX;
+          clearInterval(sliderTimer);
+          heroSlider.setPointerCapture(event.pointerId);
+        });
+
+        heroSlider.addEventListener("pointermove", (event) => {
+          if (!pointerDown) return;
+          lastX = event.clientX;
+          if (Math.abs(lastX - startX) > 6) {
+            isDragging = true;
+          }
+        });
+
+        heroSlider.addEventListener("pointerup", (event) => {
+          if (!pointerDown) return;
+          pointerDown = false;
+          heroSlider.releasePointerCapture(event.pointerId);
+          const delta = event.clientX - startX;
+
+          if (Math.abs(delta) > swipeThreshold) {
+            if (delta > 0) {
+              prevSlide();
+            } else {
+              nextSlide();
+            }
+            resetSlider();
+            return;
+          }
+
+          if (!isDragging && pointerType === "touch") {
+            nextSlide();
+            resetSlider();
+          } else {
+            startSlider();
+          }
+        });
+
+        heroSlider.addEventListener("pointercancel", () => {
+          pointerDown = false;
+          startSlider();
+        });
+
+        heroSlider.addEventListener("mouseenter", () => clearInterval(sliderTimer));
+        heroSlider.addEventListener("mouseleave", () => startSlider());
+
+        goToSlide(0);
+        startSlider();
+      }
+
+      // FAQ accordion
+      const faqItems = document.querySelectorAll(".faq-item");
+      faqItems.forEach((item) => {
+        const btn = item.querySelector(".faq-question");
+        btn.addEventListener("click", () => {
+          item.classList.toggle("open");
+        });
+      });
+
+      // Download modal logic
       const downloadBtn = document.getElementById("downloadCtaBtn");
       const downloadModal = document.getElementById("downloadModal");
       const downloadModalClose = document.getElementById("downloadModalClose");
@@ -2846,7 +3121,51 @@
         }
       });
 
-function syncOkAiViewportHeight() {
+      // ================= DOWNLOAD VIDEO CHOOSER =================
+      const downloadVideo = document.getElementById("downloadVideo");
+      const downloadVideoSource = document.getElementById("downloadVideoSource");
+      const downloadVideoOverlay = document.getElementById("downloadVideoOverlay");
+      const downloadVideoPlay = document.getElementById("downloadVideoPlay");
+      const downloadVideoButtons = document.querySelectorAll(".download-video-choice-btn");
+
+      function showDownloadChoices() {
+        if (!downloadVideoOverlay) return;
+        downloadVideoOverlay.classList.add("show-choices");
+      }
+
+      function hideDownloadChoices() {
+        if (!downloadVideoOverlay) return;
+        downloadVideoOverlay.classList.add("hidden");
+        downloadVideoOverlay.classList.remove("show-choices");
+      }
+
+      function resetDownloadChoices() {
+        if (!downloadVideoOverlay) return;
+        downloadVideoOverlay.classList.remove("hidden");
+        downloadVideoOverlay.classList.remove("show-choices");
+      }
+
+      if (downloadVideoPlay) {
+        downloadVideoPlay.addEventListener("click", showDownloadChoices);
+      }
+
+      downloadVideoButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const src = btn.dataset.videoSrc;
+          if (!src || !downloadVideo || !downloadVideoSource) return;
+          downloadVideoSource.src = src;
+          downloadVideo.load();
+          downloadVideo.setAttribute("controls", "");
+          downloadVideo.play().catch(() => {});
+          hideDownloadChoices();
+        });
+      });
+
+      if (downloadVideo) {
+        downloadVideo.addEventListener("ended", resetDownloadChoices);
+      }
+
+      function syncOkAiViewportHeight() {
         const viewportHeight =
           (window.visualViewport && window.visualViewport.height) || window.innerHeight;
         document.documentElement.style.setProperty(
@@ -2862,7 +3181,7 @@ function syncOkAiViewportHeight() {
         window.addEventListener("resize", syncOkAiViewportHeight);
       }
 
-// ================= OK AI CHATBOT LOGIC =================
+      // ================= OK AI CHATBOT LOGIC =================
       const okAiToggle = document.getElementById("okAiChatToggle");
       const okAiPanel = document.getElementById("okAiChatPanel");
       const okAiClose = document.getElementById("okAiChatClose");
@@ -2939,7 +3258,7 @@ function syncOkAiViewportHeight() {
           window.okAiSessionId ||
           (window.okAiSessionId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
         const BACKEND_URL =
-          "https://gadela.app.n8n.cloud/webhook/a622e709-443c-47bc-840c-4d5018e0de04/chat";
+          "https://gadela.app.n8n.cloud/webhook/40130b15-5473-4dfe-9e9e-12ab31358097/chat";
 
         try {
           if (okAiSendBtn) okAiSendBtn.disabled = true;
@@ -2999,7 +3318,7 @@ function syncOkAiViewportHeight() {
         }
       });
 
-// ================= CONTACT BUTTON LOGIC =================
+      // ================= CONTACT BUTTON LOGIC =================
       const contactToggle = document.getElementById("contactToggle");
       const contactMenu = document.getElementById("contactMenu");
 
@@ -3034,7 +3353,7 @@ function syncOkAiViewportHeight() {
         });
       }
 
-// ================= COOKIE BANNER LOGIC =================
+      // ================= COOKIE BANNER LOGIC =================
       const COOKIE_KEY = "oktv_cookieConsent";
       const cookieBanner = document.getElementById("cookieBanner");
       const cookieAcceptBtn = document.getElementById("cookieAcceptBtn");
@@ -3066,273 +3385,6 @@ function syncOkAiViewportHeight() {
           window.open("https://oktv.ge/privacy", "_blank");
         });
       }
-
-// ================= END SHARED HEADER/BUTTONS LOGIC =================
-
-    // Header shadow on scroll
-    const mainHeader = document.getElementById('mainHeader');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 16) {
-        mainHeader.classList.add('scrolled');
-      } else {
-        mainHeader.classList.remove('scrolled');
-      }
-    });
-
-    // Reveal on scroll
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    reveals.forEach(el => io.observe(el));
-
-    // ================== PACKAGES DATA & LOGIC ==================
-    const packageData = {
-      economy: {
-        title: '1) ეკონომი – 68 არხი, 9 ლარი თვეში',
-        subtitle: 'საბაზისო, მაგრამ ძალიან მდიდარი პაკეტი ყოველდღიური ყურებისთვის.',
-        body: '„ეკონომი“ პაკეტი აერთიანებს 68 სხვადასხვა არხს – ქართულ, საერთაშორისო, მუსიკალურ, საბავშვო და საინფორმაციო კონტენტს. იდეალურია იმ მომხმარებლებისთვის, ვისაც სურს მაქსიმალურად დაბალ ფასად მიიღოს მრავალფეროვანი პროგრამები. 9 ლარი თვეში ორ მისამართზე, დამატებითი დამალული გადასახადების გარეშე.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
-      },
-      entertainment: {
-        title: '2) გასართობი – 14 არხი, 4 ლარი თვეში',
-        subtitle: 'კომედიური, შოუები და მუსიკალური არხები ერთ პაკეტში.',
-        body: '„გასართობი“ პაკეტი გათვლილია მომხმარებლებზე, ვისაც უყვარს შოუები, რეალითი, გასართობი პროგრამები და მუსიკა. 14 არხი, სადაც ყოველთვის იპოვით რაღაც ახალსა და ენერგიულს. იდეალურია როგორც ოჯახის, ასევე მეგობრებთან ერთად დროის გასატარებლად.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
-      },
-      documentary: {
-        title: '3) დოკუმენტური და შემეცნებითი – 11 არხი, 4 ლარი თვეში',
-        subtitle: 'დოკუმენტური ფილმები, ბუნება, ისტორია და მეცნიერება.',
-        body: '„დოკუმენტური და შემეცნებითი“ პაკეტი მოიცავს არხებს, სადაც მთავარია ცოდნა და აღმოჩენები – ბუნება, კოსმოსი, ისტორია, ტექნოლოგიები. შესაფერისია როგორც მოზარდებისთვის, ასევე უფროსებისთვის, ვინც ყოველდღე სიახლეებს ეძებს.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
-      },
-      sport: {
-        title: '4) სპორტი – 8 არხი, 4 ლარი თვეში',
-        subtitle: 'ფეხბურთი, კალათბურთი, ავტო-სპორტი და სხვა ღონისძიებები.',
-        body: '„სპორტი“ პაკეტი აერთიანებს სპორტულ არხებს, სადაც მომხმარებელი ნახავს როგორც ადგილობრივ, ისე საერთაშორისო ტურნირებს. ფეხბურთი, კალათბურთი, ტენისი, ორთაბრძოლები და სხვა სახეობები – პირდაპირი ეთერით და რეპლაიებით.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
-      },
-      sportExclusive: {
-        title: '5) სპორტ ექსკლუზივი – 3 არხი, 4 ლარი თვეში',
-        subtitle: 'ექსკლუზიური სპორტული მოვლენები და პრემიუმ ღონისძიებები.',
-        body: '„სპორტ ექსკლუზივი“ გამორჩეული პაკეტია სპორტის მოყვარულებისთვის, ვისაც სურს პრემიალური ჩემპიონატები და სპეციალური ტრანსლაციები. მინიმალური რაოდენობის არხი – მაქსიმალური ხარისხით და შინაარსით.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
-      },
-      cinema: {
-        title: '6) კინო – 19 არხი, 4 ლარი თვეში',
-        subtitle: 'ფილმები ყველა ჟანრში – დღე და ღამე.',
-        body: '„კინო“ პაკეტი მოიცავს 19 კინოჩანელებს: action, დრამა, კომედია, თრილერი, საოჯახო და სხვა. იდეალურია მათთვის, ვინც ყოველდღე ახალ ფილმებს ეძებს ქართულად და ორიგინალ ენაზე.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
-      },
-      premiumCinema: {
-        title: '7) პრემიუმ კინო – 12 არხი, 4 ლარი თვეში',
-        subtitle: 'ბოლო პრემიერები, HD და UHD ხარისხი.',
-        body: '„პრემიუმ კინო“ პაკეტი ფოკუსირებულია ახალ პრემიერებზე, მაღალი ხარისხის ვიდეოზე და შერჩეულ კონტენტზე. საუკეთესო ვარიანტია კინომოყვარულებისთვის, ვისაც სურს, რომ მისი ტელევიზორი პატარა კინოთეატრად იქცეს.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
-      },
-      news: {
-        title: '8) ზოგადი საინფორმაციო – 16 არხი, 4 ლარი თვეში',
-        subtitle: 'ქართული და საერთაშორისო საინფორმაციო არხები ერთ პაკეტში.',
-        body: '„ზოგადი საინფორმაციო“ პაკეტი აერთიანებს მსოფლიოს მთავარი საინფორმაციო არხებს. პოლიტიკა, ეკონომიკა, სპორტი, კულტურა – ყველაფერი რეალურ დროში. აქედან მარტივად იქნები ინფორმირებული მიმდინარე მოვლენებზე.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
-      },
-      adult: {
-        title: '9) +18 – 3 არხი, 4 ლარი თვეში',
-        subtitle: 'მხოლოდ სრულწლოვანი მომხმარებლებისთვის.',
-        body: '„+18“ პაკეტი გათვლილია მხოლოდ სრულწლოვან მაყურებელზე და მოიცავს სპეციალურ კონტენტს. მისი აქტივაცია შესაძლებელია დამატებითი თანხმობით და შეზღუდვებით, რათა ბავშვებსა და არასრულწლოვნებს არ ჰქონდეთ წვდომა.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
-      }
-    };
-
-    const packageDataTranslations = {
-      en: {
-        economy: {
-          title: "1) Economy - 68 channels, 9 GEL / month",
-          subtitle: "Basic package with family, news, entertainment, and kids channels.",
-          body:
-            "The Economy package includes 68 channels across family, news, entertainment, kids, and regional content. It's the best starting option for everyday viewing at a friendly price.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
-        },
-        entertainment: {
-          title: "2) Entertainment - 14 channels, 4 GEL / month",
-          subtitle: "Comedy, music, lifestyle, and light entertainment.",
-          body:
-            "Curated entertainment lineup with popular shows, music, comedy, and lifestyle channels. Great for relaxed viewing and fun with friends.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
-        },
-        documentary: {
-          title: "3) Documentary & Educational - 11 channels, 4 GEL / month",
-          subtitle: "Science, nature, history, and educational content.",
-          body:
-            "Documentary and educational channels covering science, nature, history, and culture. Ideal for curious viewers and learning-focused households.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
-        },
-        sport: {
-          title: "4) Sports - 8 channels, 4 GEL / month",
-          subtitle: "Live games, highlights, and analysis.",
-          body:
-            "Sports package with live matches, leagues, and analysis. A solid choice for everyday sports coverage.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
-        },
-        sportExclusive: {
-          title: "5) Sports Exclusive - 3 channels, 4 GEL / month",
-          subtitle: "Premium sports channels with top competitions.",
-          body:
-            "Premium sports channels with exclusive tournaments and marquee events. For devoted fans who want the best coverage.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
-        },
-        cinema: {
-          title: "6) Cinema - 19 channels, 4 GEL / month",
-          subtitle: "Movies across genres: action, drama, comedy, family.",
-          body:
-            "Cinema package with 19 movie channels across genres - action, drama, comedy, romance, and family. Perfect for movie nights.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
-        },
-        premiumCinema: {
-          title: "7) Premium Cinema - 12 channels, 4 GEL / month",
-          subtitle: "Premium movie channels in HD/UHD.",
-          body:
-            "Premium cinema lineup with HD/UHD channels and a focus on new releases. Best for high-quality movie viewing.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
-        },
-        news: {
-          title: "8) News & Information - 16 channels, 4 GEL / month",
-          subtitle: "Local and international news, business, and analysis.",
-          body:
-            "Information package with local and international news channels, talk shows, and analysis. Stay updated throughout the day.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
-        },
-        adult: {
-          title: "9) +18 - 3 channels, 4 GEL / month",
-          subtitle: "Adult content for 18+ viewers only.",
-          body:
-            "Adult package for 18+ audiences only. Includes restricted channels and can be controlled with parental settings.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
-        }
-      },
-      ru: {
-        economy: {
-          title: "1) Эконом — 68 каналов, 9 лари в месяц",
-          subtitle: "Базовый пакет с семейными, новостными, развлекательными и детскими каналами.",
-          body:
-            "Пакет «Эконом» включает 68 каналов: семейные, новости, развлечения, детские и региональные. Отличный стартовый вариант для ежедневного просмотра по доступной цене.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
-        },
-        entertainment: {
-          title: "2) Развлекательный — 14 каналов, 4 лари в месяц",
-          subtitle: "Комедия, музыка, лайфстайл и легкие развлечения.",
-          body:
-            "Подборка развлекательных каналов с популярными шоу, музыкой и комедией. Отлично для отдыха и веселого просмотра.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
-        },
-        documentary: {
-          title: "3) Документальный и познавательный — 11 каналов, 4 лари в месяц",
-          subtitle: "Наука, природа, история и образовательный контент.",
-          body:
-            "Документальные и познавательные каналы о науке, природе, истории и культуре. Идеально для любознательных зрителей.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
-        },
-        sport: {
-          title: "4) Спорт — 8 каналов, 4 лари в месяц",
-          subtitle: "Прямые трансляции, обзоры и аналитика.",
-          body:
-            "Спортивный пакет с прямыми матчами, лигами и аналитикой. Хороший выбор для регулярного спорта.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
-        },
-        sportExclusive: {
-          title: "5) Спорт Эксклюзив — 3 канала, 4 лари в месяц",
-          subtitle: "Премиальные спортивные каналы и топ‑соревнования.",
-          body:
-            "Премиальные спорт‑каналы с эксклюзивными турнирами и ключевыми событиями. Для настоящих фанатов.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
-        },
-        cinema: {
-          title: "6) Кино — 19 каналов, 4 лари в месяц",
-          subtitle: "Фильмы разных жанров: экшн, драма, комедия, семейные.",
-          body:
-            "Пакет «Кино» с 19 фильм‑каналами разных жанров — экшн, драма, комедия, романтика и семейные. Идеально для кино‑вечеров.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
-        },
-        premiumCinema: {
-          title: "7) Премиум Кино — 12 каналов, 4 лари в месяц",
-          subtitle: "Премиальные кино‑каналы в HD/UHD.",
-          body:
-            "Премиальная подборка кино‑каналов в HD/UHD с акцентом на новые релизы. Для качественного просмотра.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
-        },
-        news: {
-          title: "8) Информационный — 16 каналов, 4 лари в месяц",
-          subtitle: "Новости, общественно‑политические и бизнес‑каналы.",
-          body:
-            "Информационный пакет с местными и международными новостями, ток‑шоу и аналитикой. Будьте в курсе событий.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
-        },
-        adult: {
-          title: "9) +18 — 3 канала, 4 лари в месяц",
-          subtitle: "Контент 18+ только для взрослых.",
-          body:
-            "Пакет для аудитории 18+. Включает каналы с ограниченным контентом и поддерживает родительский контроль.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
-        }
-      }
-    };
-
-    function getPackageData(key) {
-      const base = packageData[key];
-      if (!base) return null;
-      const langPack = packageDataTranslations[currentLanguage];
-      if (langPack && langPack[key]) {
-        return {
-          title: langPack[key].title || base.title,
-          subtitle: langPack[key].subtitle || base.subtitle,
-          body: langPack[key].body || base.body,
-        };
-      }
-      return base;
-    }
-
-    function refreshPackageDetails() {
-      const listEl = document.getElementById("packageList");
-      const titleEl = document.getElementById("packageInfoTitle");
-      const subtitleEl = document.getElementById("packageInfoSubtitle");
-      const bodyEl = document.getElementById("packageInfoBody");
-      if (!listEl || !titleEl || !subtitleEl || !bodyEl) return;
-      const activeBtn = listEl.querySelector(".package-list-item.active");
-      const key = activeBtn ? activeBtn.dataset.key : "economy";
-      const data = getPackageData(key);
-      if (!data) return;
-      titleEl.textContent = data.title;
-      subtitleEl.textContent = data.subtitle;
-      bodyEl.innerHTML = data.body;
-    }
-
-    packageDataReady = true;
-
-    const packageListEl = document.getElementById('packageList');
-    const packageInfoEl = document.getElementById('packageInfo');
-    const titleEl = document.getElementById('packageInfoTitle');
-    const subtitleEl = document.getElementById('packageInfoSubtitle');
-    const bodyEl = document.getElementById('packageInfoBody');
-
-    function setPackage(key) {
-      const data = getPackageData(key);
-      if (!data) return;
-      titleEl.textContent = data.title;
-      subtitleEl.textContent = data.subtitle;
-      bodyEl.innerHTML = data.body;
-    }
-
-    if (packageListEl && packageInfoEl) {
-      // საწყისი ტექსტი
-      setPackage('economy');
-
-      packageListEl.addEventListener('click', (e) => {
-        const btn = e.target.closest('.package-list-item');
-        if (!btn) return;
-
-        const key = btn.dataset.key;
-        if (!key) return;
-
-        const alreadyActive = btn.classList.contains('active');
-
-        // ყველა ელემენტიდან active მოვხსნათ
-        packageListEl.querySelectorAll('.package-list-item').forEach(item => {
-          item.classList.remove('active');
-        });
-
-        // თუ იგივე active–ს მეორედ ვაჭერთ და უკვე გახსნილია – დავხუროთ
-        if (alreadyActive && packageInfoEl.classList.contains('open')) {
-          packageInfoEl.classList.remove('open');
-          packageListEl.classList.remove('collapsed');
-          return;
-        }
-
-        // ახალი active
-        btn.classList.add('active');
-        setPackage(key);
-
-        packageInfoEl.classList.add('open');
-        packageListEl.classList.add('collapsed');
-      });
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>
