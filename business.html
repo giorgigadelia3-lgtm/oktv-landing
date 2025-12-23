@@ -3345,17 +3345,25 @@ if (okAiClose) {
   okAiClose.addEventListener("click", () => toggleOkAiPanel(false));
 }
 
-function appendMessage({ from, text }) {
+function appendMessage(payload) {
   if (!okAiMessages) return;
+  const from = payload.from;
+  const text = payload.text;
   const wrapper = document.createElement("div");
   wrapper.className = "flex gap-2";
 
   if (from === "user") {
     wrapper.classList.add("justify-end");
-    wrapper.innerHTML = `<div class="rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%] shadow-sm text-[11px] leading-snug okai-bubble okai-bubble-user">${text}</div>`;
+    wrapper.innerHTML =
+      '<div class="rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%] shadow-sm text-[11px] leading-snug okai-bubble okai-bubble-user">' +
+      text +
+      '</div>';
   } else {
-    wrapper.innerHTML = `<div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>
-      <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%] text-[11px] leading-snug okai-bubble okai-bubble-bot">${text}</div>`;
+    wrapper.innerHTML =
+      '<div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>' +
+      '<div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%] text-[11px] leading-snug okai-bubble okai-bubble-bot">' +
+      text +
+      '</div>';
   }
 
   okAiMessages.appendChild(wrapper);
@@ -3364,11 +3372,17 @@ function appendMessage({ from, text }) {
 
 async function sendOkAiMessage(message) {
   if (!message) return;
-  const sessionId =
-    window.okAiSessionId ||
-    (window.okAiSessionId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
+  let sessionId = window.okAiSessionId;
+  if (!sessionId) {
+    if (crypto.randomUUID && typeof crypto.randomUUID === "function") {
+      sessionId = crypto.randomUUID();
+    } else {
+      sessionId = String(Date.now());
+    }
+    window.okAiSessionId = sessionId;
+  }
 
-  const BACKEND_URL = "https://YOUR_BACKEND_CHAT_ENDPOINT";
+  const BACKEND_URL = "https://gadela.app.n8n.cloud/webhook/a622e709-443c-47bc-840c-4d5018e0de04/chat";
 
   try {
     if (okAiSendBtn) okAiSendBtn.disabled = true;
