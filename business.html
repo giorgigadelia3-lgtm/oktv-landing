@@ -3377,7 +3377,7 @@ async function sendOkAiMessage(message) {
     if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
       sessionId = crypto.randomUUID();
     } else {
-      sessionId = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+      sessionId = String(Date.now());
     }
     window.okAiSessionId = sessionId;
   }
@@ -3394,32 +3394,43 @@ async function sendOkAiMessage(message) {
       },
       body: JSON.stringify({
         message,
-        chatInput: message,
-        text: message,
-        input: message,
         sessionId,
         language: currentLanguage,
-        source: "oktv-website",
+        source: "oktv-landing",
         page: "business",
         consent: localStorage.getItem("oktv_cookieConsent") || "unknown",
       }),
     });
 
-    if (!response.ok) {
-      throw new Error("Backend response not OK");
+    const status = response.status;
+    const rawText = await response.text();
+    console.log("OK AI response status:", status);
+    console.log("OK AI raw response:", rawText);
+
+    let data = null;
+    try {
+      data = rawText ? JSON.parse(rawText) : null;
+      console.log("OK AI parsed JSON:", data);
+    } catch (parseError) {
+      console.warn("OK AI JSON parse error:", parseError);
     }
 
-    const data = await response.json();
     const reply =
       (data && typeof data.reply === "string" && data.reply.trim()) ||
       (data && typeof data.message === "string" && data.message.trim()) ||
       (data && typeof data.text === "string" && data.text.trim()) ||
       (data && typeof data.output === "string" && data.output.trim());
-    const cleanedReply = reply ? reply.replace(/\[Used tools:\][\s\S]*$/i, "").trim() : "";
+    const cleanedReply = reply
+      ? reply.replace(/\[?Used tools:\]?[\s\S]*$/i, "").trim()
+      : "";
+    console.log("OK AI cleaned reply:", cleanedReply);
     const fallbackMessage =
       (translations[currentLanguage] && translations[currentLanguage]["chat.error"]) ||
       translations.ka["chat.error"] ||
       "Sorry, I couldn't get a response. Please try again.";
+    if (!response.ok) {
+      console.warn("OK AI response not OK:", status);
+    }
     appendMessage({ from: "bot", text: cleanedReply || fallbackMessage });
   } catch (error) {
     console.error("OK AI error:", error);
