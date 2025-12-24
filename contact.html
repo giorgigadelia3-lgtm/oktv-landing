@@ -3109,10 +3109,10 @@ async function sendOkAiMessage(message) {
   if (!message) return;
   let sessionId = window.okAiSessionId;
   if (!sessionId) {
-    if (crypto.randomUUID && typeof crypto.randomUUID === "function") {
+    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
       sessionId = crypto.randomUUID();
     } else {
-      sessionId = String(Date.now());
+      sessionId = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
     }
     window.okAiSessionId = sessionId;
   }
@@ -3129,6 +3129,9 @@ async function sendOkAiMessage(message) {
       },
       body: JSON.stringify({
         message,
+        chatInput: message,
+        text: message,
+        input: message,
         sessionId,
         language: currentLanguage,
         source: "oktv-website",
@@ -3147,11 +3150,12 @@ async function sendOkAiMessage(message) {
       (data && typeof data.message === "string" && data.message.trim()) ||
       (data && typeof data.text === "string" && data.text.trim()) ||
       (data && typeof data.output === "string" && data.output.trim());
+    const cleanedReply = reply ? reply.replace(/\[Used tools:\][\s\S]*$/i, "").trim() : "";
     const fallbackMessage =
       (translations[currentLanguage] && translations[currentLanguage]["chat.error"]) ||
       translations.ka["chat.error"] ||
       "Sorry, I couldn't get a response. Please try again.";
-    appendMessage({ from: "bot", text: reply || fallbackMessage });
+    appendMessage({ from: "bot", text: cleanedReply || fallbackMessage });
   } catch (error) {
     console.error("OK AI error:", error);
     appendMessage({

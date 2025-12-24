@@ -3254,9 +3254,15 @@
 
       async function sendOkAiMessage(message) {
         if (!message) return;
-        const sessionId =
-          window.okAiSessionId ||
-          (window.okAiSessionId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
+        let sessionId = window.okAiSessionId;
+        if (!sessionId) {
+          if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+            sessionId = crypto.randomUUID();
+          } else {
+            sessionId = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+          }
+          window.okAiSessionId = sessionId;
+        }
         const BACKEND_URL =
           "https://gadela.app.n8n.cloud/webhook/a622e709-443c-47bc-840c-4d5018e0de04/chat"
         try {
@@ -3267,6 +3273,9 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               message,
+              chatInput: message,
+              text: message,
+              input: message,
               sessionId,
               language: currentLanguage,
               source: "oktv-landing",
@@ -3285,11 +3294,12 @@
             (data && typeof data.message === "string" && data.message.trim()) ||
             (data && typeof data.text === "string" && data.text.trim()) ||
             (data && typeof data.output === "string" && data.output.trim());
+          const cleanedReply = reply ? reply.replace(/\[Used tools:\][\s\S]*$/i, "").trim() : "";
           const fallbackMessage =
             (translations[currentLanguage] && translations[currentLanguage]["chat.error"]) ||
             translations.ka["chat.error"] ||
             "Sorry, I couldn't get a response. Please try again.";
-          appendMessage({ from: "bot", text: reply || fallbackMessage });
+          appendMessage({ from: "bot", text: cleanedReply || fallbackMessage });
         } catch (error) {
           console.error("OK AI error:", error);
           const errorMessage =
