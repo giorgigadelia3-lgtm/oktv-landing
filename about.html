@@ -3495,9 +3495,12 @@ async function sendOkAiMessage(message) {
     });
 
     const status = response.status;
+    const contentType = response.headers.get("content-type") || "unknown";
     const rawText = await response.text();
+    const rawPreview = rawText.length > 1000 ? `${rawText.slice(0, 1000)}... (truncated)` : rawText;
     console.log("OK AI response status:", status);
-    console.log("OK AI raw response:", rawText);
+    console.log("OK AI response content-type:", contentType);
+    console.log("OK AI raw response (truncated):", rawPreview);
 
     let data = null;
     try {
@@ -3516,13 +3519,42 @@ async function sendOkAiMessage(message) {
       ? reply.replace(/\[?Used tools:\]?[\s\S]*$/i, "").trim()
       : "";
     console.log("OK AI cleaned reply:", cleanedReply);
-    const fallbackMessage =
-      (translations[currentLanguage] && translations[currentLanguage]["chat.error"]) ||
-      translations.ka["chat.error"] ||
-      "Sorry, I couldn't get a response. Please try again.";
+
+    const requestId =
+      (data && (data.requestId || data.request_id || data.executionId || data.id)) ||
+      response.headers.get("x-request-id") ||
+      response.headers.get("x-correlation-id") ||
+      response.headers.get("x-n8n-execution-id");
+
+    const tryAgainNote =
+      currentLanguage === "ru"
+        ? "Попробуйте еще раз немного позже."
+        : currentLanguage === "en"
+          ? "Please try again shortly."
+          : "სცადე ისევ ცოტა ხანში.";
+    const statusText = status ? `HTTP ${status}` : "HTTP error";
+    const errorWithStatus =
+      currentLanguage === "ru"
+        ? `Сервер вернул ошибку (${statusText}). ${tryAgainNote}`
+        : currentLanguage === "en"
+          ? `Server returned an error (${statusText}). ${tryAgainNote}`
+          : `სერვერმა დააბრუნა შეცდომა (${statusText}). ${tryAgainNote}`;
+    const invalidResponseMessage =
+      currentLanguage === "ru"
+        ? `Не удалось прочитать ответ сервера. ${tryAgainNote}`
+        : currentLanguage === "en"
+          ? `Could not read the server response. ${tryAgainNote}`
+          : `სერვერის პასუხი ვერ წავიკითხე. ${tryAgainNote}`;
+
+    let fallbackMessage = invalidResponseMessage;
     if (!response.ok) {
       console.warn("OK AI response not OK:", status);
+      fallbackMessage = errorWithStatus;
+      if (requestId) {
+        fallbackMessage += ` (ID: ${requestId})`;
+      }
     }
+
     appendMessage({ from: "bot", text: cleanedReply || fallbackMessage });
   } catch (error) {
     console.error("OK AI error:", error);
