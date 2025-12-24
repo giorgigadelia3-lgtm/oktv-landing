@@ -3407,8 +3407,16 @@ async function sendOkAiMessage(message) {
     }
 
     const data = await response.json();
-    const reply = data.reply || data.answer || data.message || translations[currentLanguage]["chat.welcome"];
-    appendMessage({ from: "bot", text: reply });
+    const reply =
+      (data && typeof data.reply === "string" && data.reply.trim()) ||
+      (data && typeof data.message === "string" && data.message.trim()) ||
+      (data && typeof data.text === "string" && data.text.trim()) ||
+      (data && typeof data.output === "string" && data.output.trim());
+    const fallbackMessage =
+      (translations[currentLanguage] && translations[currentLanguage]["chat.error"]) ||
+      translations.ka["chat.error"] ||
+      "Sorry, I couldn't get a response. Please try again.";
+    appendMessage({ from: "bot", text: reply || fallbackMessage });
   } catch (error) {
     console.error("OK AI error:", error);
     appendMessage({
