@@ -112,6 +112,11 @@
       gap: 12px;
       flex-shrink: 0;
     }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
 
     .brand-logo {
       height: 64px;
@@ -806,6 +811,10 @@
     .footer {
       padding: 20px 16px 26px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
       font-size: 0.8rem;
       color: var(--text-muted);
       background: #ffffff;
@@ -813,23 +822,46 @@
       margin-top: 8px;
       transition: background 0.2s ease, border-color 0.2s ease;
     }
+    .footer-qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-qr img {
+      width: 88px;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: #ffffff;
+      padding: 6px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    }
+    .footer-copy {
+      text-align: center;
+    }
 
     .dark-mode .footer {
       background: #020617;
       border-color: #111827;
     }
+    .dark-mode .footer-qr img {
+      background: #0f172a;
+      border-color: rgba(51, 65, 85, 0.9);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.6);
+    }
 
     /* ================== REVEAL ANIMATION ================== */
 
     .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
 
     .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
     /* ================== MOBILE OPTIMIZATION ================== */
@@ -1863,7 +1895,9 @@
     <header class="main-header" id="mainHeader">
       <div class="header-inner">
         <div class="brand">
-          <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
+          <a href="index.html#top" class="brand-link" aria-label="OK TV">
+            <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
+          </a>
         </div>
         <div class="header-spacer"></div>
         <nav class="nav">
@@ -2190,8 +2224,14 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <span data-i18n="footer.prefix">©</span> <span id="year"></span>
-    <span data-i18n="footer.text">OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.</span>
+    <div class="footer-qr">
+      <img src="assets/qr-oktv.png" alt="OK TV QR code" />
+      <span data-i18n="footer.qr">სკანერით ჩამოტვირთე აპი</span>
+    </div>
+    <div class="footer-copy">
+      <span data-i18n="footer.prefix">©</span> <span id="year"></span>
+      <span data-i18n="footer.text">OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.</span>
+    </div>
   </footer>
 
     <!-- FLOATING CONTACT -->
@@ -2291,8 +2331,8 @@
             </span>
           </div>
         </div>
-        <button type="button" id="okAiChatClose" class="text-slate-300 hover:text-white text-sm px-1" aria-label="დახურვა">
-          ✕
+        <button type="button" id="okAiChatClose" class="text-slate-300 hover:text-white text-sm px-1" aria-label="ჩატის მინიმიზაცია">
+          —
         </button>
       </div>
 
@@ -2410,6 +2450,7 @@
           "links.appStore": "App Store",
           "links.support": "Support / მხარდაჭერა",
           "footer.prefix": "©",
+          "footer.qr": "სკანერით ჩამოტვირთე აპი",
           "footer.text": "OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.",
           "contact.button": "კონტაქტი",
           "modal.title": "აირჩიე, საიდან ჩამოტვირთო აპლიკაცია",
@@ -2487,6 +2528,7 @@
           "links.appStore": "App Store",
           "links.support": "Support",
           "footer.prefix": "©",
+          "footer.qr": "Scan to download the app",
           "footer.text": "OK TV / Ayeti - true digital television. All rights reserved.",
           "contact.button": "Contact",
           "modal.title": "Choose where to download the app",
@@ -2564,6 +2606,7 @@
           "links.appStore": "App Store",
           "links.support": "Поддержка",
           "footer.prefix": "©",
+          "footer.qr": "Сканируйте для загрузки приложения",
           "footer.text": "OK TV / Айети - настоящее цифровое телевидение. Все права защищены.",
           "contact.button": "Контакты",
           "modal.title": "Выберите, где скачать приложение",
@@ -2870,6 +2913,43 @@ function syncOkAiViewportHeight() {
       const okAiInput = document.getElementById("okAiInput");
       const okAiMessages = document.getElementById("okAiMessages");
       const okAiSendBtn = document.getElementById("okAiSendBtn");
+      const OKAI_SESSION_KEY = "oktv_okai_session";
+      const OKAI_HISTORY_KEY = "oktv_okai_history";
+      let okAiHistory = [];
+
+      if (window.localStorage) {
+        const storedSessionId = localStorage.getItem(OKAI_SESSION_KEY);
+        if (storedSessionId) {
+          window.okAiSessionId = storedSessionId;
+        }
+      }
+
+      function loadOkAiHistory() {
+        if (!window.localStorage) return [];
+        try {
+          const raw = localStorage.getItem(OKAI_HISTORY_KEY);
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+          console.warn("OK AI history parse error:", error);
+          return [];
+        }
+      }
+
+      function saveOkAiHistory() {
+        if (!window.localStorage) return;
+        try {
+          localStorage.setItem(OKAI_HISTORY_KEY, JSON.stringify(okAiHistory));
+        } catch (error) {
+          console.warn("OK AI history save error:", error);
+        }
+      }
+
+      function renderOkAiHistory(history) {
+        if (!okAiMessages) return;
+        okAiMessages.innerHTML = "";
+        history.forEach((item) => appendMessage(item, false));
+      }
 
       function toggleOkAiPanel(forceOpen) {
         if (!okAiPanel) return;
@@ -2912,7 +2992,7 @@ function syncOkAiViewportHeight() {
         okAiClose.addEventListener("click", () => toggleOkAiPanel(false));
       }
 
-      function appendMessage(payload) {
+      function appendMessage(payload, persist = true) {
         if (!okAiMessages) return;
         const from = payload.from;
         const text = payload.text;
@@ -2935,18 +3015,45 @@ function syncOkAiViewportHeight() {
 
         okAiMessages.appendChild(wrapper);
         okAiMessages.scrollTop = okAiMessages.scrollHeight;
+        if (persist) {
+          okAiHistory.push({ from, text });
+          saveOkAiHistory();
+        }
       }
+
+      function initOkAiHistory() {
+        const storedHistory = loadOkAiHistory();
+        if (storedHistory.length) {
+          okAiHistory = storedHistory;
+          renderOkAiHistory(okAiHistory);
+          return;
+        }
+        if (!okAiMessages) return;
+        const initialMessage = okAiMessages.querySelector(".okai-bubble-bot p");
+        if (initialMessage) {
+          okAiHistory = [{ from: "bot", text: initialMessage.innerHTML.trim() }];
+          saveOkAiHistory();
+        }
+      }
+
+      initOkAiHistory();
 
       async function sendOkAiMessage(message) {
         if (!message) return;
         let sessionId = window.okAiSessionId;
+        if (!sessionId && window.localStorage) {
+          sessionId = localStorage.getItem(OKAI_SESSION_KEY);
+        }
         if (!sessionId) {
           if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
             sessionId = crypto.randomUUID();
           } else {
             sessionId = String(Date.now());
           }
-          window.okAiSessionId = sessionId;
+        }
+        window.okAiSessionId = sessionId;
+        if (window.localStorage) {
+          localStorage.setItem(OKAI_SESSION_KEY, sessionId);
         }
         const BACKEND_URL =
           "https://gadela.app.n8n.cloud/webhook/a622e709-443c-47bc-840c-4d5018e0de04/chat";
@@ -3140,18 +3247,6 @@ function syncOkAiViewportHeight() {
         mainHeader.classList.remove('scrolled');
       }
     });
-
-    // Reveal on scroll
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    reveals.forEach(el => io.observe(el));
 
     // ================== PACKAGES DATA & LOGIC ==================
     const packageData = {

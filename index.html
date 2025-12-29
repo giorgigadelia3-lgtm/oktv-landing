@@ -155,6 +155,11 @@
         gap: 12px;
         flex-shrink: 0;
       }
+      .brand-link {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+      }
       .brand-logo {
         height: 64px;
         width: auto;
@@ -1074,104 +1079,500 @@
           align-self: stretch;
         }
       }
-      /* ================== OFFERS SECTION ================== */
-      .offers-section {
-        background: var(--bg-section);
-        padding: 64px 16px 80px;
-        border-top: 1px solid rgba(209, 213, 219, 0.6);
-        border-bottom: 1px solid rgba(209, 213, 219, 0.6);
-        transition: background 0.2s ease, border-color 0.2s ease;
+      /* ================== PREMIUM EXPANSION SECTIONS ================== */
+      .section-heading {
+        font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+        font-weight: 800;
+        color: var(--primary-dark);
+        margin-bottom: 12px;
       }
-      .offers-inner {
+      .section-lead {
+        font-size: 1rem;
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
+      .section-heading-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 6px;
+      }
+      .section-note {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        margin-top: 12px;
+        text-align: center;
+      }
+      .premium-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border-radius: var(--radius-pill);
+        border: 1px solid transparent;
+        background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        color: #ffffff;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 10px 26px rgba(0, 159, 227, 0.35);
+        transition: transform 0.18s ease, box-shadow 0.18s ease,
+          border-color 0.18s ease, background 0.18s ease;
+      }
+      .premium-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 32px rgba(0, 159, 227, 0.5);
+      }
+      .premium-btn:focus-visible {
+        outline: 3px solid rgba(56, 189, 248, 0.4);
+        outline-offset: 3px;
+      }
+      .premium-btn-outline {
+        background: #ffffff;
+        color: var(--primary-dark);
+        border-color: var(--primary-dark);
+        box-shadow: none;
+      }
+      .premium-btn-outline:hover {
+        background: rgba(0, 159, 227, 0.08);
+        box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+      }
+      .dark-mode .premium-btn-outline {
+        background: transparent;
+        color: #e5e7eb;
+        border-color: #38bdf8;
+      }
+      .premium-card {
+        background: #ffffff;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+        padding: 20px;
+        transition: transform 0.18s ease, box-shadow 0.18s ease,
+          border-color 0.18s ease;
+      }
+      .premium-card:hover,
+      .premium-card:focus-within {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 44px rgba(15, 23, 42, 0.2);
+        border-color: var(--primary);
+      }
+      .dark-mode .premium-card {
+        background: #020617;
+        border-color: #1f2937;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      }
+      .icon-circle {
+        width: 42px;
+        height: 42px;
+        border-radius: 16px;
+        background: rgba(0, 159, 227, 0.12);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-dark);
+        box-shadow: 0 6px 16px rgba(0, 159, 227, 0.18);
+      }
+      .icon-circle svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+      .dark-mode .icon-circle {
+        background: rgba(56, 189, 248, 0.15);
+        color: #bae6fd;
+      }
+      .info-strip-section {
+        padding: 56px 16px;
+      }
+      .info-strip-card {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        gap: 24px;
+        padding: 28px;
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(224, 242, 254, 0.9));
+        box-shadow: var(--shadow-soft);
+      }
+      .dark-mode .info-strip-card {
+        background: linear-gradient(135deg, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.95));
+        border-color: rgba(51, 65, 85, 0.8);
+      }
+      .info-strip-highlights {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin-top: 16px;
+      }
+      .info-strip-highlight {
+        display: flex;
+        gap: 12px;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        align-items: flex-start;
+      }
+      .info-strip-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .info-strip-actions .premium-btn {
+        width: 100%;
+      }
+      .info-strip-btn {
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: 1px solid rgba(56, 189, 248, 0.45);
+        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+      }
+      .info-strip-btn:hover {
+        box-shadow: 0 18px 36px rgba(15, 23, 42, 0.24);
+      }
+      .dark-mode .info-strip-btn {
+        border-color: rgba(56, 189, 248, 0.6);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      }
+      .info-strip-trust {
+        font-size: 0.74rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .quick-packages-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+      .package-card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .package-name {
+        font-weight: 700;
+        color: var(--primary-dark);
+        font-size: 1rem;
+      }
+      .package-meta {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+      }
+      .package-price {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--text-main);
+      }
+      .package-card .premium-btn {
+        margin-top: 14px;
+        align-self: flex-start;
+      }
+      .packages-cta {
+        margin-top: 22px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .device-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 14px;
+        border-radius: 999px;
+        background: rgba(0, 159, 227, 0.12);
+        color: var(--primary-dark);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .device-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+      .device-link {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+      }
+      .device-title {
+        margin-top: 12px;
+        font-weight: 700;
+        color: var(--text-main);
+      }
+      .device-desc {
+        margin-top: 6px;
+        font-size: 0.86rem;
+        color: var(--text-muted);
+      }
+      .bonus-section {
+        background: linear-gradient(135deg, #0f172a, #111827);
+        color: #ffffff;
+      }
+      .bonus-card {
+        max-width: 1120px;
+        margin: 0 auto;
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.72));
+        padding: 32px;
+        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
+      }
+      .bonus-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: rgba(56, 189, 248, 0.2);
+        color: #e0f2fe;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .bonus-title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+      .bonus-list {
+        list-style: none;
+        display: grid;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .bonus-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.88);
+      }
+      .bonus-bullet {
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        background: rgba(56, 189, 248, 0.25);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+      .bonus-actions {
+        margin-top: 16px;
+      }
+      .business-preview-card {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .business-preview-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .business-preview-copy {
+        max-width: 720px;
+      }
+      .business-tags {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+        font-size: 0.82rem;
+      }
+      .business-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 14px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        color: var(--text-muted);
+        font-weight: 600;
+        min-height: 48px;
+      }
+      .tag-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--primary);
+      }
+      .business-preview-cta {
+        padding: 12px 18px;
+        border-radius: 12px;
+        align-self: flex-start;
+      }
+      .dark-mode .business-tag {
+        background: #020617;
+        border-color: #1f2937;
+      }
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+      .trust-card-title {
+        margin-top: 12px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--text-main);
+      }
+      .trust-card {
+        transition: none;
+        cursor: default;
+      }
+      .trust-card:hover,
+      .trust-card:focus-within {
+        transform: none;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+        border-color: var(--border-soft);
+      }
+      .dark-mode .trust-card:hover,
+      .dark-mode .trust-card:focus-within {
+        border-color: #1f2937;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+      }
+      .trust-support {
+        margin-top: 16px;
+        font-size: 0.86rem;
+        color: var(--text-muted);
+      }
+      .trust-support a {
+        color: var(--primary-dark);
+        font-weight: 600;
+      }
+      .okai-intro-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.9fr);
+        gap: 24px;
+        align-items: center;
+        padding: 30px;
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(226, 232, 240, 0.9));
+        box-shadow: 0 22px 48px rgba(15, 23, 42, 0.18);
+      }
+      .okai-intro-card .section-heading {
+        margin-top: 16px;
+      }
+      .dark-mode .okai-intro-card {
+        background: linear-gradient(135deg, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.92));
+        border-color: rgba(51, 65, 85, 0.9);
+        box-shadow: 0 26px 56px rgba(0, 0, 0, 0.6);
+      }
+      .okai-intro-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+      }
+      .okai-mascot {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #0ea5e9, #2563eb);
+        color: #ffffff;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        box-shadow: 0 14px 30px rgba(37, 99, 235, 0.4);
+      }
+      .final-cta-section {
+        padding: 76px 16px;
+        background: linear-gradient(120deg, #009fe3, #00b6bd);
+        color: #ffffff;
+      }
+      .final-cta-inner {
         max-width: 1120px;
         margin: 0 auto;
         display: flex;
         align-items: center;
-        gap: 36px;
+        justify-content: space-between;
+        gap: 24px;
       }
-      .offers-media {
-        flex: 0 0 420px;
-        max-width: 420px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .offers-media img {
-        width: 100%;
-        height: auto;
-        border-radius: 24px;
-        border: 1px solid rgba(148, 163, 184, 0.5);
-        box-shadow: var(--shadow-soft);
-        background: #ffffff;
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
-      }
-      .offers-media img:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 22px 48px rgba(15, 23, 42, 0.24);
-      }
-      .offers-content {
-        flex: 1;
-      }
-      .offers-title {
-        font-size: 1.8rem;
-        font-weight: 800;
-        color: var(--primary-dark);
-        margin-bottom: 10px;
-      }
-      .offers-subtitle {
-        font-size: 1rem;
-        color: var(--text-muted);
+      .final-cta-title {
+        font-size: clamp(1.7rem, 2.4vw, 2.4rem);
+        font-weight: 900;
         margin-bottom: 12px;
+      }
+      .final-cta-subtitle {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.88);
         line-height: 1.6;
       }
-      .offers-body {
-        font-size: 0.95rem;
-        color: var(--text-main);
-        line-height: 1.7;
+      .final-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
       }
-      .dark-mode .offers-section {
-        background: #020617;
-        border-color: #111827;
+      .final-cta-actions .premium-btn {
+        background: #ffffff;
+        color: var(--primary-dark);
+        border-color: #ffffff;
+        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.2);
       }
-      .dark-mode .offers-media img {
-        border-color: #1f2937;
-        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      .final-cta-actions .premium-btn-outline {
+        background: transparent;
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.65);
+        box-shadow: none;
       }
-      @media (max-width: 768px) {
-        .offers-section {
-          padding: 56px 14px 64px;
+      @media (max-width: 1100px) {
+        .quick-packages-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
-        .offers-inner {
+        .device-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .trust-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 900px) {
+        .info-strip-card {
+          grid-template-columns: 1fr;
+        }
+        .info-strip-actions {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        .info-strip-actions .premium-btn {
+          width: auto;
+        }
+        .info-strip-highlights {
+          grid-template-columns: 1fr;
+        }
+        .okai-intro-card {
+          grid-template-columns: 1fr;
+        }
+        .final-cta-inner {
           flex-direction: column;
-          align-items: stretch;
-          gap: 18px;
+          align-items: flex-start;
         }
-        .offers-content {
-          order: 0;
-        }
-        .offers-media {
-          order: 1;
-          max-width: 380px;
-          width: 100%;
-          margin: 0 auto;
-        }
-        .offers-media img {
-          width: 100%;
-          height: auto;
-          aspect-ratio: 4 / 5;
-          object-fit: cover;
-        }
-        .offers-title {
-          font-size: 1.35rem;
-          line-height: 1.35;
-        }
-        .offers-subtitle {
-          font-size: 0.96rem;
-          line-height: 1.6;
-        }
-        .offers-body {
-          font-size: 0.92rem;
-          line-height: 1.65;
+      }
+      @media (max-width: 640px) {
+        .quick-packages-grid,
+        .device-grid,
+        .trust-grid {
+          grid-template-columns: 1fr;
         }
       }
       /* ================== FAQ + LINKS SECTION ================== */
@@ -1190,8 +1591,8 @@
         max-width: 1120px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-        gap: 40px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
       }
       .faq-title {
         font-size: 1.5rem;
@@ -1319,6 +1720,10 @@
       .footer {
         padding: 20px 16px 26px;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
         font-size: 0.8rem;
         color: var(--text-muted);
         background: #ffffff;
@@ -1326,9 +1731,32 @@
         margin-top: 8px;
         transition: background 0.2s ease, border-color 0.2s ease;
       }
+      .footer-qr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .footer-qr img {
+        width: 88px;
+        height: auto;
+        border-radius: 12px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        background: #ffffff;
+        padding: 6px;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+      }
+      .footer-copy {
+        text-align: center;
+      }
       .dark-mode .footer {
         background: #020617;
         border-color: #111827;
+      }
+      .dark-mode .footer-qr img {
+        background: #0f172a;
+        border-color: rgba(51, 65, 85, 0.9);
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.6);
       }
       /* ================== FLOATING CONTACT ================== */
       .floating-contact {
@@ -1632,13 +2060,13 @@
       }
       /* REVEAL */
       .reveal {
-        opacity: 0;
-        transform: translateY(16px);
-        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        opacity: 1;
+        transform: none;
+        transition: none;
       }
       .reveal.visible {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
       }
       /* ============= MOBILE OPTIMIZATION – RESPONSIVE ============= */
       @media (max-width: 768px) {
@@ -1724,6 +2152,14 @@
         .download-video-wrap {
           max-width: 100%;
           border-radius: 20px;
+        }
+        .business-preview-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .business-preview-cta {
+          width: 100%;
+          justify-content: center;
         }
         .faq-links-section {
           padding: 40px 12px 60px;
@@ -1967,6 +2403,7 @@
     </style>
   </head>
   <body>
+    <div id="top"></div>
     <!-- SNOW overlay -->
     <div class="snowflakes" aria-hidden="true">
       <div class="snowflake">❄</div>
@@ -1985,7 +2422,9 @@
     <header class="main-header" id="mainHeader">
       <div class="header-inner">
         <div class="brand">
-          <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
+          <a href="index.html#top" class="brand-link" aria-label="OK TV">
+            <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
+          </a>
         </div>
         <div class="header-spacer"></div>
         <nav class="nav">
@@ -2195,8 +2634,303 @@
         </div>
       </section>
 
+      <!-- SECTION #1: HERO INFO STRIP START -->
+      <section id="home-info" class="info-strip-section">
+        <div class="section-inner reveal">
+          <div class="info-strip-card">
+            <div>
+              <h2 class="section-heading" data-i18n="homeInfo.title">
+                OK TV — თანამედროვე ციფრული ტელევიზია საქართველოში
+              </h2>
+              <p class="section-lead" data-i18n="homeInfo.subtitle">
+                უყურე პირდაპირ არხებს და კონტენტს ყველა მოწყობილობაზე — სწრაფად, მარტივად და სტაბილურად.
+              </p>
+              <div class="info-strip-highlights">
+                <div class="info-strip-highlight">
+                  <span class="icon-circle" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7-11-7z"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="homeInfo.hl1">პირდაპირი და არქივით ყურება</span>
+                </div>
+                <div class="info-strip-highlight">
+                  <span class="icon-circle" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M3 6h18v10H3z"></path>
+                      <path d="M9 20h6v-2H9z"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="homeInfo.hl2">ყველა მოწყობილობაზე: ტელეფონი • სმარტ ტელევიზორი • კომპიუტერი</span>
+                </div>
+                <div class="info-strip-highlight">
+                  <span class="icon-circle" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M4 7h16v10H4z"></path>
+                      <path d="M6 9h6v2H6zM6 13h10v2H6z"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="homeInfo.hl3">მარტივი ბალანსის შევსება (MyPay)</span>
+                </div>
+                <div class="info-strip-highlight">
+                  <span class="icon-circle" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M4 8h16v8H4z"></path>
+                      <path d="M8 4h8v2H8zM8 18h8v2H8z"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="homeInfo.hl4">გადახვევის ფუნქცია</span>
+                </div>
+                <div class="info-strip-highlight">
+                  <span class="icon-circle" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M12 2l2.5 6.5 7 0.5-5.3 4.4 1.8 6.6L12 16l-6 4 1.8-6.6L2.5 9l7-0.5L12 2z"></path>
+                    </svg>
+                  </span>
+                  <span data-i18n="homeInfo.hl5">ექსკლუზიური არხები</span>
+                </div>
+              </div>
+            </div>
+            <div class="info-strip-actions">
+              <a
+                class="premium-btn info-strip-btn"
+                href="packages.html"
+                data-i18n="homeInfo.cta.primary"
+                data-i18n-aria="homeInfo.cta.primary"
+              >
+                პაკეტების ნახვა
+              </a>
+              <a
+                class="premium-btn premium-btn-outline"
+                href="#download"
+                id="homeDownloadCta"
+                data-i18n="homeInfo.cta.secondary"
+                data-i18n-aria="homeInfo.cta.secondary"
+              >
+                აპის ჩამოტვირთვა
+              </a>
+              <span class="info-strip-trust" data-i18n="homeInfo.micro">
+                ნდობა • სისწრაფე • მხარდაჭერა
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- SECTION #1: HERO INFO STRIP END -->
+
+      <!-- SECTION #2: MINI PACKAGE PREVIEW START -->
+      <section id="quick-packages">
+        <div class="section-inner reveal">
+          <h2 class="section-heading" data-i18n="quickPackages.title">პაკეტების სწრაფი არჩევანი</h2>
+          <p class="section-lead" data-i18n="quickPackages.subtitle">
+            პოპულარული შეთავაზებები ერთ ხედვაში.
+          </p>
+          <div class="quick-packages-grid">
+            <article class="premium-card package-card">
+              <div class="package-card-header">
+                <span class="icon-circle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M6 3h12l3 6-9 12-9-12 3-6z"></path>
+                  </svg>
+                </span>
+                <h3 class="package-name" data-i18n="pkg.economy.name">ეკონომი</h3>
+              </div>
+              <p class="package-meta" data-i18n="pkg.economy.meta">68 არხი</p>
+              <p class="package-price" data-i18n="pkg.economy.price">9 ლარი თვეში</p>
+              <a
+                class="premium-btn premium-btn-outline"
+                href="packages.html"
+                data-i18n="pkg.cta"
+                data-i18n-aria="pkg.cta"
+              >
+                დეტალები
+              </a>
+            </article>
+            <article class="premium-card package-card">
+              <div class="package-card-header">
+                <span class="icon-circle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 3l7 4v6c0 4.4-3 7.8-7 8.9-4-1.1-7-4.5-7-8.9V7l7-4z"></path>
+                  </svg>
+                </span>
+                <h3 class="package-name" data-i18n="pkg.sport.name">სპორტი</h3>
+              </div>
+              <p class="package-meta" data-i18n="pkg.sport.meta">8 არხი</p>
+              <p class="package-price" data-i18n="pkg.sport.price">4 ლარი თვეში</p>
+              <a
+                class="premium-btn premium-btn-outline"
+                href="packages.html"
+                data-i18n="pkg.cta"
+                data-i18n-aria="pkg.cta"
+              >
+                დეტალები
+              </a>
+            </article>
+            <article class="premium-card package-card">
+              <div class="package-card-header">
+                <span class="icon-circle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 6h16v12H4z"></path>
+                    <path d="M7 8h2v2H7zM7 12h2v2H7zM15 8h2v2h-2zM15 12h2v2h-2z"></path>
+                  </svg>
+                </span>
+                <h3 class="package-name" data-i18n="pkg.cinema.name">კინო</h3>
+              </div>
+              <p class="package-meta" data-i18n="pkg.cinema.meta">19 არხი</p>
+              <p class="package-price" data-i18n="pkg.cinema.price">4 ლარი თვეში</p>
+              <a
+                class="premium-btn premium-btn-outline"
+                href="packages.html"
+                data-i18n="pkg.cta"
+                data-i18n-aria="pkg.cta"
+              >
+                დეტალები
+              </a>
+            </article>
+            <article class="premium-card package-card">
+              <div class="package-card-header">
+                <span class="icon-circle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 2l2.5 6.5 7 0.5-5.3 4.4 1.8 6.6L12 16l-6 4 1.8-6.6L2.5 9l7-0.5L12 2z"></path>
+                  </svg>
+                </span>
+                <h3 class="package-name" data-i18n="pkg.premium.name">პრემიუმ კინო</h3>
+              </div>
+              <p class="package-meta" data-i18n="pkg.premium.meta">12 არხი</p>
+              <p class="package-price" data-i18n="pkg.premium.price">4 ლარი თვეში</p>
+              <a
+                class="premium-btn premium-btn-outline"
+                href="packages.html"
+                data-i18n="pkg.cta"
+                data-i18n-aria="pkg.cta"
+              >
+                დეტალები
+              </a>
+            </article>
+          </div>
+          <div class="packages-cta">
+            <a
+              class="premium-btn"
+              href="packages.html"
+              data-i18n="pkg.viewAll"
+              data-i18n-aria="pkg.viewAll"
+            >
+              ყველა პაკეტის ნახვა
+            </a>
+            <p class="section-note" data-i18n="pkg.note">
+              ფასები შეიძლება შეიცვალოს — დეტალები იხილეთ პაკეტების გვერდზე.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- SECTION #2: MINI PACKAGE PREVIEW END -->
+
+      <!-- SECTION #3: DEVICE COMPATIBILITY START -->
+      <section id="devices">
+        <div class="section-inner reveal">
+          <div class="section-heading-row">
+            <div>
+              <h2 class="section-heading" data-i18n="devices.title">მუშაობს ყველა მთავარ მოწყობილობაზე</h2>
+              <p class="section-lead" data-i18n="devices.subtitle">
+                ერთი ანგარიში — კომფორტული გამოყენება ყველგან.
+              </p>
+            </div>
+            <span class="device-badge" data-i18n="devices.badge">დაყენება 1 წუთში</span>
+          </div>
+          <div class="device-grid">
+            <a
+              class="premium-card device-card device-link"
+              href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="icon-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M7 2h10v20H7z"></path>
+                  <path d="M10 18h4v2h-4z"></path>
+                </svg>
+              </span>
+              <h3 class="device-title" data-i18n="devices.android.title">ანდროიდი</h3>
+              <p class="device-desc" data-i18n="devices.android.desc">ტელეფონი და ტაბლეტი</p>
+            </a>
+            <a
+              class="premium-card device-card device-link"
+              href="https://apps.apple.com/ge/app/oktv/id6478280344"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="icon-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M7 2h10v20H7z"></path>
+                  <path d="M10 18h4v2h-4z"></path>
+                </svg>
+              </span>
+              <h3 class="device-title" data-i18n="devices.ios.title">აიოსი</h3>
+              <p class="device-desc" data-i18n="devices.ios.desc">აიფონი და აიპედი</p>
+            </a>
+            <a
+              class="premium-card device-card device-link"
+              href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="icon-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 6h18v10H3z"></path>
+                  <path d="M9 20h6v-2H9z"></path>
+                </svg>
+              </span>
+              <h3 class="device-title" data-i18n="devices.smart.title">სმარტ ტელევიზორი</h3>
+              <p class="device-desc" data-i18n="devices.smart.desc">ტელევიზორები და სეტ-ტოპები</p>
+            </a>
+            <a class="premium-card device-card device-link" href="oktv_3.2.7_606.wgt">
+              <span class="icon-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 5h16v12H4z"></path>
+                  <path d="M9 19h6v-2H9z"></path>
+                </svg>
+              </span>
+              <h3 class="device-title" data-i18n="devices.web.title">ვებ / კომპიუტერი</h3>
+              <p class="device-desc" data-i18n="devices.web.desc">ბრაუზერი და კომპიუტერი</p>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- SECTION #3: DEVICE COMPATIBILITY END -->
+
+      <!-- SECTION #4: BONUS CONTENT START -->
+      <section id="bonus" class="bonus-section">
+        <div class="section-inner reveal">
+          <div class="bonus-card">
+            <span class="bonus-badge" data-i18n="bonus.badge">🎁 ბონუსი</span>
+            <h2 class="bonus-title" data-i18n="bonus.title">🎁 400+ ფილმის ბიბლიოთეკა საჩუქრად</h2>
+            <ul class="bonus-list">
+              <li class="bonus-item">
+                <span class="bonus-bullet">✓</span>
+                <span data-i18n="bonus.item1">ახალი და კლასიკური ფილმები</span>
+              </li>
+              <li class="bonus-item">
+                <span class="bonus-bullet">✓</span>
+                <span data-i18n="bonus.item2">ბიბლიოთეკა მუდმივად განახლდება</span>
+              </li>
+            </ul>
+            <div class="bonus-actions">
+              <a
+                class="premium-btn premium-btn-outline"
+                href="#download"
+                data-i18n="bonus.cta"
+                data-i18n-aria="bonus.cta"
+              >
+                როგორ მუშაობს?
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- SECTION #4: BONUS CONTENT END -->
+
       <!-- DOWNLOAD SECTION -->
-      <section class="download-section">
+      <section class="download-section" id="download">
         <div class="download-inner reveal">
           <div class="download-text">
             <h2 class="download-title" data-i18n="download.title">როგორ ჩამოვტვირთოთ აპლიკცია?</h2>
@@ -2255,34 +2989,106 @@
         </div>
       </section>
 
-      <!-- OFFERS SECTION -->
-      <section class="offers-section">
-        <div class="offers-inner reveal">
-          <div class="offers-media">
-            <img
-              src="offers-showcase.png"
-              alt="Offers and giveaways preview"
-              data-i18n-alt="offers.imageAlt"
-            />
-          </div>
-          <div class="offers-content">
-            <h2 class="offers-title" data-i18n="offers.title">
-              The most offers, discounts, and giveaways in one place
+      <!-- SECTION #5: BUSINESS PREVIEW START -->
+      <section id="business-preview">
+        <div class="section-inner reveal">
+          <div class="premium-card business-preview-card">
+            <div class="business-preview-header">
+              <div class="business-preview-copy">
+            <h2 class="section-heading" data-i18n="businessPreview.title">
+              ბიზნესებისთვისაც იდეალური გადაწყვეტა
             </h2>
-            <p class="offers-subtitle" data-i18n="offers.subtitle">
-              Everything in one hub — curated for OK TV viewers.
+            <p class="section-lead" data-i18n="businessPreview.text">
+              სასტუმროები, ჰოსტელები, კოტეჯები, სპორტბარები და სხვა ობიექტები არჩევენ OK TV-ს
+              სტაბილურობისა და მომსახურების გამო.
             </p>
-            <p class="offers-body" data-i18n="offers.body">
-              Discover seasonal promotions, limited-time discounts, and special giveaways. Stay
-              updated and never miss an exclusive offer.
-            </p>
+              </div>
+              <a
+                class="premium-btn premium-btn-outline business-preview-cta"
+                href="business.html"
+                data-i18n="businessPreview.cta"
+                data-i18n-aria="businessPreview.cta"
+              >
+                ბიზნეს პარტნიორებს ნახვა
+              </a>
+            </div>
+            <div class="business-tags">
+              <span class="business-tag">
+                <span class="tag-dot" aria-hidden="true"></span>
+                <span data-i18n="businessPreview.tag1">სასტუმროები</span>
+              </span>
+              <span class="business-tag">
+                <span class="tag-dot" aria-hidden="true"></span>
+                <span data-i18n="businessPreview.tag2">ჰოსტელები</span>
+              </span>
+              <span class="business-tag">
+                <span class="tag-dot" aria-hidden="true"></span>
+                <span data-i18n="businessPreview.tag3">კოტეჯები</span>
+              </span>
+              <span class="business-tag">
+                <span class="tag-dot" aria-hidden="true"></span>
+                <span data-i18n="businessPreview.tag4">სპორტბარები</span>
+              </span>
+              <span class="business-tag">
+                <span class="tag-dot" aria-hidden="true"></span>
+                <span data-i18n="businessPreview.tag5">სამშენებლო კომპანიები</span>
+              </span>
+            </div>
           </div>
         </div>
       </section>
+      <!-- SECTION #5: BUSINESS PREVIEW END -->
+
+      <!-- SECTION #6: TRUST BLOCK START -->
+      <section id="trust">
+        <div class="section-inner reveal">
+          <h2 class="section-heading" data-i18n="trust.title">რატომ OK TV?</h2>
+          <div class="trust-grid">
+            <article class="premium-card trust-card">
+              <span class="icon-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 6l6-2 4 2 6-2v14l-6 2-4-2-6 2z"></path>
+                </svg>
+              </span>
+              <h3 class="trust-card-title" data-i18n="trust.card1">მომსახურება საქართველოს მასშტაბით</h3>
+            </article>
+            <article class="premium-card trust-card">
+              <span class="icon-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3a7 7 0 0 0-7 7v4a2 2 0 0 0 2 2h2v-6H7v-1a5 5 0 0 1 10 0v1h-2v6h2a2 2 0 0 0 2-2v-4a7 7 0 0 0-7-7z"></path>
+                </svg>
+              </span>
+              <h3 class="trust-card-title" data-i18n="trust.card2">24/7 მხარდაჭერა</h3>
+            </article>
+            <article class="premium-card trust-card">
+              <span class="icon-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3l7 3v5c0 4.4-3 8.4-7 9-4-0.6-7-4.6-7-9V6l7-3z"></path>
+                </svg>
+              </span>
+              <h3 class="trust-card-title" data-i18n="trust.card3">უსაფრთხო გადახდა</h3>
+            </article>
+            <article class="premium-card trust-card">
+              <span class="icon-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 18h2v-4H4v4zM8 18h2v-7H8v7zM12 18h2v-10h-2v10zM16 18h2v-13h-2v13z"></path>
+                </svg>
+              </span>
+              <h3 class="trust-card-title" data-i18n="trust.card4">სტაბილური სიგნალი და ხარისხი</h3>
+            </article>
+          </div>
+          <p class="trust-support">
+            <span data-i18n="trust.supportLabel">მხარდაჭერის ნომერი:</span>
+            <a href="tel:+995322901011">(+995 032) 2 90 10 11</a>
+          </p>
+        </div>
+      </section>
+      <!-- SECTION #6: TRUST BLOCK END -->
 
       <!-- FAQ + LINKS -->
       <section class="faq-links-section">
         <div class="faq-links-inner reveal">
+          <!-- FAQ removed
           <div>
             <h2 class="faq-title" data-i18n="faq.title">ხშირად დასმული კითხვები</h2>
             <div class="faq-list" id="faqList">
@@ -2332,6 +3138,8 @@
               </div>
             </div>
           </div>
+          </div>
+          -->
           <div>
             <h3 class="links-title" data-i18n="links.title">ჩვენი ლინკები</h3>
             <p class="links-subtitle" data-i18n="links.subtitle">
@@ -2387,14 +3195,89 @@
           </div>
         </div>
       </section>
+
+      <!-- SECTION #7: OK AI INTRO START -->
+      <section id="okai-intro">
+        <div class="section-inner reveal">
+          <div class="okai-intro-card">
+            <div>
+              <div class="okai-mascot" aria-hidden="true">AI</div>
+              <h2 class="section-heading" data-i18n="okaiIntro.title">OK AI — შენი ციფრული ასისტენტი</h2>
+              <p class="section-lead" data-i18n="okaiIntro.text">
+                დაგეხმარება პაკეტის არჩევაში, დაყენებაში და ნებისმიერ შეკითხვაზე სწრაფ პასუხში.
+              </p>
+            </div>
+            <div class="okai-intro-actions">
+              <button
+                type="button"
+                id="okAiIntroBtn"
+                class="premium-btn"
+                data-i18n="okaiIntro.ctaPrimary"
+                data-i18n-aria="okaiIntro.ctaPrimaryAria"
+                aria-controls="okAiChatPanel"
+              >
+                ჰკითხე OK AI-ს
+              </button>
+              <a
+                class="premium-btn premium-btn-outline"
+                href="packages.html"
+                data-i18n="okaiIntro.ctaSecondary"
+                data-i18n-aria="okaiIntro.ctaSecondaryAria"
+              >
+                პაკეტების ნახვა
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- SECTION #7: OK AI INTRO END -->
+
+      <!-- SECTION #8: FINAL CTA STRIP START -->
+      <section id="final-cta" class="final-cta-section">
+        <div class="final-cta-inner reveal">
+          <div>
+            <h2 class="final-cta-title" data-i18n="finalCta.title">
+              მზად ხარ თანამედროვე ტელევიზიაზე გადასასვლელად?
+            </h2>
+            <p class="final-cta-subtitle" data-i18n="finalCta.subtitle">
+              აირჩიე პაკეტი და დაიწყე ყურება დღესვე.
+            </p>
+          </div>
+          <div class="final-cta-actions">
+            <a
+              class="premium-btn"
+              href="packages.html"
+              data-i18n="finalCta.primary"
+              data-i18n-aria="finalCta.primary"
+            >
+              აირჩიე პაკეტი
+            </a>
+            <a
+              class="premium-btn premium-btn-outline"
+              href="#download"
+              data-i18n="finalCta.secondary"
+              data-i18n-aria="finalCta.secondary"
+            >
+              ჩამოტვირთე აპი
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- SECTION #8: FINAL CTA STRIP END -->
     </main>
 
     <footer class="footer">
-      <span data-i18n="footer.prefix">©</span>
-      <span id="year"></span>
-      <span data-i18n="footer.text">
-        OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
-      </span>
+      <div class="footer-qr">
+        <img src="assets/qr-oktv.png" alt="OK TV QR code" />
+        <span data-i18n="footer.qr">სკანერით ჩამოტვირთე აპი</span>
+      </div>
+      <div class="footer-copy">
+        <span data-i18n="footer.prefix">©</span>
+        <span id="year"></span>
+        <span data-i18n="footer.text">
+          OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.
+        </span>
+      </div>
     </footer>
 
     <!-- FLOATING CONTACT -->
@@ -2486,16 +3369,10 @@
             >
               OK AI ასისტენტი
             </span>
-            <span
-              class="okai-header-subtitle text-[10px] text-slate-300 leading-tight"
-              data-i18n="chat.headerSubtitle"
-            >
-              Gemini • n8n • Perplexity • Sheets
-            </span>
           </div>
         </div>
-        <button type="button" id="okAiChatClose" class="text-slate-300 hover:text-white text-sm px-1" aria-label="დახურვა">
-          ✕
+        <button type="button" id="okAiChatClose" class="text-slate-300 hover:text-white text-sm px-1" aria-label="ჩატის მინიმიზაცია">
+          —
         </button>
       </div>
 
@@ -2581,6 +3458,76 @@
           "store.ios": "Apple • App Store",
           "store.wgt": "Smart TV • WGT",
           "store.live": "LIVE OKTV",
+          "homeInfo.title": "OK TV — თანამედროვე ციფრული ტელევიზია საქართველოში",
+          "homeInfo.subtitle":
+            "უყურე პირდაპირ არხებს და კონტენტს ყველა მოწყობილობაზე — სწრაფად, მარტივად და სტაბილურად.",
+          "homeInfo.hl1": "პირდაპირი და არქივით ყურება",
+          "homeInfo.hl2": "ყველა მოწყობილობაზე: ტელეფონი • სმარტ ტელევიზორი • კომპიუტერი",
+          "homeInfo.hl3": "მარტივი ბალანსის შევსება (MyPay)",
+          "homeInfo.hl4": "გადახვევის ფუნქცია",
+          "homeInfo.hl5": "ექსკლუზიური არხები",
+          "homeInfo.cta.primary": "პაკეტების ნახვა",
+          "homeInfo.cta.secondary": "აპის ჩამოტვირთვა",
+          "homeInfo.micro": "ნდობა • სისწრაფე • მხარდაჭერა",
+          "quickPackages.title": "პაკეტების სწრაფი არჩევანი",
+          "quickPackages.subtitle": "პოპულარული შეთავაზებები ერთ ხედვაში.",
+          "pkg.economy.name": "ეკონომი",
+          "pkg.economy.meta": "68 არხი",
+          "pkg.economy.price": "9 ლარი თვეში",
+          "pkg.sport.name": "სპორტი",
+          "pkg.sport.meta": "8 არხი",
+          "pkg.sport.price": "4 ლარი თვეში",
+          "pkg.cinema.name": "კინო",
+          "pkg.cinema.meta": "19 არხი",
+          "pkg.cinema.price": "4 ლარი თვეში",
+          "pkg.premium.name": "პრემიუმ კინო",
+          "pkg.premium.meta": "12 არხი",
+          "pkg.premium.price": "4 ლარი თვეში",
+          "pkg.cta": "დეტალები",
+          "pkg.viewAll": "ყველა პაკეტის ნახვა",
+          "pkg.note": "ფასები შეიძლება შეიცვალოს — დეტალები იხილეთ პაკეტების გვერდზე.",
+          "devices.title": "მუშაობს ყველა მთავარ მოწყობილობაზე",
+          "devices.subtitle": "ერთი ანგარიში — კომფორტული გამოყენება ყველგან.",
+          "devices.badge": "დაყენება 1 წუთში",
+          "devices.android.title": "ანდროიდი",
+          "devices.android.desc": "ტელეფონი და ტაბლეტი",
+          "devices.ios.title": "აიოსი",
+          "devices.ios.desc": "აიფონი და აიპედი",
+          "devices.smart.title": "სმარტ ტელევიზორი",
+          "devices.smart.desc": "ტელევიზორები და სეტ-ტოპები",
+          "devices.web.title": "ვებ / კომპიუტერი",
+          "devices.web.desc": "ბრაუზერი და კომპიუტერი",
+          "bonus.badge": "🎁 ბონუსი",
+          "bonus.title": "🎁 400+ ფილმის ბიბლიოთეკა საჩუქრად",
+          "bonus.item1": "ახალი და კლასიკური ფილმები",
+          "bonus.item2": "ბიბლიოთეკა მუდმივად განახლდება",
+          "bonus.cta": "როგორ მუშაობს?",
+          "businessPreview.title": "ბიზნესებისთვისაც იდეალური გადაწყვეტა",
+          "businessPreview.text":
+            "სასტუმროები, ჰოსტელები, კოტეჯები, სპორტბარები და სხვა ობიექტები არჩევენ OK TV-ს სტაბილურობისა და მომსახურების გამო.",
+          "businessPreview.tag1": "სასტუმროები",
+          "businessPreview.tag2": "ჰოსტელები",
+          "businessPreview.tag3": "კოტეჯები",
+          "businessPreview.tag4": "სპორტბარები",
+          "businessPreview.tag5": "სამშენებლო კომპანიები",
+          "businessPreview.cta": "ბიზნეს შეთავაზების მოთხოვნა",
+          "trust.title": "რატომ OK TV?",
+          "trust.card1": "მომსახურება საქართველოს მასშტაბით",
+          "trust.card2": "24/7 მხარდაჭერა",
+          "trust.card3": "უსაფრთხო გადახდა",
+          "trust.card4": "სტაბილური სიგნალი და ხარისხი",
+          "trust.supportLabel": "მხარდაჭერის ნომერი:",
+          "okaiIntro.title": "OK AI — შენი ციფრული ასისტენტი",
+          "okaiIntro.text":
+            "OK AI არის OK TV-ის ოფიციალური, პროფესიონალური ასისტენტი, რომელიც ეყრდნობა OK TV-ის პაკეტების, აპისა და მომსახურების ინფორმაციას. პასუხობს ზუსტად და მეგობრულად ნებისმიერ დროს (24/7) და დაგეხმარება სწორი არჩევანის გაკეთებაში.",
+          "okaiIntro.ctaPrimary": "ჰკითხე OK AI-ს",
+          "okaiIntro.ctaSecondary": "პაკეტების ნახვა",
+          "okaiIntro.ctaPrimaryAria": "OK AI ჩეთის გახსნა",
+          "okaiIntro.ctaSecondaryAria": "პაკეტების ნახვა",
+          "finalCta.title": "მზად ხარ თანამედროვე ტელევიზიაზე გადასასვლელად?",
+          "finalCta.subtitle": "აირჩიე პაკეტი და დაიწყე ყურება დღესვე.",
+          "finalCta.primary": "აირჩიე პაკეტი",
+          "finalCta.secondary": "ჩამოტვირთე აპი",
           "cat.packages.title": "პაკეტები",
           "cat.packages.desc": "საოჯახო, სპორტული და კინოპაკეტები ერთი გვერდიდან.",
           "cat.business.title": "ბიზნესისთვის",
@@ -2624,6 +3571,7 @@
           "links.appStore": "App Store",
           "links.support": "Support / მხარდაჭერა",
           "footer.prefix": "©",
+          "footer.qr": "სკანერით ჩამოტვირთე აპი",
           "footer.text": "OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.",
           "contact.button": "კონტაქტი",
           "modal.title": "აირჩიე, საიდან ჩამოტვირთო აპლიკაცია",
@@ -2645,6 +3593,76 @@
             "⛅ ამ წუთას ვერ ვუკავშირდები OK AI სერვერს. გადაამოწმე n8n / Gemini ბექენდი ან სცადე ცოტა ხანში თავიდან.",
         },
         en: {
+          "homeInfo.title": "OK TV — modern digital television in Georgia",
+          "homeInfo.subtitle":
+            "Watch LIVE channels and content on any device — fast, simple, stable.",
+          "homeInfo.hl1": "LIVE + catch-up viewing",
+          "homeInfo.hl2": "All devices: phone • Smart TV • computer",
+          "homeInfo.hl3": "Easy balance top-up (MyPay)",
+          "homeInfo.hl4": "Catch-up control",
+          "homeInfo.hl5": "Exclusive channels",
+          "homeInfo.cta.primary": "View packages",
+          "homeInfo.cta.secondary": "Download the app",
+          "homeInfo.micro": "Trusted • Fast • Support",
+          "quickPackages.title": "Quick package preview",
+          "quickPackages.subtitle": "Popular choices at a glance.",
+          "pkg.economy.name": "Economy",
+          "pkg.economy.meta": "68 channels",
+          "pkg.economy.price": "9 GEL / month",
+          "pkg.sport.name": "Sport",
+          "pkg.sport.meta": "8 channels",
+          "pkg.sport.price": "4 GEL / month",
+          "pkg.cinema.name": "Cinema",
+          "pkg.cinema.meta": "19 channels",
+          "pkg.cinema.price": "4 GEL / month",
+          "pkg.premium.name": "Premium Cinema",
+          "pkg.premium.meta": "12 channels",
+          "pkg.premium.price": "4 GEL / month",
+          "pkg.cta": "See details",
+          "pkg.viewAll": "View all packages",
+          "pkg.note": "Prices may change — see details on the packages page.",
+          "devices.title": "Works on all major devices",
+          "devices.subtitle": "One account — comfortable viewing everywhere.",
+          "devices.badge": "Setup in 1 minute",
+          "devices.android.title": "Android",
+          "devices.android.desc": "Phone and tablet",
+          "devices.ios.title": "iOS",
+          "devices.ios.desc": "iPhone and iPad",
+          "devices.smart.title": "Smart TV",
+          "devices.smart.desc": "TVs and set-top boxes",
+          "devices.web.title": "Web / Windows",
+          "devices.web.desc": "Browser and Windows app",
+          "bonus.badge": "🎁 BONUS",
+          "bonus.title": "🎁 400+ movie library as a gift",
+          "bonus.item1": "New and classic movies",
+          "bonus.item2": "Library is updated constantly",
+          "bonus.cta": "How does it work?",
+          "businessPreview.title": "Perfect for businesses too",
+          "businessPreview.text":
+            "Hotels, hostels, cottages, sports bars, and other venues choose OK TV for stability and service.",
+          "businessPreview.tag1": "Hotels",
+          "businessPreview.tag2": "Hostels",
+          "businessPreview.tag3": "Cottages",
+          "businessPreview.tag4": "Sports bars",
+          "businessPreview.tag5": "Construction companies",
+          "businessPreview.cta": "Request a business offer",
+          "trust.title": "Why OK TV?",
+          "trust.card1": "Service across Georgia",
+          "trust.card2": "24/7 support",
+          "trust.card3": "Secure payment",
+          "trust.card4": "Stable signal and quality",
+          "trust.supportLabel": "Support contact:",
+          "okaiIntro.title": "OK AI — your digital assistant",
+          "okaiIntro.text":
+            "OK AI is OK TV’s official, professional assistant built on OK TV package, app, and service information. It answers clearly and reliably any time (24/7) and helps you choose the right option.",
+          "okaiIntro.ctaPrimary": "Ask OK AI",
+          "okaiIntro.ctaSecondary": "View packages",
+          "okaiIntro.ctaPrimaryAria": "Open OK AI chat",
+          "okaiIntro.ctaSecondaryAria": "View OK TV packages",
+          "finalCta.title": "Ready to switch to modern television?",
+          "finalCta.subtitle": "Choose a package and start watching today.",
+          "finalCta.primary": "Choose a package",
+          "finalCta.secondary": "Download the app",
           "page.title": "OK TV • Home",
           "nav.home": "Home",
           "nav.packages": "Packages",
@@ -2701,6 +3719,7 @@
           "links.appStore": "App Store",
           "links.support": "Support",
           "footer.prefix": "©",
+          "footer.qr": "Scan to download the app",
           "footer.text": "OK TV / Ayeti - true digital television. All rights reserved.",
           "contact.button": "Contact",
           "modal.title": "Choose where to download the app",
@@ -2722,6 +3741,76 @@
             "⛅ Right now I cannot reach the OK AI server. Please check your n8n / Gemini backend or try again later.",
         },
         ru: {
+          "homeInfo.title": "OK TV — современное цифровое телевидение в Грузии",
+          "homeInfo.subtitle":
+            "Смотрите LIVE каналы и контент на любом устройстве — быстро, просто и стабильно.",
+          "homeInfo.hl1": "LIVE и просмотр архива",
+          "homeInfo.hl2": "На всех устройствах: телефон • Smart TV • компьютер",
+          "homeInfo.hl3": "Легкое пополнение баланса (MyPay)",
+          "homeInfo.hl4": "Функция перемотки",
+          "homeInfo.hl5": "Эксклюзивные каналы",
+          "homeInfo.cta.primary": "Посмотреть пакеты",
+          "homeInfo.cta.secondary": "Скачать приложение",
+          "homeInfo.micro": "Надежно • Быстро • Поддержка",
+          "quickPackages.title": "Быстрый выбор пакетов",
+          "quickPackages.subtitle": "Популярные предложения — кратко и ясно.",
+          "pkg.economy.name": "Эконом",
+          "pkg.economy.meta": "68 каналов",
+          "pkg.economy.price": "9 лари в месяц",
+          "pkg.sport.name": "Спорт",
+          "pkg.sport.meta": "8 каналов",
+          "pkg.sport.price": "4 лари в месяц",
+          "pkg.cinema.name": "Кино",
+          "pkg.cinema.meta": "19 каналов",
+          "pkg.cinema.price": "4 лари в месяц",
+          "pkg.premium.name": "Премиум кино",
+          "pkg.premium.meta": "12 каналов",
+          "pkg.premium.price": "4 лари в месяц",
+          "pkg.cta": "Детали",
+          "pkg.viewAll": "Все пакеты",
+          "pkg.note": "Цены могут изменяться — детали смотрите на странице пакетов.",
+          "devices.title": "Работает на всех основных устройствах",
+          "devices.subtitle": "Один аккаунт — комфортный просмотр везде.",
+          "devices.badge": "Установка за 1 минуту",
+          "devices.android.title": "Android",
+          "devices.android.desc": "Телефон и планшет",
+          "devices.ios.title": "iOS",
+          "devices.ios.desc": "iPhone и iPad",
+          "devices.smart.title": "Smart TV",
+          "devices.smart.desc": "Телевизоры и приставки",
+          "devices.web.title": "Web / Windows",
+          "devices.web.desc": "Браузер и приложение Windows",
+          "bonus.badge": "🎁 БОНУС",
+          "bonus.title": "🎁 Библиотека 400+ фильмов в подарок",
+          "bonus.item1": "Новые и классические фильмы",
+          "bonus.item2": "Библиотека постоянно обновляется",
+          "bonus.cta": "Как это работает?",
+          "businessPreview.title": "Идеально и для бизнеса",
+          "businessPreview.text":
+            "Отели, хостелы, коттеджи, спортбары и другие объекты выбирают OK TV за стабильность и сервис.",
+          "businessPreview.tag1": "Отели",
+          "businessPreview.tag2": "Хостелы",
+          "businessPreview.tag3": "Коттеджи",
+          "businessPreview.tag4": "Спортбары",
+          "businessPreview.tag5": "Строительные компании",
+          "businessPreview.cta": "Запросить бизнес-предложение",
+          "trust.title": "Почему OK TV?",
+          "trust.card1": "Обслуживание по всей Грузии",
+          "trust.card2": "Поддержка 24/7",
+          "trust.card3": "Безопасная оплата",
+          "trust.card4": "Стабильный сигнал и качество",
+          "trust.supportLabel": "Контакт поддержки:",
+          "okaiIntro.title": "OK AI — ваш цифровой ассистент",
+          "okaiIntro.text":
+            "OK AI — официальный профессиональный ассистент OK TV, основанный на информации о пакетах, приложении и сервисе OK TV. Отвечает ясно и надежно в любое время (24/7) и помогает выбрать подходящий вариант.",
+          "okaiIntro.ctaPrimary": "Спросить OK AI",
+          "okaiIntro.ctaSecondary": "Посмотреть пакеты",
+          "okaiIntro.ctaPrimaryAria": "Открыть чат OK AI",
+          "okaiIntro.ctaSecondaryAria": "Перейти к пакетам OK TV",
+          "finalCta.title": "Готовы перейти на современное ТВ?",
+          "finalCta.subtitle": "Выберите пакет и начните смотреть уже сегодня.",
+          "finalCta.primary": "Выбрать пакет",
+          "finalCta.secondary": "Скачать приложение",
           "page.title": "OK TV • Главная",
           "nav.home": "Главная",
           "nav.packages": "Пакеты",
@@ -2778,6 +3867,7 @@
           "links.appStore": "App Store",
           "links.support": "Поддержка",
           "footer.prefix": "©",
+          "footer.qr": "Сканируйте для загрузки приложения",
           "footer.text": "OK TV / Айети - настоящее цифровое телевидение. Все права защищены.",
           "contact.button": "Контакты",
           "modal.title": "Выберите, где скачать приложение",
@@ -2929,21 +4019,6 @@
           mainHeader.classList.remove("scrolled");
         }
       });
-
-      // Reveal on scroll
-      const reveals = document.querySelectorAll(".reveal");
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-              io.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.2 }
-      );
-      reveals.forEach((el) => io.observe(el));
 
       // HERO slider
       const track = document.getElementById("heroTrack");
@@ -3189,6 +4264,43 @@
       const okAiInput = document.getElementById("okAiInput");
       const okAiMessages = document.getElementById("okAiMessages");
       const okAiSendBtn = document.getElementById("okAiSendBtn");
+      const OKAI_SESSION_KEY = "oktv_okai_session";
+      const OKAI_HISTORY_KEY = "oktv_okai_history";
+      let okAiHistory = [];
+
+      if (window.localStorage) {
+        const storedSessionId = localStorage.getItem(OKAI_SESSION_KEY);
+        if (storedSessionId) {
+          window.okAiSessionId = storedSessionId;
+        }
+      }
+
+      function loadOkAiHistory() {
+        if (!window.localStorage) return [];
+        try {
+          const raw = localStorage.getItem(OKAI_HISTORY_KEY);
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+          console.warn("OK AI history parse error:", error);
+          return [];
+        }
+      }
+
+      function saveOkAiHistory() {
+        if (!window.localStorage) return;
+        try {
+          localStorage.setItem(OKAI_HISTORY_KEY, JSON.stringify(okAiHistory));
+        } catch (error) {
+          console.warn("OK AI history save error:", error);
+        }
+      }
+
+      function renderOkAiHistory(history) {
+        if (!okAiMessages) return;
+        okAiMessages.innerHTML = "";
+        history.forEach((item) => appendMessage(item, false));
+      }
 
       function toggleOkAiPanel(forceOpen) {
         if (!okAiPanel) return;
@@ -3231,7 +4343,15 @@
         okAiClose.addEventListener("click", () => toggleOkAiPanel(false));
       }
 
-      function appendMessage({ from, text }) {
+      const okAiIntroBtn = document.getElementById("okAiIntroBtn");
+      if (okAiIntroBtn) {
+        okAiIntroBtn.addEventListener("click", (event) => {
+          event.preventDefault();
+          toggleOkAiPanel(true);
+        });
+      }
+
+      function appendMessage({ from, text }, persist = true) {
         if (!okAiMessages) return;
         const wrapper = document.createElement("div");
         wrapper.className = "flex gap-2";
@@ -3250,18 +4370,45 @@
 
         okAiMessages.appendChild(wrapper);
         okAiMessages.scrollTop = okAiMessages.scrollHeight;
+        if (persist) {
+          okAiHistory.push({ from, text });
+          saveOkAiHistory();
+        }
       }
+
+      function initOkAiHistory() {
+        const storedHistory = loadOkAiHistory();
+        if (storedHistory.length) {
+          okAiHistory = storedHistory;
+          renderOkAiHistory(okAiHistory);
+          return;
+        }
+        if (!okAiMessages) return;
+        const initialMessage = okAiMessages.querySelector(".okai-bubble-bot p");
+        if (initialMessage) {
+          okAiHistory = [{ from: "bot", text: initialMessage.innerHTML.trim() }];
+          saveOkAiHistory();
+        }
+      }
+
+      initOkAiHistory();
 
       async function sendOkAiMessage(message) {
         if (!message) return;
         let sessionId = window.okAiSessionId;
+        if (!sessionId && window.localStorage) {
+          sessionId = localStorage.getItem(OKAI_SESSION_KEY);
+        }
         if (!sessionId) {
           if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
             sessionId = crypto.randomUUID();
           } else {
             sessionId = String(Date.now());
           }
-          window.okAiSessionId = sessionId;
+        }
+        window.okAiSessionId = sessionId;
+        if (window.localStorage) {
+          localStorage.setItem(OKAI_SESSION_KEY, sessionId);
         }
         const BACKEND_URL =
           "https://gadela.app.n8n.cloud/webhook/a622e709-443c-47bc-840c-4d5018e0de04/chat"

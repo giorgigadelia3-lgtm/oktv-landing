@@ -1308,14 +1308,14 @@
 
     /* ================== REVEAL ================== */
     .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
 
     .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
     /* ================== COOKIE BANNER ================== */
@@ -1501,12 +1501,17 @@
         gap: 24px;
         padding: 0 16px;
       }
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-shrink: 0;
-      }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .brand-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
       .brand-logo {
         height: 64px;
         width: auto;
@@ -2325,10 +2330,12 @@
   </div>
 
   <!-- HEADER -->
-  <header class="main-header" id="mainHeader">
+    <header class="main-header" id="mainHeader">
       <div class="header-inner">
         <div class="brand">
-          <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
+          <a href="index.html#top" class="brand-link" aria-label="OK TV">
+            <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
+          </a>
         </div>
         <div class="header-spacer"></div>
         <nav class="nav">
@@ -2480,6 +2487,7 @@
     </section>
 
     <!-- ხშირად დასმული კითხვები -->
+    <!-- FAQ removed
     <section id="faq">
       <div class="section-inner reveal">
         <h2 class="about-section-title" data-i18n="about.faq.title">ხშირად დასმული კითხვები</h2>
@@ -2542,6 +2550,7 @@
     </section>
 
     <!-- ჩვენი გუნდი -->
+    -->
     <section id="team">
       <div class="section-inner reveal">
         <h2 class="about-section-title" data-i18n="team.title">ჩვენი გუნდი</h2>
@@ -2758,16 +2767,10 @@
             >
               OK AI ასისტენტი
             </span>
-            <span
-              class="okai-header-subtitle text-[10px] text-slate-300 leading-tight"
-              data-i18n="chat.headerSubtitle"
-            >
-              Gemini • n8n • Perplexity • Sheets
-            </span>
           </div>
         </div>
-        <button type="button" id="okAiChatClose" class="text-slate-300 hover:text-white text-sm px-1" aria-label="დახურვა">
-          ✕
+        <button type="button" id="okAiChatClose" class="text-slate-300 hover:text-white text-sm px-1" aria-label="ჩატის მინიმიზაცია">
+          —
         </button>
       </div>
 
@@ -3266,25 +3269,6 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// Reveal on scroll
-const reveals = document.querySelectorAll(".reveal");
-if ("IntersectionObserver" in window) {
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          io.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-  reveals.forEach((el) => io.observe(el));
-} else {
-  reveals.forEach((el) => el.classList.add("visible"));
-}
-
 // HERO slider
 const track = document.getElementById("heroTrack");
 const dots = document.querySelectorAll(".hero-dot");
@@ -3395,6 +3379,43 @@ const okAiForm = document.getElementById("okAiForm");
 const okAiInput = document.getElementById("okAiInput");
 const okAiMessages = document.getElementById("okAiMessages");
 const okAiSendBtn = document.getElementById("okAiSendBtn");
+const OKAI_SESSION_KEY = "oktv_okai_session";
+const OKAI_HISTORY_KEY = "oktv_okai_history";
+let okAiHistory = [];
+
+if (window.localStorage) {
+  const storedSessionId = localStorage.getItem(OKAI_SESSION_KEY);
+  if (storedSessionId) {
+    window.okAiSessionId = storedSessionId;
+  }
+}
+
+function loadOkAiHistory() {
+  if (!window.localStorage) return [];
+  try {
+    const raw = localStorage.getItem(OKAI_HISTORY_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    console.warn("OK AI history parse error:", error);
+    return [];
+  }
+}
+
+function saveOkAiHistory() {
+  if (!window.localStorage) return;
+  try {
+    localStorage.setItem(OKAI_HISTORY_KEY, JSON.stringify(okAiHistory));
+  } catch (error) {
+    console.warn("OK AI history save error:", error);
+  }
+}
+
+function renderOkAiHistory(history) {
+  if (!okAiMessages) return;
+  okAiMessages.innerHTML = "";
+  history.forEach((item) => appendMessage(item, false));
+}
 
 function toggleOkAiPanel(forceOpen) {
   if (!okAiPanel) return;
@@ -3437,7 +3458,7 @@ if (okAiClose) {
   okAiClose.addEventListener("click", () => toggleOkAiPanel(false));
 }
 
-function appendMessage(payload) {
+function appendMessage(payload, persist = true) {
   if (!okAiMessages) return;
   const from = payload.from;
   const text = payload.text;
@@ -3460,18 +3481,45 @@ function appendMessage(payload) {
 
   okAiMessages.appendChild(wrapper);
   okAiMessages.scrollTop = okAiMessages.scrollHeight;
+  if (persist) {
+    okAiHistory.push({ from, text });
+    saveOkAiHistory();
+  }
 }
+
+function initOkAiHistory() {
+  const storedHistory = loadOkAiHistory();
+  if (storedHistory.length) {
+    okAiHistory = storedHistory;
+    renderOkAiHistory(okAiHistory);
+    return;
+  }
+  if (!okAiMessages) return;
+  const initialMessage = okAiMessages.querySelector(".okai-bubble-bot p");
+  if (initialMessage) {
+    okAiHistory = [{ from: "bot", text: initialMessage.innerHTML.trim() }];
+    saveOkAiHistory();
+  }
+}
+
+initOkAiHistory();
 
 async function sendOkAiMessage(message) {
   if (!message) return;
   let sessionId = window.okAiSessionId;
+  if (!sessionId && window.localStorage) {
+    sessionId = localStorage.getItem(OKAI_SESSION_KEY);
+  }
   if (!sessionId) {
     if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
       sessionId = crypto.randomUUID();
     } else {
       sessionId = String(Date.now());
     }
-    window.okAiSessionId = sessionId;
+  }
+  window.okAiSessionId = sessionId;
+  if (window.localStorage) {
+    localStorage.setItem(OKAI_SESSION_KEY, sessionId);
   }
 
   const BACKEND_URL = "https://gadela.app.n8n.cloud/webhook/a622e709-443c-47bc-840c-4d5018e0de04/chat";
