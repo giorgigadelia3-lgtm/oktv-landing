@@ -757,9 +757,10 @@
       align-items: center;
       gap: 6px;
     }
-    .footer-qr img {
+    .footer-qr img,
+    .footer-qr canvas {
       width: 88px;
-      height: auto;
+      height: 88px;
       border-radius: 12px;
       border: 1px solid rgba(148, 163, 184, 0.6);
       background: #ffffff;
@@ -769,7 +770,8 @@
     .footer-copy {
       text-align: center;
     }
-    .dark-mode .footer-qr img {
+    .dark-mode .footer-qr img,
+    .dark-mode .footer-qr canvas {
       background: #0f172a;
       border-color: rgba(51, 65, 85, 0.9);
       box-shadow: 0 16px 34px rgba(0, 0, 0, 0.6);
@@ -1710,6 +1712,19 @@
         width: 18px;
         height: 18px;
       }
+      .contact-item-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.15;
+      }
+      .contact-item-email {
+        font-size: 0.7rem;
+        font-weight: 500;
+        color: var(--text-muted);
+      }
+      .dark-mode .contact-item-email {
+        color: rgba(226, 232, 240, 0.7);
+      }
       @media (max-width: 480px) {
         .floating-contact {
           right: 12px;
@@ -1893,10 +1908,7 @@
         }
       }
 
-/* ================== OK AI CHAT ================== */
-      body.okai-open {
-        overflow: hidden;
-      }
+      /* ================== OK AI LAUNCHER ================== */
       #okAiChatToggle {
         position: fixed;
         right: 24px;
@@ -1920,124 +1932,9 @@
         transform: translateY(-2px);
         box-shadow: 0 26px 54px rgba(37, 99, 235, 0.75);
       }
-      #okAiChatPanel {
-        position: fixed;
-        inset: 0;
-        width: 100vw;
-        height: calc(var(--okai-vh, 1vh) * 100);
-        height: 100svh;
-        height: 100dvh;
-        min-height: calc(var(--okai-vh, 1vh) * 100);
-        min-height: 100svh;
-        min-height: 100dvh;
-        max-height: 100svh;
-        max-height: 100dvh;
-        display: none;
-        flex-direction: column;
-        border-radius: 0;
-        background: radial-gradient(circle at top, rgba(14, 165, 233, 0.12), transparent 55%),
-          #f8fafc;
-        color: #0f172a;
-        border: none;
-        box-shadow: none;
-        z-index: 120;
-        padding-bottom: env(safe-area-inset-bottom);
-      }
-      #okAiChatPanel.open {
-        display: flex;
-      }
-      .okai-header {
-        flex: 0 0 auto;
-        padding: 18px 20px;
-        background: linear-gradient(135deg, #0f172a, #1e293b);
-        border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-      }
-      .okai-avatar {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-        box-shadow: 0 10px 20px rgba(15, 23, 42, 0.35);
-      }
-      .okai-header-subtitle {
-        color: rgba(226, 232, 240, 0.75);
-      }
-      .okai-messages {
-        flex: 1 1 auto;
-        min-height: 0;
-        padding: 18px 22px;
-        background: transparent;
-        color: #0f172a;
-        font-size: 0.95rem;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        padding-bottom: 32px;
-      }
-      .okai-form {
-        flex: 0 0 auto;
-        flex-shrink: 0;
-        position: sticky;
-        bottom: 0;
-        z-index: 2;
-        padding: 14px 20px calc(14px + env(safe-area-inset-bottom));
-        background: #ffffff;
-        border-top: 1px solid #e2e8f0;
-      }
-      .okai-input {
-        font-size: 0.92rem;
-        padding: 10px 14px;
-        border-radius: 999px;
-        background: #f8fafc;
-        border-color: #e2e8f0;
-      }
-      .okai-send {
-        padding: 9px 16px;
-        font-size: 0.85rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        box-shadow: 0 10px 24px rgba(14, 165, 233, 0.35);
-      }
-      .okai-bubble-bot {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        color: #0f172a;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
-      }
-      .okai-bubble-user {
-        background: linear-gradient(135deg, #009fe3, #0077b6);
-        border: none;
-        color: #ffffff;
-        box-shadow: 0 14px 28px rgba(0, 159, 227, 0.35);
-      }
       .dark-mode #okAiChatToggle {
         border-color: rgba(148, 163, 184, 0.35);
         box-shadow: 0 18px 40px rgba(2, 6, 23, 0.65);
-      }
-      .dark-mode #okAiChatPanel {
-        background: radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 55%),
-          #0b1220;
-        color: #e5e7eb;
-      }
-      .dark-mode .okai-header {
-        background: linear-gradient(135deg, #020617, #111827);
-        border-bottom-color: rgba(51, 65, 85, 0.6);
-      }
-      .dark-mode .okai-form {
-        background: #0b1220;
-        border-top-color: #1f2937;
-      }
-      .dark-mode .okai-input {
-        background: #0f172a;
-        border-color: #1f2937;
-        color: #e5e7eb;
-      }
-      .dark-mode .okai-bubble-bot {
-        background: #0f172a;
-        border-color: #1f2937;
-        color: #e5e7eb;
-        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.6);
-      }
-      .dark-mode .okai-bubble-user {
-        background: linear-gradient(135deg, #0ea5e9, #2563eb);
       }
 
 /* HEADER CONSISTENCY OVERRIDES (RESPONSIVE.CSS) */
@@ -2062,8 +1959,11 @@
 }
 
 /* ================== END SHARED HEADER & BUTTONS ================== */
-</style>
-</head>
+  </style>
+  <link rel="stylesheet" href="auth-ui.css" />
+  <link rel="stylesheet" href="okai-widget-theme.css" />
+  <link rel="stylesheet" href="okai-widget.css" />
+  </head>
 <body>
   <!-- SNOW overlay -->
   <div class="snowflakes" aria-hidden="true">
@@ -2159,11 +2059,11 @@
               </div>
             </a>
 
-            <a href="mailto:info@oktv.ge" class="contact-chip">
+            <a href="mailto:oktv.ge@gmail.com" class="contact-chip">
               <div class="contact-chip-icon">✉️</div>
               <div>
                 <div class="contact-chip-label" data-i18n="contact.link.email">ელ.ფოსტა</div>
-                <div class="contact-chip-sub">info@oktv.ge</div>
+                <div class="contact-chip-sub">oktv.ge@gmail.com</div>
               </div>
             </a>
 
@@ -2228,7 +2128,7 @@
                 <div class="contact-detail-icon">✉️</div>
                 <div class="contact-detail-text">
                   <span class="contact-detail-label" data-i18n="contact.panel.label.email">ელ.ფოსტა</span>
-                  <a href="mailto:info@oktv.ge" class="contact-detail-value">info@oktv.ge</a>
+                  <a href="mailto:oktv.ge@gmail.com" class="contact-detail-value">oktv.ge@gmail.com</a>
                 </div>
               </div>
 
@@ -2343,7 +2243,7 @@
     </div>
 
     <div class="footer-qr">
-      <img src="assets/qr-oktv.png" alt="OK TV QR code" />
+      <canvas class="footer-qr-canvas" data-qr-url="index.html" data-qr-size="168" aria-label="OK TV QR code"></canvas>
       <span data-i18n="footer.qr">სკანერით ჩამოტვირთე აპი</span>
     </div>
 
@@ -2362,26 +2262,42 @@
       <div class="contact-menu" id="contactMenu">
         <a class="contact-item" href="https://www.facebook.com/profile.php?id=61582964341078" target="_blank" rel="noopener">
           <img src="icon-facebook.png" alt="Facebook" />
-          <span>Facebook</span>
+          <span class="contact-item-text">
+            <span>Facebook</span>
+            <span class="contact-item-email">oktv.ge@gmail.com</span>
+          </span>
         </a>
         <a class="contact-item" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
           <img src="icon-instagram.png" alt="Instagram" />
-          <span>Instagram</span>
+          <span class="contact-item-text">
+            <span>Instagram</span>
+            <span class="contact-item-email">oktv.ge@gmail.com</span>
+          </span>
         </a>
         <a class="contact-item" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
           <img src="icon-tiktok.png" alt="TikTok" />
-          <span>TikTok</span>
+          <span class="contact-item-text">
+            <span>TikTok</span>
+            <span class="contact-item-email">oktv.ge@gmail.com</span>
+          </span>
         </a>
         <a class="contact-item" href="tel:+995322901011">
           <span>📞</span>
-          <span>(+995 032) 2 90 10 11</span>
+          <span class="contact-item-text">
+            <span>(+995 032) 2 90 10 11</span>
+            <span class="contact-item-email">oktv.ge@gmail.com</span>
+          </span>
         </a>
       </div>
     </div>
 
-    <!-- DOWNLOAD MODAL -->
+    <button id="okAiChatToggle" class="okai-launcher" type="button" aria-label="OK AI">
+      <span>OK AI</span>
+    </button>
+    <div id="okaiRoot"></div>
+    <div id="authRoot"></div>
 
-<!-- DOWNLOAD MODAL -->
+    <!-- DOWNLOAD MODAL -->
     <div class="download-modal-backdrop" id="downloadModal">
       <div class="download-modal">
         <button class="download-modal-close" id="downloadModalClose" aria-label="დახურვა">×</button>
@@ -2403,96 +2319,21 @@
             <img src="badge-app-store.png" alt="Apple App Store" />
             <span class="download-option-label" data-i18n="store.ios">Apple • App Store</span>
           </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- OK AI CHATBOT -->
-
-<!-- OK AI CHATBOT -->
-    <button
-      id="okAiChatToggle"
-      class="okai-toggle z-[85] flex items-center gap-2"
-      aria-controls="okAiChatPanel"
-      aria-expanded="false"
-      aria-haspopup="dialog"
-    >
-      <span class="hidden sm:inline-block" data-i18n="chat.toggleFull">OK AI • დახმარება</span>
-      <span class="sm:hidden" data-i18n="chat.toggleShort">OK AI</span>
-      <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/15 text-[13px]">💬</span>
-    </button>
-
-    <div
-      id="okAiChatPanel"
-      class="okai-panel z-[86] max-h-[100vh] rounded-2xl bg-white shadow-2xl shadow-slate-900/50 border border-slate-200 flex flex-col overflow-hidden"
-      role="dialog"
-      aria-modal="true"
-      aria-hidden="true"
-      aria-labelledby="okAiChatTitle"
-    >
-      <!-- header -->
-      <div class="okai-header flex items-center justify-between px-3 py-2.5 bg-slate-900 text-white">
-        <div class="flex items-center gap-2">
-          <div
-            class="okai-avatar w-8 h-8 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-lg"
+          <a
+            class="download-option"
+            href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
+            target="_blank"
+            rel="noopener"
           >
-            🤖
-          </div>
-          <div class="flex flex-col">
-            <span
-              id="okAiChatTitle"
-              class="text-xs font-semibold leading-tight"
-              data-i18n="chat.headerTitle"
-            >
-              OK AI ასისტენტი
-            </span>
-          </div>
-        </div>
-        <button type="button" id="okAiChatClose" class="text-slate-300 hover:text-white text-sm px-1" aria-label="ჩატის მინიმიზაცია">
-          —
-        </button>
-      </div>
-
-      <!-- messages -->
-      <div
-        id="okAiMessages"
-        class="okai-messages flex-1 bg-slate-50/80 px-3 py-2.5 overflow-y-auto text-[11px] space-y-2"
-      >
-        <div class="flex gap-2">
-          <div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">
-            OK
-          </div>
-          <div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%] okai-bubble okai-bubble-bot">
-            <p class="leading-snug" data-i18n="chat.welcome">
-              გამარჯობა! მე ვარ <strong>OK AI</strong> – შეგიძლია მკითხო ყველაფერი OK TV-ს პაკეტებზე, აპლიკაციის დაყენებაზე ან დაგეგმო სამუშაოები Google კალენდარში.<br />
-              დაწერე შენი კითხვა 👇
-            </p>
-          </div>
+            <img src="badge-google-play-tv.png" alt="Google Play TV" />
+            <span class="download-option-label" data-i18n="store.tv">Google Play • TV</span>
+          </a>
+          <a class="download-option" href="https://app.oktv.ge/" target="_blank" rel="noopener">
+            <img src="live-oktv-button.png" alt="OK TV Live" />
+            <span class="download-option-label" data-i18n="store.live">OK TV Live</span>
+          </a>
         </div>
       </div>
-
-      <!-- input -->
-      <form
-        id="okAiForm"
-        class="okai-form border-t border-slate-200 bg-white px-2.5 py-2 flex items-center gap-1.5"
-      >
-        <input
-          id="okAiInput"
-          type="text"
-          autocomplete="off"
-          data-i18n-placeholder="chat.placeholder"
-          placeholder="დაწერე კითხვა ან დავალება..."
-          class="okai-input flex-1 text-[11px] px-2.5 py-1.5 rounded-full border border-slate-200 focus:outline-none focus:border-primary focus:ring-[1.5px] focus:ring-primary/30"
-        />
-        <button
-          type="submit"
-          class="okai-send inline-flex items-center justify-center px-2.5 py-1.5 rounded-full bg-primary text-white text-[11px] font-semibold hover:bg-primaryDark transition shadow-sm disabled:opacity-40 disabled:cursor-not-allowed"
-          id="okAiSendBtn"
-          data-i18n="chat.send"
-        >
-          გაგზავნა
-        </button>
-      </form>
     </div>
 
     <!-- COOKIE BANNER -->
@@ -2775,7 +2616,7 @@ const contactPageTranslations = {
     "contact.panel.label.callcenter": "ქოლცენტრი",
     "contact.panel.label.email": "ელ.ფოსტა",
     "contact.panel.label.live": "LIVE OKTV",
-    "contact.panel.note": "<strong>გთხოვთ მიმართოთ</strong> სამუშაო საათებში, ან მოგვწერეთ ელ.ფოსტაზე და აუცილებლად დაგიბრუნებთ პასუხს მოკლე დროში.",
+    "contact.panel.note": "<strong>დაგვიკავშირდით</strong> ქვემოთ მითითებულ ნომერზე…",
     "contact.panel.social.title": "აპლიკაციები და სოციალური მხარდაჭერა",
     "contact.panel.social.subtitle": "ჩამოტვირთე OK TV აპლიკაცია ნებისმიერი მოწყობილობიდან და დაგვიმეგობრდი სოციალურ ქსელებში, სადაც შეგიძლიათ მოგვწეროთ მხარდაჭერისთვის ან მონაწილეობა მიიღოთ ჩვენს აქციებში.",
     "contact.panel.social.note": "OK TV-ს აპლიკაციით მიიღებ სრულ ციფრულ ტელევიზიას სადაც არ უნდა იყო – ტელეფონზე, ტელევიზორზე თუ სხვა მოწყობილობაზე.",
@@ -2800,7 +2641,7 @@ const contactPageTranslations = {
     "contact.panel.label.callcenter": "Call Center",
     "contact.panel.label.email": "Email",
     "contact.panel.label.live": "LIVE OKTV",
-    "contact.panel.note": "<strong>Please contact us</strong> during working hours, or email us and we will get back to you shortly.",
+    "contact.panel.note": "<strong>Contact us</strong> at the number below…",
     "contact.panel.social.title": "Apps & Social Support",
     "contact.panel.social.subtitle": "Download the OK TV app on any device and connect with us on social networks, where you can message support or join our promotions.",
     "contact.panel.social.note": "With the OK TV app you get full digital TV wherever you are — on your phone, TV, or any other device.",
@@ -2825,7 +2666,7 @@ const contactPageTranslations = {
     "contact.panel.label.callcenter": "Колл-центр",
     "contact.panel.label.email": "Эл. почта",
     "contact.panel.label.live": "LIVE OKTV",
-    "contact.panel.note": "<strong>Пожалуйста, обращайтесь</strong> в рабочие часы, или пишите на почту — мы обязательно ответим в ближайшее время.",
+    "contact.panel.note": "<strong>Свяжитесь с нами</strong> по номеру ниже…",
     "contact.panel.social.title": "Приложения и социальная поддержка",
     "contact.panel.social.subtitle": "Скачайте приложение OK TV на любое устройство и добавляйтесь к нам в соцсетях, где можно написать в поддержку или участвовать в акциях.",
     "contact.panel.social.note": "С приложением OK TV вы получаете полноценное цифровое ТВ где бы вы ни были — на телефоне, телевизоре или другом устройстве.",
@@ -2926,6 +2767,7 @@ function applyLanguage(lang) {
     const btnLang = btn.getAttribute("data-lang");
     btn.classList.toggle("lang-option-active", btnLang === lang);
   });
+  document.dispatchEvent(new CustomEvent("oktv:languageChange", { detail: { lang } }));
 }
 
 function setupLanguage() {
@@ -3030,282 +2872,7 @@ if (downloadModal && downloadModalClose) {
   });
 }
 
-function syncOkAiViewportHeight() {
-  const viewportHeight =
-    (window.visualViewport && window.visualViewport.height) || window.innerHeight;
-  document.documentElement.style.setProperty("--okai-vh", `${viewportHeight * 0.01}px`);
-}
-
-syncOkAiViewportHeight();
-if (window.visualViewport) {
-  window.visualViewport.addEventListener("resize", syncOkAiViewportHeight);
-} else {
-  window.addEventListener("resize", syncOkAiViewportHeight);
-}
-
-// ================= OK AI CHATBOT LOGIC =================
-const okAiToggle = document.getElementById("okAiChatToggle");
-const okAiPanel = document.getElementById("okAiChatPanel");
-const okAiClose = document.getElementById("okAiChatClose");
-const okAiForm = document.getElementById("okAiForm");
-const okAiInput = document.getElementById("okAiInput");
-const okAiMessages = document.getElementById("okAiMessages");
-const okAiSendBtn = document.getElementById("okAiSendBtn");
-const OKAI_SESSION_KEY = "oktv_okai_session";
-const OKAI_HISTORY_KEY = "oktv_okai_history";
-let okAiHistory = [];
-
-if (window.localStorage) {
-  const storedSessionId = localStorage.getItem(OKAI_SESSION_KEY);
-  if (storedSessionId) {
-    window.okAiSessionId = storedSessionId;
-  }
-}
-
-function loadOkAiHistory() {
-  if (!window.localStorage) return [];
-  try {
-    const raw = localStorage.getItem(OKAI_HISTORY_KEY);
-    const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch (error) {
-    console.warn("OK AI history parse error:", error);
-    return [];
-  }
-}
-
-function saveOkAiHistory() {
-  if (!window.localStorage) return;
-  try {
-    localStorage.setItem(OKAI_HISTORY_KEY, JSON.stringify(okAiHistory));
-  } catch (error) {
-    console.warn("OK AI history save error:", error);
-  }
-}
-
-function renderOkAiHistory(history) {
-  if (!okAiMessages) return;
-  okAiMessages.innerHTML = "";
-  history.forEach((item) => appendMessage(item, false));
-}
-
-function toggleOkAiPanel(forceOpen) {
-  if (!okAiPanel) return;
-  const isOpen = okAiPanel.classList.contains("open");
-  const shouldOpen = forceOpen === true || (forceOpen === undefined && !isOpen);
-
-  if (shouldOpen) {
-    syncOkAiViewportHeight();
-    okAiPanel.classList.add("open");
-    okAiPanel.setAttribute("aria-hidden", "false");
-    document.body.classList.add("okai-open");
-    if (okAiToggle) {
-      okAiToggle.setAttribute("aria-expanded", "true");
-      okAiToggle.style.display = "none";
-    }
-    if (contactMenu) contactMenu.classList.remove("open");
-    if (contactToggle) contactToggle.style.display = "none";
-    if (okAiInput) {
-      setTimeout(() => okAiInput.focus(), 0);
-    }
-  } else {
-    okAiPanel.classList.remove("open");
-    okAiPanel.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("okai-open");
-    if (okAiToggle) {
-      okAiToggle.setAttribute("aria-expanded", "false");
-      okAiToggle.style.display = "inline-flex";
-    }
-    if (contactToggle && !(contactMenu && contactMenu.classList.contains("open"))) {
-      contactToggle.style.display = "inline-flex";
-    }
-  }
-}
-
-if (okAiToggle) {
-  okAiToggle.addEventListener("click", () => toggleOkAiPanel());
-}
-
-if (okAiClose) {
-  okAiClose.addEventListener("click", () => toggleOkAiPanel(false));
-}
-
-function appendMessage(payload, persist = true) {
-  if (!okAiMessages) return;
-  const from = payload.from;
-  const text = payload.text;
-  const wrapper = document.createElement("div");
-  wrapper.className = "flex gap-2";
-
-  if (from === "user") {
-    wrapper.classList.add("justify-end");
-    wrapper.innerHTML =
-      '<div class="rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%] shadow-sm text-[11px] leading-snug okai-bubble okai-bubble-user">' +
-      text +
-      '</div>';
-  } else {
-    wrapper.innerHTML =
-      '<div class="mt-0.5 w-6 h-6 rounded-full bg-primary/90 text-white flex items-center justify-center text-[12px]">OK</div>' +
-      '<div class="rounded-2xl rounded-tl-sm bg-white shadow-sm border border-slate-100 px-3 py-2 max-w-[85%] text-[11px] leading-snug okai-bubble okai-bubble-bot">' +
-      text +
-      '</div>';
-  }
-
-  okAiMessages.appendChild(wrapper);
-  okAiMessages.scrollTop = okAiMessages.scrollHeight;
-  if (persist) {
-    okAiHistory.push({ from, text });
-    saveOkAiHistory();
-  }
-}
-
-function initOkAiHistory() {
-  const storedHistory = loadOkAiHistory();
-  if (storedHistory.length) {
-    okAiHistory = storedHistory;
-    renderOkAiHistory(okAiHistory);
-    return;
-  }
-  if (!okAiMessages) return;
-  const initialMessage = okAiMessages.querySelector(".okai-bubble-bot p");
-  if (initialMessage) {
-    okAiHistory = [{ from: "bot", text: initialMessage.innerHTML.trim() }];
-    saveOkAiHistory();
-  }
-}
-
-initOkAiHistory();
-
-async function sendOkAiMessage(message) {
-  if (!message) return;
-  let sessionId = window.okAiSessionId;
-  if (!sessionId && window.localStorage) {
-    sessionId = localStorage.getItem(OKAI_SESSION_KEY);
-  }
-  if (!sessionId) {
-    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
-      sessionId = crypto.randomUUID();
-    } else {
-      sessionId = String(Date.now());
-    }
-  }
-  window.okAiSessionId = sessionId;
-  if (window.localStorage) {
-    localStorage.setItem(OKAI_SESSION_KEY, sessionId);
-  }
-
-  const BACKEND_URL = "https://gadela.app.n8n.cloud/webhook/a622e709-443c-47bc-840c-4d5018e0de04/chat";
-
-  try {
-    if (okAiSendBtn) okAiSendBtn.disabled = true;
-
-    const response = await fetch(BACKEND_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message,
-        sessionId,
-        language: currentLanguage,
-        source: "oktv-landing",
-        page: "contact",
-        consent: localStorage.getItem("oktv_cookieConsent") || "unknown",
-      }),
-    });
-
-    const status = response.status;
-    const contentType = response.headers.get("content-type") || "unknown";
-    const rawText = await response.text();
-    const rawPreview = rawText.length > 1000 ? `${rawText.slice(0, 1000)}... (truncated)` : rawText;
-    console.log("OK AI response status:", status);
-    console.log("OK AI response content-type:", contentType);
-    console.log("OK AI raw response (truncated):", rawPreview);
-
-    let data = null;
-    try {
-      data = rawText ? JSON.parse(rawText) : null;
-      console.log("OK AI parsed JSON:", data);
-    } catch (parseError) {
-      console.warn("OK AI JSON parse error:", parseError);
-    }
-
-    const reply =
-      (data && typeof data.reply === "string" && data.reply.trim()) ||
-      (data && typeof data.message === "string" && data.message.trim()) ||
-      (data && typeof data.text === "string" && data.text.trim()) ||
-      (data && typeof data.output === "string" && data.output.trim());
-    const cleanedReply = reply
-      ? reply.replace(/\[?Used tools:\]?[\s\S]*$/i, "").trim()
-      : "";
-    console.log("OK AI cleaned reply:", cleanedReply);
-
-    const requestId =
-      (data && (data.requestId || data.request_id || data.executionId || data.id)) ||
-      response.headers.get("x-request-id") ||
-      response.headers.get("x-correlation-id") ||
-      response.headers.get("x-n8n-execution-id");
-
-    const tryAgainNote =
-      currentLanguage === "ru"
-        ? "Попробуйте еще раз немного позже."
-        : currentLanguage === "en"
-          ? "Please try again shortly."
-          : "სცადე ისევ ცოტა ხანში.";
-    const statusText = status ? `HTTP ${status}` : "HTTP error";
-    const errorWithStatus =
-      currentLanguage === "ru"
-        ? `Сервер вернул ошибку (${statusText}). ${tryAgainNote}`
-        : currentLanguage === "en"
-          ? `Server returned an error (${statusText}). ${tryAgainNote}`
-          : `სერვერმა დააბრუნა შეცდომა (${statusText}). ${tryAgainNote}`;
-    const invalidResponseMessage =
-      currentLanguage === "ru"
-        ? `Не удалось прочитать ответ сервера. ${tryAgainNote}`
-        : currentLanguage === "en"
-          ? `Could not read the server response. ${tryAgainNote}`
-          : `სერვერის პასუხი ვერ წავიკითხე. ${tryAgainNote}`;
-
-    let fallbackMessage = invalidResponseMessage;
-    if (!response.ok) {
-      console.warn("OK AI response not OK:", status);
-      fallbackMessage = errorWithStatus;
-      if (requestId) {
-        fallbackMessage += ` (ID: ${requestId})`;
-      }
-    }
-
-    appendMessage({ from: "bot", text: cleanedReply || fallbackMessage });
-  } catch (error) {
-    console.error("OK AI error:", error);
-    appendMessage({
-      from: "bot",
-      text: translations[currentLanguage]["chat.error"] || translations.ka["chat.error"],
-    });
-  } finally {
-    if (okAiSendBtn) okAiSendBtn.disabled = false;
-  }
-}
-
-if (okAiForm && okAiInput) {
-  okAiForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const value = okAiInput.value.trim();
-    if (!value) return;
-
-    appendMessage({ from: "user", text: value });
-    okAiInput.value = "";
-    sendOkAiMessage(value);
-  });
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    toggleOkAiPanel(false);
-  }
-});
-
-// ================= CONTACT BUTTON LOGIC =================
+      // ================= CONTACT BUTTON LOGIC =================
 const contactToggle = document.getElementById("contactToggle");
 const contactMenu = document.getElementById("contactMenu");
 
@@ -3314,11 +2881,8 @@ function setContactMenuOpen(open) {
 
   if (open) {
     contactMenu.classList.add("open");
-    toggleOkAiPanel(false);
-    if (okAiToggle) okAiToggle.style.display = "none";
   } else {
     contactMenu.classList.remove("open");
-    if (okAiToggle) okAiToggle.style.display = "inline-flex";
   }
 }
 
@@ -3377,5 +2941,9 @@ document.addEventListener("keydown", (e) => {
   }
 });
 </script>
+<script src="config.js"></script>
+<script src="auth-ui.js"></script>
+<script src="okai-widget.js"></script>
+<script src="qr.js"></script>
 </body>
 </html>

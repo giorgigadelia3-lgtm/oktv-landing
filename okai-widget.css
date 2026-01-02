@@ -1,0 +1,193 @@
+/* OK AI widget base styles */
+.okai-launcher,
+#okAiChatToggle.okai-launcher {
+  position: fixed;
+  right: 24px;
+  bottom: calc(96px + env(safe-area-inset-bottom));
+  width: var(--okai-launcher-size);
+  height: var(--okai-launcher-size);
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: linear-gradient(135deg, #0ea5e9, #2563eb);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0;
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.35);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  z-index: 160;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.okai-launcher:hover,
+#okAiChatToggle.okai-launcher:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 26px 52px rgba(2, 6, 23, 0.45);
+}
+
+.okai-launcher.okai-hidden,
+#okAiChatToggle.okai-launcher.okai-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.okai-widget {
+  position: fixed;
+  right: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  width: var(--okai-panel-width);
+  height: var(--okai-panel-height);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 170;
+  font-family: var(--okai-font-family);
+}
+
+.okai-widget.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.okai-panel {
+  height: 100%;
+  background: var(--okai-panel-bg);
+  border-radius: var(--okai-panel-radius);
+  border: 1px solid var(--okai-panel-border);
+  box-shadow: var(--okai-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.okai-header {
+  height: var(--okai-header-height);
+  padding: 12px 16px;
+  background: var(--okai-header-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid var(--okai-panel-border);
+}
+
+.okai-title {
+  font-size: var(--okai-title-size);
+  font-weight: 700;
+  color: var(--okai-header-text);
+}
+
+.okai-subtitle {
+  font-size: var(--okai-subtitle-size);
+  color: var(--okai-subtitle);
+  margin-top: 2px;
+}
+
+.okai-close {
+  border: none;
+  background: transparent;
+  color: var(--okai-subtitle);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.okai-messages {
+  flex: 1;
+  padding: 14px;
+  background: var(--okai-body-bg);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.okai-msg {
+  max-width: 78%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: var(--okai-message-size);
+  line-height: 1.5;
+}
+
+.okai-msg.bot {
+  align-self: flex-start;
+  background: var(--okai-bot-bubble);
+  color: var(--okai-bot-text);
+}
+
+.okai-msg.user {
+  align-self: flex-end;
+  background: var(--okai-user-bubble);
+  color: var(--okai-user-text);
+}
+
+.okai-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--okai-panel-border);
+  background: var(--okai-body-bg);
+}
+
+.okai-input {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid var(--okai-input-border);
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  background: var(--okai-input-bg);
+  color: var(--okai-header-text);
+}
+
+.okai-send {
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: linear-gradient(120deg, #0ea5e9, #2563eb);
+  color: #ffffff;
+  padding: 0 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.okai-send[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.okai-gate {
+  padding: 12px 14px 0;
+  font-size: 0.82rem;
+  color: var(--okai-subtitle);
+}
+
+.okai-gate button {
+  margin-top: 8px;
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid rgba(59, 130, 246, 0.7);
+  background: transparent;
+  padding: 8px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--okai-header-text);
+}
+
+@media (max-width: 640px) {
+  .okai-launcher,
+  #okAiChatToggle.okai-launcher {
+    right: 16px;
+    bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+  .okai-widget {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    height: min(78vh, var(--okai-panel-height));
+  }
+}

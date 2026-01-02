@@ -1,0 +1,47 @@
+/* OK AI widget theme (match tbcbank.ge look & feel).
+   TODO: Replace the --okai-* values with measured values from TBC widget. */
+:root {
+  /* Sizing */
+  --okai-panel-width: 360px; /* TODO: set exact width */
+  --okai-panel-height: 560px; /* TODO: set exact height */
+  --okai-panel-radius: 16px; /* TODO */
+  --okai-launcher-size: 56px; /* TODO */
+  --okai-header-height: 64px; /* TODO */
+
+  /* Colors */
+  --okai-panel-bg: #ffffff;
+  --okai-panel-border: rgba(209, 213, 219, 0.9);
+  --okai-header-bg: #f8fafc;
+  --okai-header-text: #0f172a;
+  --okai-subtitle: #64748b;
+  --okai-body-bg: #ffffff;
+  --okai-user-bubble: #0ea5e9;
+  --okai-user-text: #ffffff;
+  --okai-bot-bubble: #f1f5f9;
+  --okai-bot-text: #0f172a;
+  --okai-input-bg: #ffffff;
+  --okai-input-border: rgba(203, 213, 225, 0.9);
+  --okai-shadow: 0 28px 60px rgba(2, 6, 23, 0.28);
+
+  /* Typography */
+  --okai-font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --okai-title-size: 0.98rem;
+  --okai-subtitle-size: 0.78rem;
+  --okai-message-size: 0.88rem;
+}
+
+.dark-mode {
+  --okai-panel-bg: #0f172a;
+  --okai-panel-border: rgba(30, 41, 59, 0.9);
+  --okai-header-bg: #0b1220;
+  --okai-header-text: #e5e7eb;
+  --okai-subtitle: #94a3b8;
+  --okai-body-bg: #0f172a;
+  --okai-user-bubble: #0ea5e9;
+  --okai-user-text: #ffffff;
+  --okai-bot-bubble: #111827;
+  --okai-bot-text: #e5e7eb;
+  --okai-input-bg: #0b1220;
+  --okai-input-border: rgba(30, 41, 59, 0.9);
+  --okai-shadow: 0 32px 70px rgba(0, 0, 0, 0.7);
+}

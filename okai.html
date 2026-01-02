@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ka">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>OK AI</title>
+    <style>
+      :root {
+        --primary: #009fe3;
+        --primary-dark: #0077b6;
+        --accent: #00b6bd;
+        --bg-page: #f5f7fb;
+        --bg-card: #ffffff;
+        --text-main: #111827;
+        --text-muted: #6b7280;
+        --border-soft: #d1d5db;
+        --radius-lg: 22px;
+        --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.18);
+      }
+      .dark-mode {
+        --bg-page: #020617;
+        --bg-card: #0b1220;
+        --text-main: #e5e7eb;
+        --text-muted: #9ca3af;
+        --border-soft: #1f2937;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.08), transparent 55%),
+          radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.1), transparent 55%),
+          var(--bg-page);
+        color: var(--text-main);
+        min-height: 100vh;
+      }
+      .dark-mode body {
+        background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.16), transparent 55%),
+          radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.2), transparent 55%),
+          #020617;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .okai-page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .okai-header {
+        padding: 18px 20px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .dark-mode .okai-header {
+        background: rgba(2, 6, 23, 0.75);
+        border-color: rgba(51, 65, 85, 0.7);
+      }
+      .okai-header-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--primary-dark);
+      }
+      .dark-mode .okai-header-title {
+        color: #93c5fd;
+      }
+      .okai-header-subtitle {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+      .okai-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        background: #ffffff;
+        color: var(--text-main);
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+      .okai-back-btn:hover {
+        border-color: var(--primary);
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.15);
+      }
+      .dark-mode .okai-back-btn {
+        background: #0f172a;
+        border-color: rgba(51, 65, 85, 0.7);
+        color: #e5e7eb;
+      }
+      .okai-shell {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: center;
+        padding: 24px 16px 28px;
+      }
+      .okai-chat {
+        width: min(980px, 100%);
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        box-shadow: var(--shadow-soft);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .dark-mode .okai-chat {
+        border-color: rgba(51, 65, 85, 0.7);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      }
+      .okai-messages {
+        flex: 1 1 auto;
+        min-height: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow-y: auto;
+        background: transparent;
+      }
+      .okai-row {
+        display: flex;
+        gap: 10px;
+      }
+      .okai-row.user {
+        justify-content: flex-end;
+      }
+      .okai-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #0ea5e9, #2563eb);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+      .okai-bubble {
+        max-width: min(76%, 560px);
+        padding: 10px 14px;
+        border-radius: 18px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .okai-bubble.bot {
+        background: #ffffff;
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        color: #0f172a;
+        box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+      }
+      .dark-mode .okai-bubble.bot {
+        background: #0f172a;
+        border-color: rgba(51, 65, 85, 0.7);
+        color: #e5e7eb;
+      }
+      .okai-bubble.user {
+        background: linear-gradient(135deg, #009fe3, #0077b6);
+        color: #ffffff;
+        box-shadow: 0 12px 26px rgba(0, 159, 227, 0.35);
+      }
+      .okai-form {
+        display: flex;
+        gap: 10px;
+        padding: 16px;
+        border-top: 1px solid rgba(148, 163, 184, 0.2);
+        background: rgba(255, 255, 255, 0.9);
+      }
+      .dark-mode .okai-form {
+        background: rgba(2, 6, 23, 0.9);
+        border-top-color: rgba(51, 65, 85, 0.6);
+      }
+      .okai-input {
+        flex: 1 1 auto;
+        border-radius: 999px;
+        padding: 12px 16px;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        background: #f8fafc;
+        font-size: 0.95rem;
+        color: var(--text-main);
+      }
+      .okai-input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.15);
+      }
+      .dark-mode .okai-input {
+        background: #0f172a;
+        border-color: rgba(51, 65, 85, 0.8);
+        color: #e5e7eb;
+      }
+      .okai-send {
+        border: none;
+        border-radius: 999px;
+        padding: 12px 18px;
+        background: linear-gradient(135deg, #009fe3, #2563eb);
+        color: #ffffff;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .okai-send:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(37, 99, 235, 0.35);
+      }
+      .okai-send:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+      }
+      @media (max-width: 640px) {
+        .okai-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .okai-bubble {
+          max-width: 100%;
+        }
+        .okai-form {
+          flex-direction: column;
+        }
+        .okai-send {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="okai-page">
+      <header class="okai-header">
+        <div>
+          <div class="okai-header-title" data-i18n="okai.title">OK AI — შენი ციფრული ასისტენტი</div>
+          <div class="okai-header-subtitle" data-i18n="okai.subtitle">
+            პროფესიული ასისტენტი OK TV-ს ოფიციალური ინფორმაციით — მზად არის დაგეხმაროს 24/7.
+          </div>
+        </div>
+        <a class="okai-back-btn" href="index.html" data-i18n="okai.back">Back to site</a>
+      </header>
+
+      <main class="okai-shell">
+        <section class="okai-chat" aria-live="polite">
+          <div id="okAiMessages" class="okai-messages">
+            <div class="okai-row">
+              <div class="okai-avatar">OK</div>
+              <div class="okai-bubble bot" data-i18n="chat.welcome">
+                გამარჯობა! მე ვარ <strong>OK AI</strong> — შემიძლია ზუსტად გიპასუხო OK TV-ს პაკეტებზე,
+                აპლიკაციის დაყენებაზე და სერვისის მუშაობაზე. დაწერე შენი კითხვა 👇
+              </div>
+            </div>
+          </div>
+          <form id="okAiForm" class="okai-form">
+            <input
+              id="okAiInput"
+              class="okai-input"
+              type="text"
+              autocomplete="off"
+              data-i18n-placeholder="chat.placeholder"
+              placeholder="დაწერე კითხვა ან დავალება..."
+            />
+            <button id="okAiSendBtn" class="okai-send" type="submit" data-i18n="chat.send">გაგზავნა</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      const THEME_KEY = "oktv_theme";
+      const LANGUAGE_KEY = "oktv_lang";
+      const OKAI_SESSION_KEY = "oktv_okai_session";
+      const OKAI_HISTORY_KEY = "oktv_okai_history";
+      const BACKEND_URL =
+        "https://gadela.app.n8n.cloud/webhook/a622e709-443c-47bc-840c-4d5018e0de04/chat";
+
+      const translations = {
+        ka: {
+          "page.title": "OK AI",
+          "okai.title": "OK AI — შენი ციფრული ასისტენტი",
+          "okai.subtitle":
+            "პროფესიული ასისტენტი OK TV-ს ოფიციალური ინფორმაციით — მზად არის დაგეხმაროს 24/7.",
+          "okai.back": "დაბრუნება საიტზე",
+          "chat.welcome":
+            'გამარჯობა! მე ვარ <strong>OK AI</strong> — შემიძლია ზუსტად გიპასუხო OK TV-ს პაკეტებზე, აპლიკაციის დაყენებაზე და სერვისის მუშაობაზე. დაწერე შენი კითხვა 👇',
+          "chat.placeholder": "დაწერე კითხვა ან დავალება...",
+          "chat.send": "გაგზავნა",
+          "chat.error":
+            "⛅ ამ წუთას ვერ ვუკავშირდები OK AI სერვერს. სცადე ცოტა ხანში თავიდან.",
+        },
+        en: {
+          "page.title": "OK AI",
+          "okai.title": "OK AI — your digital assistant",
+          "okai.subtitle":
+            "A professional assistant with official OK TV information, ready to help you 24/7.",
+          "okai.back": "Back to site",
+          "chat.welcome":
+            "Hello! I'm <strong>OK AI</strong> — I can answer questions about OK TV packages, app setup, and service details. Ask me anything 👇",
+          "chat.placeholder": "Type a question or task...",
+          "chat.send": "Send",
+          "chat.error":
+            "⛅ Right now I cannot reach the OK AI server. Please try again shortly.",
+        },
+        ru: {
+          "page.title": "OK AI",
+          "okai.title": "OK AI — ваш цифровой ассистент",
+          "okai.subtitle":
+            "Профессиональный ассистент с официальной информацией OK TV, готов помочь 24/7.",
+          "okai.back": "Вернуться на сайт",
+          "chat.welcome":
+            "Здравствуйте! Я <strong>OK AI</strong> — могу ответить на вопросы о пакетах OK TV, установке приложения и деталях сервиса. Спросите меня 👇",
+          "chat.placeholder": "Введите вопрос или задачу...",
+          "chat.send": "Отправить",
+          "chat.error":
+            "⛅ Сейчас не удается подключиться к серверу OK AI. Попробуйте немного позже.",
+        },
+      };
+
+      function applyTheme() {
+        const savedTheme = localStorage.getItem(THEME_KEY);
+        const isDark = savedTheme !== "light";
+        document.documentElement.classList.toggle("dark-mode", isDark);
+      }
+
+      function applyLanguage(lang) {
+        const pack = translations[lang] || translations.ka;
+        document.documentElement.lang = lang;
+        document.title = pack["page.title"] || "OK AI";
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (pack[key]) {
+            el.innerHTML = pack[key];
+          }
+        });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-placeholder");
+          if (pack[key]) {
+            el.setAttribute("placeholder", pack[key]);
+          }
+        });
+      }
+
+      applyTheme();
+      const savedLang = localStorage.getItem(LANGUAGE_KEY) || "ka";
+      let currentLanguage = savedLang;
+      applyLanguage(currentLanguage);
+
+      const okAiForm = document.getElementById("okAiForm");
+      const okAiInput = document.getElementById("okAiInput");
+      const okAiMessages = document.getElementById("okAiMessages");
+      const okAiSendBtn = document.getElementById("okAiSendBtn");
+      let okAiHistory = [];
+
+      function loadOkAiHistory() {
+        if (!window.localStorage) return [];
+        try {
+          const raw = localStorage.getItem(OKAI_HISTORY_KEY);
+          const parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+          return [];
+        }
+      }
+
+      function saveOkAiHistory() {
+        if (!window.localStorage) return;
+        localStorage.setItem(OKAI_HISTORY_KEY, JSON.stringify(okAiHistory));
+      }
+
+      function appendMessage({ from, text }, persist = true) {
+        if (!okAiMessages) return;
+        const row = document.createElement("div");
+        row.className = "okai-row" + (from === "user" ? " user" : "");
+
+        if (from === "user") {
+          row.innerHTML = `<div class="okai-bubble user">${text}</div>`;
+        } else {
+          row.innerHTML = `<div class="okai-avatar">OK</div><div class="okai-bubble bot">${text}</div>`;
+        }
+
+        okAiMessages.appendChild(row);
+        okAiMessages.scrollTop = okAiMessages.scrollHeight;
+        if (persist) {
+          okAiHistory.push({ from, text });
+          saveOkAiHistory();
+        }
+      }
+
+      function initOkAiHistory() {
+        const stored = loadOkAiHistory();
+        if (stored.length) {
+          okAiHistory = stored;
+          okAiMessages.innerHTML = "";
+          okAiHistory.forEach((item) => appendMessage(item, false));
+          return;
+        }
+        const initial = okAiMessages.querySelector("[data-i18n='chat.welcome']");
+        if (initial) {
+          okAiHistory = [{ from: "bot", text: initial.innerHTML.trim() }];
+          saveOkAiHistory();
+        }
+      }
+
+      initOkAiHistory();
+
+      async function sendOkAiMessage(message) {
+        if (!message) return;
+        let sessionId = localStorage.getItem(OKAI_SESSION_KEY);
+        if (!sessionId) {
+          sessionId =
+            typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+              ? crypto.randomUUID()
+              : String(Date.now());
+          localStorage.setItem(OKAI_SESSION_KEY, sessionId);
+        }
+
+        try {
+          if (okAiSendBtn) okAiSendBtn.disabled = true;
+
+          const response = await fetch(BACKEND_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              message,
+              sessionId,
+              language: currentLanguage,
+              source: "oktv-landing",
+              page: "okai",
+              consent: localStorage.getItem("oktv_cookieConsent") || "unknown",
+            }),
+          });
+
+          const rawText = await response.text();
+          let data = null;
+          try {
+            data = rawText ? JSON.parse(rawText) : null;
+          } catch (error) {
+            data = null;
+          }
+
+          const reply =
+            (data && typeof data.reply === "string" && data.reply.trim()) ||
+            (data && typeof data.message === "string" && data.message.trim()) ||
+            (data && typeof data.text === "string" && data.text.trim()) ||
+            (data && typeof data.output === "string" && data.output.trim());
+
+          const cleanedReply = reply
+            ? reply.replace(/\[?Used tools:\]?[\s\S]*$/i, "").trim()
+            : "";
+
+          if (!response.ok || !cleanedReply) {
+            const fallback = translations[currentLanguage]["chat.error"];
+            appendMessage({ from: "bot", text: fallback });
+            return;
+          }
+
+          appendMessage({ from: "bot", text: cleanedReply });
+        } catch (error) {
+          const fallback = translations[currentLanguage]["chat.error"];
+          appendMessage({ from: "bot", text: fallback });
+        } finally {
+          if (okAiSendBtn) okAiSendBtn.disabled = false;
+        }
+      }
+
+      if (okAiForm && okAiInput) {
+        okAiForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const value = okAiInput.value.trim();
+          if (!value) return;
+          appendMessage({ from: "user", text: value });
+          okAiInput.value = "";
+          sendOkAiMessage(value);
+        });
+      }
+    </script>
+  </body>
+</html>
