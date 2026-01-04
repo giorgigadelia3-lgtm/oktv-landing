@@ -1,0 +1,460 @@
+/* TBC-inspired theme overrides */
+:root {
+  --tbc-bg: #f4f6f9;
+  --tbc-card: #ffffff;
+  --tbc-border: #dfe3ea;
+  --tbc-text: #0f172a;
+  --tbc-muted: #64748b;
+  --tbc-primary: #1d4ed8;
+  --tbc-primary-dark: #1e40af;
+  --tbc-accent: #0ea5e9;
+  --tbc-focus: rgba(29, 78, 216, 0.28);
+  --tbc-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+  --tbc-radius: 12px;
+  --tbc-radius-lg: 16px;
+  --tbc-pill: 14px;
+  --tbc-input-bg: #f8fafc;
+
+  --primary: var(--tbc-primary);
+  --primary-dark: var(--tbc-primary-dark);
+  --accent: var(--tbc-accent);
+  --bg-page: var(--tbc-bg);
+  --bg-section: var(--tbc-card);
+  --text-main: var(--tbc-text);
+  --text-muted: var(--tbc-muted);
+  --border-soft: var(--tbc-border);
+  --shadow-soft: var(--tbc-shadow);
+  --radius-lg: var(--tbc-radius-lg);
+  --radius-pill: var(--tbc-pill);
+  --nav-height: 72px;
+
+  --okai-panel-bg: var(--tbc-card);
+  --okai-panel-border: var(--tbc-border);
+  --okai-header-bg: #f8fafc;
+  --okai-header-text: var(--tbc-text);
+  --okai-subtitle: var(--tbc-muted);
+  --okai-body-bg: var(--tbc-card);
+  --okai-user-bubble: var(--tbc-primary);
+  --okai-user-text: #ffffff;
+  --okai-bot-bubble: #f1f5f9;
+  --okai-bot-text: var(--tbc-text);
+  --okai-input-bg: var(--tbc-input-bg);
+  --okai-input-border: var(--tbc-border);
+  --okai-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+  --okai-panel-radius: 16px;
+
+  --auth-modal-backdrop: rgba(15, 23, 42, 0.45);
+  --auth-card-bg: var(--tbc-card);
+  --auth-card-border: var(--tbc-border);
+  --auth-muted: var(--tbc-muted);
+}
+
+.dark-mode {
+  --tbc-bg: #0b1220;
+  --tbc-card: #0f172a;
+  --tbc-border: #1f2937;
+  --tbc-text: #e5e7eb;
+  --tbc-muted: #94a3b8;
+  --tbc-primary: #60a5fa;
+  --tbc-primary-dark: #3b82f6;
+  --tbc-accent: #38bdf8;
+  --tbc-focus: rgba(96, 165, 250, 0.35);
+  --tbc-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
+  --tbc-input-bg: #0b1220;
+
+  --okai-header-bg: #0b1220;
+  --okai-body-bg: #0f172a;
+  --okai-bot-bubble: #111827;
+  --okai-shadow: 0 26px 64px rgba(0, 0, 0, 0.7);
+
+  --auth-modal-backdrop: rgba(2, 6, 23, 0.75);
+}
+
+/* Base */
+body.tbc-page {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(180deg, #f7f8fb 0%, #eef2f6 100%);
+  color: var(--text-main);
+}
+
+.dark-mode body.tbc-page {
+  background: linear-gradient(180deg, #0b1220 0%, #0b1326 100%);
+}
+
+body.tbc-page section {
+  padding: 64px 16px;
+}
+
+@media (max-width: 768px) {
+  body.tbc-page section {
+    padding: 48px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  body.tbc-page section {
+    padding: 40px 14px;
+  }
+}
+
+.tbc-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tbc-card {
+  background: var(--bg-section);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.tbc-btn-primary {
+  background: var(--primary);
+  border: 1px solid var(--primary);
+  color: #ffffff;
+  border-radius: var(--tbc-radius);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow: 0 10px 24px rgba(29, 78, 216, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.tbc-btn-primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(29, 78, 216, 0.28);
+}
+
+.tbc-input {
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  background: var(--tbc-input-bg);
+  color: var(--text-main);
+}
+
+.tbc-link {
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+.tbc-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Header + nav */
+body.tbc-page .main-header {
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom: 1px solid var(--border-soft);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+body.tbc-page .main-header.scrolled {
+  background: rgba(255, 255, 255, 0.99);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.dark-mode body.tbc-page .main-header {
+  background: rgba(15, 23, 42, 0.96);
+  border-bottom-color: var(--border-soft);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+body.tbc-page .brand-logo {
+  filter: none;
+}
+
+body.tbc-page .brand-name {
+  color: var(--text-main);
+  letter-spacing: 0.12em;
+}
+
+body.tbc-page .brand-subtitle {
+  color: var(--text-muted);
+}
+
+body.tbc-page .nav-link {
+  color: var(--text-muted);
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+body.tbc-page .nav-link::after {
+  background: var(--primary);
+  bottom: 5px;
+}
+
+body.tbc-page .nav-link:hover {
+  color: var(--primary-dark);
+  background: rgba(29, 78, 216, 0.08);
+  box-shadow: none;
+}
+
+body.tbc-page .nav-link.active {
+  color: var(--primary-dark);
+  background: rgba(29, 78, 216, 0.12);
+}
+
+/* Buttons */
+body.tbc-page .header-btn,
+body.tbc-page .premium-btn,
+body.tbc-page .balance-btn,
+body.tbc-page .auth-btn,
+body.tbc-page .cookie-btn-primary,
+body.tbc-page .okai-send,
+body.tbc-page .contact-toggle-btn {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  border-radius: var(--tbc-radius);
+  box-shadow: 0 10px 24px rgba(29, 78, 216, 0.2);
+}
+
+body.tbc-page .header-btn::before,
+body.tbc-page .store-badge::before {
+  display: none;
+}
+
+body.tbc-page .header-btn-ghost,
+body.tbc-page .premium-btn-outline,
+body.tbc-page .auth-btn-secondary,
+body.tbc-page .cookie-btn-secondary,
+body.tbc-page .download-video-choice-btn {
+  background: var(--bg-section);
+  color: var(--text-main);
+  border: 1px solid var(--border-soft);
+  box-shadow: none;
+}
+
+body.tbc-page .header-btn-ghost:hover,
+body.tbc-page .premium-btn-outline:hover,
+body.tbc-page .auth-btn-secondary:hover,
+body.tbc-page .cookie-btn-secondary:hover,
+body.tbc-page .download-video-choice-btn:hover {
+  background: #f8fafc;
+}
+
+.dark-mode body.tbc-page .header-btn-ghost,
+.dark-mode body.tbc-page .premium-btn-outline,
+.dark-mode body.tbc-page .auth-btn-secondary,
+.dark-mode body.tbc-page .cookie-btn-secondary,
+.dark-mode body.tbc-page .download-video-choice-btn {
+  background: #0b1220;
+  color: var(--text-main);
+  border-color: var(--border-soft);
+}
+
+body.tbc-page .download-video-play {
+  background: var(--primary);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 14px 28px rgba(29, 78, 216, 0.25);
+}
+
+/* Inputs */
+body.tbc-page input,
+body.tbc-page textarea,
+body.tbc-page select,
+body.tbc-page .okai-input,
+body.tbc-page .auth-field input {
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  background: var(--tbc-input-bg);
+  color: var(--text-main);
+  padding: 10px 12px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+body.tbc-page input::placeholder,
+body.tbc-page textarea::placeholder {
+  color: var(--text-muted);
+}
+
+body.tbc-page input:focus-visible,
+body.tbc-page textarea:focus-visible,
+body.tbc-page select:focus-visible,
+body.tbc-page .okai-input:focus-visible,
+body.tbc-page .auth-field input:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--tbc-focus);
+  background: var(--bg-section);
+}
+
+body.tbc-page button:focus-visible,
+body.tbc-page a:focus-visible {
+  outline: 3px solid var(--tbc-focus);
+  outline-offset: 2px;
+}
+
+/* Cards + sections */
+body.tbc-page #home,
+body.tbc-page .download-section,
+body.tbc-page .faq-links-section {
+  background: transparent;
+  box-shadow: none;
+}
+
+body.tbc-page .hero-slider {
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+body.tbc-page .hero-slider::after {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0));
+}
+
+body.tbc-page .hero-arrow {
+  background: rgba(15, 23, 42, 0.45);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+body.tbc-page .hero-dot {
+  border-color: var(--primary);
+}
+
+body.tbc-page .hero-dot.active {
+  background: var(--primary);
+  border-color: var(--primary-dark);
+}
+
+body.tbc-page .info-strip-card,
+body.tbc-page .download-video-wrap,
+body.tbc-page .download-video-choice,
+body.tbc-page .bonus-card,
+body.tbc-page .okai-intro-card,
+body.tbc-page .package-info-card,
+body.tbc-page .faq-item,
+body.tbc-page .link-pill,
+body.tbc-page .store-badge,
+body.tbc-page .download-modal,
+body.tbc-page .download-option,
+body.tbc-page .contact-menu,
+body.tbc-page .contact-item {
+  background: var(--bg-section);
+  border-color: var(--border-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+body.tbc-page .package-list-item {
+  background: var(--bg-section);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+body.tbc-page .hero-category-card,
+body.tbc-page .business-tag {
+  background: var(--bg-section);
+  border-color: var(--border-soft);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+}
+
+body.tbc-page .bonus-section,
+body.tbc-page .final-cta-section {
+  background: transparent;
+  color: var(--text-main);
+}
+
+body.tbc-page .bonus-title,
+body.tbc-page .bonus-item,
+body.tbc-page .bonus-actions,
+body.tbc-page .final-cta-title,
+body.tbc-page .final-cta-subtitle {
+  color: var(--text-main);
+}
+
+body.tbc-page .bonus-item {
+  color: var(--text-muted);
+}
+
+body.tbc-page .bonus-badge,
+body.tbc-page .bonus-bullet,
+body.tbc-page .device-badge {
+  background: rgba(29, 78, 216, 0.12);
+  color: var(--primary-dark);
+}
+
+body.tbc-page .final-cta-inner {
+  background: var(--bg-section);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 32px;
+}
+
+body.tbc-page .final-cta-actions .premium-btn-outline {
+  background: transparent;
+  color: var(--text-main);
+  border-color: var(--border-soft);
+}
+
+body.tbc-page .download-video-overlay {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.2));
+}
+
+.dark-mode body.tbc-page .download-video-overlay {
+  background: linear-gradient(180deg, rgba(2, 6, 23, 0.7), rgba(2, 6, 23, 0.35));
+}
+
+/* Widgets + misc */
+body.tbc-page .lang-toggle,
+body.tbc-page .theme-toggle {
+  background: var(--bg-section);
+  border-color: var(--border-soft);
+  border-radius: 10px;
+  color: var(--text-main);
+}
+
+body.tbc-page .lang-toggle:hover,
+body.tbc-page .theme-toggle:hover {
+  background: #f8fafc;
+  border-color: var(--primary);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+}
+
+body.tbc-page .lang-dropdown {
+  border-color: var(--border-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+body.tbc-page .lang-option-active {
+  background: var(--primary);
+}
+
+body.tbc-page .snowflakes {
+  opacity: 0.12;
+}
+
+body.tbc-page .footer {
+  background: var(--bg-section);
+  border-color: var(--border-soft);
+}
+
+body.tbc-page .trust-support a,
+body.tbc-page .links-grid a {
+  color: var(--primary-dark);
+}
+
+body.tbc-page .trust-support a:hover,
+body.tbc-page .links-grid a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.tbc-page .download-modal-backdrop {
+  background: rgba(15, 23, 42, 0.45);
+}
+
+body.tbc-page .cookie-banner {
+  background: rgba(15, 23, 42, 0.96);
+}
+
+body.tbc-page .okai-launcher,
+body.tbc-page #okAiChatToggle.okai-launcher {
+  background: var(--primary);
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 18px 40px rgba(29, 78, 216, 0.25);
+}

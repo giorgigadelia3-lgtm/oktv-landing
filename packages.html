@@ -1794,11 +1794,12 @@
   <link rel="stylesheet" href="auth-ui.css" />
   <link rel="stylesheet" href="okai-widget-theme.css" />
   <link rel="stylesheet" href="okai-widget.css" />
-  </head>
-<body>
+  <link rel="stylesheet" href="bog-inspired-theme.css" />
+</head>
+<body class="bog-page">
   <!-- HEADER -->
     <header class="main-header" id="mainHeader">
-      <div class="header-inner">
+      <div class="header-inner bog-container">
         <div class="brand">
           <a href="index.html#top" class="brand-link" aria-label="OK TV">
             <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
@@ -1816,7 +1817,7 @@
           <!-- ზედა ბალანსის ღილაკი (desktop) -->
           <a
             href="http://mypay.ge/pay/11644"
-            class="header-btn header-btn-balance"
+            class="header-btn btn btn-primary header-btn-balance"
             id="headerBalanceBtn"
             target="_blank"
             rel="noopener"
@@ -1839,10 +1840,10 @@
               <button type="button" class="lang-option" data-lang="ru">RU</button>
             </div>
           </div>
-          <a href="https://app.oktv.ge/" target="_blank" class="header-btn header-btn-ghost" rel="noopener">
+          <a href="https://app.oktv.ge/" target="_blank" class="header-btn btn btn-ghost header-btn-ghost" rel="noopener">
             <span data-i18n="header.live">LIVE OKTV</span>
           </a>
-          <a href="#" class="header-btn header-btn-download" id="downloadCtaBtn" role="button">
+          <a href="#" class="header-btn btn btn-primary header-btn-download" id="downloadCtaBtn" role="button">
             <span data-i18n="header.download">ჩამოტვირთე აპი</span>
           </a>
         </div>
@@ -1852,7 +1853,7 @@
   <main>
     <!-- ================== HERO – 9 ბანერის სლაიდერი ================== -->
     <section id="packages-hero" role="button" tabindex="0" aria-label="Scroll to packages list">
-      <div class="hero-inner">
+      <div class="hero-inner bog-container">
         <div class="hero-slider reveal">
           <div class="hero-packages-track">
             <!-- 9 ბანერი – პირველი წრე -->
@@ -2093,7 +2094,7 @@
           </div>
 
           <!-- პაკეტის დეტალები – მობილურის მსგავსი ანიმაციით დესკტოპზეც -->
-          <aside class="package-info-card" id="packageInfo">
+          <aside class="package-info-card card" id="packageInfo">
             <div class="package-info-title" id="packageInfoTitle">
               1) ეკონომი – 68 არხი, 9 ლარი თვეში
             </div>
@@ -2141,7 +2142,7 @@
 
     <!-- FLOATING CONTACT -->
     <div class="floating-contact">
-      <button type="button" id="contactToggle" class="contact-toggle-btn">
+      <button type="button" id="contactToggle" class="contact-toggle-btn btn btn-primary">
         <span class="contact-toggle-icon">📞</span>
         <span data-i18n="contact.button">კონტაქტი</span>
       </button>
