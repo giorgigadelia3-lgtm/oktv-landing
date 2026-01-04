@@ -2320,9 +2320,8 @@
     <link rel="stylesheet" href="auth-ui.css" />
     <link rel="stylesheet" href="okai-widget-theme.css" />
     <link rel="stylesheet" href="okai-widget.css" />
-  <link rel="stylesheet" href="bog-inspired-theme.css" />
-</head>
-  <body class="bog-page">
+  </head>
+  <body>
     <div id="top"></div>
     <!-- SNOW overlay -->
     <div class="snowflakes" aria-hidden="true">
@@ -2340,7 +2339,7 @@
 
     <!-- HEADER -->
     <header class="main-header" id="mainHeader">
-      <div class="header-inner bog-container">
+      <div class="header-inner">
         <div class="brand">
           <a href="index.html#top" class="brand-link" aria-label="OK TV">
             <img src="oktv-logo.png" alt="OK TV logo" class="brand-logo" />
@@ -2358,7 +2357,7 @@
           <!-- ზედა ბალანსის ღილაკი (desktop) -->
           <a
             href="http://mypay.ge/pay/11644"
-            class="header-btn btn btn-primary header-btn-balance"
+            class="header-btn header-btn-balance"
             id="headerBalanceBtn"
             target="_blank"
             rel="noopener"
@@ -2381,10 +2380,10 @@
               <button type="button" class="lang-option" data-lang="ru">RU</button>
             </div>
           </div>
-          <a href="https://app.oktv.ge/" target="_blank" class="header-btn btn btn-ghost header-btn-ghost" rel="noopener">
+          <a href="https://app.oktv.ge/" target="_blank" class="header-btn header-btn-ghost" rel="noopener">
             <span data-i18n="header.live">LIVE OKTV</span>
           </a>
-          <a href="#" class="header-btn btn btn-primary header-btn-download" id="downloadCtaBtn" role="button">
+          <a href="#" class="header-btn header-btn-download" id="downloadCtaBtn" role="button">
             <span data-i18n="header.download">ჩამოტვირთე აპი</span>
           </a>
         </div>
@@ -2394,7 +2393,7 @@
     <main>
       <!-- HERO + SLIDER -->
       <section id="home">
-        <div class="hero-inner bog-container">
+        <div class="hero-inner">
           <div class="hero-slider reveal" id="heroSlider">
             <div class="hero-slide-track" id="heroTrack">
               <article class="hero-slide">
@@ -2458,7 +2457,7 @@
           <!-- TOP-UP BALANCE BUTTON (მთავარი – mobile / tablet) -->
           <div class="balance-wrap reveal">
             <a
-              class="balance-btn btn btn-primary"
+              class="balance-btn"
               href="http://mypay.ge/pay/11644"
               target="_blank"
               rel="noopener"
@@ -2556,8 +2555,8 @@
 
       <!-- SECTION #1: HERO INFO STRIP START -->
       <section id="home-info" class="info-strip-section">
-        <div class="section-inner bog-container reveal">
-          <div class="info-strip-card card">
+        <div class="section-inner reveal">
+          <div class="info-strip-card">
             <div>
               <h2 class="section-heading" data-i18n="homeInfo.title">
                 OK TV — თანამედროვე ციფრული ტელევიზია საქართველოში
@@ -2613,7 +2612,7 @@
             </div>
             <div class="info-strip-actions">
               <a
-                class="premium-btn btn btn-primary info-strip-btn"
+                class="premium-btn info-strip-btn"
                 href="packages.html"
                 data-i18n="homeInfo.cta.primary"
                 data-i18n-aria="homeInfo.cta.primary"
@@ -2621,7 +2620,7 @@
                 პაკეტების ნახვა
               </a>
               <a
-                class="premium-btn btn btn-ghost premium-btn-outline"
+                class="premium-btn premium-btn-outline"
                 href="#download"
                 id="homeDownloadCta"
                 data-i18n="homeInfo.cta.secondary"
@@ -2640,13 +2639,13 @@
 
       <!-- SECTION #2: MINI PACKAGE PREVIEW START -->
       <section id="quick-packages">
-        <div class="section-inner bog-container reveal">
+        <div class="section-inner reveal">
           <h2 class="section-heading" data-i18n="quickPackages.title">პაკეტების სწრაფი არჩევანი</h2>
           <p class="section-lead" data-i18n="quickPackages.subtitle">
             პოპულარული შეთავაზებები ერთ ხედვაში.
           </p>
           <div class="quick-packages-grid">
-            <article class="premium-card card package-card">
+            <article class="premium-card package-card">
               <div class="package-card-header">
                 <span class="icon-circle" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
@@ -2658,7 +2657,7 @@
               <p class="package-meta" data-i18n="pkg.economy.meta">68 არხი</p>
               <p class="package-price" data-i18n="pkg.economy.price">9 ლარი თვეში</p>
               <a
-                class="premium-btn btn btn-ghost premium-btn-outline"
+                class="premium-btn premium-btn-outline"
                 href="packages.html"
                 data-i18n="pkg.cta"
                 data-i18n-aria="pkg.cta"
@@ -2666,7 +2665,7 @@
                 დეტალები
               </a>
             </article>
-            <article class="premium-card card package-card">
+            <article class="premium-card package-card">
               <div class="package-card-header">
                 <span class="icon-circle" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
@@ -2678,7 +2677,7 @@
               <p class="package-meta" data-i18n="pkg.sport.meta">8 არხი</p>
               <p class="package-price" data-i18n="pkg.sport.price">4 ლარი თვეში</p>
               <a
-                class="premium-btn btn btn-ghost premium-btn-outline"
+                class="premium-btn premium-btn-outline"
                 href="packages.html"
                 data-i18n="pkg.cta"
                 data-i18n-aria="pkg.cta"
@@ -2686,7 +2685,7 @@
                 დეტალები
               </a>
             </article>
-            <article class="premium-card card package-card">
+            <article class="premium-card package-card">
               <div class="package-card-header">
                 <span class="icon-circle" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
@@ -2699,7 +2698,7 @@
               <p class="package-meta" data-i18n="pkg.cinema.meta">19 არხი</p>
               <p class="package-price" data-i18n="pkg.cinema.price">4 ლარი თვეში</p>
               <a
-                class="premium-btn btn btn-ghost premium-btn-outline"
+                class="premium-btn premium-btn-outline"
                 href="packages.html"
                 data-i18n="pkg.cta"
                 data-i18n-aria="pkg.cta"
@@ -2707,7 +2706,7 @@
                 დეტალები
               </a>
             </article>
-            <article class="premium-card card package-card">
+            <article class="premium-card package-card">
               <div class="package-card-header">
                 <span class="icon-circle" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
@@ -2719,7 +2718,7 @@
               <p class="package-meta" data-i18n="pkg.premium.meta">12 არხი</p>
               <p class="package-price" data-i18n="pkg.premium.price">4 ლარი თვეში</p>
               <a
-                class="premium-btn btn btn-ghost premium-btn-outline"
+                class="premium-btn premium-btn-outline"
                 href="packages.html"
                 data-i18n="pkg.cta"
                 data-i18n-aria="pkg.cta"
@@ -2730,7 +2729,7 @@
           </div>
           <div class="packages-cta">
             <a
-              class="premium-btn btn btn-primary"
+              class="premium-btn"
               href="packages.html"
               data-i18n="pkg.viewAll"
               data-i18n-aria="pkg.viewAll"
@@ -2747,7 +2746,7 @@
 
       <!-- SECTION #3: DEVICE COMPATIBILITY START -->
       <section id="devices">
-        <div class="section-inner bog-container reveal">
+        <div class="section-inner reveal">
           <div class="section-heading-row">
             <div>
               <h2 class="section-heading" data-i18n="devices.title">მუშაობს ყველა მთავარ მოწყობილობაზე</h2>
@@ -2759,7 +2758,7 @@
           </div>
           <div class="device-grid">
             <a
-              class="premium-card card device-card device-link"
+              class="premium-card device-card device-link"
               href="https://play.google.com/store/apps/details?id=ru.ag.oktv&hl=ka"
               target="_blank"
               rel="noopener"
@@ -2774,7 +2773,7 @@
               <p class="device-desc" data-i18n="devices.android.desc">ტელეფონი და ტაბლეტი</p>
             </a>
             <a
-              class="premium-card card device-card device-link"
+              class="premium-card device-card device-link"
               href="https://apps.apple.com/ge/app/oktv/id6478280344"
               target="_blank"
               rel="noopener"
@@ -2789,7 +2788,7 @@
               <p class="device-desc" data-i18n="devices.ios.desc">აიფონი და აიპედი</p>
             </a>
             <a
-              class="premium-card card device-card device-link"
+              class="premium-card device-card device-link"
               href="https://play.google.com/store/apps/details?id=ag.sarpi&hl=ka"
               target="_blank"
               rel="noopener"
@@ -2803,7 +2802,7 @@
               <h3 class="device-title" data-i18n="devices.smart.title">სმარტ ტელევიზორი</h3>
               <p class="device-desc" data-i18n="devices.smart.desc">ტელევიზორები და სეტ-ტოპები</p>
             </a>
-            <a class="premium-card card device-card device-link" href="oktv_3.2.7_606.wgt">
+            <a class="premium-card device-card device-link" href="oktv_3.2.7_606.wgt">
               <span class="icon-circle" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M4 5h16v12H4z"></path>
@@ -2820,8 +2819,8 @@
 
       <!-- SECTION #4: BONUS CONTENT START -->
       <section id="bonus" class="bonus-section">
-        <div class="section-inner bog-container reveal">
-          <div class="bonus-card card">
+        <div class="section-inner reveal">
+          <div class="bonus-card">
             <span class="bonus-badge" data-i18n="bonus.badge">🎁 ბონუსი</span>
             <h2 class="bonus-title" data-i18n="bonus.title">🎁 400+ ფილმის ბიბლიოთეკა საჩუქრად</h2>
             <ul class="bonus-list">
@@ -2836,7 +2835,7 @@
             </ul>
             <div class="bonus-actions">
               <a
-                class="premium-btn btn btn-ghost premium-btn-outline"
+                class="premium-btn premium-btn-outline"
                 href="#download"
                 data-i18n="bonus.cta"
                 data-i18n-aria="bonus.cta"
@@ -2860,7 +2859,7 @@
               სადაც არ უნდა იყო – ერთი მარტივი ინსტალაციით.
             </p>
           </div>
-          <div class="download-video-wrap card" id="downloadVideoWrap">
+          <div class="download-video-wrap" id="downloadVideoWrap">
             <div class="download-video-overlay" id="downloadVideoOverlay">
               <button
                 type="button"
@@ -2878,7 +2877,7 @@
                 <div class="download-video-choice-actions">
                   <button
                     type="button"
-                    class="download-video-choice-btn btn btn-ghost"
+                    class="download-video-choice-btn"
                     data-video-src="oktv-app-download.mp4"
                     data-i18n="download.choice.mobile"
                   >
@@ -2886,7 +2885,7 @@
                   </button>
                   <button
                     type="button"
-                    class="download-video-choice-btn btn btn-ghost"
+                    class="download-video-choice-btn"
                     data-video-src="oktv-app-download-tv-1080x1350.mp4"
                     data-i18n="download.choice.tv"
                   >
@@ -2911,8 +2910,8 @@
 
       <!-- SECTION #5: BUSINESS PREVIEW START -->
       <section id="business-preview">
-        <div class="section-inner bog-container reveal">
-          <div class="premium-card card business-preview-card">
+        <div class="section-inner reveal">
+          <div class="premium-card business-preview-card">
             <div class="business-preview-header">
               <div class="business-preview-copy">
             <h2 class="section-heading" data-i18n="businessPreview.title">
@@ -2924,7 +2923,7 @@
             </p>
               </div>
               <a
-                class="premium-btn btn btn-ghost premium-btn-outline business-preview-cta"
+                class="premium-btn premium-btn-outline business-preview-cta"
                 href="business.html"
                 data-i18n="businessPreview.cta"
                 data-i18n-aria="businessPreview.cta"
@@ -2961,10 +2960,10 @@
 
       <!-- SECTION #6: TRUST BLOCK START -->
       <section id="trust">
-        <div class="section-inner bog-container reveal">
+        <div class="section-inner reveal">
           <h2 class="section-heading" data-i18n="trust.title">რატომ OK TV?</h2>
           <div class="trust-grid">
-            <article class="premium-card card trust-card">
+            <article class="premium-card trust-card">
               <span class="icon-circle" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M4 6l6-2 4 2 6-2v14l-6 2-4-2-6 2z"></path>
@@ -2972,7 +2971,7 @@
               </span>
               <h3 class="trust-card-title" data-i18n="trust.card1">მომსახურება საქართველოს მასშტაბით</h3>
             </article>
-            <article class="premium-card card trust-card">
+            <article class="premium-card trust-card">
               <span class="icon-circle" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M12 3a7 7 0 0 0-7 7v4a2 2 0 0 0 2 2h2v-6H7v-1a5 5 0 0 1 10 0v1h-2v6h2a2 2 0 0 0 2-2v-4a7 7 0 0 0-7-7z"></path>
@@ -2980,7 +2979,7 @@
               </span>
               <h3 class="trust-card-title" data-i18n="trust.card2">24/7 მხარდაჭერა</h3>
             </article>
-            <article class="premium-card card trust-card">
+            <article class="premium-card trust-card">
               <span class="icon-circle" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M12 3l7 3v5c0 4.4-3 8.4-7 9-4-0.6-7-4.6-7-9V6l7-3z"></path>
@@ -2988,7 +2987,7 @@
               </span>
               <h3 class="trust-card-title" data-i18n="trust.card3">უსაფრთხო გადახდა</h3>
             </article>
-            <article class="premium-card card trust-card">
+            <article class="premium-card trust-card">
               <span class="icon-circle" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M4 18h2v-4H4v4zM8 18h2v-7H8v7zM12 18h2v-10h-2v10zM16 18h2v-13h-2v13z"></path>
@@ -3113,8 +3112,8 @@
 
       <!-- SECTION #7: OK AI INTRO START -->
       <section id="okai-intro">
-        <div class="section-inner bog-container reveal">
-          <div class="okai-intro-card card">
+        <div class="section-inner reveal">
+          <div class="okai-intro-card">
             <div>
               <div class="okai-mascot" aria-hidden="true">AI</div>
               <h2 class="section-heading" data-i18n="okaiIntro.title">OK AI — შენი ციფრული ასისტენტი</h2>
@@ -3127,14 +3126,14 @@
                 href="okai.html"
                 target="_blank"
                 rel="noopener"
-                class="premium-btn btn btn-primary"
+                class="premium-btn"
                 data-i18n="okaiIntro.ctaPrimary"
                 data-i18n-aria="okaiIntro.ctaPrimaryAria"
               >
                 ჰკითხე OK AI-ს
               </a>
               <a
-                class="premium-btn btn btn-ghost premium-btn-outline"
+                class="premium-btn premium-btn-outline"
                 href="packages.html"
                 data-i18n="okaiIntro.ctaSecondary"
                 data-i18n-aria="okaiIntro.ctaSecondaryAria"
@@ -3160,7 +3159,7 @@
           </div>
           <div class="final-cta-actions">
             <a
-              class="premium-btn btn btn-primary"
+              class="premium-btn"
               href="packages.html"
               data-i18n="finalCta.primary"
               data-i18n-aria="finalCta.primary"
@@ -3168,7 +3167,7 @@
               აირჩიე პაკეტი
             </a>
             <a
-              class="premium-btn btn btn-ghost premium-btn-outline"
+              class="premium-btn premium-btn-outline"
               href="#download"
               data-i18n="finalCta.secondary"
               data-i18n-aria="finalCta.secondary"
@@ -3197,7 +3196,7 @@
 
     <!-- FLOATING CONTACT -->
     <div class="floating-contact">
-      <button type="button" id="contactToggle" class="contact-toggle-btn btn btn-primary">
+      <button type="button" id="contactToggle" class="contact-toggle-btn">
         <span class="contact-toggle-icon">📞</span>
         <span data-i18n="contact.button">კონტაქტი</span>
       </button>
@@ -3285,10 +3284,10 @@
           ჩვენ ვიყენებთ cookies-ს, რომ დავიმახსოვროთ შენი ენა, თემა (Light/Dark) და გავაუმჯობესოთ OK TV გამოცდილება. გაგრძელებით ეთანხმები ჩვენს პირობებს.
         </p>
         <div class="cookie-actions">
-          <button id="cookieMoreBtn" class="cookie-btn btn btn-ghost cookie-btn-secondary" type="button" data-i18n="cookie.more">
+          <button id="cookieMoreBtn" class="cookie-btn cookie-btn-secondary" type="button" data-i18n="cookie.more">
             ვრცლად
           </button>
-          <button id="cookieAcceptBtn" class="cookie-btn btn btn-primary cookie-btn-primary" type="button" data-i18n="cookie.accept">
+          <button id="cookieAcceptBtn" class="cookie-btn cookie-btn-primary" type="button" data-i18n="cookie.accept">
             ვეთანხმები
           </button>
         </div>
