@@ -3,7 +3,7 @@
 :root {
   /* Sizing */
   --okai-panel-width: 360px; /* TODO: set exact width */
-  --okai-panel-height: 560px; /* TODO: set exact height */
+  --okai-panel-height: 600px; /* TODO: set exact height */
   --okai-panel-radius: 16px; /* TODO */
   --okai-launcher-size: 56px; /* TODO */
   --okai-header-height: 64px; /* TODO */

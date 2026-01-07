@@ -602,4 +602,6 @@
     isAuthenticated: () => Boolean(authState.user && authState.token),
     openAuthModal,
   };
+
+  window.okaiIsAuthed = () => true;
 })();

@@ -78,6 +78,20 @@
         color: var(--text-muted);
         margin-top: 4px;
       }
+      .okai-bypass-badge {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 8px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(248, 113, 113, 0.45);
+        background: rgba(248, 113, 113, 0.12);
+        color: #b91c1c;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
       .okai-back-btn {
         display: inline-flex;
         align-items: center;
@@ -130,6 +144,33 @@
         overflow-y: auto;
         background: transparent;
       }
+      .okai-quick {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0 20px 12px;
+      }
+      .okai-quick-btn {
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        background: #f8fafc;
+        color: var(--text-main);
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      }
+      .okai-quick-btn:hover {
+        transform: translateY(-1px);
+        border-color: var(--primary);
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+      }
+      .dark-mode .okai-quick-btn {
+        background: #0f172a;
+        border-color: rgba(51, 65, 85, 0.7);
+        color: #e5e7eb;
+      }
       .okai-row {
         display: flex;
         gap: 10px;
@@ -155,6 +196,8 @@
         border-radius: 18px;
         font-size: 0.95rem;
         line-height: 1.5;
+        white-space: pre-wrap;
+        word-break: break-word;
       }
       .okai-bubble.bot {
         background: #ffffff;
@@ -252,6 +295,7 @@
             პროფესიული ასისტენტი OK TV-ს ოფიციალური ინფორმაციით — მზად არის დაგეხმაროს 24/7.
           </div>
         </div>
+        <div class="okai-bypass-badge" id="okaiBypassBadge" hidden>TEST MODE: OK AI AUTH BYPASS ON</div>
         <a class="okai-back-btn" href="index.html" data-i18n="okai.back">Back to site</a>
       </header>
 
@@ -265,6 +309,9 @@
                 აპლიკაციის დაყენებაზე და სერვისის მუშაობაზე. დაწერე შენი კითხვა 👇
               </div>
             </div>
+          </div>
+          <div class="okai-quick">
+            <button type="button" class="okai-quick-btn" id="okaiQuickBtn">არხების ჩამონათვალი</button>
           </div>
           <form id="okAiForm" class="okai-form">
             <input
@@ -281,13 +328,209 @@
       </main>
     </div>
 
+    <script src="config.js"></script>
     <script>
       const THEME_KEY = "oktv_theme";
       const LANGUAGE_KEY = "oktv_lang";
       const OKAI_SESSION_KEY = "oktv_okai_session";
       const OKAI_HISTORY_KEY = "oktv_okai_history";
-      const BACKEND_URL =
-        "https://gadela.app.n8n.cloud/webhook/a622e709-443c-47bc-840c-4d5018e0de04/chat";
+      const OKAI_BYPASS_KEY = "OKAI_AUTH_BYPASS";
+      const config = window.OKTV_CONFIG || {};
+      const CHAT_ENDPOINT = window.OKAI_CHAT_ENDPOINT;
+      if (!CHAT_ENDPOINT) {
+        console.error("OKAI_CHAT_ENDPOINT missing");
+      }
+      const QUICK_PROMPT_LABEL = "არხების ჩამონათვალი";
+      const FIXED_CHANNEL_LIST = `არხების ჩამონათვალი:								 
+	გადახვევის 				
+				პერიოდი /TimeShift/				
+				3დღე	
+	
+	! საბაზისო		0 ლარი
+		
+	საქართველოს საზოგადოებრივი მაუწებლობა	-		https://app.oktv.ge/channels/2/416				 
+	პარლამენტი	-	https://app.oktv.ge/channels/2/425					 
+	Music Box	-		https://app.oktv.ge/channels/2/3473				 
+	TV 4		-				https://app.oktv.ge/channels/2/tv-4	 
+	ერთსულოვნება		-	https://app.oktv.ge/channels/2/8460				 
+								
+!	ეკონომი		9 ლარი/თვე					 
+								
+	იმედი - https://app.oktv.ge/channels/2/421							 
+	ტვ პირველი	- https://app.oktv.ge/channels/2/423						 
+	ფორმულა	- 		https://app.oktv.ge/channels/2/1476			 
+	რუსთავი 2	- https://app.oktv.ge/channels/2/420						 
+	პოსტ ტვ		- https://app.oktv.ge/channels/2/7358					 
+	GDS		- 		https://app.oktv.ge/channels/2/417			 
+	Euronews GE	- https://app.oktv.ge/channels/2/7335						 
+	პალიტრა ტვ	- 	https://app.oktv.ge/channels/2/7359					 
+	მაესტრო -		https://app.oktv.ge/channels/2/418					 
+	აჭარა ტვ	- https://app.oktv.ge/channels/2/ajara						 
+	კავკასია	- https://app.oktv.ge/channels/2/kavkasia						 
+	ობიექტივი	- https://app.oktv.ge/channels/2/obieqtivi-tv						 
+	Georgian Times	- https://app.oktv.ge/channels/2/georgia-times						 
+	ქართული არხი	- https://app.oktv.ge/channels/2/qartuli-arxi						 
+	რაგბი ტვ			- https://app.oktv.ge/channels/2/ragbi-tv				 
+	მარაო			- https://app.oktv.ge/channels/2/marao				 
+	კომედი არხი	- https://app.oktv.ge/channels/2/komedi-arxi						 
+	ენკი-ბენკი		- https://app.oktv.ge/channels/2/enki-benki					 
+	ახალი ფორმულა - https://app.oktv.ge/channels/2/axali-formula					 
+	TVC ახალი კომედი		- https://app.oktv.ge/channels/2/axali-komedi					 
+	ალტ-ინფო		- https://app.oktv.ge/channels/2/axali-komedi					 
+	პულსი			- https://app.oktv.ge/channels/2/pulsi				 
+	1 TV Sport		- https://app.oktv.ge/channels/2/8288					 
+	Silk universal		- https://app.oktv.ge/channels/2/8441					 
+	Euronews			- https://app.oktv.ge/channels/2/7335				 
+	BBC World News		- https://app.oktv.ge/channels/2/105					 
+	CNN		- 				https://app.oktv.ge/channels/2/2703	 
+	DW		- https://app.oktv.ge/channels/2/212					 
+	France 24		- https://app.oktv.ge/channels/2/3911					 
+	Настоящее Время		- https://app.oktv.ge/channels/2/4262					 
+	Рен ТВ			- https://app.oktv.ge/channels/2/7				 
+	ТВ Центр		- https://app.oktv.ge/channels/2/38					 
+	 FREDOM (UA TV)	- 						 
+	C1	- https://app.oktv.ge/channels/2/7360						 
+	Ictimai TV		- https://app.oktv.ge/channels/2/436					 
+	RAI UNO			- https://app.oktv.ge/channels/2/rai-1				 
+	Bridge tv			- https://app.oktv.ge/channels/2/69				 
+	Mezzo				- https://app.oktv.ge/channels/2/55			 
+	Муз тв				- https://app.oktv.ge/channels/2/10			 
+	RU TV				- 			 
+	жара				- https://app.oktv.ge/channels/2/357			 
+	Cartoоn Network	- 	https://app.oktv.ge/channels/2/52					 
+	Jim-Jam		- https://app.oktv.ge/channels/2/166					 
+	CTC Kids		- https://app.oktv.ge/channels/2/4332					 
+	Da Vinci Learning	- https://app.oktv.ge/channels/2/da-vinci						 
+	Уникум				- https://app.oktv.ge/channels/2/98			 
+	Мульт				- 	https://app.oktv.ge/channels/2/200		 
+	viju tv 1000		- https://app.oktv.ge/channels/2/82					 
+	viju tv 1000 русское кино		- https://app.oktv.ge/channels/2/83					 
+	Terra		-	https://app.oktv.ge/channels/2/5886				 
+	Иллюзион +	- https://app.oktv.ge/channels/2/russkij-illjuzion						 
+	Еврокино		- https://app.oktv.ge/channels/2/96					 
+	Сапфир		- 	https://app.oktv.ge/channels/2/117				 
+	Драйв			- https://app.oktv.ge/channels/2/drajv				 
+	Кухня			- https://app.oktv.ge/channels/2/38				 
+	viju History	- 	https://app.oktv.ge/channels/2/491					 
+	Пятница		- 	https://app.oktv.ge/channels/2/pjatnitsa				 
+	CNBC English	- https://app.oktv.ge/channels/2/cnbc-english						 
+	Al Arabia Arabic		- 	https://app.oktv.ge/channels/2/8509				 
+	CNN Turk		- https://app.oktv.ge/channels/2/cnn-turk					 
+	1+1		- https://app.oktv.ge/channels/2/8791					 
+	Silk Way TV			- https://app.oktv.ge/channels/2/silk-way-tv				 
+								
+!	გასართობი		4 ლარი/თვე					 
+								
+	ТНТ 4 - https://app.oktv.ge/channels/2/tv-4							 
+	СТС		- https://app.oktv.ge/channels/2/8					 
+	ТНТ Comedy		- https://app.oktv.ge/channels/2/194					 
+	Перец		- https://app.oktv.ge/channels/2/484					 
+	Сарафан		- https://app.oktv.ge/channels/2/117					 
+	Food Network		- https://app.oktv.ge/channels/2/339					 
+	Fashion one		- https://app.oktv.ge/channels/2/226					 
+	Усадьба		- https://app.oktv.ge/channels/2/80					 
+	Домашний		- https://app.oktv.ge/channels/2/115					 
+	Охота и Рыбалка		- https://app.oktv.ge/channels/2/88					 
+	Домашние животные	- https://app.oktv.ge/channels/2/121						 
+	Авто Плюс				- https://app.oktv.ge/channels/2/29			 
+	ТВ 3						- https://app.oktv.ge/channels/2/207	 
+	POWER TV		- https://app.oktv.ge/channels/2/1988					 
+								
+!	დოკუმენტური და შემეცნებითი		4 ლარი/თვე					 
+								
+	viju Explorer	- https://app.oktv.ge/channels/2/997						 
+	viju Nature		- https://app.oktv.ge/channels/2/119					 
+	Discovery Channel	- https://app.oktv.ge/channels/2/147						 
+	Animal Planet			- https://app.oktv.ge/channels/2/175				 
+	Оружие		- https://app.oktv.ge/channels/2/366					 
+	Психология 21		- https://app.oktv.ge/channels/2/122					 
+	English Club	- https://app.oktv.ge/channels/2/157						 
+	Зоопарк		- https://app.oktv.ge/contents/2017-zoo-1160444631389765549					 
+	Здоровое тв	- https://app.oktv.ge/channels/2/99						 
+	Доктор		- https://app.oktv.ge/channels/2/58					 
+	24 техно	- https://app.oktv.ge/channels/2/256						 
+								
+								
+!	სპორტი		4 ლარი/თვე					 
+								
+	Eurosport		- https://app.oktv.ge/channels/2/145					 
+	Eurosport 2		- https://app.oktv.ge/channels/2/361 					 
+	Бокс ТВ		- 	https://app.oktv.ge/channels/2/482				 
+    viju+sport 	- https://app.oktv.ge/channels/2/77					 
+	KXL			-  https://app.oktv.ge/channels/2/khl				 
+	Extreme Sport	- https://app.oktv.ge/channels/2/extreme-sports						 
+	Авто 24		- https://app.oktv.ge/channels/2/256					 
+	Sky Sports 1		- https://app.oktv.ge/channels/2/sky-sports-1					 
+								
+!	სპორტი ექსკლუზივი		4 ლარი/თვე					 
+								
+	Setanta Sports 1	- https://app.oktv.ge/channels/2/setanta-sports						 
+	Setanta Sports 2	- https://app.oktv.ge/channels/2/4301						 
+	Setanta Sports 3	- https://app.oktv.ge/channels/2/4301					 
+								
+!	კინო		4 ლარი/თვე					 
+								
+	.red		- https://app.oktv.ge/channels/2/5596					 
+	.black	- https://app.oktv.ge/channels/2/235						 
+	Кинохит	- https://app.oktv.ge/channels/2/33						 
+	Мужское Кино	- https://app.oktv.ge/channels/2/209						 
+	Киносемья		- 	https://app.oktv.ge/channels/2/13				 
+	Киносвидание	- https://app.oktv.ge/channels/2/11						 
+	Киномикс			- https://app.oktv.ge/channels/2/167				 
+	CINEMA				- 	https://app.oktv.ge/channels/2/223		 
+	Киносерия			- https://app.oktv.ge/channels/2/208				 
+	Наше Новое Кино	- 	https://app.oktv.ge/channels/2/35					 
+	TV XXI			- https://app.oktv.ge/channels/2/84				 
+	Русский Иллюзион	- https://app.oktv.ge/channels/2/russkij-illjuzion						 
+	Феникс Плюс Кино	- https://app.oktv.ge/channels/2/29						 
+	Кинокомедия		- https://app.oktv.ge/channels/2/26					 
+	НСТ					- https://app.oktv.ge/channels/2/93		 
+	Индийское Кино	- https://app.oktv.ge/channels/2/62						 
+	Индиа		- https://app.oktv.ge/channels/2/245					 
+	365 Дней ТВ		- https://app.oktv.ge/channels/2/207					 
+	Ретро		- https://app.oktv.ge/channels/2/87					 
+								
+!	პრემიუმ კინო		4 ლარი/თვე					 
+								
+	Кинеко	- https://app.oktv.ge/channels/2/204						 
+	sci-fi	- https://app.oktv.ge/channels/2/102						 
+	viju Tv 1000 Action	- https://app.oktv.ge/channels/2/83						 
+	viju+ Megahit		- https://app.oktv.ge/channels/2/195					 
+	viju+Comedy	- 		https://app.oktv.ge/channels/2/194				 
+	viju+Premier	- https://app.oktv.ge/channels/2/196						 
+	A 1		- https://app.oktv.ge/channels/2/629					 
+	A 2		- https://app.oktv.ge/channels/2/228					 
+	Amedia Premium HD	- https://app.oktv.ge/channels/2/187						 
+	Amedia Hit		- https://app.oktv.ge/channels/2/632					 
+	HBO			- https://app.oktv.ge/channels/2/hbo				 
+								
+!	ზოგადი საერთაშორისო		4 ლარი/თვე					 
+								
+	Первый Канал	- https://app.oktv.ge/channels/2/1						 
+ 	РТР Планета - https://app.oktv.ge/contents/1981-tajna-tretej-planety-911795124375286485						 
+	НТВ	- https://app.oktv.ge/channels/2/4						 
+	ЦТВ  - https://app.oktv.ge/channels/2/3950							 
+	Россия Культура	   -  https://app.oktv.ge/channels/2/59						 
+	RTVI		-  https://app.oktv.ge/channels/2/365				 
+	MAX	- 	https://app.oktv.ge/channels/2/7361					 
+	TRT cocuk	- https://app.oktv.ge/channels/2/2529						 
+	TRT 1	- 		https://app.oktv.ge/channels/2/2529				 
+	TRT Turkey		- 	https://app.oktv.ge/channels/2/2534				 
+	 KAN 11 - ისრაელი - https://app.oktv.ge/channels/2/kan-11							 
+	 Makan 33 	- https://app.oktv.ge/channels/2/makan-33						 
+	 Keshen 12	- https://app.oktv.ge/channels/2/keshnet-12-470						 
+	 Reshnet 13		- https://app.oktv.ge/channels/2/reshnet-13-471					 
+	ZDF				- 		https://app.oktv.ge/channels/2/811	 
+	Bloomberg English			- https://app.oktv.ge/channels/2/356				 
+								
+!	18+		4 ლარი/თვე					 
+								
+	Blue Hustler		- https://app.oktv.ge/channels/2/blue-hustler					 
+	Русская Ночь		- https://app.oktv.ge/channels/2/russkaja-noch					 
+	PRIVAT			- https://app.oktv.ge/channels/2/private-tv				 
+								
+	Info Channel				გათიშულია დროებით			
+`;
 
       const translations = {
         ka: {
@@ -364,6 +607,8 @@
       const okAiInput = document.getElementById("okAiInput");
       const okAiMessages = document.getElementById("okAiMessages");
       const okAiSendBtn = document.getElementById("okAiSendBtn");
+      const okAiQuickBtn = document.getElementById("okaiQuickBtn");
+      const okAiBypassBadge = document.getElementById("okaiBypassBadge");
       let okAiHistory = [];
 
       function loadOkAiHistory() {
@@ -418,8 +663,38 @@
 
       initOkAiHistory();
 
+      function isOkAiAuthBypassEnabled() {
+        // TEMP TEST: OK AI auth bypass ? set flag false to restore auth
+        const flag = config.okaiAuthBypass ?? config.OKAI_AUTH_BYPASS;
+        const byConfig = flag === true || flag === "true";
+        const isLocal =
+          window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+        const byStorage = isLocal && localStorage.getItem(OKAI_BYPASS_KEY) === "1";
+        return byConfig || byStorage;
+      }
+
+      function updateBypassBadge() {
+        if (!okAiBypassBadge) return;
+        okAiBypassBadge.hidden = !isOkAiAuthBypassEnabled();
+      }
+
+      updateBypassBadge();
+
+      function isQuickPrompt(text) {
+        return text.trim() === QUICK_PROMPT_LABEL;
+      }
+
       async function sendOkAiMessage(message) {
         if (!message) return;
+        if (isQuickPrompt(message)) {
+          appendMessage({ from: "bot", text: FIXED_CHANNEL_LIST });
+          return;
+        }
+        if (!CHAT_ENDPOINT) {
+          const fallback = translations[currentLanguage]["chat.error"];
+          appendMessage({ from: "bot", text: fallback });
+          return;
+        }
         let sessionId = localStorage.getItem(OKAI_SESSION_KEY);
         if (!sessionId) {
           sessionId =
@@ -432,7 +707,7 @@
         try {
           if (okAiSendBtn) okAiSendBtn.disabled = true;
 
-          const response = await fetch(BACKEND_URL, {
+          const response = await fetch(CHAT_ENDPOINT, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -486,6 +761,17 @@
           appendMessage({ from: "user", text: value });
           okAiInput.value = "";
           sendOkAiMessage(value);
+        });
+      }
+
+      if (okAiQuickBtn && okAiForm && okAiInput) {
+        okAiQuickBtn.addEventListener("click", () => {
+          okAiInput.value = QUICK_PROMPT_LABEL;
+          if (typeof okAiForm.requestSubmit === "function") {
+            okAiForm.requestSubmit();
+          } else {
+            okAiForm.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+          }
         });
       }
     </script>

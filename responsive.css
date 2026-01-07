@@ -166,16 +166,17 @@
   }
 
   .hero-slider-bottom {
-    padding-top: 10px;
+    padding-top: 12px;
+    padding-bottom: 6px;
   }
 
   .hero-dots {
-    gap: 4px;
+    gap: 6px;
   }
 
   .hero-dot {
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
   }
 
   /* პაკეტების გვერდზე – ჰირო სლაიდერი */
@@ -204,7 +205,9 @@
     flex-direction: column;
     align-items: center;
     margin-top: 14px;
-    gap: 10px;
+    gap: 12px;
+    width: 100%;
+    padding-inline: 8px;
   }
 
   .store-badge {
@@ -232,6 +235,26 @@
   .hero-category-card {
     padding: 12px;
     border-radius: 18px;
+  }
+
+  .info-strip-actions {
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .packages-cta {
+    margin-top: 18px;
+  }
+
+  .final-cta-actions {
+    gap: 12px;
+    width: 100%;
+  }
+
+  .final-cta-actions .premium-btn,
+  .final-cta-actions .premium-btn-outline {
+    width: 100%;
+    justify-content: center;
   }
 
   /* „როგორ ჩამოვტვირთოთ აპლიკაცია“ – ვიდეო ქვევით გადავა */
@@ -319,6 +342,10 @@
 
   .floating-call-text {
     white-space: nowrap;
+  }
+
+  main {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom));
   }
 }
 
