@@ -7,7 +7,8 @@ window.OKTV_CONFIG = window.OKTV_CONFIG || {
 };
 // OK AI chatbot endpoint (single source of truth).
 window.OKAI_CHAT_ENDPOINT =
-  "https://gadela.app.n8n.cloud/webhook/a622e709-443c-47bc-840c-4d5018e0de04/chat";
+  "http://localhost:5678/webhook-test/2a787182-692b-4a4a-b84a-4e0f079c0632";
 window.OKTV_CONFIG.okaiWebhookUrl = window.OKAI_CHAT_ENDPOINT;
 // OK AI does not require authentication.
 window.OKAI_AUTH_REQUIRED = false;
+

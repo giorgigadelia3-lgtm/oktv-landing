@@ -227,7 +227,7 @@
     }
 
     .header-btn::before {
-      content: "❄";
+      content: "";
       position: absolute;
       top: -8px;
       right: 16px;
@@ -254,7 +254,7 @@
     }
 
     .header-btn-ghost::before {
-      content: "❄";
+      content: "";
       color: #93c5fd;
     }
 
@@ -622,7 +622,7 @@
     }
 
     .store-badge::before {
-      content: "❄";
+      content: "";
       position: absolute;
       top: -10px;
       left: 16px;
@@ -647,6 +647,73 @@
       font-weight: 600;
       color: var(--text-muted);
       letter-spacing: 0.04em;
+    }
+
+    .wgt-lock-card {
+      gap: 6px;
+    }
+
+    .wgt-lock-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wgt-lock-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--primary-dark);
+    }
+
+    .wgt-lock-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.7rem;
+    }
+
+    .wgt-lock-form {
+      display: grid;
+      gap: 10px;
+    }
+
+    .wgt-lock-input {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      text-align: center;
+      letter-spacing: 0.3em;
+      background: #ffffff;
+      color: var(--text-main);
+    }
+
+    .wgt-lock-submit {
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: none;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .wgt-lock-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+    }
+
+    .wgt-lock-error {
+      font-size: 0.78rem;
+      color: #ef4444;
+      text-align: center;
     }
 
     .contact-social-inline {
@@ -1152,6 +1219,43 @@
   color: #cbd5f5;
 }
 
+.dark-mode .wgt-lock-icon {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(148, 163, 184, 0.45);
+}
+
+.dark-mode .wgt-lock-icon svg {
+  fill: #93c5fd;
+}
+
+.dark-mode .wgt-lock-input {
+  background: #0b1220;
+  border-color: #1f2937;
+  color: #e5e7eb;
+}
+
+.dark-mode .social-pill {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.5);
+  color: #e5e7eb;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+
+.dark-mode .social-pill:hover {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: #38bdf8;
+}
+
+.dark-mode .social-pill-icon {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(148, 163, 184, 0.45);
+}
+
+.dark-mode .social-pill-icon img {
+  filter: brightness(1.1) contrast(1.05);
+  opacity: 0.95;
+}
+
 /* ================== SHARED HEADER & BUTTONS (INDEX) ================== */
 
 /* DARK MODE VARIABLES OVERRIDE */
@@ -1322,7 +1426,7 @@
         overflow: hidden;
       }
       .header-btn::before {
-        content: "❄";
+        content: "";
         position: absolute;
         top: -8px;
         right: 16px;
@@ -1350,7 +1454,7 @@
         border-color: #38bdf8;
       }
       .header-btn-ghost::before {
-        content: "❄";
+        content: "";
         color: #93c5fd;
       }
       .header-btn-ghost:hover {
@@ -1993,11 +2097,11 @@
               </div>
             </a>
 
-            <a href="mailto:oktv.ge@gmail.com" class="contact-chip">
+            <a href="mailto:info@oktv.ge" class="contact-chip">
               <div class="contact-chip-icon">✉️</div>
               <div>
                 <div class="contact-chip-label" data-i18n="contact.link.email">ელ.ფოსტა</div>
-                <div class="contact-chip-sub">oktv.ge@gmail.com</div>
+                <div class="contact-chip-sub">info@oktv.ge</div>
               </div>
             </a>
 
@@ -2062,7 +2166,7 @@
                 <div class="contact-detail-icon">✉️</div>
                 <div class="contact-detail-text">
                   <span class="contact-detail-label" data-i18n="contact.panel.label.email">ელ.ფოსტა</span>
-                  <a href="mailto:oktv.ge@gmail.com" class="contact-detail-value">oktv.ge@gmail.com</a>
+                  <a href="mailto:info@oktv.ge" class="contact-detail-value">info@oktv.ge</a>
                 </div>
               </div>
 
@@ -2077,11 +2181,7 @@
               </div>
             </div>
 
-            <p class="contact-panel-note" data-i18n="contact.panel.note">
-              <strong>გთხოვთ მიმართოთ</strong> სამუშაო საათებში, ან მოგვწერეთ ელ.ფოსტაზე
-              და აუცილებლად დაგიბრუნებთ პასუხს მოკლე დროში.
-            </p>
-          </article>
+                      </article>
 
           <article class="contact-panel contact-panel-light">
             <h2 class="contact-panel-title" data-i18n="contact.panel.social.title">აპლიკაციები და სოციალური მხარდაჭერა</h2>
@@ -2112,7 +2212,16 @@
                 <span class="store-badge-label" data-i18n="store.ios">Apple • App Store</span>
               </a>
 
-              <a class="store-badge" href="oktv_3.2.7_606.wgt">
+              <div class="store-badge wgt-lock-card" id="wgtLockCard" role="button" tabindex="0" aria-label="Locked download">
+                <span class="wgt-lock-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M6 10V8a6 6 0 1 1 12 0v2h1a1 1 0 0 1 1 1v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a1 1 0 0 1 1-1h1zm2 0h8V8a4 4 0 1 0-8 0v2z"></path>
+                  </svg>
+                </span>
+                <span class="store-badge-label wgt-lock-label" data-i18n="wgt.lockedLabel">დაბლოკილია</span>
+              </div>
+
+              <a class="store-badge wgt-download-card" id="wgtDownloadCard" href="oktv_3.2.7_606.wgt" hidden>
                 <img src="badge-wgt.png" alt="Smart TV WGT" />
                 <span class="store-badge-label" data-i18n="store.wgt">Smart TV • WGT</span>
               </a>
@@ -2198,28 +2307,28 @@
           <img src="icon-facebook.png" alt="Facebook" />
           <span class="contact-item-text">
             <span>Facebook</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
         <a class="contact-item" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
           <img src="icon-instagram.png" alt="Instagram" />
           <span class="contact-item-text">
             <span>Instagram</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
         <a class="contact-item" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
           <img src="icon-tiktok.png" alt="TikTok" />
           <span class="contact-item-text">
             <span>TikTok</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
         <a class="contact-item" href="tel:+995322901011">
           <span>📞</span>
           <span class="contact-item-text">
             <span>(+995 032) 2 90 10 11</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
       </div>
@@ -2230,6 +2339,31 @@
     </button>
     <div id="okaiRoot"></div>
     <div id="authRoot"></div>
+
+    <!-- WGT LOCK MODAL -->
+    <div class="download-modal-backdrop" id="wgtLockModal" aria-hidden="true">
+      <div class="download-modal" role="dialog" aria-modal="true" aria-labelledby="wgtLockTitle">
+        <button class="download-modal-close" id="wgtLockClose" aria-label="Close">×</button>
+        <h3 class="download-modal-title" id="wgtLockTitle" data-i18n="wgt.lock.title">კოდის შეყვანა</h3>
+        <p class="download-modal-subtitle" data-i18n="wgt.lock.subtitle">
+          შეიყვანე 4-ნიშნა კოდი ჩამოტვირთვის გასახსნელად.
+        </p>
+        <form class="wgt-lock-form" id="wgtLockForm">
+          <input
+            class="wgt-lock-input"
+            id="wgtLockInput"
+            type="password"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            maxlength="4"
+            autocomplete="one-time-code"
+            aria-label="Access code"
+          />
+          <button class="wgt-lock-submit" type="submit" data-i18n="wgt.lock.cta">გახსნა</button>
+          <div class="wgt-lock-error" id="wgtLockError" hidden data-i18n="wgt.lock.error">კოდი არასწორია.</div>
+        </form>
+      </div>
+    </div>
 
     <!-- DOWNLOAD MODAL -->
     <div class="download-modal-backdrop" id="downloadModal">
@@ -2311,6 +2445,11 @@ const translations = {
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
           "store.wgt": "Smart TV • WGT",
+          "wgt.lockedLabel": "დაბლოკილია",
+          "wgt.lock.title": "კოდის შეყვანა",
+          "wgt.lock.subtitle": "შეიყვანე 4-ნიშნა კოდი ჩამოტვირთვის გასახსნელად.",
+          "wgt.lock.cta": "გახსნა",
+          "wgt.lock.error": "კოდი არასწორია.",
           "store.live": "LIVE OKTV",
           "cat.packages.title": "პაკეტები",
           "cat.packages.desc": "საოჯახო, სპორტული და კინოპაკეტები ერთი გვერდიდან.",
@@ -2390,6 +2529,11 @@ const translations = {
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
           "store.wgt": "Smart TV • WGT",
+          "wgt.lockedLabel": "Locked",
+          "wgt.lock.title": "Enter access code",
+          "wgt.lock.subtitle": "Enter the 4-digit code to unlock the download.",
+          "wgt.lock.cta": "Unlock",
+          "wgt.lock.error": "Incorrect code.",
           "store.live": "LIVE OKTV",
           "cat.packages.title": "Packages",
           "cat.packages.desc": "Family, sports, and movie packages in one place.",
@@ -2468,6 +2612,11 @@ const translations = {
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
           "store.wgt": "Smart TV • WGT",
+          "wgt.lockedLabel": "Заблокировано",
+          "wgt.lock.title": "Введите код доступа",
+          "wgt.lock.subtitle": "Введите 4-значный код, чтобы открыть загрузку.",
+          "wgt.lock.cta": "Открыть",
+          "wgt.lock.error": "Неверный код.",
           "store.live": "LIVE OKTV",
           "cat.packages.title": "Пакеты",
           "cat.packages.desc": "Семейные, спортивные и кино-пакеты на одной странице.",
@@ -2806,6 +2955,77 @@ if (downloadModal && downloadModalClose) {
   });
 }
 
+// WGT lock logic
+const WGT_UNLOCK_KEY = "wgtUnlocked";
+const wgtLockCard = document.getElementById("wgtLockCard");
+const wgtDownloadCard = document.getElementById("wgtDownloadCard");
+const wgtLockModal = document.getElementById("wgtLockModal");
+const wgtLockClose = document.getElementById("wgtLockClose");
+const wgtLockForm = document.getElementById("wgtLockForm");
+const wgtLockInput = document.getElementById("wgtLockInput");
+const wgtLockError = document.getElementById("wgtLockError");
+
+function setWgtUnlocked(unlocked) {
+  if (wgtLockCard) wgtLockCard.hidden = unlocked;
+  if (wgtDownloadCard) wgtDownloadCard.hidden = !unlocked;
+}
+
+function openWgtLockModal() {
+  if (!wgtLockModal) return;
+  wgtLockModal.classList.add("active");
+  wgtLockModal.setAttribute("aria-hidden", "false");
+  if (wgtLockError) wgtLockError.hidden = true;
+  if (wgtLockInput) {
+    wgtLockInput.value = "";
+    wgtLockInput.focus();
+  }
+}
+
+function closeWgtLockModal() {
+  if (!wgtLockModal) return;
+  wgtLockModal.classList.remove("active");
+  wgtLockModal.setAttribute("aria-hidden", "true");
+}
+
+setWgtUnlocked(localStorage.getItem(WGT_UNLOCK_KEY) === "true");
+
+if (wgtLockCard) {
+  wgtLockCard.addEventListener("click", openWgtLockModal);
+  wgtLockCard.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openWgtLockModal();
+    }
+  });
+}
+
+if (wgtLockClose) {
+  wgtLockClose.addEventListener("click", closeWgtLockModal);
+}
+
+if (wgtLockModal) {
+  wgtLockModal.addEventListener("click", (event) => {
+    if (event.target === wgtLockModal) {
+      closeWgtLockModal();
+    }
+  });
+}
+
+if (wgtLockForm) {
+  wgtLockForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const value = wgtLockInput ? wgtLockInput.value.trim() : "";
+    if (value === "0000") {
+      localStorage.setItem(WGT_UNLOCK_KEY, "true");
+      setWgtUnlocked(true);
+      closeWgtLockModal();
+      return;
+    }
+    if (wgtLockError) wgtLockError.hidden = false;
+    if (wgtLockInput) wgtLockInput.select();
+  });
+}
+
       // ================= CONTACT BUTTON LOGIC =================
 const contactToggle = document.getElementById("contactToggle");
 const contactMenu = document.getElementById("contactMenu");
@@ -2872,6 +3092,7 @@ if (cookieMoreBtn) {
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closeDownloadModal();
+    closeWgtLockModal();
   }
 });
 </script>

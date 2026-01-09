@@ -268,7 +268,7 @@
         overflow: hidden;
       }
       .header-btn::before {
-        content: "❄";
+        content: "";
         position: absolute;
         top: -8px;
         right: 16px;
@@ -296,7 +296,7 @@
         border-color: #38bdf8;
       }
       .header-btn-ghost::before {
-        content: "❄";
+        content: "";
         color: #93c5fd;
       }
       .header-btn-ghost:hover {
@@ -742,7 +742,7 @@
         box-shadow: 0 14px 36px rgba(0, 0, 0, 0.9);
       }
       .store-badge::before {
-        content: "❄";
+        content: "";
         position: absolute;
         top: -10px;
         left: 16px;
@@ -2395,10 +2395,6 @@
               <img src="badge-app-store.png" alt="App Store" />
               <span class="store-badge-label" data-i18n="store.ios">Apple • App Store</span>
             </a>
-            <a class="store-badge" href="oktv_3.2.7_606.wgt">
-              <img src="badge-wgt.png" alt="Smart TV WGT" />
-              <span class="store-badge-label" data-i18n="store.wgt">Smart TV • WGT</span>
-            </a>
             <!-- Live OKTV button image: live-oktv-button.png -->
             <a class="store-badge" href="https://app.oktv.ge/" target="_blank" rel="noopener">
               <img
@@ -2701,17 +2697,7 @@
               <h3 class="device-title" data-i18n="devices.smart.title">სმარტ ტელევიზორი</h3>
               <p class="device-desc" data-i18n="devices.smart.desc">ტელევიზორები და სეტ-ტოპები</p>
             </a>
-            <a class="premium-card device-card device-link" href="oktv_3.2.7_606.wgt">
-              <span class="icon-circle" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path d="M4 5h16v12H4z"></path>
-                  <path d="M9 19h6v-2H9z"></path>
-                </svg>
-              </span>
-              <h3 class="device-title" data-i18n="devices.web.title">ვებ / კომპიუტერი</h3>
-              <p class="device-desc" data-i18n="devices.web.desc">ბრაუზერი და კომპიუტერი</p>
-            </a>
-          </div>
+                      </div>
         </div>
       </section>
       <!-- SECTION #3: DEVICE COMPATIBILITY END -->
@@ -3002,7 +2988,7 @@
               </a>
               <div class="link-pill link-pill-static">
                 <span class="link-dot"></span>
-                <span data-i18n="links.email">oktv.ge@gmail.com</span>
+                <span data-i18n="links.email">info@oktv.ge</span>
               </div>
             </div>
           </div>
@@ -3022,9 +3008,8 @@
             </div>
             <div class="okai-intro-actions">
               <a
-                href="okai.html"
-                target="_blank"
-                rel="noopener"
+                href="#"
+                id="okAiIntroCta"
                 class="premium-btn"
                 data-i18n="okaiIntro.ctaPrimary"
                 data-i18n-aria="okaiIntro.ctaPrimaryAria"
@@ -3104,28 +3089,28 @@
           <img src="icon-facebook.png" alt="Facebook" />
           <span class="contact-item-text">
             <span>Facebook</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
         <a class="contact-item" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
           <img src="icon-instagram.png" alt="Instagram" />
           <span class="contact-item-text">
             <span>Instagram</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
         <a class="contact-item" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
           <img src="icon-tiktok.png" alt="TikTok" />
           <span class="contact-item-text">
             <span>TikTok</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
         <a class="contact-item" href="tel:+995322901011">
           <span>📞</span>
           <span class="contact-item-text">
             <span>(+995 032) 2 90 10 11</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
       </div>
@@ -3214,7 +3199,6 @@
           "store.mobile": "Google Play • Mobile",
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
-          "store.wgt": "Smart TV • WGT",
           "store.live": "LIVE OKTV",
           "homeInfo.title": "OK TV — თანამედროვე ციფრული ტელევიზია საქართველოში",
           "homeInfo.subtitle":
@@ -3327,7 +3311,7 @@
           "links.tiktok": "TikTok",
           "links.googlePlay": "Google Play Store",
           "links.appStore": "App Store",
-          "links.email": "oktv.ge@gmail.com",
+          "links.email": "info@oktv.ge",
           "footer.prefix": "©",
           "footer.qr": "სკანერით ჩამოტვირთე აპი",
           "footer.text": "OK TV / აიეტი – ნამდვილი ციფრული ტელევიზია. ყველა უფლება დაცულია.",
@@ -3433,7 +3417,6 @@
           "store.mobile": "Google Play • Mobile",
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
-          "store.wgt": "Smart TV • WGT",
           "store.live": "LIVE OKTV",
           "cat.packages.title": "Packages",
           "cat.packages.desc": "Family, sports, and movie packages in one place.",
@@ -3475,7 +3458,7 @@
           "links.tiktok": "TikTok",
           "links.googlePlay": "Google Play Store",
           "links.appStore": "App Store",
-          "links.email": "oktv.ge@gmail.com",
+          "links.email": "info@oktv.ge",
           "footer.prefix": "©",
           "footer.qr": "Scan to download the app",
           "footer.text": "OK TV / Ayeti - true digital television. All rights reserved.",
@@ -3581,7 +3564,6 @@
           "store.mobile": "Google Play • Mobile",
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
-          "store.wgt": "Smart TV • WGT",
           "store.live": "LIVE OKTV",
           "cat.packages.title": "Пакеты",
           "cat.packages.desc": "Семейные, спортивные и кино-пакеты на одной странице.",
@@ -3623,7 +3605,7 @@
           "links.tiktok": "TikTok",
           "links.googlePlay": "Google Play Store",
           "links.appStore": "App Store",
-          "links.email": "oktv.ge@gmail.com",
+          "links.email": "info@oktv.ge",
           "footer.prefix": "©",
           "footer.qr": "Сканируйте для загрузки приложения",
           "footer.text": "OK TV / Айети - настоящее цифровое телевидение. Все права защищены.",

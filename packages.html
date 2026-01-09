@@ -204,7 +204,7 @@
     }
 
     .header-btn::before {
-      content: "❄";
+      content: "";
       position: absolute;
       top: -8px;
       right: 16px;
@@ -231,7 +231,7 @@
     }
 
     .header-btn-ghost::before {
-      content: "❄";
+      content: "";
       color: #93c5fd;
     }
 
@@ -251,7 +251,7 @@
       padding-bottom: 64px;
       background: linear-gradient(180deg, #e5f4ff 0%, #f5f7fb 60%, #f5f7fb 100%);
       box-shadow: inset 0 -1px 0 rgba(209, 213, 219, 0.7);
-      cursor: pointer;
+      cursor: default;
     }
     #packages-hero:focus-visible {
       outline: 2px solid var(--primary);
@@ -309,6 +309,7 @@
       box-shadow: 0 16px 40px rgba(15,23,42,0.25);
       background: #0f172a;
       position: relative;
+      cursor: pointer;
     }
 
     .hero-package-slide img {
@@ -368,7 +369,7 @@
     }
 
     .store-badge::before {
-      content: "❄";
+      content: "";
       position: absolute;
       top: -10px;
       left: 16px;
@@ -645,6 +646,48 @@
       font-size: 0.9rem;
       line-height: 1.7;
       color: var(--text-main);
+    }
+
+    .package-channel-list {
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-height: 320px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .package-channel-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: #f8fafc;
+      color: var(--text-main);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .package-channel-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 22px rgba(15,23,42,0.18);
+      background: #ffffff;
+    }
+
+    .package-channel-btn.is-disabled {
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: none;
     }
 
     .package-bonus {
@@ -1036,6 +1079,18 @@
     color: #93c5fd;
   }
 
+  .dark-mode .package-channel-btn {
+    background: #0f172a;
+    border-color: #1f2937;
+    color: #e5e7eb;
+  }
+
+  .dark-mode .package-channel-btn:hover {
+    background: #111827;
+    border-color: #38bdf8;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
+  }
+
   .dark-mode .package-bonus {
     color: #7dd3fc;
   }
@@ -1225,7 +1280,7 @@
         overflow: hidden;
       }
       .header-btn::before {
-        content: "❄";
+        content: "";
         position: absolute;
         top: -8px;
         right: 16px;
@@ -1253,7 +1308,7 @@
         border-color: #38bdf8;
       }
       .header-btn-ghost::before {
-        content: "❄";
+        content: "";
         color: #93c5fd;
       }
       .header-btn-ghost:hover {
@@ -1849,65 +1904,65 @@
 
   <main>
     <!-- ================== HERO – 9 ბანერის სლაიდერი ================== -->
-    <section id="packages-hero" role="button" tabindex="0" aria-label="Scroll to packages list">
+    <section id="packages-hero">
       <div class="hero-inner">
         <div class="hero-slider reveal">
           <div class="hero-packages-track">
             <!-- 9 ბანერი – პირველი წრე -->
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="economy">
               <img src="package-1.jpg" alt="ეკონომი – 68 არხი, 9 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="entertainment">
               <img src="package-2.jpg" alt="გასართობი – 14 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="documentary">
               <img src="package-3.jpg" alt="დოკუმენტური და შემეცნებითი – 11 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="sport">
               <img src="package-4.jpg" alt="სპორტი – 8 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="sportExclusive">
               <img src="package-5.jpg" alt="სპორტ ექსკლუზივი – 3 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="cinema">
               <img src="package-6.jpg" alt="კინო – 19 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="premiumCinema">
               <img src="package-7.jpg" alt="პრემიუმ კინო – 12 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="news">
               <img src="package-8.jpg" alt="ზოგადი საინფორმაციო – 16 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="adult">
               <img src="package-9.jpg" alt="+18 – 3 არხი, 4 ლარი თვეში" />
             </div>
 
             <!-- იგივე 9 ბანერი – მეორე წრე უწყვეტი ანიმაციისთვის -->
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="economy">
               <img src="package-1.jpg" alt="ეკონომი – 68 არხი, 9 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="entertainment">
               <img src="package-2.jpg" alt="გასართობი – 14 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="documentary">
               <img src="package-3.jpg" alt="დოკუმენტური და შემეცნებითი – 11 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="sport">
               <img src="package-4.jpg" alt="სპორტი – 8 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="sportExclusive">
               <img src="package-5.jpg" alt="სპორტ ექსკლუზივი – 3 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="cinema">
               <img src="package-6.jpg" alt="კინო – 19 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="premiumCinema">
               <img src="package-7.jpg" alt="პრემიუმ კინო – 12 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="news">
               <img src="package-8.jpg" alt="ზოგადი საინფორმაციო – 16 არხი, 4 ლარი თვეში" />
             </div>
-            <div class="hero-package-slide">
+            <div class="hero-package-slide" data-package-key="adult">
               <img src="package-9.jpg" alt="+18 – 3 არხი, 4 ლარი თვეში" />
             </div>
           </div>
@@ -1936,10 +1991,6 @@
             <span class="store-badge-label" data-i18n="store.ios">App Store</span>
           </a>
 
-          <a class="store-badge" href="oktv_3.2.7_606.wgt">
-            <img src="badge-wgt.png" alt="WGT Smart TV" />
-            <span class="store-badge-label" data-i18n="store.wgt">Smart TV WGT</span>
-          </a>
         </div>
 
         <!-- ქვედა 4 ნავიგაციური ბლოკი -->
@@ -2148,28 +2199,28 @@
           <img src="icon-facebook.png" alt="Facebook" />
           <span class="contact-item-text">
             <span>Facebook</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
         <a class="contact-item" href="https://www.instagram.com/oktv.ge/" target="_blank" rel="noopener">
           <img src="icon-instagram.png" alt="Instagram" />
           <span class="contact-item-text">
             <span>Instagram</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
         <a class="contact-item" href="https://www.tiktok.com/@oktv.ge" target="_blank" rel="noopener">
           <img src="icon-tiktok.png" alt="TikTok" />
           <span class="contact-item-text">
             <span>TikTok</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
         <a class="contact-item" href="tel:+995322901011">
           <span>📞</span>
           <span class="contact-item-text">
             <span>(+995 032) 2 90 10 11</span>
-            <span class="contact-item-email">oktv.ge@gmail.com</span>
+            <span class="contact-item-email">info@oktv.ge</span>
           </span>
         </a>
       </div>
@@ -2244,7 +2295,6 @@
           "store.mobile": "Google Play • Mobile",
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
-          "store.wgt": "Smart TV • WGT",
           "store.live": "LIVE OKTV",
           "cat.packages.title": "პაკეტები",
           "cat.packages.desc": "საოჯახო, სპორტული და კინოპაკეტები ერთი გვერდიდან.",
@@ -2323,7 +2373,6 @@
           "store.mobile": "Google Play • Mobile",
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
-          "store.wgt": "Smart TV • WGT",
           "store.live": "LIVE OKTV",
           "cat.packages.title": "Packages",
           "cat.packages.desc": "Family, sports, and movie packages in one place.",
@@ -2401,7 +2450,6 @@
           "store.mobile": "Google Play • Mobile",
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
-          "store.wgt": "Smart TV • WGT",
           "store.live": "LIVE OKTV",
           "cat.packages.title": "Пакеты",
           "cat.packages.desc": "Семейные, спортивные и кино-пакеты на одной странице.",
@@ -2695,24 +2743,6 @@
 
       setupTheme();
 
-      const packagesHero = document.getElementById("packages-hero");
-      const packagesList = document.getElementById("packagesList");
-
-      function scrollToPackagesList() {
-        if (!packagesList) return;
-        packagesList.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-
-      if (packagesHero) {
-        packagesHero.addEventListener("click", scrollToPackagesList);
-        packagesHero.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            scrollToPackagesList();
-          }
-        });
-      }
-
 // Download modal logic
       const downloadBtn = document.getElementById("downloadCtaBtn");
       const downloadModal = document.getElementById("downloadModal");
@@ -2872,6 +2902,174 @@
       }
     };
 
+    const packageChannels = {
+      economy: [
+        { name: "იმედი", url: "https://app.oktv.ge/channels/2/421" },
+        { name: "ტვ პირველი", url: "https://app.oktv.ge/channels/2/423" },
+        { name: "ფორმულა", url: "https://app.oktv.ge/channels/2/1476" },
+        { name: "რუსთავი 2", url: "https://app.oktv.ge/channels/2/420" },
+        { name: "პოსტ ტვ", url: "https://app.oktv.ge/channels/2/7358" },
+        { name: "GDS", url: "https://app.oktv.ge/channels/2/417" },
+        { name: "Euronews GE", url: "https://app.oktv.ge/channels/2/7335" },
+        { name: "პალიტრა ტვ", url: "https://app.oktv.ge/channels/2/7359" },
+        { name: "მაესტრო", url: "https://app.oktv.ge/channels/2/418" },
+        { name: "აჭარა ტვ", url: "https://app.oktv.ge/channels/2/ajara" },
+        { name: "კავკასია", url: "https://app.oktv.ge/channels/2/kavkasia" },
+        { name: "ობიექტივი", url: "https://app.oktv.ge/channels/2/obieqtivi-tv" },
+        { name: "Georgian Times", url: "https://app.oktv.ge/channels/2/georgia-times" },
+        { name: "ქართული არხი", url: "https://app.oktv.ge/channels/2/qartuli-arxi" },
+        { name: "რაგბი ტვ", url: "https://app.oktv.ge/channels/2/ragbi-tv" },
+        { name: "მარაო", url: "https://app.oktv.ge/channels/2/marao" },
+        { name: "კომედი არხი", url: "https://app.oktv.ge/channels/2/komedi-arxi" },
+        { name: "ენკი-ბენკი", url: "https://app.oktv.ge/channels/2/enki-benki" },
+        { name: "ახალი ფორმულა", url: "https://app.oktv.ge/channels/2/axali-formula" },
+        { name: "TVC ახალი კომედი", url: "https://app.oktv.ge/channels/2/axali-komedi" },
+        { name: "ალტ-ინფო", url: "https://app.oktv.ge/channels/2/axali-komedi" },
+        { name: "პულსი", url: "https://app.oktv.ge/channels/2/pulsi" },
+        { name: "1 TV Sport", url: "https://app.oktv.ge/channels/2/8288" },
+        { name: "Silk universal", url: "https://app.oktv.ge/channels/2/8441" },
+        { name: "Euronews", url: "https://app.oktv.ge/channels/2/7335" },
+        { name: "BBC World News", url: "https://app.oktv.ge/channels/2/105" },
+        { name: "CNN", url: "https://app.oktv.ge/channels/2/2703" },
+        { name: "DW", url: "https://app.oktv.ge/channels/2/212" },
+        { name: "France 24", url: "https://app.oktv.ge/channels/2/3911" },
+        { name: "Настоящее Время", url: "https://app.oktv.ge/channels/2/4262" },
+        { name: "Рен ТВ", url: "https://app.oktv.ge/channels/2/7" },
+        { name: "ТВ Центр", url: "https://app.oktv.ge/channels/2/38" },
+        { name: "FREDOM (UA TV)", url: "" },
+        { name: "C1", url: "https://app.oktv.ge/channels/2/7360" },
+        { name: "Ictimai TV", url: "https://app.oktv.ge/channels/2/436" },
+        { name: "RAI UNO", url: "https://app.oktv.ge/channels/2/rai-1" },
+        { name: "Bridge tv", url: "https://app.oktv.ge/channels/2/69" },
+        { name: "Mezzo", url: "https://app.oktv.ge/channels/2/55" },
+        { name: "Муз тв", url: "https://app.oktv.ge/channels/2/10" },
+        { name: "RU TV", url: "" },
+        { name: "жара", url: "https://app.oktv.ge/channels/2/357" },
+        { name: "Cartoоn Network", url: "https://app.oktv.ge/channels/2/52" },
+        { name: "Jim-Jam", url: "https://app.oktv.ge/channels/2/166" },
+        { name: "CTC Kids", url: "https://app.oktv.ge/channels/2/4332" },
+        { name: "Da Vinci Learning", url: "https://app.oktv.ge/channels/2/da-vinci" },
+        { name: "Уникум", url: "https://app.oktv.ge/channels/2/98" },
+        { name: "Мульт", url: "https://app.oktv.ge/channels/2/200" },
+        { name: "viju tv 1000", url: "https://app.oktv.ge/channels/2/82" },
+        { name: "viju tv 1000 русское кино", url: "https://app.oktv.ge/channels/2/83" },
+        { name: "Terra", url: "https://app.oktv.ge/channels/2/5886" },
+        { name: "Иллюзион +", url: "https://app.oktv.ge/channels/2/russkij-illjuzion" },
+        { name: "Еврокино", url: "https://app.oktv.ge/channels/2/96" },
+        { name: "Сапфир", url: "https://app.oktv.ge/channels/2/117" },
+        { name: "Драйв", url: "https://app.oktv.ge/channels/2/drajv" },
+        { name: "Кухня", url: "https://app.oktv.ge/channels/2/38" },
+        { name: "viju History", url: "https://app.oktv.ge/channels/2/491" },
+        { name: "Пятница", url: "https://app.oktv.ge/channels/2/pjatnitsa" },
+        { name: "CNBC English", url: "https://app.oktv.ge/channels/2/cnbc-english" },
+        { name: "Al Arabia Arabic", url: "https://app.oktv.ge/channels/2/8509" },
+        { name: "CNN Turk", url: "https://app.oktv.ge/channels/2/cnn-turk" },
+        { name: "1+1", url: "https://app.oktv.ge/channels/2/8791" },
+        { name: "Silk Way TV", url: "https://app.oktv.ge/channels/2/silk-way-tv" }
+      ],
+      entertainment: [
+        { name: "ТНТ 4", url: "https://app.oktv.ge/channels/2/tv-4" },
+        { name: "СТС", url: "https://app.oktv.ge/channels/2/8" },
+        { name: "ТНТ Comedy", url: "https://app.oktv.ge/channels/2/194" },
+        { name: "Перец", url: "https://app.oktv.ge/channels/2/484" },
+        { name: "Сарафан", url: "https://app.oktv.ge/channels/2/117" },
+        { name: "Food Network", url: "https://app.oktv.ge/channels/2/339" },
+        { name: "Fashion one", url: "https://app.oktv.ge/channels/2/226" },
+        { name: "Усадьба", url: "https://app.oktv.ge/channels/2/80" },
+        { name: "Домашний", url: "https://app.oktv.ge/channels/2/115" },
+        { name: "Охота и Рыбалка", url: "https://app.oktv.ge/channels/2/88" },
+        { name: "Домашние животные", url: "https://app.oktv.ge/channels/2/121" },
+        { name: "Авто Плюс", url: "https://app.oktv.ge/channels/2/29" },
+        { name: "ТВ 3", url: "https://app.oktv.ge/channels/2/207" },
+        { name: "POWER TV", url: "https://app.oktv.ge/channels/2/1988" }
+      ],
+      documentary: [
+        { name: "viju Explorer", url: "https://app.oktv.ge/channels/2/997" },
+        { name: "viju Nature", url: "https://app.oktv.ge/channels/2/119" },
+        { name: "Discovery Channel", url: "https://app.oktv.ge/channels/2/147" },
+        { name: "Animal Planet", url: "https://app.oktv.ge/channels/2/175" },
+        { name: "Оружие", url: "https://app.oktv.ge/channels/2/366" },
+        { name: "Психология 21", url: "https://app.oktv.ge/channels/2/122" },
+        { name: "English Club", url: "https://app.oktv.ge/channels/2/157" },
+        { name: "Зоопарк", url: "https://app.oktv.ge/contents/2017-zoo-1160444631389765549" },
+        { name: "Здоровое тв", url: "https://app.oktv.ge/channels/2/99" },
+        { name: "Доктор", url: "https://app.oktv.ge/channels/2/58" },
+        { name: "24 техно", url: "https://app.oktv.ge/channels/2/256" }
+      ],
+      sport: [
+        { name: "Eurosport", url: "https://app.oktv.ge/channels/2/145" },
+        { name: "Eurosport 2", url: "https://app.oktv.ge/channels/2/361" },
+        { name: "Бокс ТВ", url: "https://app.oktv.ge/channels/2/482" },
+        { name: "viju+sport", url: "https://app.oktv.ge/channels/2/77" },
+        { name: "KXL", url: "https://app.oktv.ge/channels/2/khl" },
+        { name: "Extreme Sport", url: "https://app.oktv.ge/channels/2/extreme-sports" },
+        { name: "Авто 24", url: "https://app.oktv.ge/channels/2/256" },
+        { name: "Sky Sports 1", url: "https://app.oktv.ge/channels/2/sky-sports-1" }
+      ],
+      sportExclusive: [
+        { name: "Setanta Sports 1", url: "https://app.oktv.ge/channels/2/setanta-sports" },
+        { name: "Setanta Sports 2", url: "https://app.oktv.ge/channels/2/4301" },
+        { name: "Setanta Sports 3", url: "https://app.oktv.ge/channels/2/4301" }
+      ],
+      cinema: [
+        { name: ".red", url: "https://app.oktv.ge/channels/2/5596" },
+        { name: ".black", url: "https://app.oktv.ge/channels/2/235" },
+        { name: "Кинохит", url: "https://app.oktv.ge/channels/2/33" },
+        { name: "Мужское Кино", url: "https://app.oktv.ge/channels/2/209" },
+        { name: "Киносемья", url: "https://app.oktv.ge/channels/2/13" },
+        { name: "Киносвидание", url: "https://app.oktv.ge/channels/2/11" },
+        { name: "Киномикс", url: "https://app.oktv.ge/channels/2/167" },
+        { name: "CINEMA", url: "https://app.oktv.ge/channels/2/223" },
+        { name: "Киносерия", url: "https://app.oktv.ge/channels/2/208" },
+        { name: "Наше Новое Кино", url: "https://app.oktv.ge/channels/2/35" },
+        { name: "TV XXI", url: "https://app.oktv.ge/channels/2/84" },
+        { name: "Русский Иллюзион", url: "https://app.oktv.ge/channels/2/russkij-illjuzion" },
+        { name: "Феникс Плюс Кино", url: "https://app.oktv.ge/channels/2/29" },
+        { name: "Кинокомедия", url: "https://app.oktv.ge/channels/2/26" },
+        { name: "НСТ", url: "https://app.oktv.ge/channels/2/93" },
+        { name: "Индийское Кино", url: "https://app.oktv.ge/channels/2/62" },
+        { name: "Индиа", url: "https://app.oktv.ge/channels/2/245" },
+        { name: "365 Дней ТВ", url: "https://app.oktv.ge/channels/2/207" },
+        { name: "Ретро", url: "https://app.oktv.ge/channels/2/87" }
+      ],
+      premiumCinema: [
+        { name: "Кинеко", url: "https://app.oktv.ge/channels/2/204" },
+        { name: "sci-fi", url: "https://app.oktv.ge/channels/2/102" },
+        { name: "viju Tv 1000 Action", url: "https://app.oktv.ge/channels/2/83" },
+        { name: "viju+ Megahit", url: "https://app.oktv.ge/channels/2/195" },
+        { name: "viju+Comedy", url: "https://app.oktv.ge/channels/2/194" },
+        { name: "viju+Premier", url: "https://app.oktv.ge/channels/2/196" },
+        { name: "A 1", url: "https://app.oktv.ge/channels/2/629" },
+        { name: "A 2", url: "https://app.oktv.ge/channels/2/228" },
+        { name: "Amedia Premium HD", url: "https://app.oktv.ge/channels/2/187" },
+        { name: "Amedia Hit", url: "https://app.oktv.ge/channels/2/632" },
+        { name: "HBO", url: "https://app.oktv.ge/channels/2/hbo" }
+      ],
+      news: [
+        { name: "Первый Канал", url: "https://app.oktv.ge/channels/2/1" },
+        { name: "РТР Планета", url: "https://app.oktv.ge/contents/1981-tajna-tretej-planety-911795124375286485" },
+        { name: "НТВ", url: "https://app.oktv.ge/channels/2/4" },
+        { name: "ЦТВ", url: "https://app.oktv.ge/channels/2/3950" },
+        { name: "Россия Культура", url: "https://app.oktv.ge/channels/2/59" },
+        { name: "RTVI", url: "https://app.oktv.ge/channels/2/365" },
+        { name: "MAX", url: "https://app.oktv.ge/channels/2/7361" },
+        { name: "TRT cocuk", url: "https://app.oktv.ge/channels/2/2529" },
+        { name: "TRT 1", url: "https://app.oktv.ge/channels/2/2529" },
+        { name: "TRT Turkey", url: "https://app.oktv.ge/channels/2/2534" },
+        { name: "KAN 11 - ისრაელი", url: "https://app.oktv.ge/channels/2/kan-11" },
+        { name: "Makan 33", url: "https://app.oktv.ge/channels/2/makan-33" },
+        { name: "Keshen 12", url: "https://app.oktv.ge/channels/2/keshnet-12-470" },
+        { name: "Reshnet 13", url: "https://app.oktv.ge/channels/2/reshnet-13-471" },
+        { name: "ZDF", url: "https://app.oktv.ge/channels/2/811" },
+        { name: "Bloomberg English", url: "https://app.oktv.ge/channels/2/356" }
+      ],
+      adult: [
+        { name: "Blue Hustler", url: "https://app.oktv.ge/channels/2/blue-hustler" },
+        { name: "Русская Ночь", url: "https://app.oktv.ge/channels/2/russkaja-noch" },
+        { name: "PRIVAT", url: "https://app.oktv.ge/channels/2/private-tv" }
+      ]
+    };
+
     const packageDataTranslations = {
       en: {
         economy: {
@@ -3001,6 +3199,36 @@
       return base;
     }
 
+    function renderPackageBody(key, data, bodyEl) {
+      if (!bodyEl || !data) return;
+      const channels = packageChannels[key];
+      if (!channels || !channels.length) {
+        bodyEl.innerHTML = data.body;
+        return;
+      }
+
+      bodyEl.innerHTML = "";
+      const list = document.createElement("div");
+      list.className = "package-channel-list";
+
+      channels.forEach((channel) => {
+        const item = document.createElement(channel.url ? "a" : "span");
+        item.className = "package-channel-btn";
+        item.textContent = channel.name;
+        if (channel.url) {
+          item.href = channel.url;
+          item.target = "_blank";
+          item.rel = "noopener";
+        } else {
+          item.classList.add("is-disabled");
+          item.setAttribute("aria-disabled", "true");
+        }
+        list.appendChild(item);
+      });
+
+      bodyEl.appendChild(list);
+    }
+
     function refreshPackageDetails() {
       const listEl = document.getElementById("packageList");
       const titleEl = document.getElementById("packageInfoTitle");
@@ -3013,7 +3241,7 @@
       if (!data) return;
       titleEl.textContent = data.title;
       subtitleEl.textContent = data.subtitle;
-      bodyEl.innerHTML = data.body;
+      renderPackageBody(key, data, bodyEl);
     }
 
     packageDataReady = true;
@@ -3029,7 +3257,7 @@
       if (!data) return;
       titleEl.textContent = data.title;
       subtitleEl.textContent = data.subtitle;
-      bodyEl.innerHTML = data.body;
+      renderPackageBody(key, data, bodyEl);
     }
 
     if (packageListEl && packageInfoEl) {
@@ -3063,6 +3291,43 @@
 
         packageInfoEl.classList.add('open');
         packageListEl.classList.add('collapsed');
+      });
+    }
+
+    const packagesHero = document.getElementById("packages-hero");
+    const packagesList = document.getElementById("packagesList");
+
+    function openPackageFromBanner(key) {
+      if (!packageListEl || !packageInfoEl) return;
+      const targetBtn = packageListEl.querySelector(`.package-list-item[data-key="${key}"]`);
+      if (targetBtn) {
+        packageListEl.querySelectorAll(".package-list-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+        targetBtn.classList.add("active");
+      }
+
+      setPackage(key);
+      packageInfoEl.classList.add("open");
+      packageListEl.classList.add("collapsed");
+
+      if (targetBtn) {
+        targetBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+
+      if (packagesList) {
+        packagesList.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    if (packagesHero) {
+      packagesHero.addEventListener("click", (event) => {
+        const slide = event.target.closest(".hero-package-slide[data-package-key]");
+        if (!slide) return;
+        const key = slide.dataset.packageKey;
+        if (!key) return;
+        openPackageFromBanner(key);
       });
     }
   </script>

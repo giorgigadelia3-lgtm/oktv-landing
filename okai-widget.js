@@ -689,6 +689,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     okaiLauncher = document.getElementById("okAiChatToggle");
+    const okaiIntroCta = document.getElementById("okAiIntroCta");
     buildWidget();
     observeContactMenu();
 
@@ -696,6 +697,13 @@
       okaiLauncher.addEventListener("click", (event) => {
         event.preventDefault();
         toggleWidget();
+      });
+    }
+
+    if (okaiIntroCta) {
+      okaiIntroCta.addEventListener("click", (event) => {
+        event.preventDefault();
+        toggleWidget(true);
       });
     }
 
