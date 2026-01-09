@@ -662,6 +662,25 @@
       object-fit: cover;
     }
 
+    .package-free-icon {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    .package-free-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .package-free-icon .free-ink {
+      fill: #e2e8f0;
+    }
+
     .package-list-text {
       display: flex;
       flex-direction: column;
@@ -2265,7 +2284,13 @@
           <div class="packages-list" id="packageList">
             <button class="package-list-item" data-key="free" type="button">
               <div class="package-thumb-wrap">
-                <img src="package-1.jpg" alt="უფასო არხები პაკეტი" />
+                <div class="package-free-icon" role="img" aria-label="FREE digital">
+                  <svg viewBox="0 0 64 64" aria-hidden="true">
+                    <rect x="9" y="12" width="46" height="40" rx="12" fill="currentColor" opacity="0.18" stroke="currentColor" stroke-width="2" />
+                    <path d="M18 24h8M38 24h8M18 40h8M38 40h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <text x="32" y="36" text-anchor="middle" font-size="12" font-weight="800" class="free-ink" font-family="inherit">FREE</text>
+                  </svg>
+                </div>
               </div>
               <div class="package-list-text">
                 <!-- PACKAGE TITLE (editable): change this text to rename the banner label -->
@@ -3545,21 +3570,26 @@
       renderPackageBody(key, data, bodyEl);
     }
 
-    function openPackageModal(key, triggerEl) {
+    function openPackageModal(key, triggerEl, options = {}) {
+      const { keepFocus = false, resetScroll = true } = options;
       if (!packageInfoEl || !packageModalCard) return;
       const data = getPackageData(key);
       if (!data) return;
       setPackage(key);
-      if (packageModalContent) {
+      if (resetScroll && packageModalContent) {
         packageModalContent.scrollTop = 0;
       }
-      lastPackageTrigger = triggerEl || document.activeElement;
+      if (triggerEl) {
+        lastPackageTrigger = triggerEl;
+      } else if (!keepFocus) {
+        lastPackageTrigger = document.activeElement;
+      }
       packageInfoEl.classList.add('open');
       packageInfoEl.setAttribute('aria-hidden', 'false');
       document.body.classList.add('package-modal-open');
-      if (packageModalClose) {
+      if (!keepFocus && packageModalClose) {
         packageModalClose.focus();
-      } else {
+      } else if (!keepFocus) {
         packageModalCard.setAttribute('tabindex', '-1');
         packageModalCard.focus();
       }
@@ -3621,6 +3651,7 @@
     const packageSearchInput = document.getElementById("packageSearchInput");
     const packageSearchStatus = document.getElementById("packageSearchStatus");
     let searchDebounce = null;
+    let lastSearchMatch = null;
 
     function getTranslationValue(key) {
       const langPack = translations[currentLanguage] || translations.ka || {};
@@ -3706,14 +3737,17 @@
       });
     }
 
-    function highlightChannelByName(name) {
+    function highlightChannelByName(name, options = {}) {
+      const { scroll = true } = options;
       if (!packageInfoEl) return;
       const channelKey = normalizeSearchText(name);
       if (!channelKey) return;
       const target = packageInfoEl.querySelector(`.package-channel-btn[data-channel-key="${channelKey}"]`);
       if (!target) return;
       target.classList.add("is-highlighted");
-      target.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (scroll) {
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
     }
 
     function setSearchStatus(message) {
@@ -3727,7 +3761,8 @@
       }
     }
 
-    function openPackageFromSearch(key, channelName) {
+    function openPackageFromSearch(key, channelName, options = {}) {
+      const { keepFocus = false, resetScroll = true, scrollHighlight = true, triggerEl = null } = options;
       if (!packageListEl || !packageInfoEl) return;
       const targetBtn = packageListEl.querySelector(`.package-list-item[data-key="${key}"]`);
       if (targetBtn) {
@@ -3737,28 +3772,54 @@
         targetBtn.classList.add("active");
       }
 
-      openPackageModal(key, targetBtn);
+      openPackageModal(key, triggerEl || targetBtn, { keepFocus, resetScroll });
 
       requestAnimationFrame(() => {
-        highlightChannelByName(channelName);
+        highlightChannelByName(channelName, { scroll: scrollHighlight });
       });
     }
 
     function runChannelSearch(value) {
-      clearChannelHighlight();
-      if (!value || !normalizeSearchText(value)) {
+      const normalizedValue = normalizeSearchText(value);
+      if (!normalizedValue) {
         setSearchStatus("");
+        clearChannelHighlight();
+        lastSearchMatch = null;
         return;
       }
 
       const result = findBestChannel(value);
       if (!result) {
         setSearchStatus(getTranslationValue("packages.search.empty"));
+        clearChannelHighlight();
+        lastSearchMatch = null;
         return;
       }
 
       setSearchStatus("");
-      openPackageFromSearch(result.packageKey, result.channel.name);
+      const channelKey = normalizeSearchText(result.channel.name);
+      const modalOpen = packageInfoEl && packageInfoEl.classList.contains("open");
+      const packageChanged = !lastSearchMatch || lastSearchMatch.packageKey !== result.packageKey;
+      const channelChanged = !lastSearchMatch || lastSearchMatch.channelKey !== channelKey;
+      const isTyping = packageSearchInput && document.activeElement === packageSearchInput;
+
+      if (packageChanged || !modalOpen) {
+        clearChannelHighlight();
+        openPackageFromSearch(result.packageKey, result.channel.name, {
+          keepFocus: true,
+          resetScroll: false,
+          scrollHighlight: !isTyping,
+          triggerEl: packageSearchInput
+        });
+      } else if (channelChanged) {
+        clearChannelHighlight();
+        highlightChannelByName(result.channel.name, { scroll: !isTyping });
+      }
+
+      lastSearchMatch = {
+        packageKey: result.packageKey,
+        channelKey
+      };
     }
 
     if (packageSearchInput) {
