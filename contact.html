@@ -2956,7 +2956,6 @@ if (downloadModal && downloadModalClose) {
 }
 
 // WGT lock logic
-const WGT_UNLOCK_KEY = "wgtUnlocked";
 const wgtLockCard = document.getElementById("wgtLockCard");
 const wgtDownloadCard = document.getElementById("wgtDownloadCard");
 const wgtLockModal = document.getElementById("wgtLockModal");
@@ -2987,7 +2986,7 @@ function closeWgtLockModal() {
   wgtLockModal.setAttribute("aria-hidden", "true");
 }
 
-setWgtUnlocked(localStorage.getItem(WGT_UNLOCK_KEY) === "true");
+setWgtUnlocked(false);
 
 if (wgtLockCard) {
   wgtLockCard.addEventListener("click", openWgtLockModal);
@@ -3016,7 +3015,6 @@ if (wgtLockForm) {
     event.preventDefault();
     const value = wgtLockInput ? wgtLockInput.value.trim() : "";
     if (value === "0000") {
-      localStorage.setItem(WGT_UNLOCK_KEY, "true");
       setWgtUnlocked(true);
       closeWgtLockModal();
       return;
