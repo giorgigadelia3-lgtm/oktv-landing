@@ -649,73 +649,6 @@
       letter-spacing: 0.04em;
     }
 
-    .wgt-lock-card {
-      gap: 6px;
-    }
-
-    .wgt-lock-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: rgba(37, 99, 235, 0.12);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .wgt-lock-icon svg {
-      width: 22px;
-      height: 22px;
-      fill: var(--primary-dark);
-    }
-
-    .wgt-lock-label {
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.7rem;
-    }
-
-    .wgt-lock-form {
-      display: grid;
-      gap: 10px;
-    }
-
-    .wgt-lock-input {
-      width: 100%;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 8px 12px;
-      font-size: 0.9rem;
-      text-align: center;
-      letter-spacing: 0.3em;
-      background: #ffffff;
-      color: var(--text-main);
-    }
-
-    .wgt-lock-submit {
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      border: none;
-      color: #ffffff;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .wgt-lock-submit:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
-    }
-
-    .wgt-lock-error {
-      font-size: 0.78rem;
-      color: #ef4444;
-      text-align: center;
-    }
-
     .contact-social-inline {
       margin-top: 16px;
       display: flex;
@@ -1217,21 +1150,6 @@
 
 .dark-mode .store-badge-label {
   color: #cbd5f5;
-}
-
-.dark-mode .wgt-lock-icon {
-  background: rgba(15, 23, 42, 0.6);
-  border-color: rgba(148, 163, 184, 0.45);
-}
-
-.dark-mode .wgt-lock-icon svg {
-  fill: #93c5fd;
-}
-
-.dark-mode .wgt-lock-input {
-  background: #0b1220;
-  border-color: #1f2937;
-  color: #e5e7eb;
 }
 
 .dark-mode .social-pill {
@@ -2212,19 +2130,6 @@
                 <span class="store-badge-label" data-i18n="store.ios">Apple • App Store</span>
               </a>
 
-              <div class="store-badge wgt-lock-card" id="wgtLockCard" role="button" tabindex="0" aria-label="Locked download">
-                <span class="wgt-lock-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M6 10V8a6 6 0 1 1 12 0v2h1a1 1 0 0 1 1 1v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a1 1 0 0 1 1-1h1zm2 0h8V8a4 4 0 1 0-8 0v2z"></path>
-                  </svg>
-                </span>
-                <span class="store-badge-label wgt-lock-label" data-i18n="wgt.lockedLabel">დაბლოკილია</span>
-              </div>
-
-              <a class="store-badge wgt-download-card" id="wgtDownloadCard" href="oktv_3.2.7_606.wgt" hidden>
-                <img src="badge-wgt.png" alt="Smart TV WGT" />
-                <span class="store-badge-label" data-i18n="store.wgt">Smart TV • WGT</span>
-              </a>
             </div>
 
             <div class="contact-panel-note" style="margin-top:14px;" data-i18n="contact.panel.social.note">
@@ -2340,31 +2245,6 @@
     <div id="okaiRoot"></div>
     <div id="authRoot"></div>
 
-    <!-- WGT LOCK MODAL -->
-    <div class="download-modal-backdrop" id="wgtLockModal" aria-hidden="true">
-      <div class="download-modal" role="dialog" aria-modal="true" aria-labelledby="wgtLockTitle">
-        <button class="download-modal-close" id="wgtLockClose" aria-label="Close">×</button>
-        <h3 class="download-modal-title" id="wgtLockTitle" data-i18n="wgt.lock.title">კოდის შეყვანა</h3>
-        <p class="download-modal-subtitle" data-i18n="wgt.lock.subtitle">
-          შეიყვანე 4-ნიშნა კოდი ჩამოტვირთვის გასახსნელად.
-        </p>
-        <form class="wgt-lock-form" id="wgtLockForm">
-          <input
-            class="wgt-lock-input"
-            id="wgtLockInput"
-            type="password"
-            inputmode="numeric"
-            pattern="[0-9]*"
-            maxlength="4"
-            autocomplete="one-time-code"
-            aria-label="Access code"
-          />
-          <button class="wgt-lock-submit" type="submit" data-i18n="wgt.lock.cta">გახსნა</button>
-          <div class="wgt-lock-error" id="wgtLockError" hidden data-i18n="wgt.lock.error">კოდი არასწორია.</div>
-        </form>
-      </div>
-    </div>
-
     <!-- DOWNLOAD MODAL -->
     <div class="download-modal-backdrop" id="downloadModal">
       <div class="download-modal">
@@ -2444,12 +2324,6 @@ const translations = {
           "store.mobile": "Google Play • Mobile",
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
-          "store.wgt": "Smart TV • WGT",
-          "wgt.lockedLabel": "დაბლოკილია",
-          "wgt.lock.title": "კოდის შეყვანა",
-          "wgt.lock.subtitle": "შეიყვანე 4-ნიშნა კოდი ჩამოტვირთვის გასახსნელად.",
-          "wgt.lock.cta": "გახსნა",
-          "wgt.lock.error": "კოდი არასწორია.",
           "store.live": "LIVE OKTV",
           "cat.packages.title": "პაკეტები",
           "cat.packages.desc": "საოჯახო, სპორტული და კინოპაკეტები ერთი გვერდიდან.",
@@ -2528,12 +2402,6 @@ const translations = {
           "store.mobile": "Google Play • Mobile",
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
-          "store.wgt": "Smart TV • WGT",
-          "wgt.lockedLabel": "Locked",
-          "wgt.lock.title": "Enter access code",
-          "wgt.lock.subtitle": "Enter the 4-digit code to unlock the download.",
-          "wgt.lock.cta": "Unlock",
-          "wgt.lock.error": "Incorrect code.",
           "store.live": "LIVE OKTV",
           "cat.packages.title": "Packages",
           "cat.packages.desc": "Family, sports, and movie packages in one place.",
@@ -2611,12 +2479,6 @@ const translations = {
           "store.mobile": "Google Play • Mobile",
           "store.tv": "Google Play • TV",
           "store.ios": "Apple • App Store",
-          "store.wgt": "Smart TV • WGT",
-          "wgt.lockedLabel": "Заблокировано",
-          "wgt.lock.title": "Введите код доступа",
-          "wgt.lock.subtitle": "Введите 4-значный код, чтобы открыть загрузку.",
-          "wgt.lock.cta": "Открыть",
-          "wgt.lock.error": "Неверный код.",
           "store.live": "LIVE OKTV",
           "cat.packages.title": "Пакеты",
           "cat.packages.desc": "Семейные, спортивные и кино-пакеты на одной странице.",
@@ -2952,75 +2814,6 @@ if (downloadModal && downloadModalClose) {
     if (e.target === downloadModal) {
       closeDownloadModal();
     }
-  });
-}
-
-// WGT lock logic
-const wgtLockCard = document.getElementById("wgtLockCard");
-const wgtDownloadCard = document.getElementById("wgtDownloadCard");
-const wgtLockModal = document.getElementById("wgtLockModal");
-const wgtLockClose = document.getElementById("wgtLockClose");
-const wgtLockForm = document.getElementById("wgtLockForm");
-const wgtLockInput = document.getElementById("wgtLockInput");
-const wgtLockError = document.getElementById("wgtLockError");
-
-function setWgtUnlocked(unlocked) {
-  if (wgtLockCard) wgtLockCard.hidden = unlocked;
-  if (wgtDownloadCard) wgtDownloadCard.hidden = !unlocked;
-}
-
-function openWgtLockModal() {
-  if (!wgtLockModal) return;
-  wgtLockModal.classList.add("active");
-  wgtLockModal.setAttribute("aria-hidden", "false");
-  if (wgtLockError) wgtLockError.hidden = true;
-  if (wgtLockInput) {
-    wgtLockInput.value = "";
-    wgtLockInput.focus();
-  }
-}
-
-function closeWgtLockModal() {
-  if (!wgtLockModal) return;
-  wgtLockModal.classList.remove("active");
-  wgtLockModal.setAttribute("aria-hidden", "true");
-}
-
-setWgtUnlocked(false);
-
-if (wgtLockCard) {
-  wgtLockCard.addEventListener("click", openWgtLockModal);
-  wgtLockCard.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      openWgtLockModal();
-    }
-  });
-}
-
-if (wgtLockClose) {
-  wgtLockClose.addEventListener("click", closeWgtLockModal);
-}
-
-if (wgtLockModal) {
-  wgtLockModal.addEventListener("click", (event) => {
-    if (event.target === wgtLockModal) {
-      closeWgtLockModal();
-    }
-  });
-}
-
-if (wgtLockForm) {
-  wgtLockForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const value = wgtLockInput ? wgtLockInput.value.trim() : "";
-    if (value === "0000") {
-      setWgtUnlocked(true);
-      closeWgtLockModal();
-      return;
-    }
-    if (wgtLockError) wgtLockError.hidden = false;
-    if (wgtLockInput) wgtLockInput.select();
   });
 }
 

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- EDIT GUIDE: packages.html -> packagesPageTranslations.ka["packages.list.free.name"] and packageData.free.title contain "უფასო არხები" (banner label/title). -->
 <html lang="ka">
 <head>
   <meta charset="UTF-8" />
@@ -525,6 +526,69 @@
       background: var(--bg-page);
     }
 
+    body.package-modal-open {
+      overflow: hidden;
+    }
+
+    .packages-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .packages-header .packages-title {
+      margin: 0;
+    }
+
+    .packages-search-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .packages-search {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      box-shadow: 0 8px 18px rgba(15,23,42,0.08);
+    }
+
+    .packages-search-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .packages-search-input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      width: 180px;
+    }
+
+    .packages-search-status {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: none;
+    }
+
+    .packages-search-status.is-visible {
+      display: block;
+    }
+
     .packages-title {
       font-size: 1.8rem;
       font-weight: 800;
@@ -616,17 +680,70 @@
     }
 
     .package-info-card {
-      border-radius: 24px;
-      background: #ffffff;
-      border: 1px solid rgba(209,213,219,0.9);
-      padding: 18px 18px 20px;
-      box-shadow: 0 16px 40px rgba(15,23,42,0.2);
-      margin-top: 18px;
-      display: none;
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(2, 6, 23, 0.6);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+      z-index: 150;
     }
 
     .package-info-card.open {
-      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .package-modal-card {
+      max-width: 640px;
+      width: min(92vw, 640px);
+      max-height: min(85vh, 720px);
+      margin: 0;
+      padding: 20px 20px 22px;
+      border-radius: 22px;
+      background: #f9fafb;
+      border: 1px solid rgba(209,213,219,0.9);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.24);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(12px);
+      opacity: 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .package-info-card.open .package-modal-card {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .package-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      border: none;
+      background: transparent;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: #6b7280;
+    }
+
+    .package-modal-close:hover {
+      color: #111827;
+    }
+
+    .package-modal-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding-right: 4px;
+      gap: 6px;
     }
 
     .package-info-title {
@@ -646,6 +763,12 @@
       font-size: 0.9rem;
       line-height: 1.7;
       color: var(--text-main);
+    }
+
+    .package-info-card .package-channel-list {
+      max-height: none;
+      overflow: visible;
+      padding-right: 0;
     }
 
     .package-channel-list {
@@ -688,6 +811,12 @@
       opacity: 0.5;
       cursor: default;
       pointer-events: none;
+    }
+
+    .package-channel-btn.is-highlighted {
+      border-color: var(--primary);
+      background: #e0f2ff;
+      box-shadow: 0 12px 22px rgba(37,99,235,0.25);
     }
 
     .package-bonus {
@@ -939,6 +1068,24 @@
         font-size: 15px;
       }
 
+      .packages-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .packages-search-wrap {
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .packages-search {
+        width: 100%;
+      }
+
+      .packages-search-input {
+        width: 100%;
+      }
+
       #packages-hero {
         padding-top: 52px; /* ოდნავ ქვემოთ, რომ ჰედერს არ ეფარებოდეს */
         padding-bottom: 40px;
@@ -1050,6 +1197,24 @@
     color: #93c5fd;
   }
 
+  .dark-mode .packages-search {
+    background: #0f172a;
+    border-color: #1f2937;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  }
+
+  .dark-mode .packages-search-input {
+    color: #e5e7eb;
+  }
+
+  .dark-mode .packages-search-icon {
+    color: #94a3b8;
+  }
+
+  .dark-mode .packages-search-status {
+    color: #cbd5f5;
+  }
+
   .dark-mode .package-list-item {
     background: #0f172a;
     border-color: #1f2937;
@@ -1070,9 +1235,21 @@
   }
 
   .dark-mode .package-info-card {
+    background: rgba(2, 6, 23, 0.75);
+  }
+
+  .dark-mode .package-modal-card {
     background: #0f172a;
     border-color: #1f2937;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  .dark-mode .package-modal-close {
+    color: #94a3b8;
+  }
+
+  .dark-mode .package-modal-close:hover {
+    color: #e5e7eb;
   }
 
   .dark-mode .package-info-title {
@@ -1089,6 +1266,12 @@
     background: #111827;
     border-color: #38bdf8;
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
+  }
+
+  .dark-mode .package-channel-btn.is-highlighted {
+    background: rgba(56, 189, 248, 0.12);
+    border-color: #38bdf8;
+    box-shadow: 0 12px 22px rgba(56, 189, 248, 0.2);
   }
 
   .dark-mode .package-bonus {
@@ -1910,7 +2093,7 @@
           <div class="hero-packages-track">
             <!-- 9 ბანერი – პირველი წრე -->
             <div class="hero-package-slide" data-package-key="economy">
-              <img src="package-1.jpg" alt="ეკონომი – 68 არხი, 9 ლარი თვეში" />
+              <img src="package-1.jpg" alt="ეკონომი – 62 არხი, 9 ლარი თვეში" />
             </div>
             <div class="hero-package-slide" data-package-key="entertainment">
               <img src="package-2.jpg" alt="გასართობი – 14 არხი, 4 ლარი თვეში" />
@@ -1928,7 +2111,7 @@
               <img src="package-6.jpg" alt="კინო – 19 არხი, 4 ლარი თვეში" />
             </div>
             <div class="hero-package-slide" data-package-key="premiumCinema">
-              <img src="package-7.jpg" alt="პრემიუმ კინო – 12 არხი, 4 ლარი თვეში" />
+              <img src="package-7.jpg" alt="პრემიუმ კინო – 11 არხი, 4 ლარი თვეში" />
             </div>
             <div class="hero-package-slide" data-package-key="news">
               <img src="package-8.jpg" alt="ზოგადი საინფორმაციო – 16 არხი, 4 ლარი თვეში" />
@@ -1939,7 +2122,7 @@
 
             <!-- იგივე 9 ბანერი – მეორე წრე უწყვეტი ანიმაციისთვის -->
             <div class="hero-package-slide" data-package-key="economy">
-              <img src="package-1.jpg" alt="ეკონომი – 68 არხი, 9 ლარი თვეში" />
+              <img src="package-1.jpg" alt="ეკონომი – 62 არხი, 9 ლარი თვეში" />
             </div>
             <div class="hero-package-slide" data-package-key="entertainment">
               <img src="package-2.jpg" alt="გასართობი – 14 არხი, 4 ლარი თვეში" />
@@ -1957,7 +2140,7 @@
               <img src="package-6.jpg" alt="კინო – 19 არხი, 4 ლარი თვეში" />
             </div>
             <div class="hero-package-slide" data-package-key="premiumCinema">
-              <img src="package-7.jpg" alt="პრემიუმ კინო – 12 არხი, 4 ლარი თვეში" />
+              <img src="package-7.jpg" alt="პრემიუმ კინო – 11 არხი, 4 ლარი თვეში" />
             </div>
             <div class="hero-package-slide" data-package-key="news">
               <img src="package-8.jpg" alt="ზოგადი საინფორმაციო – 16 არხი, 4 ლარი თვეში" />
@@ -2049,7 +2232,29 @@
     <!-- ================== PACKAGES LIST ================== -->
     <section class="packages-list-section" id="packagesList">
       <div class="packages-inner reveal">
-        <h2 class="packages-title" data-i18n="packages.page.title">OK TV პაკეტები</h2>
+        <div class="packages-header">
+          <h2 class="packages-title" data-i18n="packages.page.title">OK TV პაკეტები</h2>
+          <div class="packages-search-wrap">
+            <div class="packages-search">
+              <span class="packages-search-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <path d="M20 20l-3.5-3.5"></path>
+                </svg>
+              </span>
+              <input
+                class="packages-search-input"
+                id="packageSearchInput"
+                type="search"
+                autocomplete="off"
+                data-i18n-placeholder="packages.search.placeholder"
+                data-i18n-aria="packages.search.aria"
+                aria-label="Search channels"
+              />
+            </div>
+            <div class="packages-search-status" id="packageSearchStatus" aria-live="polite"></div>
+          </div>
+        </div>
         <p class="packages-subtitle" data-i18n="packages.page.subtitle">
           ყველა ძირითადი პაკეტი ერთ ადგილას. ქვემოთ ნახავ იგივე პაკეტების ჩამონათვალს,
           რომლებიც ზემოთ ბანერების ანიმაციაზე ბრუნავს. აირჩიე ნებისმიერი, რომ მოკლედ გაიგო რას მოიცავს.
@@ -2058,13 +2263,24 @@
         <div class="packages-list-layout">
           <!-- პაკეტების სია -->
           <div class="packages-list" id="packageList">
+            <button class="package-list-item" data-key="free" type="button">
+              <div class="package-thumb-wrap">
+                <img src="package-1.jpg" alt="უფასო არხები პაკეტი" />
+              </div>
+              <div class="package-list-text">
+                <!-- PACKAGE TITLE (editable): change this text to rename the banner label -->
+                <div class="package-list-name" data-i18n="packages.list.free.name">უფასო არხები</div>
+                <div class="package-list-meta" data-i18n="packages.list.free.meta">5 არხი • 0 ლარი</div>
+              </div>
+            </button>
+
             <button class="package-list-item active" data-key="economy" type="button">
               <div class="package-thumb-wrap">
                 <img src="package-1.jpg" alt="ეკონომი პაკეტი" />
               </div>
               <div class="package-list-text">
                 <div class="package-list-name" data-i18n="packages.list.economy.name">ეკონომი</div>
-                <div class="package-list-meta" data-i18n="packages.list.economy.meta">68 არხი • 9 ლარი თვეში</div>
+                <div class="package-list-meta" data-i18n="packages.list.economy.meta">62 არხი • 9 ლარი თვეში</div>
               </div>
             </button>
 
@@ -2124,7 +2340,7 @@
               </div>
               <div class="package-list-text">
                 <div class="package-list-name" data-i18n="packages.list.premiumCinema.name">პრემიუმ კინო</div>
-                <div class="package-list-meta" data-i18n="packages.list.premiumCinema.meta">12 არხი • 4 ლარი თვეში</div>
+                <div class="package-list-meta" data-i18n="packages.list.premiumCinema.meta">11 არხი • 4 ლარი თვეში</div>
               </div>
             </button>
 
@@ -2150,9 +2366,12 @@
           </div>
 
           <!-- პაკეტის დეტალები – მობილურის მსგავსი ანიმაციით დესკტოპზეც -->
-          <aside class="package-info-card" id="packageInfo">
-            <div class="package-info-title" id="packageInfoTitle">
-              1) ეკონომი – 68 არხი, 9 ლარი თვეში
+          <aside class="package-info-card" id="packageInfo" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="packageInfoTitle">
+            <div class="package-modal-card" id="packageModalCard" role="document">
+              <button class="package-modal-close" id="packageModalClose" type="button" aria-label="დახურვა">×</button>
+              <div class="package-modal-content" id="packageModalContent">
+                <div class="package-info-title" id="packageInfoTitle">
+              1) ეკონომი – 62 არხი, 9 ლარი თვეში
             </div>
             <div class="package-info-subtitle" id="packageInfoSubtitle">
               საბაზისო, მაგრამ ძალიან მდიდარი პაკეტი ყოველდღიური ყურებისთვის.
@@ -2160,7 +2379,9 @@
             <div class="package-info-body" id="packageInfoBody">
               <!-- body შინაარსს ჩავსვამთ JS–ით -->
             </div>
-          </aside>
+          </div>
+        </div>
+      </aside>
         </div>
       </div>
     </section>
@@ -2536,8 +2757,14 @@
           "packages.hero.about.desc": "მეტი ინფორმაცია OK TV-ს ისტორიასა და მისიის შესახებ.",
           "packages.hero.contact.title": "კონტაქტი",
           "packages.hero.contact.desc": "ტელეფონი, მესენჯერები და სოციალური ქსელები – დაგვიკავშირდი მარტივად.",
+          "packages.search.placeholder": "არხის ძიება...",
+          "packages.search.aria": "არხის ძიება",
+          "packages.search.empty": "არხი ვერ მოიძებნა.",
+          // PACKAGE TITLE (editable): change this text to rename the banner label
+          "packages.list.free.name": "უფასო არხები",
+          "packages.list.free.meta": "5 არხი • 0 ლარი",
           "packages.list.economy.name": "ეკონომი",
-          "packages.list.economy.meta": "68 არხი • 9 ლარი თვეში",
+          "packages.list.economy.meta": "62 არხი • 9 ლარი თვეში",
           "packages.list.entertainment.name": "გასართობი",
           "packages.list.entertainment.meta": "14 არხი • 4 ლარი თვეში",
           "packages.list.documentary.name": "დოკუმენტური და შემეცნებითი",
@@ -2549,7 +2776,7 @@
           "packages.list.cinema.name": "კინო",
           "packages.list.cinema.meta": "19 არხი • 4 ლარი თვეში",
           "packages.list.premiumCinema.name": "პრემიუმ კინო",
-          "packages.list.premiumCinema.meta": "12 არხი • 4 ლარი თვეში",
+          "packages.list.premiumCinema.meta": "11 არხი • 4 ლარი თვეში",
           "packages.list.news.name": "ზოგადი საინფორმაციო",
           "packages.list.news.meta": "16 არხი • 4 ლარი თვეში",
           "packages.list.adult.name": "+18",
@@ -2566,8 +2793,13 @@
           "packages.hero.about.desc": "More information about OK TV's history and mission.",
           "packages.hero.contact.title": "Contact",
           "packages.hero.contact.desc": "Phone, messengers, and social networks - reach us easily.",
+          "packages.search.placeholder": "Search channels...",
+          "packages.search.aria": "Search channels",
+          "packages.search.empty": "No channels found.",
+          "packages.list.free.name": "Free Channels",
+          "packages.list.free.meta": "5 channels • 0 GEL / month",
           "packages.list.economy.name": "Economy",
-          "packages.list.economy.meta": "68 channels • 9 GEL / month",
+          "packages.list.economy.meta": "62 channels • 9 GEL / month",
           "packages.list.entertainment.name": "Entertainment",
           "packages.list.entertainment.meta": "14 channels • 4 GEL / month",
           "packages.list.documentary.name": "Documentary & Educational",
@@ -2579,7 +2811,7 @@
           "packages.list.cinema.name": "Cinema",
           "packages.list.cinema.meta": "19 channels • 4 GEL / month",
           "packages.list.premiumCinema.name": "Premium Cinema",
-          "packages.list.premiumCinema.meta": "12 channels • 4 GEL / month",
+          "packages.list.premiumCinema.meta": "11 channels • 4 GEL / month",
           "packages.list.news.name": "News & Information",
           "packages.list.news.meta": "16 channels • 4 GEL / month",
           "packages.list.adult.name": "+18",
@@ -2596,8 +2828,13 @@
           "packages.hero.about.desc": "Больше информации об истории и миссии OK TV.",
           "packages.hero.contact.title": "Контакты",
           "packages.hero.contact.desc": "Телефон, мессенджеры и соцсети — свяжитесь с нами легко.",
+          "packages.search.placeholder": "Поиск канала...",
+          "packages.search.aria": "Поиск канала",
+          "packages.search.empty": "Канал не найден.",
+          "packages.list.free.name": "Бесплатные каналы",
+          "packages.list.free.meta": "5 каналов • 0 лари в месяц",
           "packages.list.economy.name": "Эконом",
-          "packages.list.economy.meta": "68 каналов • 9 лари в месяц",
+          "packages.list.economy.meta": "62 каналов • 9 лари в месяц",
           "packages.list.entertainment.name": "Развлекательный",
           "packages.list.entertainment.meta": "14 каналов • 4 лари в месяц",
           "packages.list.documentary.name": "Документальный и познавательный",
@@ -2609,7 +2846,7 @@
           "packages.list.cinema.name": "Кино",
           "packages.list.cinema.meta": "19 каналов • 4 лари в месяц",
           "packages.list.premiumCinema.name": "Премиум Кино",
-          "packages.list.premiumCinema.meta": "12 каналов • 4 лари в месяц",
+          "packages.list.premiumCinema.meta": "11 каналов • 4 лари в месяц",
           "packages.list.news.name": "Информационный",
           "packages.list.news.meta": "16 каналов • 4 лари в месяц",
           "packages.list.adult.name": "+18",
@@ -2863,10 +3100,16 @@
 
     // ================== PACKAGES DATA & LOGIC ==================
     const packageData = {
+      free: {
+        // PACKAGE TITLE (editable): change this text to rename the banner label
+        title: "0) უფასო არხები – 5 არხი, 0 ლარი",
+        subtitle: "უფასო პაკეტი ძირითადი არხებით.",
+        body: ""
+      },
       economy: {
-        title: '1) ეკონომი – 68 არხი, 9 ლარი თვეში',
+        title: '1) ეკონომი – 62 არხი, 9 ლარი თვეში',
         subtitle: 'საბაზისო, მაგრამ ძალიან მდიდარი პაკეტი ყოველდღიური ყურებისთვის.',
-        body: '„ეკონომი“ პაკეტი აერთიანებს 68 სხვადასხვა არხს – ქართულ, საერთაშორისო, მუსიკალურ, საბავშვო და საინფორმაციო კონტენტს. იდეალურია იმ მომხმარებლებისთვის, ვისაც სურს მაქსიმალურად დაბალ ფასად მიიღოს მრავალფეროვანი პროგრამები. 9 ლარი თვეში ორ მისამართზე, დამატებითი დამალული გადასახადების გარეშე.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
+        body: '„ეკონომი“ პაკეტი აერთიანებს 62 სხვადასხვა არხს – ქართულ, საერთაშორისო, მუსიკალურ, საბავშვო და საინფორმაციო კონტენტს. იდეალურია იმ მომხმარებლებისთვის, ვისაც სურს მაქსიმალურად დაბალ ფასად მიიღოს მრავალფეროვანი პროგრამები. 9 ლარი თვეში ორ მისამართზე, დამატებითი დამალული გადასახადების გარეშე.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       },
       entertainment: {
         title: '2) გასართობი – 14 არხი, 4 ლარი თვეში',
@@ -2894,7 +3137,7 @@
         body: '„კინო“ პაკეტი მოიცავს 19 კინოჩანელებს: action, დრამა, კომედია, თრილერი, საოჯახო და სხვა. იდეალურია მათთვის, ვინც ყოველდღე ახალ ფილმებს ეძებს ქართულად და ორიგინალ ენაზე.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       },
       premiumCinema: {
-        title: '7) პრემიუმ კინო – 12 არხი, 4 ლარი თვეში',
+        title: '7) პრემიუმ კინო – 11 არხი, 4 ლარი თვეში',
         subtitle: 'ბოლო პრემიერები, HD და UHD ხარისხი.',
         body: '„პრემიუმ კინო“ პაკეტი ფოკუსირებულია ახალ პრემიერებზე, მაღალი ხარისხის ვიდეოზე და შერჩეულ კონტენტზე. საუკეთესო ვარიანტია კინომოყვარულებისთვის, ვისაც სურს, რომ მისი ტელევიზორი პატარა კინოთეატრად იქცეს.<br><br><span class="package-bonus">ასევე 400-ზე მეტი კინო ბიბლიოთეკა საჩუქრად.</span>'
       },
@@ -2911,6 +3154,13 @@
     };
 
     const packageChannels = {
+      free: [
+        { name: "საქართველოს საზოგადოებრივი მაუწებლობა", url: "https://app.oktv.ge/channels/2/416" },
+        { name: "პარლამენტი", url: "https://app.oktv.ge/channels/2/425" },
+        { name: "Music Box", url: "https://app.oktv.ge/channels/2/3473" },
+        { name: "TV 4", url: "https://app.oktv.ge/channels/2/tv-4" },
+        { name: "ერთსულოვნება", url: "https://app.oktv.ge/channels/2/8460" }
+      ],
       economy: [
         { name: "იმედი", url: "https://app.oktv.ge/channels/2/421" },
         { name: "ტვ პირველი", url: "https://app.oktv.ge/channels/2/423" },
@@ -2944,14 +3194,14 @@
         { name: "Настоящее Время", url: "https://app.oktv.ge/channels/2/4262" },
         { name: "Рен ТВ", url: "https://app.oktv.ge/channels/2/7" },
         { name: "ТВ Центр", url: "https://app.oktv.ge/channels/2/38" },
-        { name: "FREDOM (UA TV)", url: "" },
+        { name: "FREEDOM (UA TV)", url: "https://app.oktv.ge/channels/2/4328" },
         { name: "C1", url: "https://app.oktv.ge/channels/2/7360" },
         { name: "Ictimai TV", url: "https://app.oktv.ge/channels/2/436" },
         { name: "RAI UNO", url: "https://app.oktv.ge/channels/2/rai-1" },
         { name: "Bridge tv", url: "https://app.oktv.ge/channels/2/69" },
         { name: "Mezzo", url: "https://app.oktv.ge/channels/2/55" },
         { name: "Муз тв", url: "https://app.oktv.ge/channels/2/10" },
-        { name: "RU TV", url: "" },
+        { name: "RU TV", url: "https://app.oktv.ge/channels/2/63" },
         { name: "жара", url: "https://app.oktv.ge/channels/2/357" },
         { name: "Cartoоn Network", url: "https://app.oktv.ge/channels/2/52" },
         { name: "Jim-Jam", url: "https://app.oktv.ge/channels/2/166" },
@@ -3080,11 +3330,16 @@
 
     const packageDataTranslations = {
       en: {
+        free: {
+          title: "0) Free Channels - 5 channels, 0 GEL / month",
+          subtitle: "Free package with essential channels.",
+          body: ""
+        },
         economy: {
-          title: "1) Economy - 68 channels, 9 GEL / month",
+          title: "1) Economy - 62 channels, 9 GEL / month",
           subtitle: "Basic package with family, news, entertainment, and kids channels.",
           body:
-            "The Economy package includes 68 channels across family, news, entertainment, kids, and regional content. It's the best starting option for everyday viewing at a friendly price.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
+            "The Economy package includes 62 channels across family, news, entertainment, kids, and regional content. It's the best starting option for everyday viewing at a friendly price.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
         },
         entertainment: {
           title: "2) Entertainment - 14 channels, 4 GEL / month",
@@ -3117,7 +3372,7 @@
             "Cinema package with 19 movie channels across genres - action, drama, comedy, romance, and family. Perfect for movie nights.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
         },
         premiumCinema: {
-          title: "7) Premium Cinema - 12 channels, 4 GEL / month",
+          title: "7) Premium Cinema - 11 channels, 4 GEL / month",
           subtitle: "Premium movie channels in HD/UHD.",
           body:
             "Premium cinema lineup with HD/UHD channels and a focus on new releases. Best for high-quality movie viewing.<br><br><span class=\"package-bonus\">Bonus: 400+ movies in the OK TV library.</span>"
@@ -3136,11 +3391,16 @@
         }
       },
       ru: {
+        free: {
+          title: "0) Бесплатные каналы — 5 каналов, 0 лари в месяц",
+          subtitle: "Бесплатный пакет с основными каналами.",
+          body: ""
+        },
         economy: {
-          title: "1) Эконом — 68 каналов, 9 лари в месяц",
+          title: "1) Эконом — 62 каналов, 9 лари в месяц",
           subtitle: "Базовый пакет с семейными, новостными, развлекательными и детскими каналами.",
           body:
-            "Пакет «Эконом» включает 68 каналов: семейные, новости, развлечения, детские и региональные. Отличный стартовый вариант для ежедневного просмотра по доступной цене.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
+            "Пакет «Эконом» включает 62 каналов: семейные, новости, развлечения, детские и региональные. Отличный стартовый вариант для ежедневного просмотра по доступной цене.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
         },
         entertainment: {
           title: "2) Развлекательный — 14 каналов, 4 лари в месяц",
@@ -3173,7 +3433,7 @@
             "Пакет «Кино» с 19 фильм‑каналами разных жанров — экшн, драма, комедия, романтика и семейные. Идеально для кино‑вечеров.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
         },
         premiumCinema: {
-          title: "7) Премиум Кино — 12 каналов, 4 лари в месяц",
+          title: "7) Премиум Кино — 11 каналов, 4 лари в месяц",
           subtitle: "Премиальные кино‑каналы в HD/UHD.",
           body:
             "Премиальная подборка кино‑каналов в HD/UHD с акцентом на новые релизы. Для качественного просмотра.<br><br><span class=\"package-bonus\">Бонус: более 400 фильмов в библиотеке OK TV.</span>"
@@ -3193,6 +3453,16 @@
       }
     };
 
+    function normalizeSearchText(value) {
+      return String(value || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^0-9a-z\u00C0-\u024F\u0400-\u04FF\u10A0-\u10FF]+/gi, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
     function getPackageData(key) {
       const base = packageData[key];
       if (!base) return null;
@@ -3210,12 +3480,11 @@
     function renderPackageBody(key, data, bodyEl) {
       if (!bodyEl || !data) return;
       const channels = packageChannels[key];
+      bodyEl.innerHTML = data.body || "";
       if (!channels || !channels.length) {
-        bodyEl.innerHTML = data.body;
         return;
       }
 
-      bodyEl.innerHTML = "";
       const list = document.createElement("div");
       list.className = "package-channel-list";
 
@@ -3223,6 +3492,10 @@
         const item = document.createElement(channel.url ? "a" : "span");
         item.className = "package-channel-btn";
         item.textContent = channel.name;
+        const channelKey = normalizeSearchText(channel.name);
+        if (channelKey) {
+          item.dataset.channelKey = channelKey;
+        }
         if (channel.url) {
           item.href = channel.url;
           item.target = "_blank";
@@ -3256,9 +3529,13 @@
 
     const packageListEl = document.getElementById('packageList');
     const packageInfoEl = document.getElementById('packageInfo');
+    const packageModalCard = document.getElementById('packageModalCard');
+    const packageModalClose = document.getElementById('packageModalClose');
+    const packageModalContent = document.getElementById('packageModalContent');
     const titleEl = document.getElementById('packageInfoTitle');
     const subtitleEl = document.getElementById('packageInfoSubtitle');
     const bodyEl = document.getElementById('packageInfoBody');
+    let lastPackageTrigger = null;
 
     function setPackage(key) {
       const data = getPackageData(key);
@@ -3266,6 +3543,38 @@
       titleEl.textContent = data.title;
       subtitleEl.textContent = data.subtitle;
       renderPackageBody(key, data, bodyEl);
+    }
+
+    function openPackageModal(key, triggerEl) {
+      if (!packageInfoEl || !packageModalCard) return;
+      const data = getPackageData(key);
+      if (!data) return;
+      setPackage(key);
+      if (packageModalContent) {
+        packageModalContent.scrollTop = 0;
+      }
+      lastPackageTrigger = triggerEl || document.activeElement;
+      packageInfoEl.classList.add('open');
+      packageInfoEl.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('package-modal-open');
+      if (packageModalClose) {
+        packageModalClose.focus();
+      } else {
+        packageModalCard.setAttribute('tabindex', '-1');
+        packageModalCard.focus();
+      }
+    }
+
+    function closePackageModal() {
+      if (!packageInfoEl) return;
+      packageInfoEl.classList.remove('open');
+      packageInfoEl.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('package-modal-open');
+      clearChannelHighlight();
+      if (lastPackageTrigger && typeof lastPackageTrigger.focus === 'function') {
+        lastPackageTrigger.focus();
+      }
+      lastPackageTrigger = null;
     }
 
     if (packageListEl && packageInfoEl) {
@@ -3279,28 +3588,196 @@
         const key = btn.dataset.key;
         if (!key) return;
 
-        const alreadyActive = btn.classList.contains('active');
-
         // ყველა ელემენტიდან active მოვხსნათ
         packageListEl.querySelectorAll('.package-list-item').forEach(item => {
           item.classList.remove('active');
         });
 
         // თუ იგივე active–ს მეორედ ვაჭერთ და უკვე გახსნილია – დავხუროთ
-        if (alreadyActive && packageInfoEl.classList.contains('open')) {
-          packageInfoEl.classList.remove('open');
-          packageListEl.classList.remove('collapsed');
-          return;
-        }
-
         // ახალი active
         btn.classList.add('active');
-        setPackage(key);
-
-        packageInfoEl.classList.add('open');
-        packageListEl.classList.add('collapsed');
+        openPackageModal(key, btn);
       });
     }
+
+    if (packageModalClose) {
+      packageModalClose.addEventListener('click', closePackageModal);
+    }
+
+    if (packageInfoEl) {
+      packageInfoEl.addEventListener('click', (event) => {
+        if (event.target === packageInfoEl) {
+          closePackageModal();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && packageInfoEl && packageInfoEl.classList.contains('open')) {
+        closePackageModal();
+      }
+    });
+
+    const packageSearchInput = document.getElementById("packageSearchInput");
+    const packageSearchStatus = document.getElementById("packageSearchStatus");
+    let searchDebounce = null;
+
+    function getTranslationValue(key) {
+      const langPack = translations[currentLanguage] || translations.ka || {};
+      return langPack[key] || "";
+    }
+
+    function levenshteinDistance(a, b) {
+      const aLen = a.length;
+      const bLen = b.length;
+      if (!aLen) return bLen;
+      if (!bLen) return aLen;
+
+      const matrix = Array.from({ length: aLen + 1 }, () => new Array(bLen + 1).fill(0));
+      for (let i = 0; i <= aLen; i += 1) matrix[i][0] = i;
+      for (let j = 0; j <= bLen; j += 1) matrix[0][j] = j;
+
+      for (let i = 1; i <= aLen; i += 1) {
+        for (let j = 1; j <= bLen; j += 1) {
+          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j] + 1,
+            matrix[i][j - 1] + 1,
+            matrix[i - 1][j - 1] + cost
+          );
+        }
+      }
+      return matrix[aLen][bLen];
+    }
+
+    function scoreMatch(query, candidate) {
+      const normalizedQuery = normalizeSearchText(query);
+      const normalizedCandidate = normalizeSearchText(candidate);
+      if (!normalizedQuery || !normalizedCandidate) return 0;
+
+      if (normalizedCandidate.includes(normalizedQuery)) return 1;
+
+      const queryCompact = normalizedQuery.replace(/\s+/g, "");
+      const candidateCompact = normalizedCandidate.replace(/\s+/g, "");
+      const maxLen = Math.max(queryCompact.length, candidateCompact.length) || 1;
+      const distanceScore = 1 - (levenshteinDistance(queryCompact, candidateCompact) / maxLen);
+
+      const queryTokens = normalizedQuery.split(" ").filter(Boolean);
+      const candidateTokens = normalizedCandidate.split(" ").filter(Boolean);
+      let tokenScore = 0;
+      if (queryTokens.length && candidateTokens.length) {
+        let matches = 0;
+        queryTokens.forEach((token) => {
+          if (candidateTokens.some((candidateToken) => candidateToken.startsWith(token) || token.startsWith(candidateToken))) {
+            matches += 1;
+          }
+        });
+        tokenScore = matches / queryTokens.length;
+      }
+
+      return Math.max(distanceScore, tokenScore);
+    }
+
+    function findBestChannel(query) {
+      const normalizedQuery = normalizeSearchText(query);
+      if (!normalizedQuery) return null;
+      let best = null;
+
+      Object.keys(packageChannels).forEach((packageKey) => {
+        const channels = packageChannels[packageKey] || [];
+        channels.forEach((channel) => {
+          const score = scoreMatch(normalizedQuery, channel.name || "");
+          if (!best || score > best.score) {
+            best = { packageKey, channel, score };
+          }
+        });
+      });
+
+      if (!best || best.score < 0.34) {
+        return null;
+      }
+      return best;
+    }
+
+    function clearChannelHighlight() {
+      if (!packageInfoEl) return;
+      packageInfoEl.querySelectorAll(".package-channel-btn.is-highlighted").forEach((el) => {
+        el.classList.remove("is-highlighted");
+      });
+    }
+
+    function highlightChannelByName(name) {
+      if (!packageInfoEl) return;
+      const channelKey = normalizeSearchText(name);
+      if (!channelKey) return;
+      const target = packageInfoEl.querySelector(`.package-channel-btn[data-channel-key="${channelKey}"]`);
+      if (!target) return;
+      target.classList.add("is-highlighted");
+      target.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function setSearchStatus(message) {
+      if (!packageSearchStatus) return;
+      if (message) {
+        packageSearchStatus.textContent = message;
+        packageSearchStatus.classList.add("is-visible");
+      } else {
+        packageSearchStatus.textContent = "";
+        packageSearchStatus.classList.remove("is-visible");
+      }
+    }
+
+    function openPackageFromSearch(key, channelName) {
+      if (!packageListEl || !packageInfoEl) return;
+      const targetBtn = packageListEl.querySelector(`.package-list-item[data-key="${key}"]`);
+      if (targetBtn) {
+        packageListEl.querySelectorAll(".package-list-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+        targetBtn.classList.add("active");
+      }
+
+      openPackageModal(key, targetBtn);
+
+      requestAnimationFrame(() => {
+        highlightChannelByName(channelName);
+      });
+    }
+
+    function runChannelSearch(value) {
+      clearChannelHighlight();
+      if (!value || !normalizeSearchText(value)) {
+        setSearchStatus("");
+        return;
+      }
+
+      const result = findBestChannel(value);
+      if (!result) {
+        setSearchStatus(getTranslationValue("packages.search.empty"));
+        return;
+      }
+
+      setSearchStatus("");
+      openPackageFromSearch(result.packageKey, result.channel.name);
+    }
+
+    if (packageSearchInput) {
+      packageSearchInput.addEventListener("input", (event) => {
+        const value = event.target.value;
+        if (searchDebounce) {
+          clearTimeout(searchDebounce);
+        }
+        searchDebounce = setTimeout(() => {
+          runChannelSearch(value);
+        }, 200);
+      });
+    }
+
+    document.addEventListener("oktv:languageChange", () => {
+      if (packageSearchStatus && packageSearchStatus.classList.contains("is-visible")) {
+        setSearchStatus(getTranslationValue("packages.search.empty"));
+      }
+    });
 
     const packagesHero = document.getElementById("packages-hero");
     const packagesList = document.getElementById("packagesList");
@@ -3315,18 +3792,12 @@
         targetBtn.classList.add("active");
       }
 
-      setPackage(key);
-      packageInfoEl.classList.add("open");
-      packageListEl.classList.add("collapsed");
+      openPackageModal(key, targetBtn);
 
       if (targetBtn) {
-        targetBtn.scrollIntoView({ behavior: "smooth", block: "center" });
         return;
       }
 
-      if (packagesList) {
-        packagesList.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
     }
 
     if (packagesHero) {
